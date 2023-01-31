@@ -1,0 +1,38 @@
+---
+title: "Python types, interfaces and protocols"
+format: revealjs
+---
+
+## Python types
+
+::: {.incremental}
+
+* Python is a dynamically typed language
+* Types are not checked at compile time
+* Types are checked at runtime
+* Types are inferred from the context
+* Types are not enforced
+
+:::
+
+## Collections Abstract Base Classes
+
+
+```{mermaid}
+classDiagram
+    Container <|-- Collection
+    Sized <|-- Collection
+    Iterable <|-- Collection
+    Collection <|-- Sequence
+    Collection <|-- Set
+    Sequence <|-- MutableSequence
+    Mapping <|-- MutableMapping
+    Collection <|-- Mapping
+
+    MutableSequence <|-- List
+    Sequence <|-- Tuple
+    MutableMapping <|-- Dict
+    
+```
+
+
