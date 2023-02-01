@@ -10,8 +10,6 @@ format: revealjs
 * Python is a dynamically typed language
 * Types are not checked at compile time
 * Types are checked at runtime
-* Types are inferred from the context
-* Types are not enforced
 
 :::
 
@@ -35,4 +33,219 @@ classDiagram
     
 ```
 
+
+## Pythonic
+
+If you want your code to be Pythonic, you have to be familiar with these types and their methods.
+
+Dundermethods:
+
+* `__getitem__`
+* `__setitem__`
+* `__len__`
+* `__contains__`
+* ... 
+
+---
+
+
+```python
+class JavaLikeToolbox:
+    
+    def get_tool_by_name(self, name: str) -> Tool:
+        for tool in self.tools:
+            if tool.name == name:
+                return tool
+
+    def number_of_tools(self) -> int:
+        return len(self.tools)
+
+>>> tb = JavaLikeToolbox([Hammer(), Screwdriver()])
+>>> tb.get_tool_by_name("hammer")
+Hammer()
+>>> tb.number_of_tools()
+2
+```
+
+
+---
+
+```python
+class Toolbox:
+
+    def __getitem__(self, name: str) -> Tool:
+        return self._tools[name]
+    
+    def __len__(self) -> int:
+        return len(self.tools)
+
+>>> tb = Toolbox([Hammer(), Screwdriver()])
+>>> tb["hammer"]
+>>> len(tb)
+2
+```
+
+
+## Duck typing
+
+::: {.incremental}
+
+* If it walks like a duck and quacks like a duck, it's a duck
+* If it has a `__getitem__` method, it's a sequence
+* If it has a `__len__` method, it's a collection
+
+:::
+
+
+---
+
+An exmample is a Scikit learn transformers
+
+* `fit`
+* `transform`
+* `fit_transform`
+
+If you want to make a transformer compatible with sklearn, you have to implement these methods.
+
+---
+
+```python
+class MyTransformer:
+    def fit(self, X, y=None):
+        # do something
+        return self
+
+    def transform(self, X):
+        # do something
+        return X
+
+    def fit_transform(self, X, y=None):
+        return self.fit(X, y).transform(X)
+```
+
+---
+
+```python
+from sklearn.base import TransformerMixin
+
+class MyOtherTransformer(TransformerMixin):
+    def fit(self, X, y=None):
+        # do something
+        return self
+
+    def transform(self, X):
+        # do something
+        return X
+
+    # def fit_transform(self, X, y=None):
+    # we get this for free, from TransformerMixin
+```
+
+## Protocols
+
+// TODO 
+
+::: {.incremental}
+
+* Protocols were introduced in Python 3.8
+* Protocols are a way to define a set of methods that a class must implement
+
+:::
+
+---
+
+```python
+from typing import Protocol
+
+class SupportsAbs(Protocol):
+    def __abs__(self):
+        ...
+
+class MyCustomFloat(SupportsAbs)):
+    def __init__(self, value: float) -> None:
+        self.value = value
+
+    def __abs__(self) -> float:
+        return self.value
+
+def transform(x: SupportsAbs) -> float:
+    return abs(x)
+
+```
+
+## Refactoring
+
+::: {.incremental}
+
+* Refactoring is a way to improve the design of existing code
+* Changing a software system in such a way that it **does not alter the external behavior of the code**, yet improves its internal structure
+* Refactoring is a way to make code more readable and maintainable
+
+:::
+
+---
+
+Some common refactoring techniques:
+
+::: {.incremental}
+
+* Extract method
+* Extract variable
+* Rename method
+* Rename variable
+* Rename class
+* Inline method
+* Inline variable
+* Inline class
+
+:::
+
+## Composed method
+
+Break up a long method into smaller methods.
+
+---
+
+```python
+# get data
+filename = ...
+df= read_csv(..
+...
+
+# clean data
+df.dropna()
+df.drop_duplicates()
+...
+
+# transform data
+df.date= pd.to_datetime(df.date)
+
+# predict
+predictions = df.height + df.weight * df.age
+```
+
+
+
+---
+
+```python
+
+def get_data(filename,...):
+    ...
+
+def clean_data(df):
+    ...
+
+def transform_data(df):
+    ...
+
+def predict(df):
+    ...
+
+def main():
+    df = get_data("raw_data.csv")
+    clean_data = clean_data(df)
+    final_data = transform_data(clean_data)
+    predictions = predict(final_data)
+```
 
