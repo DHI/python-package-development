@@ -267,3 +267,41 @@ def clip(values: Iterable[Real],*, threshold=0) -> List[Real]:
 >>> x
 [-1, 0, 2]
 ```
+
+## Classes
+
+// TODO: explain instance variables, class variables, methods, properties, inheritance, etc.
+
+
+```python
+class WeirdToolbox
+    tools = [] # class variable ☹️
+
+
+>>> t1 = WeirdToolbox()
+>>> t1.tools.append("hammer")
+>>> t1.tools
+["hammer"]
+
+>>> t2 = WeirdToolbox()
+>>> t2.tools.append("screwdriver")
+>>> t2.tools
+["hammer", "screwdriver"]
+```
+
+---
+```python
+class Toolbox
+    def __init__(self):
+        self.tools = [] # instance variable 😃
+
+>>> t1 = Toolbox()
+>>> t1.tools.append("hammer")
+>>> t1.tools
+["hammer"]
+
+>>> t2 = Toolbox()
+>>> t2.tools.append("screwdriver")
+>>> t2.tools
+["screwdriver"]
+```
