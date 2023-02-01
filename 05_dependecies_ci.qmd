@@ -1,0 +1,94 @@
+---
+title: "Dependencies and Continuous Integration"
+format: revealjs
+---
+
+
+## Dependency management
+
+`Requirements.txt`
+
+Example:
+
+```
+$ cat requirements.txt
+numpy==1.11.0
+scipy==0.17.0
+matplotlib==1.5.1
+```
+
+## Continuous Integration
+
+Running tests on every commit in a well defined environment ensures that the code is working as expected.
+
+It solves the "it works on my machine" problem.
+
+Executing code on a remote server is a good way to ensure that the code is working as expected.
+
+Two main approaches are:
+
+* GitHub Actions
+* Azure Pipelines
+
+## GitHub Actions
+
+Workflow are stored in the `.github/workflows` folder.
+
+```
+$ tree mikeio/.github/
+mikeio/.github/
+└── workflows
+    ├── docs.yml
+    ├── downstream_test.yml
+    ├── full_test.yml
+    ├── notebooks_test.yml
+    ├── perf_test.yml
+    ├── python-publish.yml
+    └── quick_test.yml
+```
+
+---
+
+```yaml
+name: Quick test
+
+on: # when to run the workflow
+  push:
+    branches: [ main]
+  pull_request:
+    branches: [ main ]
+
+jobs: # what to run
+  build:
+    runs-on: ubuntu-latest # on what operating system
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Install mikeio
+      run: |
+        pip install .[test]
+    - name: Test with pytest
+      run: |
+        pytest
+```
+
+---
+
+🙂🚀
+
+![](images/github_action_result.png)
+
+---
+
+☹️
+
+![](images/github_action_result_fail.png)
+
