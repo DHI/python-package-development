@@ -1,6 +1,8 @@
 ---
 title: Function, classes and modules
 format: revealjs
+footer: Python package development
+logo: campus_logo.png
 ---
 
 

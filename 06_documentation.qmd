@@ -1,0 +1,31 @@
+---
+title: Documentation
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+
+## Why document your code?
+
+
+## Docstrings
+
+## Numpy format
+
+## Type hints
+
+## doctest
+
+## Documentation generators
+
+* Sphinx
+* mkdocs
+
+::: {.notes}
+Sphinx has been around for a long time, has lot's of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality.
+:::
+
+
+## mkdocs
+
