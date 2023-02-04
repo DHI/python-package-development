@@ -270,9 +270,6 @@ def clip(values: Iterable[Real],*, threshold=0) -> List[Real]:
 
 ## Classes
 
-// TODO: explain instance variables, class variables, methods, properties, inheritance, etc.
-
-
 ```python
 class WeirdToolbox
     tools = [] # class variable ☹️
@@ -289,7 +286,8 @@ class WeirdToolbox
 ["hammer", "screwdriver"]
 ```
 
----
+## Classes
+
 ```python
 class Toolbox
     def __init__(self):
@@ -304,4 +302,59 @@ class Toolbox
 >>> t2.tools.append("screwdriver")
 >>> t2.tools
 ["screwdriver"]
+```
+
+
+## Static methods
+
+```python
+from datetime import date
+
+class DateRange:
+    def __init__(self, start:date, end:date):
+        self.start = start
+        self.end = end
+
+>>> dr = DateRange(date(2020, 1, 1), date(2020, 1, 31))
+>>> dr.start
+datetime.date(2020, 1, 1)
+>>> dr.end
+datetime.date(2020, 1, 31)
+```
+
+
+## Static methods
+
+```python
+class DateRange:
+    def __init__(self, start:date, end:date):
+        self.start = start
+        self.end = end
+
+    @staticmethod
+    def from_string(date_string):
+        start, end = date_string.split("|")
+        return DateRange(start, end)
+
+>>> dr = DateRange.from_string("2020-01-01|2020-01-31")
+```
+
+## Dataclasses
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class DateRange:
+    start: date
+    end: date
+
+    @staticmethod
+    def from_string(date_string):
+        start, end = date_string.split("|")
+        return DateRange(start, end)
+
+>>> dr = DateRange.from_string("2020-01-01|2020-01-31")
+>>> dr
+DateRange(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
 ```
