@@ -1,0 +1,90 @@
+---
+title: "Testing, linting and formatting"
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+## Testing
+
+## Linting
+
+Python is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code. 
+
+`flake8` is a popular tool for linting Python code.
+
+* syntax errors
+* unused imports
+* unused variables
+* undefined names
+* code style (e.g. line length, indentation, whitespace, etc.)
+
+## Unused variables
+
+```{.python code-line-numbers="|3"}
+def model(a, b):
+
+    method = "cubic"
+    return a + (b - a)
+
+
+y = model(a=1, b=2)
+```
+ 
+. . .
+
+Unused variables is either a mistake or simply a source of confusion.
+
+. . .
+ 
+```bash
+$ flake8 models.py
+models.py:3:5: F841 local variable 'method' is assigned to but never used
+```
+
+
+
+
+## Formatting
+
+Formatting code according to a common style is a good practice. It makes your code more readable and easier to maintain.
+
+. . .
+
+Enforcing a particular style can be a common source of discussion among developers. 
+
+. . .
+
+`black`^[https://black.readthedocs.io/] is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.
+
+. . .
+
+Having a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style.
+
+---
+
+## Running Black
+
+```
+$ black .
+reformatted data_utils.py
+reformatted dfsu/__init__.py
+reformatted dataarray.py
+reformatted dataset.py
+reformatted spatial/geometry.py
+reformatted pfs/pfssection.py
+
+All done! ✨ 🍰 ✨
+6 files reformatted, 27 files left unchanged.
+```
+
+## Running Black {.smaller}
+
+Visual Studio Code can be configured to run `black` automatically when saving a file.
+
+![](images/vs_code_format.png)
+
+  
+
+
+

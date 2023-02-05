@@ -8,6 +8,7 @@ logo: campus_logo.png
 
 ## Why document your code?
 
+## Notebooks
 
 ## Docstrings
 
