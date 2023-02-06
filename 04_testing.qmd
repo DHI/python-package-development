@@ -22,8 +22,6 @@ Being able to run tests automatically is a way to verify that your code is still
 ## Testing workflow
 
 ```{mermaid}
-
-
 flowchart TD
     A[Prepare inputs]
     B[Identify expected output]
@@ -162,6 +160,13 @@ def test_height_can_not_be_missing():
 3. Refactor the code ⚒️
 
 :::
+
+
+. . .
+
+The benefit of this approach is that you are forced to think about the expected behaviour of your code before you write it.
+
+It is also too easy to write a test that passes without actually testing the code.
 
 
 ## Linting
