@@ -1,0 +1,39 @@
+---
+title: "Python types, interfaces and protocols"
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+
+## Why use version control?
+
+## Centralized version control
+
+* single source with the entire history
+* local copy with latest version
+
+## Distributed version control
+
+* local copy has the entire history
+* commit changes to code offline
+* authorative source (origin)
+
+## Git
+
+1. `git add foo.py`
+2. `git commit -m "Nailed it"`
+3. `git push`
+
+## Branching
+
+## GitHub
+
+## Github flow
+
+1. create a branch
+2. make changes
+3. create a pull request
+4. review
+5. merge
+

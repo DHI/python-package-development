@@ -218,6 +218,32 @@ def transform(x: SupportsAbs) -> float:
 
 ```
 
+## Postel's law
+a.k.a. the Robustness principle of software design
+
+1. Be liberal in what you accept
+2. Be conservative in what you send
+
+. . .
+
+```python
+def process(number: Union[int,str,float]) -> int:
+    # make sure number is an int from now on
+    number = int(number)
+
+    result = number * 2
+    return result   
+```
+
+. . .
+
+The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input.
+
+## `isinstance`
+
+// TODO
+
+
 ## Refactoring
 
 ::: {.incremental}
