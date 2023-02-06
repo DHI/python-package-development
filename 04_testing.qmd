@@ -122,6 +122,48 @@ def test_integration():
 ![](images/vs_code_test.png)
 
 
+## Testing advice
+
+::: {.callout-tip}
+## Test edge cases
+
+- empty lists
+- lists with a single element
+- empty strings
+- empty dictionaries
+- None
+- np.nan
+
+::: 
+
+## Tests act as specification
+
+```python
+def test_operable_period_can_be_missing():
+
+    assert is_operable(height=1.0, period=None)
+    assert is_operable(height=1.0, period=np.nan)
+    assert is_operable(height=1.0)
+    assert not is_operable(height=11.0)
+
+def test_height_can_not_be_missing():
+
+    with pytest.raises(ValueError, match="height"):
+        is_operable(height=None)
+        is_operable(height=np.nan)
+```
+
+## Test driven development
+
+::: {.incremental}
+
+1. Write a test that fails ❌
+2. Write the code to make the test pass ✅
+3. Refactor the code ⚒️
+
+:::
+
+
 ## Linting
 
 Python is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code. 
