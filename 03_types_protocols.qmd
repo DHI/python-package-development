@@ -254,11 +254,8 @@ The consumers of your package (future self), will be grateful if you are not ove
 
 :::
 
----
 
-Some common refactoring techniques:
-
-::: {.incremental}
+## Common refactoring techniques:
 
 * Extract method
 * Extract variable
@@ -269,16 +266,14 @@ Some common refactoring techniques:
 * Inline variable
 * Inline class
 
-:::
 
 ## Extract variable
 
 **Before**
 
 ```python
-
 def predict(x):
-    return min(0,0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)
+    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)
 ```
 
 . . .
@@ -292,7 +287,7 @@ def predict(x):
     a = 0.5
     b = 2.0 
     draft = a + b * x + error
-    return  min(0, draft)
+    return  min(0.0, draft)
 ```
 
 ## Extract method
@@ -304,11 +299,24 @@ def error(scale):
 def linear_model(x,*,a=0.0,b=1.0):
     return a+b*x
 
+def clip(x, *, min_value=0.0):
+    return min(min_value,x)
+
 def predict(x): 
     draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
-    return  min(0, draft)
+    return  clip(draft, min_value=0.)
 ```
 
+## Inline method
+
+Opposite of extract mehtod.
+
+
+```{.python code-line-numbers="3"}
+def predict(x): 
+    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
+    return  min(0.0,x)
+```
 
 
 ## Composed method
@@ -319,17 +327,16 @@ Break up a long method into smaller methods.
 
 ```python
 # get data
-filename = ...
-df= read_csv(..
-...
+os.shutil.copyfile(thisfile, localfile)
+df= read_csv(localfile)
 
 # clean data
 df.dropna()
 df.drop_duplicates()
-...
+df[somevar<0.0] = 0.0
 
 # transform data
-df.date= pd.to_datetime(df.date)
+df.date= pd.to_datetime(df.date) - 86400
 
 # predict
 predictions = df.height + df.weight * df.age
@@ -359,6 +366,15 @@ def main():
     final_data = transform_data(clean_data)
     predictions = predict(final_data)
 ```
+
+## Composed method^[https://wiki.c2.com/?ComposedMethod]
+
+* Divide your program into methods that perform one identifiable task
+* Keep all of the operations in a method at the same level of abstraction.
+* This will naturally result in programs with many small methods, each a few lines long.
+* When you use Extract method a bunch of times on a method the original method becomes a Composed method.
+
+
 ---
 
 ![](images/refactoring_book.png)
