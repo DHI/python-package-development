@@ -7,6 +7,121 @@ logo: campus_logo.png
 
 ## Testing
 
+Testing is a way to verify that your code is working as expected.
+
+The simplest way to test your code is to run it and check the output.
+
+. . .
+
+Automated testing is a way to run your code and check the output automatically.
+
+Changes to your code can break other parts of your code.
+
+Being able to run tests automatically is a way to verify that your code is still working as expected.
+
+## Testing workflow
+
+```{mermaid}
+
+
+flowchart TD
+    A[Prepare inputs]
+    B[Identify expected output]
+    C[Obtain actual output]
+    D[Compare actual and\n expected output]
+
+    A --> B --> C --> D
+```
+
+
+
+## Unit testing
+
+::: {.callout-note}
+## Definition
+A unit is a small, fundamental piece of software.
+
+A piece of code that can be isolated for testing.
+
+Functions are generally considered units—they can be executed in isolation by calling them with the appropriate inputs.
+
+Lines of code within those functions can’t be isolated, so they’re smaller than a unit.
+
+Classes contain many pieces that can be isolated further, so they’re generally
+bigger than a unit, but they are occasionally treated as units.
+::: 
+
+## Unit testing
+
+* Running a unit test should be fast.
+
+* It should be so fast that you can run it every time you make a change to your code.
+* It should ideally not depend on any external resources (e.g. a database, files on disk, a web service, etc.)
+
+
+
+## Example
+
+1. get a timeseries of water levels
+2. find the maxiumum water level each year
+3. create a summary report for the subset of data
+
+---
+
+1. get a timeseries of water levels
+
+```python
+def test_get_water_level_includes_start_and_end():
+    wl = get_water_level(time="2019-01-01", location="Aarhus")
+    
+    assert len(wl) == 25
+```
+
+---
+
+2. find the maxiumum water level each year
+
+```python
+def test_get_max_water_level():
+    ts = TimeSeries([1.0, .., 3.0], start = "2019-01-01")
+    max_wls = get_max_water_level(ts, freq="Y")
+    
+    assert len(max_wls) == 1
+    assert max_wls[0] == 3.0
+```
+
+---
+
+3. create a summary report for the subset of data
+
+```python
+def test_summary_report():
+    max_wls = [1.0, 2.0, 3.0]
+    report = summary_report(max_wls)
+
+    assert report.title == "Summary report"
+    assert report.text == "The maximum water level in 2021 was 3.0 m"
+```
+
+## Integration testing
+
+
+```python
+def test_integration():
+    wl = get_water_level(time="2019-01-01", location="Aarhus")
+    max_wls = get_max_water_level(wl, freq="Y")
+    report = summary_report(max_wls)
+
+    assert report.title == "Summary report"
+    assert report.text == "The maximum water level in 2021 was 3.0 m"
+```
+
+
+## Testing in VS Code
+
+![](images/vs_code_test.png)
+
+
 ## Linting
 
 Python is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code. 
