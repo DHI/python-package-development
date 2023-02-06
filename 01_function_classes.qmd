@@ -312,12 +312,12 @@ class Toolbox
 ```python
 from datetime import date
 
-class DateRange:
+class Interval:
     def __init__(self, start:date, end:date):
         self.start = start
         self.end = end
 
->>> dr = DateRange(date(2020, 1, 1), date(2020, 1, 31))
+>>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))
 >>> dr.start
 datetime.date(2020, 1, 1)
 >>> dr.end
@@ -328,17 +328,19 @@ datetime.date(2020, 1, 31)
 ## Static methods
 
 ```python
-class DateRange:
+class Interval:
     def __init__(self, start:date, end:date):
         self.start = start
         self.end = end
 
     @staticmethod
     def from_string(date_string):
-        start, end = date_string.split("|")
-        return DateRange(start, end)
+        start_str, end_str = date_string.split("|")
+        start = start_str.fromisoformat()
+        end = end_str.fromisoformat()
+        return Interval(start, end)
 
->>> dr = DateRange.from_string("2020-01-01|2020-01-31")
+>>> dr = Interval.from_string("2020-01-01|2020-01-31")
 ```
 
 ## Dataclasses
@@ -347,7 +349,7 @@ class DateRange:
 from dataclasses import dataclass
 
 @dataclass
-class DateRange:
+class Interval:
     start: date
     end: date
 
@@ -356,25 +358,25 @@ class DateRange:
         start, end = date_string.split("|")
         start = date.fromisoformat(start)
         end = date.fromisoformat(end)
-        return DateRange(start, end)
+        return Interval(start, end)
 
->>> dr = DateRange.from_string("2020-01-01|2020-01-31")
+>>> dr = Interval.from_string("2020-01-01|2020-01-31")
 >>> dr
-DateRange(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
 ```
 
 ---
 
 ```python
 @dataclass
-class DateRange:
+class Interval:
     start: date
     end: date
 
     def __str__(self):
         return f"{self.start} | {self.end}"
 
->>> dr = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 >>>print(dr)
 2020-01-01 | 2020-01-31
 ```
@@ -384,13 +386,13 @@ class DateRange:
 On a regular class, equality is based on the memory address of the object.
 
 ```python
-class DateRange:
+class Interval:
     def __init__(self, start:date, end:date):
         self.start = start
         self.end = end
 
->>> dr1 = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr2 = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 >>> dr1 == dr2
 False
 ```
@@ -399,7 +401,7 @@ False
 
 
 ```python
-class DateRange:
+class Interval:
     def __init__(self, start:date, end:date):
         self.start = start
         self.end = end
@@ -407,8 +409,8 @@ class DateRange:
     def __eq__(self, other):
         return self.start == other.start and self.end == other.end
 
->>> dr1 = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr2 = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 >>> dr1 == dr2
 True
 ```
@@ -419,12 +421,12 @@ For a dataclass, equality is based on the values of the fields.
 
 ```python
 @dataclass
-class DateRange:
+class Interval:
     start: date
     end: date
 
->>> dr1 = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr2 = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 >>> dr1 == dr2
 True
 ```
@@ -454,10 +456,10 @@ The analytics package contains two modules:
 ```python
 from analytics.tools import is_operable
 from analytics.tools import Toolbox, Tool
-from analytics.date import DateRange
+from analytics.date import Interval
 
 tool = Tool(name="hammer")
-dr = DateRange(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 is_operable(height=1.8, period=1.0)
 ```
 
