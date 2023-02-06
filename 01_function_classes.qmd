@@ -49,7 +49,7 @@ flowchart LR
 
 ```python
 def is_operable(height, period):
-    return height < 10.0 and period < 4.0
+    return height < 10.0 and period > 4.0
 ```
 
 . . .
@@ -172,9 +172,46 @@ def f(x, y):
 3
 ```
 
-. . .
+---
 
-Keyword only arguments
+## Positional arguments {.smaller}
+
+::: {.columns}
+
+::: {.column}
+
+**Version 1**
+
+```python
+def is_operable(height, period):
+
+    return height < 10.0 and period > 4.0
+
+>>> is_operable(5.0, 5.0)
+True
+```
+
+:::
+
+::: {.column}
+
+**Version 2**
+
+```python
+def is_operable(period, height):
+    # dont forget, that arguments are swapped 👍
+    return height < 10.0 and period > 4.0
+
+>>> is_operable(5.0, 5.0)
+False 😟
+```
+
+:::
+
+::::
+
+
+## Keyword only arguments
 
 ```python
 def f(*, x, y):
