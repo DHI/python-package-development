@@ -271,6 +271,46 @@ Some common refactoring techniques:
 
 :::
 
+## Extract variable
+
+**Before**
+
+```python
+
+def predict(x):
+    return min(0,0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)
+```
+
+. . .
+
+**After**
+
+```python
+def predict(x):
+    scale = 10.0
+    error = (random.random() - 0.5) / scale)
+    a = 0.5
+    b = 2.0 
+    draft = a + b * x + error
+    return  min(0, draft)
+```
+
+## Extract method
+
+```python
+def error(scale):
+    return (random.random() - 0.5) / scale)
+
+def linear_model(x,*,a=0.0,b=1.0):
+    return a+b*x
+
+def predict(x): 
+    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
+    return  min(0, draft)
+```
+
+
+
 ## Composed method
 
 Break up a long method into smaller methods.
@@ -319,4 +359,6 @@ def main():
     final_data = transform_data(clean_data)
     predictions = predict(final_data)
 ```
+---
 
+![](images/refactoring_book.png)
