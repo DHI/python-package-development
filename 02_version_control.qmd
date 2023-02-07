@@ -19,11 +19,16 @@ logo: campus_logo.png
 * commit changes to code offline
 * authorative source (origin)
 
+
 ## Git
 
 1. `git add foo.py`
 2. `git commit -m "Nailed it"`
 3. `git push`
+
+##
+
+![](https://imgs.xkcd.com/comics/git.png)
 
 ## Branching
 

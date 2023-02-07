@@ -500,8 +500,17 @@ dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 is_operable(height=1.8, period=1.0)
 ```
 
+## How generic should your code be?
 
+. . .
 
+A good rule of thumb is to make your code as generic as possible, but no more. 🙄
 
+. . .
 
+![](https://imgs.xkcd.com/comics/the_general_problem.png)
+
+. . .
+
+Try to anticipate the future, but not too much!
 

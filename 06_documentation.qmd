@@ -8,15 +8,149 @@ logo: campus_logo.png
 
 ## Why document your code?
 
+![](https://imgs.xkcd.com/comics/manuals.png)
+
+::: {.incremental}
+
+* Make it easier for others to use your code
+* Make it easier for **you** to use your code
+
+:::
+
+
+
 ## Notebooks
 
 ## Docstrings
 
-## Numpy format
+  ```{.python code-line-numbers="|1|4-18"}
+"""K-means clustering.""" # module docstring
+
+class KMeans(_BaseKMeans):
+    """K-Means clustering. # class docstring 
+    
+    Parameters
+    ----------
+    n_clusters : int, default=8
+        The number of clusters to form as well as the number of
+        centroids to generate.
+
+    Examples
+    --------
+    >>> X = np.array([[1, 2], [1, 4], [1, 0],
+    ...               [10, 2], [10, 4], [10, 0]])
+    >>> kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(X)
+    >>> kmeans.labels_
+    array([1, 1, 1, 0, 0, 0], dtype=int32)
+```
+[sklearn.KMeans](https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/cluster/_kmeans.py)
+
+---
+
+```python
+>>> from sklearn.cluster import KMeans
+>>> help(KMeans)
+class KMeans(_BaseKMeans)
+ |  KMeans(n_clusters=8, *, init='k-means++', n_init='warn')
+ |
+ |  K-Means clustering.
+ |
+ |  Parameters
+ |  ----------
+ |  n_clusters : int, default=8
+```
+. . .
+![](images/vs_code_docstring.png)
+
+---
+
+![](images/api_docs.png)
+
+::: {.notes}
+Write once, ready anywhere!
+:::
+
+
+## Numpy format {.smaller}
+
+There are several ways to document your code. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc. 
+
+```python
+def function_name(param1, param2, param3):
+    """Short summary.
+    
+    Long description.
+    
+    Parameters
+    ----------
+    param1 : int
+        Description of `param1`.
+    param2 : str
+        Description of `param2`.
+    param3 : list of str
+        Description of `param3`.
+    
+    Returns
+    -------
+    bool
+        Description of return value.
+    """
+    pass
+```
 
 ## Type hints
 
 ## doctest
+
+Using code without documentation is hard, but using code with wrong documentation is even harder. 
+
+How can you make sure that the documentation is correct? 
+
+. . .
+
+The answer is the `doctest` module built in to the Python standard library. 
+
+. . .  
+
+::: {.callout-tip}
+
+The extensive standard library is why Python is described as a language with *"batteries included!"*
+
+:::
+
+--- 
+Input, output examples in docstrings are run as tests.
+
+```python
+def add(a, b):
+    """Add two numbers.
+    >>> add(1, 2)
+    3
+    >>> add(1, 3)
+    5
+    """
+    return a + b
+```
+
+ . . .
+
+```bash
+$ python -m doctest -v add.py
+Failed example:
+    add(1, 3)
+Expected:
+    5
+Got:
+    4
+**********************************************************************
+1 items had failures:
+   1 of   2 in mod.add
+***Test Failed*** 1 failures.
+```
+
+::: {.notes}
+Doctest can pick up anything that looks like a Python session and run it as a test. 
+:::
 
 ## Documentation generators
 
@@ -27,6 +161,57 @@ logo: campus_logo.png
 Sphinx has been around for a long time, has lot's of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality.
 :::
 
+## {background-iframe="https://www.sphinx-doc.org/en/master/"}
+
+## {background-iframe="https://www.mkdocs.org/"}
 
 ## mkdocs
 
+* Text is written in markdown
+* Easy to use
+* API documentation can be generated with mkdocstrings
+* The end result is a static website that can be hosted on e.g. GitHub pages
+
+## Configuration
+
+```yaml
+# mkdocs.yml
+site_name: my_library
+
+theme: "material" # or readthedocs, mkdocs, etc.
+
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          show_source: false # change if you want able to show source code
+          heading_level: 2
+          docstring_style: "numpy" # important!, since default is google
+```
+
+## API docs
+
+::: {.incremental}
+
+1. install mkdocstrings
+    
+    `$ pip install mkdocstrings`
+2. add plugin to mkdocs.yml (see above)
+3. Reference your code in markdown
+
+:::
+
+
+. . . 
+
+`docs/index.md`
+```markdown
+# Reference
+
+::: my_library.simulation
+```
+
+## 
+
+![](images/mkdocs_api.png)
