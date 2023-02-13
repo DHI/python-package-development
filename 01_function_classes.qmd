@@ -112,7 +112,7 @@ But sometimes side effects are necessary.
 
 ## Modifying input arguments
 
-```{.python code-line-numbers="3"}
+```{.python code-line-numbers="|3"}
 def difficult_function(values):
     for i in range(len(values)):
         values[i] = min(0, values[i]) # 😟
@@ -127,8 +127,6 @@ def difficult_function(values):
 ---
 
 Functions that doesn't modify the input arguments are easier to reason about.
-
-But being safe, can incur a performance penalty.
 
 ```python
 def easier_function(values):
@@ -145,7 +143,9 @@ def easier_function(values):
 [1,2,-1]
 ```
 
+. . . 
 
+But being safe, can incur a performance penalty.
 
 
 ## Arguments
@@ -259,7 +259,7 @@ def add_to_cart(x, cart=[]):
 [1, 2]
 ```
 
----
+How to use default (mutable) arguments
 
 ```python
 def add_to_cart_safe(x, cart=None):
@@ -269,8 +269,47 @@ def add_to_cart_safe(x, cart=None):
     return cart
 ```
 
+## Changing return types
+
+Since Python is a dynamic language, the type of the returned variable is allowed to vary.
+
+```python
+def foo(x):
+    if x >=0:
+        return x
+    else:
+        return "x is negative"
+```
+
+. . .
+
+But it usually a bad idea, since you can not tell from reading the code, which type will be returned.
+
+## Changing return types
+
+```python
+def is_operable(height, period):
+    if height < 10:
+        return height < 5.0 and period > 4.0
+    else:
+        return "No way!"
+
+>>> if is_operable(height=12.0, period=5.0):
+...         print("Go ahead!")
+...
+Go ahead!
+```
 
 
+. . .
+
+::: {.callout-important}
+Is this the result you expected?
+:::
+
+. . .
+
+A non-empty string or a non-zero value is considered *"truthy"* in Python!
 
 ## Type hints
 
@@ -288,7 +327,7 @@ def is_operable(height: float, period: float) -> bool:
 ---
 
 ```python
-def clip(values: Iterable[Real],*, threshold=0) -> List[Real]:
+def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
     return [min(threshold, v) for v in values]
 
 ```
@@ -309,7 +348,7 @@ def clip(values: Iterable[Real],*, threshold=0) -> List[Real]:
 
 ## Classes
 
-```python
+```{.python code-line-numbers="|2|"}
 class WeirdToolbox
     tools = [] # class variable ☹️
 
@@ -467,6 +506,21 @@ class Interval:
 >>> dr1 == dr2
 True
 ```
+
+## Data classes
+
+::: {.incremental}
+
+* Compact notation of fields with type hints
+* Proper equality
+* String represenation by default
+* It is still a regular class
+
+:::
+
+##
+
+![](images/data_class_meme.jpg)
 
 
 ## Modules
