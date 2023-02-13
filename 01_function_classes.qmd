@@ -148,9 +148,7 @@ def easier_function(values):
 But being safe, can incur a performance penalty.
 
 
-## Arguments
-
-Positional arguments
+## Positional arguments
 
 ```python
 def f(x, y):
@@ -160,9 +158,7 @@ def f(x, y):
 3
 ```
 
----
-
-Keyword arguments
+## Keyword arguments
 
 ```python
 def f(x, y):
@@ -221,10 +217,9 @@ def f(*, x, y):
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: f() takes 0 positional arguments but 2 were given
-```
----  
+```  
 
-Optional (default) arguments
+## Optional (default) arguments
 
 ```python
 def f(x, n=2):
@@ -241,12 +236,15 @@ def f(x, n=2):
 Makes it easy to use a function with many arguments.
 
 
----
 
-Mutable default arguments is a recipe for disaster 😟
+## Mutable default arguments
 
-```python
-def add_to_cart(x, cart=[]):
+Python’s default arguments are evaluated once when the function is defined, not each time the function is called.
+
+. . .
+
+```{.python code-line-numbers="|1|"}
+def add_to_cart(x, cart=[]): # this line is evaluated only once 😮
     cart.append(x)
     return cart
 
@@ -259,12 +257,22 @@ def add_to_cart(x, cart=[]):
 [1, 2]
 ```
 
-How to use default (mutable) arguments
+::: {.notes}
 
-```python
+Python’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby).
+This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well.
+:::
+
+##
+
+![](images/mutable_args_meme.jpg)
+
+## How to use default (mutable) arguments
+
+```{.python code-line-numbers="|1-3"}
 def add_to_cart_safe(x, cart=None):
     if cart is None:
-        cart = []
+        cart = [] # this line is evaluated each time the function is called
     cart.append(x)
     return cart
 ```
