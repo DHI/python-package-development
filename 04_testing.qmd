@@ -169,6 +169,54 @@ The benefit of this approach is that you are forced to think about the expected 
 It is also too easy to write a test that passes without actually testing the code.
 
 
+##
+
+::: {.big}
+
+and now for something completely different...
+
+:::
+
+## Exceptions
+
+::: {.incremental}
+* Exceptions are a way to handle errors in your code.
+* Raising an exception can prevent propagating bad values. 
+* There are many built-in exceptions in Python
+    + `IndexError`
+    + `KeyError`
+    + `ValueError`
+    + `FileNotFoundError`
+* You can also create your own custom exceptions, e.g. `ModelInitialistionError`, `MissingLicenseError`?
+
+:::
+
+
+```python
+def is_operable(height:float, period:float) -> bool:
+    if height < 0.0:
+        raise ValueError(f"Supplied value of {height=} is unphysical.")
+
+>>> is_operable(height=-1.0, period=4.0
+
+Traceback (most recent call last):
+  ...
+ValueError: Supplied value of height=-1.0 is unphysical.
+```
+
+## How to test exceptions
+
+```python
+from ops import is_operable
+
+def test_negative_heights_are_not_valid():
+    with pytest.raises(ValueError):
+        is_operable(height=-1.0, period=4.0)
+```
+
+
+
+
 ## Linting
 
 Python is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code. 
