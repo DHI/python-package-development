@@ -235,6 +235,10 @@ def process(number: Union[int,str,float]) -> int:
     return result   
 ```
 
+##
+
+![](images/postel_meme.jpg)
+
 . . .
 
 The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input.
@@ -265,6 +269,29 @@ The consumers of your package (future self), will be grateful if you are not ove
 * Inline method
 * Inline variable
 * Inline class
+
+## Rename variable
+
+**Before**
+
+```python
+n = 0
+for v in y:
+    if v < 0:
+        n = n + 1
+```
+
+. . .
+
+**After**
+
+```python
+FREEZING_POINT = 0.0
+n_freezing_days = 0
+for temp in daily_max_temperatures:
+    if temp < FREEZING_POINT:
+        n_freezing_days = n_freezing_days + 1 
+```
 
 
 ## Extract variable
