@@ -95,20 +95,30 @@ def non_pure_function(x):
 
 ## Side effects
 
-A function can have side effects, which are changes to the state of the program.
+A function can have side effects, like appendig to a a file
 
 ```python
 def f_with_side_effect(x):
-    with file("output.txt", "w") as f:
-        f.write(x)
+    with open("output.txt", "a") as f:
+        f.write(str(x))
     return x**2
 ```
 
-## 
+::: {.notes}
+The function has x as input, returns the square of x, but also appends x to a file.
+If you run the function a second time, the file will contain two lines.
+:::
+
+## Side effects
 
 Pure functions with no side effects are easier to reason about.
 
 But sometimes side effects are necessary.
+
+* Writing to a file
+* Writing to a database
+* Printing to the screen
+* Creating a plot
 
 ## Modifying input arguments
 
@@ -123,6 +133,11 @@ def difficult_function(values):
 >>> x
 [0,0,-1]
 ```
+
+::: {.notes}
+This function modifies the input array, which might come as a surprise.
+The array is passed by reference, so the function can modify it.
+:::
 
 ---
 
@@ -355,6 +370,10 @@ def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
 [-1, 0, 2]
 ```
 
+::: {.notes}
+Type hints are just hints, it will make it easier for you to read the code, and use it in your IDE, but it will not enforce the type.
+:::
+
 ## Time for a discussion {.smaller}
 
 Discuss in learning teams (15 minutes):
@@ -388,6 +407,10 @@ class WeirdToolbox
 ["hammer", "screwdriver"]
 ```
 
+::: {.notes}
+Class variables are rarely what you want, since they are shared between all instances of the class.
+:::
+
 ## Classes
 
 ```python
@@ -405,6 +428,10 @@ class Toolbox
 >>> t2.tools
 ["screwdriver"]
 ```
+
+::: {.notes}
+Instance variables are created when the instance is created, and are unique to each instance.
+:::
 
 
 ## Static methods
@@ -424,6 +451,9 @@ datetime.date(2020, 1, 1)
 datetime.date(2020, 1, 31)
 ```
 
+::: {.notes}
+Here is an example of useful class, but it is a bit cumbersome to create an instance.
+:::
 
 ## Static methods
 
@@ -442,6 +472,11 @@ class Interval:
 
 >>> dr = Interval.from_string("2020-01-01|2020-01-31")
 ```
+
+::: {.notes}
+Since we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string.
+This makes it easier to create an instance.
+:::
 
 ## Dataclasses
 
@@ -465,6 +500,11 @@ class Interval:
 Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
 ```
 
+::: {.notes}
+Dataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes.
+The variables are instance variables, and the class has a constructor that takes the same arguments as the variables.
+:::
+
 ---
 
 ```python
@@ -477,9 +517,15 @@ class Interval:
         return f"{self.start} | {self.end}"
 
 >>> dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr
+Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
 >>>print(dr)
 2020-01-01 | 2020-01-31
 ```
+::: {.notes}
+To override the default string representation, we can add a `__str__` method.
+:::
+
 
 ## Equality
 
@@ -496,6 +542,10 @@ class Interval:
 >>> dr1 == dr2
 False
 ```
+
+::: {.notes}
+This is not very useful, since we want to compare the values of the attributes.
+:::
 
 ---
 
@@ -514,6 +564,9 @@ class Interval:
 >>> dr1 == dr2
 True
 ```
+::: {.notes}
+We can override the `__eq__` method to compare the values of the attributes.
+:::
 
 ---
 
@@ -530,6 +583,10 @@ class Interval:
 >>> dr1 == dr2
 True
 ```
+
+::: {.notes}
+This is the default behavior for dataclasses.
+:::
 
 ## Data classes
 
@@ -591,4 +648,18 @@ A good rule of thumb is to make your code as generic as possible, but no more. �
 . . .
 
 Try to anticipate the future, but not too much!
+
+## Homework until next week
+
+::: {.incremental}
+
+* Write a one line description of your project
+* Write a list (3-5) of the main functions of your project
+* Think carefully about the types of inputs and outputs of your functions
+* Think carefully about the names of your functions and classes
+* Read chapter 3 "Abstraction and encapsulation" in Hillard, 2019
+
+:::
+
+✨ **See you next week!** 🚀
 
