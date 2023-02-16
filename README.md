@@ -8,4 +8,4 @@ Course material
 4. [Testing and auto-formatting](04_testing.qmd)
 5. [Dependencies and GitHub actions](05_dependecies_ci.qmd)
 6. [Documentation](06_documentation.qmd)
-7. [Distributing your package](07_packaging.qmd)
+7. [Distributing your package](07_packaging.qmd)    
