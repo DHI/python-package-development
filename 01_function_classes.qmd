@@ -319,6 +319,7 @@ Is this the result you expected?
 
 A non-empty string or a non-zero value is considered *"truthy"* in Python!
 
+
 ## Type hints
 
 Python is a dynamically typed language -> the type of a variable is determined at runtime.
@@ -353,6 +354,21 @@ def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
 >>> x
 [-1, 0, 2]
 ```
+
+## Time for a discussion {.smaller}
+
+Discuss in learning teams (15 minutes):
+
+* Introduce yourself briefly
+* Discuss your experience with Object Oriented Programming, why are classes useful?
+* Mention some problems with poorly designed code
+  - Your own experience
+  - From the book
+
+After break out session:
+
+* Selected person from each team briefly presents their discussion
+
 
 ## Classes
 
