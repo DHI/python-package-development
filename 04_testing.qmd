@@ -1,0 +1,300 @@
+---
+title: "Testing, linting and formatting"
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+## Testing
+
+Testing is a way to verify that your code is working as expected.
+
+The simplest way to test your code is to run it and check the output.
+
+. . .
+
+Automated testing is a way to run your code and check the output automatically.
+
+Changes to your code can break other parts of your code.
+
+Being able to run tests automatically is a way to verify that your code is still working as expected.
+
+## Testing workflow
+
+```{mermaid}
+flowchart TD
+    A[Prepare inputs]
+    B[Identify expected output]
+    C[Obtain actual output]
+    D[Compare actual and\n expected output]
+
+    A --> B --> C --> D
+```
+
+
+
+## Unit testing
+
+::: {.callout-note}
+## Definition
+A unit is a small, fundamental piece of software.
+
+A piece of code that can be isolated for testing.
+
+Functions are generally considered units—they can be executed in isolation by calling them with the appropriate inputs.
+
+Lines of code within those functions can’t be isolated, so they’re smaller than a unit.
+
+Classes contain many pieces that can be isolated further, so they’re generally
+bigger than a unit, but they are occasionally treated as units.
+::: 
+
+## Unit testing
+
+* Running a unit test should be fast.
+
+* It should be so fast that you can run it every time you make a change to your code.
+* It should ideally not depend on any external resources (e.g. a database, files on disk, a web service, etc.)
+
+
+
+## Example
+
+1. get a timeseries of water levels
+2. find the maxiumum water level each year
+3. create a summary report for the subset of data
+
+---
+
+1. get a timeseries of water levels
+
+```python
+def test_get_water_level_includes_start_and_end():
+    wl = get_water_level(time="2019-01-01", location="Aarhus")
+    
+    assert len(wl) == 25
+```
+
+---
+
+2. find the maxiumum water level each year
+
+```python
+def test_get_max_water_level():
+    ts = TimeSeries([1.0, .., 3.0], start = "2019-01-01")
+    max_wls = get_max_water_level(ts, freq="Y")
+    
+    assert len(max_wls) == 1
+    assert max_wls[0] == 3.0
+```
+
+---
+
+3. create a summary report for the subset of data
+
+```python
+def test_summary_report():
+    max_wls = [1.0, 2.0, 3.0]
+    report = summary_report(max_wls)
+
+    assert report.title == "Summary report"
+    assert report.text == "The maximum water level in 2021 was 3.0 m"
+```
+
+## Integration testing
+
+
+```python
+def test_integration():
+    wl = get_water_level(time="2019-01-01", location="Aarhus")
+    max_wls = get_max_water_level(wl, freq="Y")
+    report = summary_report(max_wls)
+
+    assert report.title == "Summary report"
+    assert report.text == "The maximum water level in 2021 was 3.0 m"
+```
+
+
+## Testing in VS Code
+
+![](images/vs_code_test.png)
+
+
+## Testing advice
+
+::: {.callout-tip}
+## Test edge cases
+
+- empty lists
+- lists with a single element
+- empty strings
+- empty dictionaries
+- None
+- np.nan
+
+::: 
+
+## Tests act as specification
+
+```python
+def test_operable_period_can_be_missing():
+
+    assert is_operable(height=1.0, period=None)
+    assert is_operable(height=1.0, period=np.nan)
+    assert is_operable(height=1.0)
+    assert not is_operable(height=11.0)
+
+def test_height_can_not_be_missing():
+
+    with pytest.raises(ValueError, match="height"):
+        is_operable(height=None)
+        is_operable(height=np.nan)
+```
+
+## Test driven development
+
+::: {.incremental}
+
+1. Write a test that fails ❌
+2. Write the code to make the test pass ✅
+3. Refactor the code ⚒️
+
+:::
+
+
+. . .
+
+The benefit of this approach is that you are forced to think about the expected behaviour of your code before you write it.
+
+It is also too easy to write a test that passes without actually testing the code.
+
+
+##
+
+::: {.big}
+
+and now for something completely different...
+
+:::
+
+## Exceptions
+
+::: {.incremental}
+* Exceptions are a way to handle errors in your code.
+* Raising an exception can prevent propagating bad values. 
+* There are many built-in exceptions in Python
+    + `IndexError`
+    + `KeyError`
+    + `ValueError`
+    + `FileNotFoundError`
+* You can also create your own custom exceptions, e.g. `ModelInitialistionError`, `MissingLicenseError`?
+
+:::
+
+
+```python
+def is_operable(height:float, period:float) -> bool:
+    if height < 0.0:
+        raise ValueError(f"Supplied value of {height=} is unphysical.")
+
+>>> is_operable(height=-1.0, period=4.0
+
+Traceback (most recent call last):
+  ...
+ValueError: Supplied value of height=-1.0 is unphysical.
+```
+
+## How to test exceptions
+
+```python
+from ops import is_operable
+
+def test_negative_heights_are_not_valid():
+    with pytest.raises(ValueError):
+        is_operable(height=-1.0, period=4.0)
+```
+
+
+
+
+## Linting
+
+Python is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code. 
+
+`flake8` is a popular tool for linting Python code.
+
+* syntax errors
+* unused imports
+* unused variables
+* undefined names
+* code style (e.g. line length, indentation, whitespace, etc.)
+
+## Unused variables
+
+```{.python code-line-numbers="|3"}
+def model(a, b):
+
+    method = "cubic"
+    return a + (b - a)
+
+
+y = model(a=1, b=2)
+```
+ 
+. . .
+
+Unused variables is either a mistake or simply a source of confusion.
+
+. . .
+ 
+```bash
+$ flake8 models.py
+models.py:3:5: F841 local variable 'method' is assigned to but never used
+```
+
+
+
+
+## Formatting
+
+Formatting code according to a common style is a good practice. It makes your code more readable and easier to maintain.
+
+. . .
+
+Enforcing a particular style can be a common source of discussion among developers. 
+
+. . .
+
+`black`^[https://black.readthedocs.io/] is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.
+
+. . .
+
+Having a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style.
+
+---
+
+## Running Black
+
+```
+$ black .
+reformatted data_utils.py
+reformatted dfsu/__init__.py
+reformatted dataarray.py
+reformatted dataset.py
+reformatted spatial/geometry.py
+reformatted pfs/pfssection.py
+
+All done! ✨ 🍰 ✨
+6 files reformatted, 27 files left unchanged.
+```
+
+## Running Black {.smaller}
+
+Visual Studio Code can be configured to run `black` automatically when saving a file.
+
+![](images/vs_code_format.png)
+
+  
+
+
+

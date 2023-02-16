@@ -1,0 +1,15 @@
+---
+title: "Distributing your Python package"
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+## Packages
+
+## Packaging
+
+## Private packages
+
+* Install from a private git repository
+* Install from a private PyPI server

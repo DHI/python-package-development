@@ -1,0 +1,407 @@
+---
+title: "Python types, interfaces and protocols"
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+## Python types
+
+::: {.incremental}
+
+* Python is a dynamically typed language
+* Types are not checked at compile time
+* Types are checked at runtime
+
+:::
+
+
+## Collections Abstract Base Classes
+
+
+```{mermaid}
+classDiagram
+    Container <|-- Collection
+    Sized <|-- Collection
+    Iterable <|-- Collection
+    Collection <|-- Sequence
+    Collection <|-- Set
+    Sequence <|-- MutableSequence
+    Mapping <|-- MutableMapping
+    Collection <|-- Mapping
+
+    MutableSequence <|-- List
+    Sequence <|-- Tuple
+    MutableMapping <|-- Dict
+    
+```
+
+
+## Pythonic
+
+If you want your code to be Pythonic, you have to be familiar with these types and their methods.
+
+Dundermethods:
+
+* `__getitem__`
+* `__setitem__`
+* `__len__`
+* `__contains__`
+* ... 
+
+---
+
+
+```python
+class JavaLikeToolbox:
+    
+    def get_tool_by_name(self, name: str) -> Tool:
+        for tool in self.tools:
+            if tool.name == name:
+                return tool
+
+    def number_of_tools(self) -> int:
+        return len(self.tools)
+
+>>> tb = JavaLikeToolbox([Hammer(), Screwdriver()])
+>>> tb.get_tool_by_name("hammer")
+Hammer()
+>>> tb.number_of_tools()
+2
+```
+
+
+---
+
+```python
+class Toolbox:
+
+    def __getitem__(self, name: str) -> Tool:
+        return self._tools[name]
+    
+    def __len__(self) -> int:
+        return len(self.tools)
+
+>>> tb = Toolbox([Hammer(), Screwdriver()])
+>>> tb["hammer"]
+>>> len(tb)
+2
+```
+
+
+## Duck typing
+
+::: {.incremental}
+
+* If it walks like a duck and quacks like a duck, it's a duck
+* If it has a `__getitem__` method, it's a sequence
+* If it has a `__len__` method, it's a collection
+
+:::
+
+
+---
+
+An exmample is a Scikit learn transformers
+
+* `fit`
+* `transform`
+* `fit_transform`
+
+If you want to make a transformer compatible with sklearn, you have to implement these methods.
+
+---
+
+```python
+class MyTransformer:
+    def fit(self, X, y=None):
+        # do something
+        return self
+
+    def transform(self, X):
+        # do something
+        return X
+
+    def fit_transform(self, X, y=None):
+        return self.fit(X, y).transform(X)
+```
+
+---
+
+```python
+from sklearn.base import TransformerMixin
+
+class MyOtherTransformer(TransformerMixin):
+    def fit(self, X, y=None):
+        # do something
+        return self
+
+    def transform(self, X):
+        # do something
+        return X
+
+    # def fit_transform(self, X, y=None):
+    # we get this for free, from TransformerMixin
+```
+
+## Let's revisit the (date) Interval^[https://martinfowler.com/eaaDev/Range.html]
+
+```{.python code-line-numbers="6-7|11-14"}
+class Interval:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+
+    def __contains__(self, x):
+        return self.start < x < self.end
+
+>>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))
+
+>>> date(2020,1,15) in dr
+True
+>>> date(1970,1,1) in dr
+False
+```
+
+## Some other interval
+
+```{.python code-line-numbers="9-14"}
+class Interval:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+
+    def __contains__(self, x):
+        return self.start < x < self.end
+    
+>>> interval = Interval(5, 10)
+
+>>> 8 in interval
+True
+>>> 12 in interval
+False
+```
+
+. . .
+
+As long as the `start`, `end` and `x` are comparable, the `Interval` class is a generic class able to handle integers, floats, dates, datetimes, strings ...
+
+## Protocols
+
+// TODO 
+
+::: {.incremental}
+
+* Protocols were introduced in Python 3.8
+* Protocols are a way to define a set of methods that a class must implement
+
+:::
+
+---
+
+```python
+from typing import Protocol
+
+class SupportsAbs(Protocol):
+    def __abs__(self):
+        ...
+
+class MyCustomFloat(SupportsAbs)):
+    def __init__(self, value: float) -> None:
+        self.value = value
+
+    def __abs__(self) -> float:
+        return self.value
+
+def transform(x: SupportsAbs) -> float:
+    return abs(x)
+
+```
+
+## Postel's law
+a.k.a. the Robustness principle of software design
+
+1. Be liberal in what you accept
+2. Be conservative in what you send
+
+. . .
+
+```python
+def process(number: Union[int,str,float]) -> int:
+    # make sure number is an int from now on
+    number = int(number)
+
+    result = number * 2
+    return result   
+```
+
+##
+
+![](images/postel_meme.jpg)
+
+. . .
+
+The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input.
+
+## `isinstance`
+
+// TODO
+
+
+## Refactoring
+
+::: {.incremental}
+
+* Refactoring is a way to improve the design of existing code
+* Changing a software system in such a way that it **does not alter the external behavior of the code**, yet improves its internal structure
+* Refactoring is a way to make code more readable and maintainable
+
+:::
+
+
+## Common refactoring techniques:
+
+* Extract method
+* Extract variable
+* Rename method
+* Rename variable
+* Rename class
+* Inline method
+* Inline variable
+* Inline class
+
+## Rename variable
+
+**Before**
+
+```python
+n = 0
+for v in y:
+    if v < 0:
+        n = n + 1
+```
+
+. . .
+
+**After**
+
+```python
+FREEZING_POINT = 0.0
+n_freezing_days = 0
+for temp in daily_max_temperatures:
+    if temp < FREEZING_POINT:
+        n_freezing_days = n_freezing_days + 1 
+```
+
+
+## Extract variable
+
+**Before**
+
+```python
+def predict(x):
+    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)
+```
+
+. . .
+
+**After**
+
+```python
+def predict(x):
+    scale = 10.0
+    error = (random.random() - 0.5) / scale)
+    a = 0.5
+    b = 2.0 
+    draft = a + b * x + error
+    return  min(0.0, draft)
+```
+
+## Extract method
+
+```python
+def error(scale):
+    return (random.random() - 0.5) / scale)
+
+def linear_model(x,*,a=0.0,b=1.0):
+    return a+b*x
+
+def clip(x, *, min_value=0.0):
+    return min(min_value,x)
+
+def predict(x): 
+    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
+    return  clip(draft, min_value=0.)
+```
+
+## Inline method
+
+Opposite of extract mehtod.
+
+
+```{.python code-line-numbers="3"}
+def predict(x): 
+    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
+    return  min(0.0,x)
+```
+
+
+## Composed method
+
+Break up a long method into smaller methods.
+
+---
+
+```python
+# get data
+os.shutil.copyfile(thisfile, localfile)
+df= read_csv(localfile)
+
+# clean data
+df.dropna()
+df.drop_duplicates()
+df[somevar<0.0] = 0.0
+
+# transform data
+df.date= pd.to_datetime(df.date) - 86400
+
+# predict
+predictions = df.height + df.weight * df.age
+```
+
+
+
+---
+
+```python
+
+def get_data(filename,...):
+    ...
+
+def clean_data(df):
+    ...
+
+def transform_data(df):
+    ...
+
+def predict(df):
+    ...
+
+def main():
+    df = get_data("raw_data.csv")
+    clean_data = clean_data(df)
+    final_data = transform_data(clean_data)
+    predictions = predict(final_data)
+```
+
+## Composed method^[https://wiki.c2.com/?ComposedMethod]
+
+* Divide your program into methods that perform one identifiable task
+* Keep all of the operations in a method at the same level of abstraction.
+* This will naturally result in programs with many small methods, each a few lines long.
+* When you use Extract method a bunch of times on a method the original method becomes a Composed method.
+
+
+---
+
+![](images/refactoring_book.png)

@@ -1,0 +1,665 @@
+---
+title: Function, classes and modules
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+
+## Functions as black boxes
+
+```{mermaid}
+flowchart LR
+    A(Input A) --> F["Black box"]
+    B(Input B) -->  F
+    F --> O(Output)
+
+    style F fill:#000,color:#fff,stroke:#333,stroke-width:4px
+```  
+
+::: {.incremental}
+* A function is a black box that takes some input and produces some output.
+* The input and output can be anything, including other functions.
+* As long as the input and output are the same, the function body can be modified.
+:::
+
+
+
+
+
+---
+
+```{mermaid}
+flowchart LR
+    A(height: 5.0) --> F[is_operable]
+    B(period: 3.0) -->  F
+    F --> O(True)
+```
+
+. . .
+
+```{mermaid}
+flowchart LR
+    A(height: 15.0) --> F[is_operable]
+    B(period: 3.0) -->  F
+    F --> O(False)
+```
+
+. . .
+
+```python
+def is_operable(height, period):
+    return height < 10.0 and period > 4.0
+```
+
+. . .
+
+This function behaves the same to the caller, but the implementation is different.
+
+```python
+def is_operable(height, period):
+    model = load_fancy_ml_model()
+    return model.predict(height, period)
+```
+
+
+## Pure functions
+
+A pure function returns the same output for the same input.
+
+```python
+def f(x)
+    return x**2
+
+>> f(2)
+4
+>> f(2)
+4
+```
+---
+
+A non-pure function can return different outputs for the same input.
+
+```python
+n = 0
+
+def non_pure_function(x):
+    global n=n+1
+    return x + n
+
+>>> non_pure_function(2)
+3
+>>> non_pure_function(2)
+4
+```
+
+## Side effects
+
+A function can have side effects, like appendig to a a file
+
+```python
+def f_with_side_effect(x):
+    with open("output.txt", "a") as f:
+        f.write(str(x))
+    return x**2
+```
+
+::: {.notes}
+The function has x as input, returns the square of x, but also appends x to a file.
+If you run the function a second time, the file will contain two lines.
+:::
+
+## Side effects
+
+Pure functions with no side effects are easier to reason about.
+
+But sometimes side effects are necessary.
+
+* Writing to a file
+* Writing to a database
+* Printing to the screen
+* Creating a plot
+
+## Modifying input arguments
+
+```{.python code-line-numbers="|3"}
+def difficult_function(values):
+    for i in range(len(values)):
+        values[i] = min(0, values[i]) # 😟
+    return values
+
+>>> x = [1,2,-1]
+>>> difficult_function(x)
+>>> x
+[0,0,-1]
+```
+
+::: {.notes}
+This function modifies the input array, which might come as a surprise.
+The array is passed by reference, so the function can modify it.
+:::
+
+---
+
+Functions that doesn't modify the input arguments are easier to reason about.
+
+```python
+def easier_function(values):
+    from copy import deepcopy
+
+    lvalues = deepcopy(values) # 🤔
+    for i in range(len(lvalues)):
+        lvalues[i] = min(0, lvalues[i])
+    return lvalues
+
+>>> x = [1,2,-1]
+>>> easier_function(x)
+>>> x
+[1,2,-1]
+```
+
+. . . 
+
+But being safe, can incur a performance penalty.
+
+
+## Positional arguments
+
+```python
+def f(x, y):
+    return x + y
+
+>>> f(1, 2)
+3
+```
+
+## Keyword arguments
+
+```python
+def f(x, y):
+    return x + y
+
+>>> f(x=1, y=2)
+3
+```
+
+---
+
+## Positional arguments {.smaller}
+
+::: {.columns}
+
+::: {.column}
+
+**Version 1**
+
+```python
+def is_operable(height, period):
+
+    return height < 10.0 and period > 4.0
+
+>>> is_operable(5.0, 5.0)
+True
+```
+
+:::
+
+::: {.column}
+
+**Version 2**
+
+```python
+def is_operable(period, height):
+    # dont forget, that arguments are swapped 👍
+    return height < 10.0 and period > 4.0
+
+>>> is_operable(5.0, 5.0)
+False 😟
+```
+
+:::
+
+::::
+
+
+## Keyword only arguments
+
+```python
+def f(*, x, y):
+    return x + y
+
+>>> f(1,2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: f() takes 0 positional arguments but 2 were given
+```  
+
+## Optional (default) arguments
+
+```python
+def f(x, n=2):
+    return x**n
+
+>>> f(2)
+4
+>>> f(2, n=3)
+8
+```
+
+. . . 
+
+Makes it easy to use a function with many arguments.
+
+
+
+## Mutable default arguments
+
+Python’s default arguments are evaluated once when the function is defined, not each time the function is called.
+
+. . .
+
+```{.python code-line-numbers="|1|"}
+def add_to_cart(x, cart=[]): # this line is evaluated only once 😮
+    cart.append(x)
+    return cart
+
+>>> add_to_cart(1, cart=[2])
+[2, 1]
+
+>>> add_to_cart(1)
+[1]
+>>> add_to_cart(2)
+[1, 2]
+```
+
+::: {.notes}
+
+Python’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby).
+This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well.
+:::
+
+##
+
+![](images/mutable_args_meme.jpg)
+
+## How to use default (mutable) arguments
+
+```{.python code-line-numbers="|1-3"}
+def add_to_cart_safe(x, cart=None):
+    if cart is None:
+        cart = [] # this line is evaluated each time the function is called
+    cart.append(x)
+    return cart
+```
+
+## Changing return types
+
+Since Python is a dynamic language, the type of the returned variable is allowed to vary.
+
+```python
+def foo(x):
+    if x >=0:
+        return x
+    else:
+        return "x is negative"
+```
+
+. . .
+
+But it usually a bad idea, since you can not tell from reading the code, which type will be returned.
+
+## Changing return types
+
+```python
+def is_operable(height, period):
+    if height < 10:
+        return height < 5.0 and period > 4.0
+    else:
+        return "No way!"
+
+>>> if is_operable(height=12.0, period=5.0):
+...         print("Go ahead!")
+...
+Go ahead!
+```
+
+
+. . .
+
+::: {.callout-important}
+Is this the result you expected?
+:::
+
+. . .
+
+A non-empty string or a non-zero value is considered *"truthy"* in Python!
+
+
+## Type hints
+
+Python is a dynamically typed language -> the type of a variable is determined at runtime.
+
+. . .
+
+But we can add type hints to help the reader (and the code editor).
+
+```python
+def is_operable(height: float, period: float) -> bool:
+    ...
+```
+
+---
+
+```python
+def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
+    return [min(threshold, v) for v in values]
+
+```
+
+. . .
+
+```python
+>>> x= [-1, 0, 2]
+>>> clip(x)
+[0, 0, 2]
+>>> x
+[-1, 0, 2]
+>>> clip(x, threshold=1)
+[0, 0, 1]
+>>> x
+[-1, 0, 2]
+```
+
+::: {.notes}
+Type hints are just hints, it will make it easier for you to read the code, and use it in your IDE, but it will not enforce the type.
+:::
+
+## Time for a discussion {.smaller}
+
+Discuss in learning teams (15 minutes):
+
+* Introduce yourself briefly
+* Discuss your experience with Object Oriented Programming, why are classes useful?
+* Mention some problems with poorly designed code
+  - Your own experience
+  - From the book
+
+After break out session:
+
+* Selected person from each team briefly presents their discussion
+
+
+## Classes
+
+```{.python code-line-numbers="|2|"}
+class WeirdToolbox
+    tools = [] # class variable ☹️
+
+
+>>> t1 = WeirdToolbox()
+>>> t1.tools.append("hammer")
+>>> t1.tools
+["hammer"]
+
+>>> t2 = WeirdToolbox()
+>>> t2.tools.append("screwdriver")
+>>> t2.tools
+["hammer", "screwdriver"]
+```
+
+::: {.notes}
+Class variables are rarely what you want, since they are shared between all instances of the class.
+:::
+
+## Classes
+
+```python
+class Toolbox
+    def __init__(self):
+        self.tools = [] # instance variable 😃
+
+>>> t1 = Toolbox()
+>>> t1.tools.append("hammer")
+>>> t1.tools
+["hammer"]
+
+>>> t2 = Toolbox()
+>>> t2.tools.append("screwdriver")
+>>> t2.tools
+["screwdriver"]
+```
+
+::: {.notes}
+Instance variables are created when the instance is created, and are unique to each instance.
+:::
+
+
+## Static methods
+
+```python
+from datetime import date
+
+class Interval:
+    def __init__(self, start:date, end:date):
+        self.start = start
+        self.end = end
+
+>>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))
+>>> dr.start
+datetime.date(2020, 1, 1)
+>>> dr.end
+datetime.date(2020, 1, 31)
+```
+
+::: {.notes}
+Here is an example of useful class, but it is a bit cumbersome to create an instance.
+:::
+
+## Static methods
+
+```python
+class Interval:
+    def __init__(self, start:date, end:date):
+        self.start = start
+        self.end = end
+
+    @staticmethod
+    def from_string(date_string):
+        start_str, end_str = date_string.split("|")
+        start = start_str.fromisoformat()
+        end = end_str.fromisoformat()
+        return Interval(start, end)
+
+>>> dr = Interval.from_string("2020-01-01|2020-01-31")
+```
+
+::: {.notes}
+Since we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string.
+This makes it easier to create an instance.
+:::
+
+## Dataclasses
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Interval:
+    start: date
+    end: date
+
+    @staticmethod
+    def from_string(date_string):
+        start, end = date_string.split("|")
+        start = date.fromisoformat(start)
+        end = date.fromisoformat(end)
+        return Interval(start, end)
+
+>>> dr = Interval.from_string("2020-01-01|2020-01-31")
+>>> dr
+Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+```
+
+::: {.notes}
+Dataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes.
+The variables are instance variables, and the class has a constructor that takes the same arguments as the variables.
+:::
+
+---
+
+```python
+@dataclass
+class Interval:
+    start: date
+    end: date
+
+    def __str__(self):
+        return f"{self.start} | {self.end}"
+
+>>> dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr
+Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+>>>print(dr)
+2020-01-01 | 2020-01-31
+```
+::: {.notes}
+To override the default string representation, we can add a `__str__` method.
+:::
+
+
+## Equality
+
+On a regular class, equality is based on the memory address of the object.
+
+```python
+class Interval:
+    def __init__(self, start:date, end:date):
+        self.start = start
+        self.end = end
+
+>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr1 == dr2
+False
+```
+
+::: {.notes}
+This is not very useful, since we want to compare the values of the attributes.
+:::
+
+---
+
+
+```python
+class Interval:
+    def __init__(self, start:date, end:date):
+        self.start = start
+        self.end = end
+
+    def __eq__(self, other):
+        return self.start == other.start and self.end == other.end
+
+>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr1 == dr2
+True
+```
+::: {.notes}
+We can override the `__eq__` method to compare the values of the attributes.
+:::
+
+---
+
+For a dataclass, equality is based on the values of the fields.
+
+```python
+@dataclass
+class Interval:
+    start: date
+    end: date
+
+>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+>>> dr1 == dr2
+True
+```
+
+::: {.notes}
+This is the default behavior for dataclasses.
+:::
+
+## Data classes
+
+::: {.incremental}
+
+* Compact notation of fields with type hints
+* Proper equality
+* String represenation by default
+* It is still a regular class
+
+:::
+
+##
+
+![](images/data_class_meme.jpg)
+
+
+## Modules
+
+Modules are files containing Python code (functions, classes, constants) that belong together.
+
+```
+$tree analytics/
+analytics/
+├── __init__.py
+├── date.py
+└── tools.py
+```
+
+. . .
+
+The analytics package contains two modules:
+
+* `tools` module
+* `date` module
+
+---
+
+```python
+from analytics.tools import is_operable
+from analytics.tools import Toolbox, Tool
+from analytics.date import Interval
+
+tool = Tool(name="hammer")
+dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+is_operable(height=1.8, period=1.0)
+```
+
+## How generic should your code be?
+
+. . .
+
+A good rule of thumb is to make your code as generic as possible, but no more. 🙄
+
+. . .
+
+![](https://imgs.xkcd.com/comics/the_general_problem.png)
+
+. . .
+
+Try to anticipate the future, but not too much!
+
+## Homework until next week
+
+::: {.incremental}
+
+* Write a one line description of your project
+* Write a list (3-5) of the main functions of your project
+* Think carefully about the types of inputs and outputs of your functions
+* Think carefully about the names of your functions and classes
+* Read chapter 3 "Abstraction and encapsulation" in Hillard, 2019
+
+:::
+
+✨ **See you next week!** 🚀
+
