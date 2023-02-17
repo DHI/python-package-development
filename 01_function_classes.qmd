@@ -659,11 +659,12 @@ Try to anticipate the future, but not too much!
 
 ::: {.incremental}
 
+* Decide on a name for your project (5-20 characters) 
 * Write a one line description of your project
 * Write a list (3-5) of the main functions of your project
 * Think carefully about the types of inputs and outputs of your functions
 * Think carefully about the names of your functions and classes
-* Read chapter 3 "Abstraction and encapsulation" in Hillard, 2019
+* Read [Introduction to Git and GitHub for Python Developers](https://realpython.com/python-git-github-intro/)
 
 :::
 
