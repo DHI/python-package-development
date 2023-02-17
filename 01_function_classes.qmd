@@ -661,9 +661,16 @@ Try to anticipate the future, but not too much!
 
 * Decide on a name for your project (5-20 characters) 
 * Write a one line description of your project
-* Write a list (3-5) of the main functions of your project
-* Think carefully about the types of inputs and outputs of your functions
-* Think carefully about the names of your functions and classes
+* Create a repository on GitHub
+* Create a `README.md` file with the description of your project
+* Write a function to calculate the total duration exceeding a specified threshold, from a list of values, equidsistantly spaced in time
+  - What it the name of function?
+  - What are the inputs? Types of the inputs?
+  - What is the output? Type of the output?
+* Create a class to store the details of a physcial quantity
+    - What are the attributes?
+    - What are the methods? If any.
+    - What is the name of the class?
 * Read [Introduction to Git and GitHub for Python Developers](https://realpython.com/python-git-github-intro/)
 
 :::
