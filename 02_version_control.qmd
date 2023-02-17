@@ -1,12 +1,39 @@
 ---
-title: "Python types, interfaces and protocols"
+title: "Git, GitHub, Pull Requests, and code reviews"
 format: revealjs
 footer: Python package development
 logo: campus_logo.png
 ---
 
 
-## Why use version control?
+## Why use version control? 
+
+::: {.columns}
+
+::: {.column width="30%"}
+![](images/Vadar-VersionControl-300x300.jpg)
+:::
+
+::: {.column width="70%" .incremental}
+* Manage changes to code over time
+* Keep track of changes and revert to previous versions if needed.
+* Collaborate and merge changes from different people
+* Ensure code stability and error-free development
+* Best practice for software development
+:::
+
+:::
+
+::: {.notes}
+
+* Version control is a tool for managing changes to code over time.
+* It allows you to **keep track** of changes and revert to previous versions if needed.
+* It makes collaboration on code easier by providing a way to merge changes made by different people.
+* It helps ensure that code is stable and error-free, especially in large and complex projects.
+* Using version control is a best practice for software development, and is used by most engineering and tech companies.
+
+:::
+
 
 ## Centralized version control
 
@@ -33,6 +60,27 @@ logo: campus_logo.png
 ## Branching
 
 ## GitHub
+
+* Git repository hosting service
+* Collaborate with others on codebase
+* **Fork** a repository to work on your own version
+* **Pull requests** for code review and merging changes
+* **Issue tracking** and project management tools
+
+
+::: {.notes}
+GitHub is a powerful platform for collaborating on software development projects:
+
+* Creating a repository: A repository is a place to store code and collaborate with others. You can create a new repository on GitHub by clicking the "New" button on your dashboard.
+
+* Cloning a repository: To work on code from a repository on your local machine, you can "clone" the repository using the git clone command. This creates a local copy of the repository that you can work with.
+
+* Pull requests: A pull request is a way to propose changes to a repository and request that they be merged in. You can create a pull request on GitHub by making changes in a branch of your repository and submitting the changes as a pull request.
+
+* Code reviews: Code reviews are an important part of collaborating on code with others. You can use GitHub's built-in code review tools to review and comment on changes that have been proposed in a pull request.
+
+* Issues: Issues are a way to track bugs, feature requests, and other tasks related to a project. You can create and manage issues in GitHub, and use them to keep track of what needs to be done.
+:::
 
 ## Github flow
 
