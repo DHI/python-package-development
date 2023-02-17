@@ -126,195 +126,6 @@
     "text": "Running Black\nVisual Studio Code can be configured to run black automatically when saving a file.\n\n\n\n\nPython package development"
   },
   {
-    "objectID": "07_packaging.html#packages",
-    "href": "07_packaging.html#packages",
-    "title": "Distributing your Python package",
-    "section": "Packages",
-    "text": "Packages"
-  },
-  {
-    "objectID": "07_packaging.html#packaging",
-    "href": "07_packaging.html#packaging",
-    "title": "Distributing your Python package",
-    "section": "Packaging",
-    "text": "Packaging"
-  },
-  {
-    "objectID": "07_packaging.html#private-packages",
-    "href": "07_packaging.html#private-packages",
-    "title": "Distributing your Python package",
-    "section": "Private packages",
-    "text": "Private packages\n\nInstall from a private git repository\nInstall from a private PyPI server\n\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "00_introduction.html#instructors",
-    "href": "00_introduction.html#instructors",
-    "title": "Python package development",
-    "section": "Instructors",
-    "text": "Instructors\n\nJesper\nHenrik\nThomas"
-  },
-  {
-    "objectID": "00_introduction.html#participants",
-    "href": "00_introduction.html#participants",
-    "title": "Python package development",
-    "section": "Participants",
-    "text": "Participants\nIntroduce yourselves in a break out session later today."
-  },
-  {
-    "objectID": "00_introduction.html#learning-modules",
-    "href": "00_introduction.html#learning-modules",
-    "title": "Python package development",
-    "section": "Learning modules",
-    "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package"
-  },
-  {
-    "objectID": "00_introduction.html#learning-objectives",
-    "href": "00_introduction.html#learning-objectives",
-    "title": "Python package development",
-    "section": "Learning objectives",
-    "text": "Learning objectives\n\nimproved Python skills\nknowledge of how to create resuable Python code\nknow how to share code with others through a Python package"
-  },
-  {
-    "objectID": "00_introduction.html#format",
-    "href": "00_introduction.html#format",
-    "title": "Python package development",
-    "section": "Format",
-    "text": "Format\n\nOnline session (Zoom) almost every Monday\nHomework assignments\nQuiz (Campus)"
-  },
-  {
-    "objectID": "00_introduction.html#course-material",
-    "href": "00_introduction.html#course-material",
-    "title": "Python package development",
-    "section": "Course material",
-    "text": "Course material\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "02_version_control.html#why-use-version-control",
-    "href": "02_version_control.html#why-use-version-control",
-    "title": "Python types, interfaces and protocols",
-    "section": "Why use version control?",
-    "text": "Why use version control?"
-  },
-  {
-    "objectID": "02_version_control.html#centralized-version-control",
-    "href": "02_version_control.html#centralized-version-control",
-    "title": "Python types, interfaces and protocols",
-    "section": "Centralized version control",
-    "text": "Centralized version control\n\nsingle source with the entire history\nlocal copy with latest version"
-  },
-  {
-    "objectID": "02_version_control.html#distributed-version-control",
-    "href": "02_version_control.html#distributed-version-control",
-    "title": "Python types, interfaces and protocols",
-    "section": "Distributed version control",
-    "text": "Distributed version control\n\nlocal copy has the entire history\ncommit changes to code offline\nauthorative source (origin)"
-  },
-  {
-    "objectID": "02_version_control.html#git",
-    "href": "02_version_control.html#git",
-    "title": "Python types, interfaces and protocols",
-    "section": "Git",
-    "text": "Git\n\ngit add foo.py\ngit commit -m \"Nailed it\"\ngit push"
-  },
-  {
-    "objectID": "02_version_control.html#branching",
-    "href": "02_version_control.html#branching",
-    "title": "Python types, interfaces and protocols",
-    "section": "Branching",
-    "text": "Branching"
-  },
-  {
-    "objectID": "02_version_control.html#github",
-    "href": "02_version_control.html#github",
-    "title": "Python types, interfaces and protocols",
-    "section": "GitHub",
-    "text": "GitHub"
-  },
-  {
-    "objectID": "02_version_control.html#github-flow",
-    "href": "02_version_control.html#github-flow",
-    "title": "Python types, interfaces and protocols",
-    "section": "Github flow",
-    "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge\n\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "06_documentation.html#why-document-your-code",
-    "href": "06_documentation.html#why-document-your-code",
-    "title": "Documentation",
-    "section": "Why document your code?",
-    "text": "Why document your code?\n\n\n\nMake it easier for others to use your code\nMake it easier for you to use your code"
-  },
-  {
-    "objectID": "06_documentation.html#notebooks",
-    "href": "06_documentation.html#notebooks",
-    "title": "Documentation",
-    "section": "Notebooks",
-    "text": "Notebooks"
-  },
-  {
-    "objectID": "06_documentation.html#docstrings",
-    "href": "06_documentation.html#docstrings",
-    "title": "Documentation",
-    "section": "Docstrings",
-    "text": "Docstrings\n\"\"\"K-means clustering.\"\"\" # module docstring\n\nclass KMeans(_BaseKMeans):\n  \"\"\"K-Means clustering. # class docstring \n  \n  Parameters\n  ----------\n  n_clusters : int, default=8\n      The number of clusters to form as well as the number of\n      centroids to generate.\n\n  Examples\n  --------\n  >>> X = np.array([[1, 2], [1, 4], [1, 0],\n  ...               [10, 2], [10, 4], [10, 0]])\n  >>> kmeans = KMeans(n_clusters=2, random_state=0, n_init=\"auto\").fit(X)\n  >>> kmeans.labels_\n  array([1, 1, 1, 0, 0, 0], dtype=int32)\nsklearn.KMeans"
-  },
-  {
-    "objectID": "06_documentation.html#numpy-format",
-    "href": "06_documentation.html#numpy-format",
-    "title": "Documentation",
-    "section": "Numpy format",
-    "text": "Numpy format\nThere are several ways to document your code. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc.\ndef function_name(param1, param2, param3):\n    \"\"\"Short summary.\n    \n    Long description.\n    \n    Parameters\n    ----------\n    param1 : int\n        Description of `param1`.\n    param2 : str\n        Description of `param2`.\n    param3 : list of str\n        Description of `param3`.\n    \n    Returns\n    -------\n    bool\n        Description of return value.\n    \"\"\"\n    pass"
-  },
-  {
-    "objectID": "06_documentation.html#type-hints",
-    "href": "06_documentation.html#type-hints",
-    "title": "Documentation",
-    "section": "Type hints",
-    "text": "Type hints"
-  },
-  {
-    "objectID": "06_documentation.html#doctest",
-    "href": "06_documentation.html#doctest",
-    "title": "Documentation",
-    "section": "doctest",
-    "text": "doctest\nUsing code without documentation is hard, but using code with wrong documentation is even harder.\nHow can you make sure that the documentation is correct?\n\nThe answer is the doctest module built in to the Python standard library.\n\n\n\n\n\n\n\n\nTip\n\n\nThe extensive standard library is why Python is described as a language with “batteries included!”"
-  },
-  {
-    "objectID": "06_documentation.html#documentation-generators",
-    "href": "06_documentation.html#documentation-generators",
-    "title": "Documentation",
-    "section": "Documentation generators",
-    "text": "Documentation generators\n\nSphinx\nmkdocs\n\n\nSphinx has been around for a long time, has lot’s of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality."
-  },
-  {
-    "objectID": "06_documentation.html#mkdocs",
-    "href": "06_documentation.html#mkdocs",
-    "title": "Documentation",
-    "section": "mkdocs",
-    "text": "mkdocs\n\nText is written in markdown\nEasy to use\nAPI documentation can be generated with mkdocstrings\nThe end result is a static website that can be hosted on e.g. GitHub pages"
-  },
-  {
-    "objectID": "06_documentation.html#configuration",
-    "href": "06_documentation.html#configuration",
-    "title": "Documentation",
-    "section": "Configuration",
-    "text": "Configuration\n# mkdocs.yml\nsite_name: my_library\n\ntheme: \"material\" # or readthedocs, mkdocs, etc.\n\nplugins:\n- mkdocstrings:\n    handlers:\n      python:\n        options:\n          show_source: false # change if you want able to show source code\n          heading_level: 2\n          docstring_style: \"numpy\" # important!, since default is google"
-  },
-  {
-    "objectID": "06_documentation.html#api-docs",
-    "href": "06_documentation.html#api-docs",
-    "title": "Documentation",
-    "section": "API docs",
-    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings\nadd plugin to mkdocs.yml (see above)\nReference your code in markdown\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
-  },
-  {
-    "objectID": "06_documentation.html#section-2",
-    "href": "06_documentation.html#section-2",
-    "title": "Documentation",
-    "section": "",
-    "text": "Python package development"
-  },
-  {
     "objectID": "01_function_classes.html#functions-as-black-boxes",
     "href": "01_function_classes.html#functions-as-black-boxes",
     "title": "Function, classes and modules",
@@ -494,7 +305,154 @@
     "href": "01_function_classes.html#homework-until-next-week",
     "title": "Function, classes and modules",
     "section": "Homework until next week",
-    "text": "Homework until next week\n\n\nWrite a one line description of your project\nWrite a list (3-5) of the main functions of your project\nThink carefully about the types of inputs and outputs of your functions\nThink carefully about the names of your functions and classes\nRead chapter 3 “Abstraction and encapsulation” in Hillard, 2019\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
+    "text": "Homework until next week\n\n\nWrite a one line description of your project\nWrite a list (3-5) of the main functions of your project\nThink carefully about the types of inputs and outputs of your functions\nThink carefully about the names of your functions and classes\nRead chapter 3 “Abstraction and encapsulation” in Hillard, 2019\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Python package development",
+    "section": "",
+    "text": "Python functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package\n\n©️ DHI 2023"
+  },
+  {
+    "objectID": "00_introduction.html#instructors",
+    "href": "00_introduction.html#instructors",
+    "title": "Python package development",
+    "section": "Instructors",
+    "text": "Instructors\n\nJesper\nHenrik\nThomas"
+  },
+  {
+    "objectID": "00_introduction.html#participants",
+    "href": "00_introduction.html#participants",
+    "title": "Python package development",
+    "section": "Participants",
+    "text": "Participants\nIntroduce yourselves in a break out session later today."
+  },
+  {
+    "objectID": "00_introduction.html#learning-modules",
+    "href": "00_introduction.html#learning-modules",
+    "title": "Python package development",
+    "section": "Learning modules",
+    "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package"
+  },
+  {
+    "objectID": "00_introduction.html#learning-objectives",
+    "href": "00_introduction.html#learning-objectives",
+    "title": "Python package development",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\nimproved Python skills\nknowledge of how to create resuable Python code\nknow how to share code with others through a Python package"
+  },
+  {
+    "objectID": "00_introduction.html#format",
+    "href": "00_introduction.html#format",
+    "title": "Python package development",
+    "section": "Format",
+    "text": "Format\n\nOnline session (Zoom) almost every Monday\nHomework assignments\nQuiz (Campus)"
+  },
+  {
+    "objectID": "00_introduction.html#course-material",
+    "href": "00_introduction.html#course-material",
+    "title": "Python package development",
+    "section": "Course material",
+    "text": "Course material\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "05_dependecies_ci.html#dependency-management",
+    "href": "05_dependecies_ci.html#dependency-management",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency management",
+    "text": "Dependency management\nRequirements.txt\nExample:\n$ cat requirements.txt\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1"
+  },
+  {
+    "objectID": "05_dependecies_ci.html#continuous-integration",
+    "href": "05_dependecies_ci.html#continuous-integration",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Continuous Integration",
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines"
+  },
+  {
+    "objectID": "05_dependecies_ci.html#github-actions",
+    "href": "05_dependecies_ci.html#github-actions",
+    "title": "Dependencies and Continuous Integration",
+    "section": "GitHub Actions",
+    "text": "GitHub Actions\nWorkflow are stored in the .github/workflows folder.\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
+  },
+  {
+    "objectID": "06_documentation.html#why-document-your-code",
+    "href": "06_documentation.html#why-document-your-code",
+    "title": "Documentation",
+    "section": "Why document your code?",
+    "text": "Why document your code?\n\n\n\nMake it easier for others to use your code\nMake it easier for you to use your code"
+  },
+  {
+    "objectID": "06_documentation.html#notebooks",
+    "href": "06_documentation.html#notebooks",
+    "title": "Documentation",
+    "section": "Notebooks",
+    "text": "Notebooks"
+  },
+  {
+    "objectID": "06_documentation.html#docstrings",
+    "href": "06_documentation.html#docstrings",
+    "title": "Documentation",
+    "section": "Docstrings",
+    "text": "Docstrings\n\"\"\"K-means clustering.\"\"\" # module docstring\n\nclass KMeans(_BaseKMeans):\n  \"\"\"K-Means clustering. # class docstring \n  \n  Parameters\n  ----------\n  n_clusters : int, default=8\n      The number of clusters to form as well as the number of\n      centroids to generate.\n\n  Examples\n  --------\n  >>> X = np.array([[1, 2], [1, 4], [1, 0],\n  ...               [10, 2], [10, 4], [10, 0]])\n  >>> kmeans = KMeans(n_clusters=2, random_state=0, n_init=\"auto\").fit(X)\n  >>> kmeans.labels_\n  array([1, 1, 1, 0, 0, 0], dtype=int32)\nsklearn.KMeans"
+  },
+  {
+    "objectID": "06_documentation.html#numpy-format",
+    "href": "06_documentation.html#numpy-format",
+    "title": "Documentation",
+    "section": "Numpy format",
+    "text": "Numpy format\nThere are several ways to document your code. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc.\ndef function_name(param1, param2, param3):\n    \"\"\"Short summary.\n    \n    Long description.\n    \n    Parameters\n    ----------\n    param1 : int\n        Description of `param1`.\n    param2 : str\n        Description of `param2`.\n    param3 : list of str\n        Description of `param3`.\n    \n    Returns\n    -------\n    bool\n        Description of return value.\n    \"\"\"\n    pass"
+  },
+  {
+    "objectID": "06_documentation.html#type-hints",
+    "href": "06_documentation.html#type-hints",
+    "title": "Documentation",
+    "section": "Type hints",
+    "text": "Type hints"
+  },
+  {
+    "objectID": "06_documentation.html#doctest",
+    "href": "06_documentation.html#doctest",
+    "title": "Documentation",
+    "section": "doctest",
+    "text": "doctest\nUsing code without documentation is hard, but using code with wrong documentation is even harder.\nHow can you make sure that the documentation is correct?\n\nThe answer is the doctest module built in to the Python standard library.\n\n\n\n\n\n\n\n\nTip\n\n\nThe extensive standard library is why Python is described as a language with “batteries included!”"
+  },
+  {
+    "objectID": "06_documentation.html#documentation-generators",
+    "href": "06_documentation.html#documentation-generators",
+    "title": "Documentation",
+    "section": "Documentation generators",
+    "text": "Documentation generators\n\nSphinx\nmkdocs\n\n\nSphinx has been around for a long time, has lot’s of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality."
+  },
+  {
+    "objectID": "06_documentation.html#mkdocs",
+    "href": "06_documentation.html#mkdocs",
+    "title": "Documentation",
+    "section": "mkdocs",
+    "text": "mkdocs\n\nText is written in markdown\nEasy to use\nAPI documentation can be generated with mkdocstrings\nThe end result is a static website that can be hosted on e.g. GitHub pages"
+  },
+  {
+    "objectID": "06_documentation.html#configuration",
+    "href": "06_documentation.html#configuration",
+    "title": "Documentation",
+    "section": "Configuration",
+    "text": "Configuration\n# mkdocs.yml\nsite_name: my_library\n\ntheme: \"material\" # or readthedocs, mkdocs, etc.\n\nplugins:\n- mkdocstrings:\n    handlers:\n      python:\n        options:\n          show_source: false # change if you want able to show source code\n          heading_level: 2\n          docstring_style: \"numpy\" # important!, since default is google"
+  },
+  {
+    "objectID": "06_documentation.html#api-docs",
+    "href": "06_documentation.html#api-docs",
+    "title": "Documentation",
+    "section": "API docs",
+    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings\nadd plugin to mkdocs.yml (see above)\nReference your code in markdown\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
+  },
+  {
+    "objectID": "06_documentation.html#section-2",
+    "href": "06_documentation.html#section-2",
+    "title": "Documentation",
+    "section": "",
+    "text": "Python package development"
   },
   {
     "objectID": "03_types_protocols.html#python-types",
@@ -623,31 +581,73 @@
     "text": "Composed method1\n\nDivide your program into methods that perform one identifiable task\nKeep all of the operations in a method at the same level of abstraction.\nThis will naturally result in programs with many small methods, each a few lines long.\nWhen you use Extract method a bunch of times on a method the original method becomes a Composed method.\n\nhttps://wiki.c2.com/?ComposedMethod"
   },
   {
-    "objectID": "05_dependecies_ci.html#dependency-management",
-    "href": "05_dependecies_ci.html#dependency-management",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Dependency management",
-    "text": "Dependency management\nRequirements.txt\nExample:\n$ cat requirements.txt\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1"
+    "objectID": "02_version_control.html#why-use-version-control",
+    "href": "02_version_control.html#why-use-version-control",
+    "title": "Python types, interfaces and protocols",
+    "section": "Why use version control?",
+    "text": "Why use version control?"
   },
   {
-    "objectID": "05_dependecies_ci.html#continuous-integration",
-    "href": "05_dependecies_ci.html#continuous-integration",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines"
+    "objectID": "02_version_control.html#centralized-version-control",
+    "href": "02_version_control.html#centralized-version-control",
+    "title": "Python types, interfaces and protocols",
+    "section": "Centralized version control",
+    "text": "Centralized version control\n\nsingle source with the entire history\nlocal copy with latest version"
   },
   {
-    "objectID": "05_dependecies_ci.html#github-actions",
-    "href": "05_dependecies_ci.html#github-actions",
-    "title": "Dependencies and Continuous Integration",
-    "section": "GitHub Actions",
-    "text": "GitHub Actions\nWorkflow are stored in the .github/workflows folder.\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
+    "objectID": "02_version_control.html#distributed-version-control",
+    "href": "02_version_control.html#distributed-version-control",
+    "title": "Python types, interfaces and protocols",
+    "section": "Distributed version control",
+    "text": "Distributed version control\n\nlocal copy has the entire history\ncommit changes to code offline\nauthorative source (origin)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Python package development",
-    "section": "",
-    "text": "Python functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package\n\n©️ DHI 2023"
+    "objectID": "02_version_control.html#git",
+    "href": "02_version_control.html#git",
+    "title": "Python types, interfaces and protocols",
+    "section": "Git",
+    "text": "Git\n\ngit add foo.py\ngit commit -m \"Nailed it\"\ngit push"
+  },
+  {
+    "objectID": "02_version_control.html#branching",
+    "href": "02_version_control.html#branching",
+    "title": "Python types, interfaces and protocols",
+    "section": "Branching",
+    "text": "Branching"
+  },
+  {
+    "objectID": "02_version_control.html#github",
+    "href": "02_version_control.html#github",
+    "title": "Python types, interfaces and protocols",
+    "section": "GitHub",
+    "text": "GitHub"
+  },
+  {
+    "objectID": "02_version_control.html#github-flow",
+    "href": "02_version_control.html#github-flow",
+    "title": "Python types, interfaces and protocols",
+    "section": "Github flow",
+    "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge\n\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "07_packaging.html#packages",
+    "href": "07_packaging.html#packages",
+    "title": "Distributing your Python package",
+    "section": "Packages",
+    "text": "Packages"
+  },
+  {
+    "objectID": "07_packaging.html#packaging",
+    "href": "07_packaging.html#packaging",
+    "title": "Distributing your Python package",
+    "section": "Packaging",
+    "text": "Packaging"
+  },
+  {
+    "objectID": "07_packaging.html#private-packages",
+    "href": "07_packaging.html#private-packages",
+    "title": "Distributing your Python package",
+    "section": "Private packages",
+    "text": "Private packages\n\nInstall from a private git repository\nInstall from a private PyPI server\n\n\n\n\nPython package development"
   }
 ]
