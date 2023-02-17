@@ -305,7 +305,7 @@
     "href": "01_function_classes.html#homework-until-next-week",
     "title": "Function, classes and modules",
     "section": "Homework until next week",
-    "text": "Homework until next week\n\n\nDecide on a name for your project (5-20 characters)\nWrite a one line description of your project\nWrite a list (3-5) of the main functions of your project\nThink carefully about the types of inputs and outputs of your functions\nThink carefully about the names of your functions and classes\nRead Introduction to Git and GitHub for Python Developers\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
+    "text": "Homework until next week\n\n\nDecide on a name for your project (5-20 characters)\nWrite a one line description of your project\nCreate a repository on GitHub\nCreate a README.md file with the description of your project\nWrite a function to calculate the total duration exceeding a specified threshold, from a list of values, equidsistantly spaced in time\n\nWhat it the name of function?\nWhat are the inputs? Types of the inputs?\nWhat is the output? Type of the output?\n\nCreate a class to store the details of a physcial quantity\n\nWhat are the attributes?\nWhat are the methods? If any.\nWhat is the name of the class?\n\nRead Introduction to Git and GitHub for Python Developers\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
   },
   {
     "objectID": "index.html",
