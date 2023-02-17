@@ -104,7 +104,7 @@ GitHub is a powerful platform for collaborating on software development projects
 
 * [GitHub: quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
 * [RealPython: git and github intro](https://realpython.com/python-git-github-intro/)
-
+* [Datacamp: introduction to Git](https://app.datacamp.com/learn/courses/introduction-to-git)
 
 ## Summary
 
