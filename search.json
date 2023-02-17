@@ -627,7 +627,28 @@
     "href": "02_version_control.html#github-flow",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Github flow",
-    "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge\n\n\n\n\nPython package development"
+    "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge"
+  },
+  {
+    "objectID": "02_version_control.html#desktop-application-github-desktop",
+    "href": "02_version_control.html#desktop-application-github-desktop",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Desktop Application: GitHub Desktop",
+    "text": "Desktop Application: GitHub Desktop"
+  },
+  {
+    "objectID": "02_version_control.html#resources",
+    "href": "02_version_control.html#resources",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Resources",
+    "text": "Resources\n\nGitHub: quickstart\nRealPython: git and github intro"
+  },
+  {
+    "objectID": "02_version_control.html#summary",
+    "href": "02_version_control.html#summary",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Summary",
+    "text": "Summary\n\nVersion control is a tool for managing changes to code\nGit is a distributed version control system (software)\nGitHub is a platform for hosting and collaborating on Git repositories\nGitHub Desktop is a GUI for Git (and GitHub)\nPull requests are a way to propose changes to a repository\n\n\n\n\nPython package development"
   },
   {
     "objectID": "07_packaging.html#packages",
