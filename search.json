@@ -583,49 +583,49 @@
   {
     "objectID": "02_version_control.html#why-use-version-control",
     "href": "02_version_control.html#why-use-version-control",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Why use version control?",
-    "text": "Why use version control?"
+    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability and error-free development\nBest practice for software development\n\n\n\n\n\nVersion control is a tool for managing changes to code over time.\nIt allows you to keep track of changes and revert to previous versions if needed.\nIt makes collaboration on code easier by providing a way to merge changes made by different people.\nIt helps ensure that code is stable and error-free, especially in large and complex projects.\nUsing version control is a best practice for software development, and is used by most engineering and tech companies."
   },
   {
     "objectID": "02_version_control.html#centralized-version-control",
     "href": "02_version_control.html#centralized-version-control",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Centralized version control",
     "text": "Centralized version control\n\nsingle source with the entire history\nlocal copy with latest version"
   },
   {
     "objectID": "02_version_control.html#distributed-version-control",
     "href": "02_version_control.html#distributed-version-control",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Distributed version control",
     "text": "Distributed version control\n\nlocal copy has the entire history\ncommit changes to code offline\nauthorative source (origin)"
   },
   {
     "objectID": "02_version_control.html#git",
     "href": "02_version_control.html#git",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Git",
     "text": "Git\n\ngit add foo.py\ngit commit -m \"Nailed it\"\ngit push"
   },
   {
     "objectID": "02_version_control.html#branching",
     "href": "02_version_control.html#branching",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Branching",
     "text": "Branching"
   },
   {
     "objectID": "02_version_control.html#github",
     "href": "02_version_control.html#github",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "GitHub",
-    "text": "GitHub"
+    "text": "GitHub\n\nGit repository hosting service\nCollaborate with others on codebase\nFork a repository to work on your own version\nPull requests for code review and merging changes\nIssue tracking and project management tools\n\n\nGitHub is a powerful platform for collaborating on software development projects:\n\nCreating a repository: A repository is a place to store code and collaborate with others. You can create a new repository on GitHub by clicking the “New” button on your dashboard.\nCloning a repository: To work on code from a repository on your local machine, you can “clone” the repository using the git clone command. This creates a local copy of the repository that you can work with.\nPull requests: A pull request is a way to propose changes to a repository and request that they be merged in. You can create a pull request on GitHub by making changes in a branch of your repository and submitting the changes as a pull request.\nCode reviews: Code reviews are an important part of collaborating on code with others. You can use GitHub’s built-in code review tools to review and comment on changes that have been proposed in a pull request.\nIssues: Issues are a way to track bugs, feature requests, and other tasks related to a project. You can create and manage issues in GitHub, and use them to keep track of what needs to be done."
   },
   {
     "objectID": "02_version_control.html#github-flow",
     "href": "02_version_control.html#github-flow",
-    "title": "Python types, interfaces and protocols",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Github flow",
     "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge\n\n\n\n\nPython package development"
   },
