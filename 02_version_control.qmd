@@ -90,3 +90,26 @@ GitHub is a powerful platform for collaborating on software development projects
 4. review
 5. merge
 
+## 
+
+![](images/git_workflow.png)
+
+
+## Desktop Application: [GitHub Desktop](https://desktop.github.com/)
+
+![](images/GitHubDesktop.png)
+
+
+## Resources
+
+* [GitHub: quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
+* [RealPython: git and github intro](https://realpython.com/python-git-github-intro/)
+
+
+## Summary
+
+* Version control is a tool for managing changes to code 
+* Git is a distributed version control system (software)
+* GitHub is a platform for hosting and collaborating on Git repositories
+* GitHub Desktop is a GUI for Git (and GitHub)
+* Pull requests are a way to propose changes to a repository 
