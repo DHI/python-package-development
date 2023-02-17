@@ -179,7 +179,7 @@
     "href": "01_function_classes.html#positional-arguments-1",
     "title": "Function, classes and modules",
     "section": "Positional arguments",
-    "text": "Positional arguments\n\n\nVersion 1\ndef is_operable(height, period):\n\n    return height < 10.0 and period > 4.0\n\n>>> is_operable(5.0, 5.0)\nTrue\n\nVersion 2\ndef is_operable(period, height):\n    # dont forget, that arguments are swapped 👍\n    return height < 10.0 and period > 4.0\n\n>>> is_operable(5.0, 5.0)\nFalse 😟"
+    "text": "Positional arguments\n\n\nVersion 1\ndef is_operable(height, period):\n\n    return height < 2.0 and period < 6.0\n\n>>> is_operable(1.0, 3.0)\nTrue\n\nVersion 2\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height < 2.0 and period < 6.0\n\n>>> is_operable(1.0, 3.0)\nFalse 😟\n\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
   },
   {
     "objectID": "01_function_classes.html#keyword-only-arguments",

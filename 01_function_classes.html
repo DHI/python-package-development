@@ -462,7 +462,7 @@
 </div>
 <div class="fragment">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> is_operable(height, period):</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">10.0</span> <span class="kw">and</span> period <span class="op">&gt;</span> <span class="fl">4.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>This function behaves the same to the caller, but the implementation is different.</p>
@@ -595,20 +595,33 @@
 <p><strong>Version 1</strong></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> is_operable(height, period):</span>
 <span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">10.0</span> <span class="kw">and</span> period <span class="op">&gt;</span> <span class="fl">4.0</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">5.0</span>, <span class="fl">5.0</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
 <span id="cb10-6"><a href="#cb10-6"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <p><strong>Version 2</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> is_operable(period, height):</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> is_operable(period, height<span class="op">=</span><span class="fl">0.0</span>):</span>
 <span id="cb11-2"><a href="#cb11-2"></a>    <span class="co"># dont forget, that arguments are swapped 👍</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">10.0</span> <span class="kw">and</span> period <span class="op">&gt;</span> <span class="fl">4.0</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">5.0</span>, <span class="fl">5.0</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
 <span id="cb11-6"><a href="#cb11-6"></a><span class="va">False</span> 😟</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+<aside class="notes">
+<p>The order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="keyword-only-arguments" class="slide level2">
 <h2>Keyword only arguments</h2>
