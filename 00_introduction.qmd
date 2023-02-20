@@ -43,6 +43,7 @@ Introduce yourselves in a break out session later today.
 * Hillard, 2019, Practices of the Python Pro, Manning
 * [Slides](https://dhi.github.io/python-package-development)
 * Campus
+* Course Yammer channel
 
 ## Poll
 
