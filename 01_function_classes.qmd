@@ -463,7 +463,7 @@ Here is an example of useful class, but it is a bit cumbersome to create an inst
 
 ## Static methods
 
-```{python}
+```python
 from datetime import date
 
 class Interval:
