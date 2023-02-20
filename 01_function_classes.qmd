@@ -553,7 +553,7 @@ False
 This is not very useful, since we want to compare the values of the attributes.
 :::
 
----
+## Equality
 
 
 ```python
@@ -579,6 +579,8 @@ We can override the `__eq__` method to compare the values of the attributes.
 For a dataclass, equality is based on the values of the fields.
 
 ```python
+from dataclasses import dataclass
+
 @dataclass
 class Interval:
     start: date
@@ -594,13 +596,36 @@ True
 This is the default behavior for dataclasses.
 :::
 
+## Data classes {.smaller}
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Quantity:
+    unit: str = field(compare=True)
+    standard_name: field(compare=True)
+    name: str = field(compare=False, default=None)
+
+
+>>> t1 = Quantity(name="temp", unit="C", standard_name="air_temperature")
+>>> t2 = Quantity(name="temperature", unit="C", standard_name="air_temperature")
+
+>>> t1 == t2
+True
+
+>>> d1 = Quantity(unit="m", standard_name="depth")
+>>> d1 == t2
+False
+```
+
 ## Data classes
 
 ::: {.incremental}
 
 * Compact notation of fields with type hints
-* Proper equality
-* String represenation by default
+* Equality based on values of fields
+* Useful string represenation by default
 * It is still a regular class
 
 :::
@@ -624,7 +649,7 @@ analytics/
 
 . . .
 
-The analytics package contains two modules:
+The analytics *package* contains two modules:
 
 * `tools` module
 * `date` module
@@ -641,6 +666,46 @@ dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
 is_operable(height=1.8, period=1.0)
 ```
 
+## Packages
+
+::: {.incremental}
+* A package is a directory containing modules
+* Each package in Python is a directory which MUST contain a special file called `__init__.py`
+* The `__init__.py` can be empty, and it indicates that the directory it contains is a Python package
+* `__init__.py` can also execute initialization code
+
+:::
+
+## `__init__.py` {.smaller}
+
+
+Example: `mikeio/pfs/__init__.py`:
+
+```{.python code-line-numbers="|1-2"}
+from .pfsdocument import Pfs, PfsDocument
+from .pfssection import PfsNonUniqueList, PfsSection
+
+def read_pfs(filename, encoding="cp1252", unique_keywords=False):
+     """Read a pfs file for further analysis/manipulation"""
+    
+    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)
+```
+. . .
+
+The imports in `__init__.py` let's you separate the implementation into multiple files.
+
+```python
+>>> mikeio.pfs.pfssection.PfsSection
+<class 'mikeio.pfs.pfssection.PfsSection'>
+>>> mikeio.pfs.PfsSection
+<class 'mikeio.pfs.pfssection.PfsSection'>
+```
+
+::: {.notes}
+The PfsSection and PfsDocument are imported from the `pfssection.py` and `pfsdocument.py` modules. to the `mikeio.pfs` namespace.
+:::
+
+
 ## How generic should your code be?
 
 . . .
@@ -655,7 +720,7 @@ A good rule of thumb is to make your code as generic as possible, but no more. �
 
 Try to anticipate the future, but not too much!
 
-## Homework until next week
+## Homework until next week {.smaller}
 
 ::: {.incremental}
 
@@ -663,11 +728,11 @@ Try to anticipate the future, but not too much!
 * Write a one line description of your project
 * Create a repository on GitHub
 * Create a `README.md` file with the description of your project
-* Write a function to calculate the total duration exceeding a specified threshold, from a list of values, equidsistantly spaced in time
-  - What it the name of function?
+* Write a function to calculate the fraction of values within a given range, with the lower bound optional
+  - What is the name of function?
   - What are the inputs? Types of the inputs?
   - What is the output? Type of the output?
-* Create a class to store the details of a physcial quantity
+* Create a class to to represent sensor data, e.g. water levels, temperature measured with a fixed interval
     - What are the attributes?
     - What are the methods? If any.
     - What is the name of the class?
@@ -678,4 +743,9 @@ Try to anticipate the future, but not too much!
 . . .
 
 ✨ **See you next week!** 🚀
+
+
+
+
+
 
