@@ -2,6 +2,8 @@
 title: "Python package development"
 ---
 
+[Introduction](00_introduction.qmd)
+
 ## Learning modules
 1. [Python functions, classes, and modules](01_function_classes.qmd)
 2. [Git, Pull Requests, and code reviews](02_version_control.qmd)
