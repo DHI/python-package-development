@@ -457,210 +457,210 @@
   {
     "objectID": "01_function_classes.html#functions-as-black-boxes",
     "href": "01_function_classes.html#functions-as-black-boxes",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Functions as black boxes",
     "text": "Functions as black boxes\n\n\n\n\nflowchart LR\n    A(Input A) --> F[\"Black box\"]\n    B(Input B) -->  F\n    F --> O(Output)\n\n    style F fill:#000,color:#fff,stroke:#333,stroke-width:4px\n\n\n\n\n\n\n\n\n\n\nA function is a black box that takes some input and produces some output.\nThe input and output can be anything, including other functions.\nAs long as the input and output are the same, the function body can be modified."
   },
   {
     "objectID": "01_function_classes.html#pure-functions",
     "href": "01_function_classes.html#pure-functions",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Pure functions",
     "text": "Pure functions\nA pure function returns the same output for the same input.\ndef f(x)\n    return x**2\n\n>> f(2)\n4\n>> f(2)\n4"
   },
   {
     "objectID": "01_function_classes.html#side-effects",
     "href": "01_function_classes.html#side-effects",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Side effects",
     "text": "Side effects\nA function can have side effects, like appendig to a a file\ndef f_with_side_effect(x):\n    with open(\"output.txt\", \"a\") as f:\n        f.write(str(x))\n    return x**2\n\nThe function has x as input, returns the square of x, but also appends x to a file. If you run the function a second time, the file will contain two lines."
   },
   {
     "objectID": "01_function_classes.html#side-effects-1",
     "href": "01_function_classes.html#side-effects-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Side effects",
     "text": "Side effects\nPure functions with no side effects are easier to reason about.\nBut sometimes side effects are necessary.\n\nWriting to a file\nWriting to a database\nPrinting to the screen\nCreating a plot"
   },
   {
     "objectID": "01_function_classes.html#modifying-input-arguments",
     "href": "01_function_classes.html#modifying-input-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Modifying input arguments",
     "text": "Modifying input arguments\ndef difficult_function(values):\n    for i in range(len(values)):\n        values[i] = min(0, values[i]) # 😟\n    return values\n\n>>> x = [1,2,-1]\n>>> difficult_function(x)\n>>> x\n[0,0,-1]\n\nThis function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it."
   },
   {
     "objectID": "01_function_classes.html#positional-arguments",
     "href": "01_function_classes.html#positional-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Positional arguments",
     "text": "Positional arguments\ndef f(x, y):\n    return x + y\n\n>>> f(1, 2)\n3"
   },
   {
     "objectID": "01_function_classes.html#keyword-arguments",
     "href": "01_function_classes.html#keyword-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Keyword arguments",
     "text": "Keyword arguments\ndef f(x, y):\n    return x + y\n\n>>> f(x=1, y=2)\n3"
   },
   {
     "objectID": "01_function_classes.html#positional-arguments-1",
     "href": "01_function_classes.html#positional-arguments-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Positional arguments",
     "text": "Positional arguments\n\n\nVersion 1\ndef is_operable(height, period):\n\n    return height < 2.0 and period < 6.0\n\n>>> is_operable(1.0, 3.0)\nTrue\n\nVersion 2\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height < 2.0 and period < 6.0\n\n>>> is_operable(1.0, 3.0)\nFalse 😟\n\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
   },
   {
     "objectID": "01_function_classes.html#keyword-only-arguments",
     "href": "01_function_classes.html#keyword-only-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Keyword only arguments",
     "text": "Keyword only arguments\ndef f(*, x, y):\n    return x + y\n\n>>> f(1,2)\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nTypeError: f() takes 0 positional arguments but 2 were given"
   },
   {
     "objectID": "01_function_classes.html#optional-default-arguments",
     "href": "01_function_classes.html#optional-default-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Optional (default) arguments",
     "text": "Optional (default) arguments\ndef f(x, n=2):\n    return x**n\n\n>>> f(2)\n4\n>>> f(2, n=3)\n8\n\nMakes it easy to use a function with many arguments."
   },
   {
     "objectID": "01_function_classes.html#mutable-default-arguments",
     "href": "01_function_classes.html#mutable-default-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Mutable default arguments",
     "text": "Mutable default arguments\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called.\n\ndef add_to_cart(x, cart=[]): # this line is evaluated only once 😮\n    cart.append(x)\n    return cart\n\n>>> add_to_cart(1, cart=[2])\n[2, 1]\n\n>>> add_to_cart(1)\n[1]\n>>> add_to_cart(2)\n[1, 2]\n\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well."
   },
   {
     "objectID": "01_function_classes.html#how-to-use-default-mutable-arguments",
     "href": "01_function_classes.html#how-to-use-default-mutable-arguments",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "How to use default (mutable) arguments",
     "text": "How to use default (mutable) arguments\ndef add_to_cart_safe(x, cart=None):\n    if cart is None:\n        cart = [] # this line is evaluated each time the function is called\n    cart.append(x)\n    return cart"
   },
   {
     "objectID": "01_function_classes.html#changing-return-types",
     "href": "01_function_classes.html#changing-return-types",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Changing return types",
     "text": "Changing return types\nSince Python is a dynamic language, the type of the returned variable is allowed to vary.\ndef foo(x):\n    if x >=0:\n        return x\n    else:\n        return \"x is negative\"\n\nBut it usually a bad idea, since you can not tell from reading the code, which type will be returned."
   },
   {
     "objectID": "01_function_classes.html#changing-return-types-1",
     "href": "01_function_classes.html#changing-return-types-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Changing return types",
     "text": "Changing return types\ndef is_operable(height, period):\n    if height < 10:\n        return height < 5.0 and period > 4.0\n    else:\n        return \"No way!\"\n\n>>> if is_operable(height=12.0, period=5.0):\n...         print(\"Go ahead!\")\n...\nGo ahead!\n\n\n\n\n\n\n\nImportant\n\n\nIs this the result you expected?\n\n\n\n\n\nA non-empty string or a non-zero value is considered “truthy” in Python!"
   },
   {
     "objectID": "01_function_classes.html#type-hints",
     "href": "01_function_classes.html#type-hints",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Type hints",
     "text": "Type hints\nPython is a dynamically typed language -> the type of a variable is determined at runtime.\n\nBut we can add type hints to help the reader (and the code editor).\ndef is_operable(height: float, period: float) -> bool:\n    ..."
   },
   {
     "objectID": "01_function_classes.html#time-for-a-discussion",
     "href": "01_function_classes.html#time-for-a-discussion",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Time for a discussion",
     "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce yourself briefly\nDiscuss your experience with Object Oriented Programming, why are classes useful?\nMention some problems with poorly designed code\n\nYour own experience\nFrom the book\n\n\nAfter break out session:\n\nSelected person from each team briefly presents their discussion"
   },
   {
     "objectID": "01_function_classes.html#classes",
     "href": "01_function_classes.html#classes",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\nclass WeirdToolbox\n    tools = [] # class variable ☹️\n\n\n>>> t1 = WeirdToolbox()\n>>> t1.tools.append(\"hammer\")\n>>> t1.tools\n[\"hammer\"]\n\n>>> t2 = WeirdToolbox()\n>>> t2.tools.append(\"screwdriver\")\n>>> t2.tools\n[\"hammer\", \"screwdriver\"]\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
+    "text": "Classes\nclass WeirdToolbox:\n    tools = [] # class variable ☹️\n\n\n>>> t1 = WeirdToolbox()\n>>> t1.tools.append(\"hammer\")\n>>> t1.tools\n[\"hammer\"]\n\n>>> t2 = WeirdToolbox()\n>>> t2.tools.append(\"screwdriver\")\n>>> t2.tools\n[\"hammer\", \"screwdriver\"]\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
   },
   {
     "objectID": "01_function_classes.html#classes-1",
     "href": "01_function_classes.html#classes-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\nclass Toolbox\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\n>>> t1 = Toolbox()\n>>> t1.tools.append(\"hammer\")\n>>> t1.tools\n[\"hammer\"]\n\n>>> t2 = Toolbox()\n>>> t2.tools.append(\"screwdriver\")\n>>> t2.tools\n[\"screwdriver\"]\n\nInstance variables are created when the instance is created, and are unique to each instance."
+    "text": "Classes\nclass Toolbox:\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\n>>> t1 = Toolbox()\n>>> t1.tools.append(\"hammer\")\n>>> t1.tools\n[\"hammer\"]\n\n>>> t2 = Toolbox()\n>>> t2.tools.append(\"screwdriver\")\n>>> t2.tools\n[\"screwdriver\"]\n\nInstance variables are created when the instance is created, and are unique to each instance."
   },
   {
     "objectID": "01_function_classes.html#static-methods",
     "href": "01_function_classes.html#static-methods",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Static methods",
     "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n>>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))\n>>> dr.start\ndatetime.date(2020, 1, 1)\n>>> dr.end\ndatetime.date(2020, 1, 31)\n\nHere is an example of useful class, but it is a bit cumbersome to create an instance."
   },
   {
     "objectID": "01_function_classes.html#static-methods-1",
     "href": "01_function_classes.html#static-methods-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Static methods",
     "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n>>> dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n>>> dr\n<__main__.Interval at 0x7fb99efcfb90>\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "01_function_classes.html#dataclasses",
     "href": "01_function_classes.html#dataclasses",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Dataclasses",
     "text": "Dataclasses\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n>>> dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n>>> dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\nDataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables."
   },
   {
     "objectID": "01_function_classes.html#equality",
     "href": "01_function_classes.html#equality",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Equality",
     "text": "Equality\nOn a regular class, equality is based on the memory address of the object.\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n>>> dr1 == dr2\nFalse\n\nThis is not very useful, since we want to compare the values of the attributes."
   },
   {
     "objectID": "01_function_classes.html#equality-1",
     "href": "01_function_classes.html#equality-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Equality",
     "text": "Equality\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    def __eq__(self, other):\n        return self.start == other.start and self.end == other.end\n\n>>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n>>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n>>> dr1 == dr2\nTrue\n\nWe can override the __eq__ method to compare the values of the attributes."
   },
   {
     "objectID": "01_function_classes.html#data-classes",
     "href": "01_function_classes.html#data-classes",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Data classes",
     "text": "Data classes\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Quantity:\n    unit: str = field(compare=True)\n    standard_name: field(compare=True)\n    name: str = field(compare=False, default=None)\n\n\n>>> t1 = Quantity(name=\"temp\", unit=\"C\", standard_name=\"air_temperature\")\n>>> t2 = Quantity(name=\"temperature\", unit=\"C\", standard_name=\"air_temperature\")\n\n>>> t1 == t2\nTrue\n\n>>> d1 = Quantity(unit=\"m\", standard_name=\"depth\")\n>>> d1 == t2\nFalse"
   },
   {
     "objectID": "01_function_classes.html#data-classes-1",
     "href": "01_function_classes.html#data-classes-1",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Data classes",
     "text": "Data classes\n\n\nCompact notation of fields with type hints\nEquality based on values of fields\nUseful string represenation by default\nIt is still a regular class"
   },
   {
     "objectID": "01_function_classes.html#modules",
     "href": "01_function_classes.html#modules",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Modules",
     "text": "Modules\nModules are files containing Python code (functions, classes, constants) that belong together.\n$tree analytics/\nanalytics/\n├── __init__.py\n├── date.py\n└── tools.py\n\nThe analytics package contains two modules:\n\ntools module\ndate module"
   },
   {
     "objectID": "01_function_classes.html#packages",
     "href": "01_function_classes.html#packages",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Packages",
     "text": "Packages\n\n\nA package is a directory containing modules\nEach package in Python is a directory which MUST contain a special file called __init__.py\nThe __init__.py can be empty, and it indicates that the directory it contains is a Python package\n__init__.py can also execute initialization code"
   },
   {
     "objectID": "01_function_classes.html#init__.py",
     "href": "01_function_classes.html#init__.py",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "__init__.py",
     "text": "__init__.py\nExample: mikeio/pfs/__init__.py:\nfrom .pfsdocument import Pfs, PfsDocument\nfrom .pfssection import PfsNonUniqueList, PfsSection\n\ndef read_pfs(filename, encoding=\"cp1252\", unique_keywords=False):\n     \"\"\"Read a pfs file for further analysis/manipulation\"\"\"\n    \n    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)\n\nThe imports in __init__.py let’s you separate the implementation into multiple files.\n>>> mikeio.pfs.pfssection.PfsSection\n<class 'mikeio.pfs.pfssection.PfsSection'>\n>>> mikeio.pfs.PfsSection\n<class 'mikeio.pfs.pfssection.PfsSection'>\n\nThe PfsSection and PfsDocument are imported from the pfssection.py and pfsdocument.py modules. to the mikeio.pfs namespace."
   },
   {
     "objectID": "01_function_classes.html#how-generic-should-your-code-be",
     "href": "01_function_classes.html#how-generic-should-your-code-be",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "How generic should your code be?",
     "text": "How generic should your code be?\n\nA good rule of thumb is to make your code as generic as possible, but no more. 🙄\n\n\n\n\n\nTry to anticipate the future, but not too much!"
   },
   {
     "objectID": "01_function_classes.html#homework-until-next-week",
     "href": "01_function_classes.html#homework-until-next-week",
-    "title": "Function, classes and modules",
+    "title": "Functions, classes and modules",
     "section": "Homework until next week",
     "text": "Homework until next week\n\n\nDecide on a name for your project (5-20 characters)\nWrite a one line description of your project\nCreate a repository on GitHub\nCreate a README.md file with the description of your project\nWrite a function to calculate the fraction of values within a given range, with the lower bound optional\n\nName, inputs, output, types\n\nCreate a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval\n\nName, attributes, methods?\n\nRead Introduction to Git and GitHub for Python Developers\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
   },

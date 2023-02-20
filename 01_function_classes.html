@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.335">
 
-  <title>Python package development - Function, classes and modules</title>
+  <title>Python package development - Functions, classes and modules</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -390,7 +390,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Function, classes and modules</h1>
+  <h1 class="title">Functions, classes and modules</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -431,7 +431,7 @@
 <div>
 <p>
 </p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">flowchart LR
-    A(height: 5.0) --&gt; F[is_operable]
+    A(height: 1.0) --&gt; F[is_operable]
     B(period: 3.0) --&gt;  F
     F --&gt; O(True)
 </pre>
@@ -788,7 +788,7 @@
 </section>
 <section id="classes" class="slide level2">
 <h2>Classes</h2>
-<div class="sourceCode" id="cb21" data-code-line-numbers="|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">class</span> WeirdToolbox</span>
+<div class="sourceCode" id="cb21" data-code-line-numbers="|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">class</span> WeirdToolbox:</span>
 <span id="cb21-2"><a href="#cb21-2"></a>    tools <span class="op">=</span> [] <span class="co"># class variable ☹️</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a></span>
 <span id="cb21-4"><a href="#cb21-4"></a></span>
@@ -817,7 +817,7 @@
 </section>
 <section id="classes-1" class="slide level2">
 <h2>Classes</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">class</span> Toolbox</span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">class</span> Toolbox:</span>
 <span id="cb22-2"><a href="#cb22-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb22-3"><a href="#cb22-3"></a>        <span class="va">self</span>.tools <span class="op">=</span> [] <span class="co"># instance variable 😃</span></span>
 <span id="cb22-4"><a href="#cb22-4"></a></span>
