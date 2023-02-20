@@ -1,5 +1,5 @@
 ---
-title: Function, classes and modules
+title: Functions, classes and modules
 format: revealjs
 footer: Python package development
 logo: campus_logo.png
@@ -31,7 +31,7 @@ flowchart LR
 
 ```{mermaid}
 flowchart LR
-    A(height: 5.0) --> F[is_operable]
+    A(height: 1.0) --> F[is_operable]
     B(period: 3.0) -->  F
     F --> O(True)
 ```
@@ -398,7 +398,7 @@ After break out session:
 ## Classes
 
 ```{.python code-line-numbers="|2|"}
-class WeirdToolbox
+class WeirdToolbox:
     tools = [] # class variable ☹️
 
 
@@ -420,7 +420,7 @@ Class variables are rarely what you want, since they are shared between all inst
 ## Classes
 
 ```python
-class Toolbox
+class Toolbox:
     def __init__(self):
         self.tools = [] # instance variable 😃
 
