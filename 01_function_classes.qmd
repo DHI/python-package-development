@@ -463,7 +463,9 @@ Here is an example of useful class, but it is a bit cumbersome to create an inst
 
 ## Static methods
 
-```python
+```{python}
+from datetime import date
+
 class Interval:
     def __init__(self, start:date, end:date):
         self.start = start
@@ -472,11 +474,13 @@ class Interval:
     @staticmethod
     def from_string(date_string):
         start_str, end_str = date_string.split("|")
-        start = start_str.fromisoformat()
-        end = end_str.fromisoformat()
+        start = date.fromisoformat(start_str)
+        end = date.fromisoformat(end_str)
         return Interval(start, end)
 
 >>> dr = Interval.from_string("2020-01-01|2020-01-31")
+>>> dr
+<__main__.Interval at 0x7fb99efcfb90>
 ```
 
 ::: {.notes}
@@ -496,9 +500,9 @@ class Interval:
 
     @staticmethod
     def from_string(date_string):
-        start, end = date_string.split("|")
-        start = date.fromisoformat(start)
-        end = date.fromisoformat(end)
+        start_str, end_str = date_string.split("|")
+        start = date.fromisoformat(start_str)
+        end = date.fromisoformat(end_str)
         return Interval(start, end)
 
 >>> dr = Interval.from_string("2020-01-01|2020-01-31")
