@@ -368,7 +368,14 @@
     "href": "index.html",
     "title": "Python package development",
     "section": "",
-    "text": "Python functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package\n\n©️ DHI 2023"
+    "text": "Introduction"
+  },
+  {
+    "objectID": "index.html#learning-modules",
+    "href": "index.html#learning-modules",
+    "title": "Python package development",
+    "section": "Learning modules",
+    "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package\n\n©️ DHI 2023"
   },
   {
     "objectID": "06_documentation.html#why-document-your-code",
@@ -683,7 +690,7 @@
     "href": "00_introduction.html#learning-objectives",
     "title": "Python package development",
     "section": "Learning objectives",
-    "text": "Learning objectives\n\nimproved Python skills\nknowledge of how to create resuable Python code\nknow how to share code with others through a Python package"
+    "text": "Learning objectives\n\nimproved Python skills\nknowledge of how to create resusuable Python code\nknow how to share code with others through a Python package"
   },
   {
     "objectID": "00_introduction.html#format",
@@ -697,6 +704,6 @@
     "href": "00_introduction.html#course-material",
     "title": "Python package development",
     "section": "Course material",
-    "text": "Course material\n\n\n\nPython package development"
+    "text": "Course material\n\nHillard, 2019, Practices of the Python Pro, Manning\nSlides\nCampus\n\n\n\n\nPython package development"
   }
 ]
