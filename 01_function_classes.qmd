@@ -733,13 +733,9 @@ Try to anticipate the future, but not too much!
 * Create a repository on GitHub
 * Create a `README.md` file with the description of your project
 * Write a function to calculate the fraction of values within a given range, with the lower bound optional
-  - What is the name of function?
-  - What are the inputs? Types of the inputs?
-  - What is the output? Type of the output?
-* Create a class to to represent sensor data, e.g. water levels, temperature measured with a fixed interval
-    - What are the attributes?
-    - What are the methods? If any.
-    - What is the name of the class?
+  - Name, inputs, output, types
+* Create a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval
+    - Name, attributes, methods?
 * Read [Introduction to Git and GitHub for Python Developers](https://realpython.com/python-git-github-intro/)
 
 :::
