@@ -874,19 +874,23 @@
 </section>
 <section id="static-methods-1" class="slide level2">
 <h2>Static methods</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">class</span> Interval:</span>
-<span id="cb24-2"><a href="#cb24-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
-<span id="cb24-3"><a href="#cb24-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb24-4"><a href="#cb24-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb24-5"><a href="#cb24-5"></a></span>
-<span id="cb24-6"><a href="#cb24-6"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a>    <span class="kw">def</span> from_string(date_string):</span>
-<span id="cb24-8"><a href="#cb24-8"></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
-<span id="cb24-9"><a href="#cb24-9"></a>        start <span class="op">=</span> start_str.fromisoformat()</span>
-<span id="cb24-10"><a href="#cb24-10"></a>        end <span class="op">=</span> end_str.fromisoformat()</span>
-<span id="cb24-11"><a href="#cb24-11"></a>        <span class="cf">return</span> Interval(start, end)</span>
-<span id="cb24-12"><a href="#cb24-12"></a></span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">class</span> Interval:</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
+<span id="cb24-5"><a href="#cb24-5"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb24-6"><a href="#cb24-6"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb24-7"><a href="#cb24-7"></a></span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>    <span class="kw">def</span> from_string(date_string):</span>
+<span id="cb24-10"><a href="#cb24-10"></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
+<span id="cb24-11"><a href="#cb24-11"></a>        start <span class="op">=</span> date.fromisoformat(start_str)</span>
+<span id="cb24-12"><a href="#cb24-12"></a>        end <span class="op">=</span> date.fromisoformat(end_str)</span>
+<span id="cb24-13"><a href="#cb24-13"></a>        <span class="cf">return</span> Interval(start, end)</span>
+<span id="cb24-14"><a href="#cb24-14"></a></span>
+<span id="cb24-15"><a href="#cb24-15"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>
+<span id="cb24-16"><a href="#cb24-16"></a><span class="op">&gt;&gt;&gt;</span> dr</span>
+<span id="cb24-17"><a href="#cb24-17"></a><span class="op">&lt;</span>__main__.Interval at <span class="bn">0x7fb99efcfb90</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Since we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance.</p>
 <style type="text/css">
@@ -912,9 +916,9 @@
 <span id="cb25-7"><a href="#cb25-7"></a></span>
 <span id="cb25-8"><a href="#cb25-8"></a>    <span class="at">@staticmethod</span></span>
 <span id="cb25-9"><a href="#cb25-9"></a>    <span class="kw">def</span> from_string(date_string):</span>
-<span id="cb25-10"><a href="#cb25-10"></a>        start, end <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
-<span id="cb25-11"><a href="#cb25-11"></a>        start <span class="op">=</span> date.fromisoformat(start)</span>
-<span id="cb25-12"><a href="#cb25-12"></a>        end <span class="op">=</span> date.fromisoformat(end)</span>
+<span id="cb25-10"><a href="#cb25-10"></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
+<span id="cb25-11"><a href="#cb25-11"></a>        start <span class="op">=</span> date.fromisoformat(start_str)</span>
+<span id="cb25-12"><a href="#cb25-12"></a>        end <span class="op">=</span> date.fromisoformat(end_str)</span>
 <span id="cb25-13"><a href="#cb25-13"></a>        <span class="cf">return</span> Interval(start, end)</span>
 <span id="cb25-14"><a href="#cb25-14"></a></span>
 <span id="cb25-15"><a href="#cb25-15"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>

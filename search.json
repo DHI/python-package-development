@@ -592,14 +592,14 @@
     "href": "01_function_classes.html#static-methods-1",
     "title": "Function, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = start_str.fromisoformat()\n        end = end_str.fromisoformat()\n        return Interval(start, end)\n\n>>> dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n>>> dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n>>> dr\n<__main__.Interval at 0x7fb99efcfb90>\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "01_function_classes.html#dataclasses",
     "href": "01_function_classes.html#dataclasses",
     "title": "Function, classes and modules",
     "section": "Dataclasses",
-    "text": "Dataclasses\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start, end = date_string.split(\"|\")\n        start = date.fromisoformat(start)\n        end = date.fromisoformat(end)\n        return Interval(start, end)\n\n>>> dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n>>> dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\nDataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables."
+    "text": "Dataclasses\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n>>> dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n>>> dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\nDataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables."
   },
   {
     "objectID": "01_function_classes.html#equality",
