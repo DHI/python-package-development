@@ -989,8 +989,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section class="slide level2">
-
+<section id="equality-1" class="slide level2">
+<h2>Equality</h2>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">class</span> Interval:</span>
 <span id="cb28-2"><a href="#cb28-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
 <span id="cb28-3"><a href="#cb28-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
@@ -1020,15 +1020,17 @@
 <section class="slide level2">
 
 <p>For a dataclass, equality is based on the values of the fields.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="at">@dataclass</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="kw">class</span> Interval:</span>
-<span id="cb29-3"><a href="#cb29-3"></a>    start: date</span>
-<span id="cb29-4"><a href="#cb29-4"></a>    end: date</span>
-<span id="cb29-5"><a href="#cb29-5"></a></span>
-<span id="cb29-6"><a href="#cb29-6"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb29-7"><a href="#cb29-7"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb29-8"><a href="#cb29-8"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
-<span id="cb29-9"><a href="#cb29-9"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="at">@dataclass</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="kw">class</span> Interval:</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    start: date</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    end: date</span>
+<span id="cb29-7"><a href="#cb29-7"></a></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>This is the default behavior for dataclasses.</p>
 <style type="text/css">
@@ -1043,13 +1045,34 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="data-classes" class="slide level2">
+<section id="data-classes" class="slide level2 smaller">
+<h2>Data classes</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="at">@dataclass</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="kw">class</span> Quantity:</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    unit: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-6"><a href="#cb30-6"></a>    standard_name: field(compare<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-7"><a href="#cb30-7"></a>    name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">False</span>, default<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temp"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temperature"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
+<span id="cb30-12"><a href="#cb30-12"></a></span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">==</span> t2</span>
+<span id="cb30-14"><a href="#cb30-14"></a><span class="va">True</span></span>
+<span id="cb30-15"><a href="#cb30-15"></a></span>
+<span id="cb30-16"><a href="#cb30-16"></a><span class="op">&gt;&gt;&gt;</span> d1 <span class="op">=</span> Quantity(unit<span class="op">=</span><span class="st">"m"</span>, standard_name<span class="op">=</span><span class="st">"depth"</span>)</span>
+<span id="cb30-17"><a href="#cb30-17"></a><span class="op">&gt;&gt;&gt;</span> d1 <span class="op">==</span> t2</span>
+<span id="cb30-18"><a href="#cb30-18"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-classes-1" class="slide level2">
 <h2>Data classes</h2>
 <div>
 <ul>
 <li class="fragment">Compact notation of fields with type hints</li>
-<li class="fragment">Proper equality</li>
-<li class="fragment">String represenation by default</li>
+<li class="fragment">Equality based on values of fields</li>
+<li class="fragment">Useful string represenation by default</li>
 <li class="fragment">It is still a regular class</li>
 </ul>
 </div>
@@ -1067,7 +1090,7 @@ analytics/
 ├── date.py
 └── tools.py</code></pre>
 <div class="fragment">
-<p>The analytics package contains two modules:</p>
+<p>The analytics <em>package</em> contains two modules:</p>
 <ul>
 <li><code>tools</code> module</li>
 <li><code>date</code> module</li>
@@ -1076,13 +1099,55 @@ analytics/
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="im">from</span> analytics.tools <span class="im">import</span> is_operable</span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="im">from</span> analytics.tools <span class="im">import</span> Toolbox, Tool</span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="im">from</span> analytics.date <span class="im">import</span> Interval</span>
-<span id="cb31-4"><a href="#cb31-4"></a></span>
-<span id="cb31-5"><a href="#cb31-5"></a>tool <span class="op">=</span> Tool(name<span class="op">=</span><span class="st">"hammer"</span>)</span>
-<span id="cb31-6"><a href="#cb31-6"></a>dr <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb31-7"><a href="#cb31-7"></a>is_operable(height<span class="op">=</span><span class="fl">1.8</span>, period<span class="op">=</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">from</span> analytics.tools <span class="im">import</span> is_operable</span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="im">from</span> analytics.tools <span class="im">import</span> Toolbox, Tool</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="im">from</span> analytics.date <span class="im">import</span> Interval</span>
+<span id="cb32-4"><a href="#cb32-4"></a></span>
+<span id="cb32-5"><a href="#cb32-5"></a>tool <span class="op">=</span> Tool(name<span class="op">=</span><span class="st">"hammer"</span>)</span>
+<span id="cb32-6"><a href="#cb32-6"></a>dr <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb32-7"><a href="#cb32-7"></a>is_operable(height<span class="op">=</span><span class="fl">1.8</span>, period<span class="op">=</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="packages" class="slide level2">
+<h2>Packages</h2>
+<div>
+<ul>
+<li class="fragment">A package is a directory containing modules</li>
+<li class="fragment">Each package in Python is a directory which MUST contain a special file called <code>__init__.py</code></li>
+<li class="fragment">The <code>__init__.py</code> can be empty, and it indicates that the directory it contains is a Python package</li>
+<li class="fragment"><code>__init__.py</code> can also execute initialization code</li>
+</ul>
+</div>
+</section>
+<section id="init__.py" class="slide level2 smaller">
+<h2><code>__init__.py</code></h2>
+<p>Example: <code>mikeio/pfs/__init__.py</code>:</p>
+<div class="sourceCode" id="cb33" data-code-line-numbers="|1-2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">from</span> .pfsdocument <span class="im">import</span> Pfs, PfsDocument</span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="im">from</span> .pfssection <span class="im">import</span> PfsNonUniqueList, PfsSection</span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="kw">def</span> read_pfs(filename, encoding<span class="op">=</span><span class="st">"cp1252"</span>, unique_keywords<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb33-5"><a href="#cb33-5"></a>     <span class="co">"""Read a pfs file for further analysis/manipulation"""</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>    </span>
+<span id="cb33-7"><a href="#cb33-7"></a>    <span class="cf">return</span> PfsDocument(filename, encoding<span class="op">=</span>encoding, unique_keywords<span class="op">=</span>unique_keywords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>The imports in <code>__init__.py</code> let’s you separate the implementation into multiple files.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="op">&gt;&gt;&gt;</span> mikeio.pfs.pfssection.PfsSection</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="op">&lt;</span><span class="kw">class</span> <span class="st">'mikeio.pfs.pfssection.PfsSection'</span><span class="op">&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="op">&gt;&gt;&gt;</span> mikeio.pfs.PfsSection</span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="op">&lt;</span><span class="kw">class</span> <span class="st">'mikeio.pfs.pfssection.PfsSection'</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>The PfsSection and PfsDocument are imported from the <code>pfssection.py</code> and <code>pfsdocument.py</code> modules. to the <code>mikeio.pfs</code> namespace.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
 </section>
 <section id="how-generic-should-your-code-be" class="slide level2">
 <h2>How generic should your code be?</h2>
@@ -1096,7 +1161,7 @@ analytics/
 <p>Try to anticipate the future, but not too much!</p>
 </div>
 </section>
-<section id="homework-until-next-week" class="slide level2">
+<section id="homework-until-next-week" class="slide level2 smaller">
 <h2>Homework until next week</h2>
 <div>
 <ul>
@@ -1104,13 +1169,13 @@ analytics/
 <li class="fragment">Write a one line description of your project</li>
 <li class="fragment">Create a repository on GitHub</li>
 <li class="fragment">Create a <code>README.md</code> file with the description of your project</li>
-<li class="fragment">Write a function to calculate the total duration exceeding a specified threshold, from a list of values, equidsistantly spaced in time
+<li class="fragment">Write a function to calculate the fraction of values within a given range, with the lower bound optional
 <ul>
-<li class="fragment">What it the name of function?</li>
+<li class="fragment">What is the name of function?</li>
 <li class="fragment">What are the inputs? Types of the inputs?</li>
 <li class="fragment">What is the output? Type of the output?</li>
 </ul></li>
-<li class="fragment">Create a class to store the details of a physcial quantity
+<li class="fragment">Create a class to to represent sensor data, e.g.&nbsp;water levels, temperature measured with a fixed interval
 <ul>
 <li class="fragment">What are the attributes?</li>
 <li class="fragment">What are the methods? If any.</li>
