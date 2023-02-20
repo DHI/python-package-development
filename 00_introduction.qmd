@@ -28,7 +28,7 @@ Introduce yourselves in a break out session later today.
 ## Learning objectives
 
 * improved Python skills
-* knowledge of how to create resusuable Python code
+* knowledge of how to create reusable Python code
 * know how to share code with others through a Python package
 
 ## Format
