@@ -11,7 +11,21 @@
     "href": "03_types_protocols.html#collections-abstract-base-classes",
     "title": "Python types, interfaces and protocols",
     "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict"
+    "text": "Collections Abstract Base Classes\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }"
+  },
+  {
+    "objectID": "03_types_protocols.html#collections-abstract-base-classes-1",
+    "href": "03_types_protocols.html#collections-abstract-base-classes-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Collections Abstract Base Classes",
+    "text": "Collections Abstract Base Classes\n>>> a = [1, 2, 3]\n>>> 1 in a\nTrue\n>>> a.__contains__(1)\nTrue\n>>> len(a)\n3\n>>> a.__len__()\n3\n>>> for x in a:\n...     v.append(x)\n>>> it = a.__iter__()\n>>> next(it)\n1\n>>> next(it)\n2\n>>> next(it)\n3\n>>> next(it)\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nStopIteration"
+  },
+  {
+    "objectID": "03_types_protocols.html#collections-abstract-base-classes-2",
+    "href": "03_types_protocols.html#collections-abstract-base-classes-2",
+    "title": "Python types, interfaces and protocols",
+    "section": "Collections Abstract Base Classes",
+    "text": "Collections Abstract Base Classes\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict"
   },
   {
     "objectID": "03_types_protocols.html#pythonic",
@@ -46,7 +60,28 @@
     "href": "03_types_protocols.html#protocols",
     "title": "Python types, interfaces and protocols",
     "section": "Protocols",
-    "text": "Protocols\n// TODO\n\n\nProtocols were introduced in Python 3.8\nProtocols are a way to define a set of methods that a class must implement"
+    "text": "Protocols\n\n\nProtocols were introduced in Python 3.8\nProtocols are a way to define a set of methods that a class must implement\nProtocols are not checked at runtime\nProtocols are a hint to the developer"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols-1",
+    "href": "03_types_protocols.html#protocols-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\nfrom dataclasses import dataclass\nfrom typing import Protocol, List\nimport matplotlib.pyplot as plt\n\n\n@dataclass\nclass Station:\n    name: str\n    longitude: float\n    latitude: float\n\n\nclass StationRepository(Protocol):\n    def __getitem__(self, key: str) -> Station:\n        ...\n\n\ndef plot_stations(station_ids: List[int], repo: StationRepository) -> None:\n    for id in station_ids:\n        station = repo[id]\n        plt.plot(station.longitude, station.latitude, \"o\")\n        plt.text(station.longitude, station.latitude, station.name)"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols-2",
+    "href": "03_types_protocols.html#protocols-2",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\nclass DictStationRepository:  # useful for testing (Module 4)\n    def __getitem__(self, key: int) -> Station:\n        stations = {\n            42: Station(\"Antwerp\", 4.42, 51.22),\n            365: Station(\"Brussels\", 4.35, 50.85),\n            182: Station(\"Ghent\", 3.72, 51.05),\n        }\n        return stations[key]\n\n\nclass FileStationRepository:\n    def __getitem__(self, key: int) -> Station:\n        df = pd.read_csv(\"stations.csv\", index_col=\"id\")\n        row = df.loc[key]\n        return Station(row[\"name\"], key, row[\"longitude\"], row[\"latitude\"])\n\n\nclass DatabaseStationRepository:\n    def __getitem__(self, key: int) -> Station:\n        # read from database\n        station = read_from_db(key)\n        return station"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols-3",
+    "href": "03_types_protocols.html#protocols-3",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\nrepo = DictStationRepository()\n# repo = FileStationRepository()\n\nplot_stations([42, 365], repo=repo)\n\nProtocols allows to work with abstract types, without having to know the implementation details.\nThis is useful for testing, but allows for more flexible code."
   },
   {
     "objectID": "03_types_protocols.html#postels-law",
@@ -67,7 +102,14 @@
     "href": "03_types_protocols.html#isinstance",
     "title": "Python types, interfaces and protocols",
     "section": "isinstance",
-    "text": "isinstance\n// TODO"
+    "text": "isinstance\nIn Python it is generally considered bad practice to use isinstance to check the type of an object.\ndef process_numbers(numbers):\n    if not isinstance(numbers, list):\n        raise NotImplementedError(\"Only lists are supported\")\n    # do something with numbers\n    return something\n\n>>> process_numbers([1,2,3])\n 3\n>>> process_numbers((1,2,3))\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"<stdin>\", line 3, in process_numbers\nNotImplementedError: Only lists are supported"
+  },
+  {
+    "objectID": "03_types_protocols.html#isinstance-1",
+    "href": "03_types_protocols.html#isinstance-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "isinstance",
+    "text": "isinstance\ndef process_numbers(numbers):\n    if not isinstance(numbers, Iterable):\n        raise NotImplementedError(\"Only iterables are supported\")\n    # do something with numbers\n    return something\n\n>>> process_numbers([1,2,3]) # a list is an iterable\n3\n>>> process_numbers((1,2,3)) # a tuple is also an iterable\n3\n\nBut using isinstance is not always bad. It can be useful to check if an object is an instance of a specific class.\nEspecially when you want to check if an object is an instance of a class that you have defined yourself."
   },
   {
     "objectID": "03_types_protocols.html#refactoring",

@@ -409,11 +409,96 @@
 <section id="collections-abstract-base-classes" class="slide level2">
 <h2>Collections Abstract Base Classes</h2>
 <div class="cell" data-reveal="true">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1"></a>classDiagram</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    Container &lt;|-- Collection</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    Sized &lt;|-- Collection</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    Iterable &lt;|-- Collection</span>
+<span id="cb1-5"><a href="#cb1-5"></a>   </span>
+<span id="cb1-6"><a href="#cb1-6"></a>    class Container{</span>
+<span id="cb1-7"><a href="#cb1-7"></a>        __contains__(self, x)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    }</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    class Sized{</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        __len__(self)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    }</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    class Iterable{</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        __iter__(self)</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">classDiagram
+    Container &lt;|-- Collection
+    Sized &lt;|-- Collection
+    Iterable &lt;|-- Collection
+   
+    class Container{
+        __contains__(self, x)
+    }
+
+    class Sized{
+        __len__(self)
+    }
+
+    class Iterable{
+        __iter__(self)
+    }
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="collections-abstract-base-classes-1" class="slide level2 smaller">
+<h2>Collections Abstract Base Classes</h2>
+<div class="sourceCode" id="cb2" data-code-line-numbers="1|2 -5|6-9|10-11|12-25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">&gt;&gt;&gt;</span> a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">1</span> <span class="kw">in</span> a</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="va">True</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="op">&gt;&gt;&gt;</span> a.<span class="fu">__contains__</span>(<span class="dv">1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="va">True</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(a)</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="dv">3</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="op">&gt;&gt;&gt;</span> a.<span class="fu">__len__</span>()</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="dv">3</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> x <span class="kw">in</span> a:</span>
+<span id="cb2-11"><a href="#cb2-11"></a>...     v.append(x)</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="op">&gt;&gt;&gt;</span> it <span class="op">=</span> a.<span class="fu">__iter__</span>()</span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="dv">1</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="dv">2</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="dv">3</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb2-20"><a href="#cb2-20"></a>Traceback (most recent call last):</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="pp">StopIteration</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="collections-abstract-base-classes-2" class="slide level2">
+<h2>Collections Abstract Base Classes</h2>
+<div class="cell" data-reveal="true">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1"></a>classDiagram</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    Container &lt;|-- Collection</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    Sized &lt;|-- Collection</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    Iterable &lt;|-- Collection</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    Collection &lt;|-- Sequence</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    Collection &lt;|-- Set</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    Sequence &lt;|-- MutableSequence</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    Mapping &lt;|-- MutableMapping</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    Collection &lt;|-- Mapping</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a>    MutableSequence &lt;|-- List</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    Sequence &lt;|-- Tuple</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    MutableMapping &lt;|-- Dict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <p>
 
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">classDiagram
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">classDiagram
     Container &lt;|-- Collection
     Sized &lt;|-- Collection
     Iterable &lt;|-- Collection
@@ -426,9 +511,8 @@
     MutableSequence &lt;|-- List
     Sequence &lt;|-- Tuple
     MutableMapping &lt;|-- Dict
-    
 </pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -450,36 +534,36 @@
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    </span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">def</span> get_tool_by_name(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
-<span id="cb1-4"><a href="#cb1-4"></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
-<span id="cb1-5"><a href="#cb1-5"></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
-<span id="cb1-6"><a href="#cb1-6"></a>                <span class="cf">return</span> tool</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="kw">def</span> number_of_tools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb1-9"><a href="#cb1-9"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="op">&gt;&gt;&gt;</span> tb.get_tool_by_name(<span class="st">"hammer"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>Hammer()</span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="op">&gt;&gt;&gt;</span> tb.number_of_tools()</span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    </span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">def</span> get_tool_by_name(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb4-4"><a href="#cb4-4"></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
+<span id="cb4-5"><a href="#cb4-5"></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
+<span id="cb4-6"><a href="#cb4-6"></a>                <span class="cf">return</span> tool</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">def</span> number_of_tools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb4-9"><a href="#cb4-9"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="op">&gt;&gt;&gt;</span> tb.get_tool_by_name(<span class="st">"hammer"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13"></a>Hammer()</span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="op">&gt;&gt;&gt;</span> tb.number_of_tools()</span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> Toolbox:</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
-<span id="cb2-4"><a href="#cb2-4"></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    </span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb2-7"><a href="#cb2-7"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="op">&gt;&gt;&gt;</span> tb[<span class="st">"hammer"</span>]</span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> Toolbox:</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb5-4"><a href="#cb5-4"></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    </span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="op">&gt;&gt;&gt;</span> tb[<span class="st">"hammer"</span>]</span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="duck-typing" class="slide level2">
 <h2>Duck typing</h2>
@@ -493,7 +577,7 @@
 </section>
 <section class="slide level2">
 
-<p>An exmample is a Scikit learn transformers</p>
+<p>An example is a Scikit learn transformers</p>
 <ul>
 <li><code>fit</code></li>
 <li><code>transform</code></li>
@@ -503,98 +587,142 @@
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> MyTransformer:</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb3-3"><a href="#cb3-3"></a>        <span class="co"># do something</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
-<span id="cb3-7"><a href="#cb3-7"></a>        <span class="co"># do something</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>        <span class="cf">return</span> X</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb3-11"><a href="#cb3-11"></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">class</span> MyTransformer:</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-3"><a href="#cb6-3"></a>        <span class="co"># do something</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="co"># do something</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="cf">return</span> X</span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> TransformerMixin</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">class</span> MyOtherTransformer(TransformerMixin):</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb4-5"><a href="#cb4-5"></a>        <span class="co"># do something</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
-<span id="cb4-9"><a href="#cb4-9"></a>        <span class="co"># do something</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>        <span class="cf">return</span> X</span>
-<span id="cb4-11"><a href="#cb4-11"></a></span>
-<span id="cb4-12"><a href="#cb4-12"></a>    <span class="co"># def fit_transform(self, X, y=None):</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>    <span class="co"># we get this for free, from TransformerMixin</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> TransformerMixin</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">class</span> MyOtherTransformer(TransformerMixin):</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="co"># do something</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
+<span id="cb7-9"><a href="#cb7-9"></a>        <span class="co"># do something</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>        <span class="cf">return</span> X</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="co"># def fit_transform(self, X, y=None):</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="co"># we get this for free, from TransformerMixin</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="lets-revisit-the-date-interval" class="slide level2">
 <h2>Let’s revisit the (date) Interval<sup>1</sup></h2>
-<div class="sourceCode" id="cb5" data-code-line-numbers="6-7|11-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> Interval:</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
-<span id="cb5-3"><a href="#cb5-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb5-4"><a href="#cb5-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
-<span id="cb5-7"><a href="#cb5-7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">2020</span>,<span class="dv">1</span>,<span class="dv">15</span>) <span class="kw">in</span> dr</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="va">True</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">1970</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="kw">in</span> dr</span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-code-line-numbers="6-7|11-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">class</span> Interval:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb8-4"><a href="#cb8-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">2020</span>,<span class="dv">1</span>,<span class="dv">15</span>) <span class="kw">in</span> dr</span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="va">True</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">1970</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="kw">in</span> dr</span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>https://martinfowler.com/eaaDev/Range.html</p></li></ol></aside></section>
 <section id="some-other-interval" class="slide level2">
 <h2>Some other interval</h2>
-<div class="sourceCode" id="cb6" data-code-line-numbers="9-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">class</span> Interval:</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb6-4"><a href="#cb6-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
-<span id="cb6-7"><a href="#cb6-7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    </span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="op">&gt;&gt;&gt;</span> interval <span class="op">=</span> Interval(<span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">8</span> <span class="kw">in</span> interval</span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="va">True</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">12</span> <span class="kw">in</span> interval</span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-code-line-numbers="9-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span> Interval:</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
+<span id="cb9-3"><a href="#cb9-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb9-4"><a href="#cb9-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
+<span id="cb9-7"><a href="#cb9-7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    </span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="op">&gt;&gt;&gt;</span> interval <span class="op">=</span> Interval(<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">8</span> <span class="kw">in</span> interval</span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="va">True</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">12</span> <span class="kw">in</span> interval</span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>As long as the <code>start</code>, <code>end</code> and <code>x</code> are comparable, the <code>Interval</code> class is a generic class able to handle integers, floats, dates, datetimes, strings …</p>
 </div>
 </section>
 <section id="protocols" class="slide level2">
 <h2>Protocols</h2>
-<p>// TODO</p>
 <div>
 <ul>
 <li class="fragment">Protocols were introduced in Python 3.8</li>
 <li class="fragment">Protocols are a way to define a set of methods that a class must implement</li>
+<li class="fragment">Protocols are not checked at runtime</li>
+<li class="fragment">Protocols are a hint to the developer</li>
 </ul>
 </div>
 </section>
-<section class="slide level2">
-
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> typing <span class="im">import</span> Protocol</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">class</span> SupportsAbs(Protocol):</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="kw">def</span> <span class="fu">__abs__</span>(<span class="va">self</span>):</span>
-<span id="cb7-5"><a href="#cb7-5"></a>        ...</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">class</span> MyCustomFloat(SupportsAbs)):</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, value: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb7-9"><a href="#cb7-9"></a>        <span class="va">self</span>.value <span class="op">=</span> value</span>
-<span id="cb7-10"><a href="#cb7-10"></a></span>
-<span id="cb7-11"><a href="#cb7-11"></a>    <span class="kw">def</span> <span class="fu">__abs__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb7-12"><a href="#cb7-12"></a>        <span class="cf">return</span> <span class="va">self</span>.value</span>
-<span id="cb7-13"><a href="#cb7-13"></a></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="kw">def</span> transform(x: SupportsAbs) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    <span class="cf">return</span> <span class="bu">abs</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="protocols-1" class="slide level2 smaller">
+<h2>Protocols</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> typing <span class="im">import</span> Protocol, List</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="at">@dataclass</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="kw">class</span> Station:</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    name: <span class="bu">str</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>    longitude: <span class="bu">float</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>    latitude: <span class="bu">float</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="kw">class</span> StationRepository(Protocol):</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key: <span class="bu">str</span>) <span class="op">-&gt;</span> Station:</span>
+<span id="cb10-15"><a href="#cb10-15"></a>        ...</span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="kw">def</span> plot_stations(station_ids: List[<span class="bu">int</span>], repo: StationRepository) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="cf">for</span> <span class="bu">id</span> <span class="kw">in</span> station_ids:</span>
+<span id="cb10-20"><a href="#cb10-20"></a>        station <span class="op">=</span> repo[<span class="bu">id</span>]</span>
+<span id="cb10-21"><a href="#cb10-21"></a>        plt.plot(station.longitude, station.latitude, <span class="st">"o"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22"></a>        plt.text(station.longitude, station.latitude, station.name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="protocols-2" class="slide level2 smaller">
+<h2>Protocols</h2>
+<div class="sourceCode" id="cb11" data-code-line-numbers="1-7|9-13|15-19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">class</span> DictStationRepository:  <span class="co"># useful for testing (Module 4)</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key: <span class="bu">int</span>) <span class="op">-&gt;</span> Station:</span>
+<span id="cb11-3"><a href="#cb11-3"></a>        stations <span class="op">=</span> {</span>
+<span id="cb11-4"><a href="#cb11-4"></a>            <span class="dv">42</span>: Station(<span class="st">"Antwerp"</span>, <span class="fl">4.42</span>, <span class="fl">51.22</span>),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>            <span class="dv">365</span>: Station(<span class="st">"Brussels"</span>, <span class="fl">4.35</span>, <span class="fl">50.85</span>),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>            <span class="dv">182</span>: Station(<span class="st">"Ghent"</span>, <span class="fl">3.72</span>, <span class="fl">51.05</span>),</span>
+<span id="cb11-7"><a href="#cb11-7"></a>        }</span>
+<span id="cb11-8"><a href="#cb11-8"></a>        <span class="cf">return</span> stations[key]</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="kw">class</span> FileStationRepository:</span>
+<span id="cb11-12"><a href="#cb11-12"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key: <span class="bu">int</span>) <span class="op">-&gt;</span> Station:</span>
+<span id="cb11-13"><a href="#cb11-13"></a>        df <span class="op">=</span> pd.read_csv(<span class="st">"stations.csv"</span>, index_col<span class="op">=</span><span class="st">"id"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14"></a>        row <span class="op">=</span> df.loc[key]</span>
+<span id="cb11-15"><a href="#cb11-15"></a>        <span class="cf">return</span> Station(row[<span class="st">"name"</span>], key, row[<span class="st">"longitude"</span>], row[<span class="st">"latitude"</span>])</span>
+<span id="cb11-16"><a href="#cb11-16"></a></span>
+<span id="cb11-17"><a href="#cb11-17"></a></span>
+<span id="cb11-18"><a href="#cb11-18"></a><span class="kw">class</span> DatabaseStationRepository:</span>
+<span id="cb11-19"><a href="#cb11-19"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key: <span class="bu">int</span>) <span class="op">-&gt;</span> Station:</span>
+<span id="cb11-20"><a href="#cb11-20"></a>        <span class="co"># read from database</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a>        station <span class="op">=</span> read_from_db(key)</span>
+<span id="cb11-22"><a href="#cb11-22"></a>        <span class="cf">return</span> station</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="protocols-3" class="slide level2">
+<h2>Protocols</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>repo <span class="op">=</span> DictStationRepository()</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># repo = FileStationRepository()</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a>plot_stations([<span class="dv">42</span>, <span class="dv">365</span>], repo<span class="op">=</span>repo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>Protocols allows to work with abstract types, without having to know the implementation details.</p>
+<p>This is useful for testing, but allows for more flexible code.</p>
+</div>
 </section>
 <section id="postels-law" class="slide level2">
 <h2>Postel’s law</h2>
@@ -604,12 +732,12 @@
 <li>Be conservative in what you send</li>
 </ol>
 <div class="fragment">
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> process(number: Union[<span class="bu">int</span>,<span class="bu">str</span>,<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    <span class="co"># make sure number is an int from now on</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    number <span class="op">=</span> <span class="bu">int</span>(number)</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>    result <span class="op">=</span> number <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>    <span class="cf">return</span> result   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> process(number: Union[<span class="bu">int</span>,<span class="bu">str</span>,<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="co"># make sure number is an int from now on</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    number <span class="op">=</span> <span class="bu">int</span>(number)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>    result <span class="op">=</span> number <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="cf">return</span> result   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section" class="slide level2">
@@ -621,7 +749,37 @@
 </section>
 <section id="isinstance" class="slide level2">
 <h2><code>isinstance</code></h2>
-<p>// TODO</p>
+<p>In Python it is generally considered bad practice to use <code>isinstance</code> to check the type of an object.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> process_numbers(numbers):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(numbers, <span class="bu">list</span>):</span>
+<span id="cb14-3"><a href="#cb14-3"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>(<span class="st">"Only lists are supported"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="co"># do something with numbers</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="cf">return</span> something</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="op">&gt;&gt;&gt;</span> process_numbers([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb14-8"><a href="#cb14-8"></a> <span class="dv">3</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="op">&gt;&gt;&gt;</span> process_numbers((<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb14-10"><a href="#cb14-10"></a>Traceback (most recent call last):</span>
+<span id="cb14-11"><a href="#cb14-11"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">3</span>, <span class="kw">in</span> process_numbers</span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="pp">NotImplementedError</span>: Only lists are supported</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="isinstance-1" class="slide level2">
+<h2><code>isinstance</code></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> process_numbers(numbers):</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(numbers, Iterable):</span>
+<span id="cb15-3"><a href="#cb15-3"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>(<span class="st">"Only iterables are supported"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="co"># do something with numbers</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="cf">return</span> something</span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="op">&gt;&gt;&gt;</span> process_numbers([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co"># a list is an iterable</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="dv">3</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="op">&gt;&gt;&gt;</span> process_numbers((<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co"># a tuple is also an iterable</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>But using <code>isinstance</code> is not always bad. It can be useful to check if an object is an instance of a specific class.</p>
+<p>Especially when you want to check if an object is an instance of a class that you have defined <strong>yourself</strong>.</p>
+</div>
 </section>
 <section id="refactoring" class="slide level2">
 <h2>Refactoring</h2>
@@ -649,56 +807,56 @@
 <section id="rename-variable" class="slide level2">
 <h2>Rename variable</h2>
 <p><strong>Before</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="cf">for</span> v <span class="kw">in</span> y:</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="cf">if</span> v <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb9-4"><a href="#cb9-4"></a>        n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="cf">for</span> v <span class="kw">in</span> y:</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="cf">if</span> v <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb16-4"><a href="#cb16-4"></a>        n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><strong>After</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>FREEZING_POINT <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>n_freezing_days <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="cf">for</span> temp <span class="kw">in</span> daily_max_temperatures:</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> FREEZING_POINT:</span>
-<span id="cb10-5"><a href="#cb10-5"></a>        n_freezing_days <span class="op">=</span> n_freezing_days <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>FREEZING_POINT <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>n_freezing_days <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="cf">for</span> temp <span class="kw">in</span> daily_max_temperatures:</span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> FREEZING_POINT:</span>
+<span id="cb17-5"><a href="#cb17-5"></a>        n_freezing_days <span class="op">=</span> n_freezing_days <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="extract-variable" class="slide level2">
 <h2>Extract variable</h2>
 <p><strong>Before</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> predict(x):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="bu">min</span>(<span class="dv">0</span>,x) <span class="op">+</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">10.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">def</span> predict(x):</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="bu">min</span>(<span class="dv">0</span>,x) <span class="op">+</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">10.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><strong>After</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> predict(x):</span>
-<span id="cb12-2"><a href="#cb12-2"></a>    scale <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>    error <span class="op">=</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
-<span id="cb12-4"><a href="#cb12-4"></a>    a <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>    b <span class="op">=</span> <span class="fl">2.0</span> </span>
-<span id="cb12-6"><a href="#cb12-6"></a>    draft <span class="op">=</span> a <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> error</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>, draft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">def</span> predict(x):</span>
+<span id="cb19-2"><a href="#cb19-2"></a>    scale <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>    error <span class="op">=</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    a <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>    b <span class="op">=</span> <span class="fl">2.0</span> </span>
+<span id="cb19-6"><a href="#cb19-6"></a>    draft <span class="op">=</span> a <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> error</span>
+<span id="cb19-7"><a href="#cb19-7"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>, draft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="extract-method" class="slide level2">
 <h2>Extract method</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> error(scale):</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="kw">def</span> linear_model(x,<span class="op">*</span>,a<span class="op">=</span><span class="fl">0.0</span>,b<span class="op">=</span><span class="fl">1.0</span>):</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="cf">return</span> a<span class="op">+</span>b<span class="op">*</span>x</span>
-<span id="cb13-6"><a href="#cb13-6"></a></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
-<span id="cb13-8"><a href="#cb13-8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value,x)</span>
-<span id="cb13-9"><a href="#cb13-9"></a></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="kw">def</span> predict(x): </span>
-<span id="cb13-11"><a href="#cb13-11"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb13-12"><a href="#cb13-12"></a>    <span class="cf">return</span>  clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">def</span> error(scale):</span>
+<span id="cb20-2"><a href="#cb20-2"></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="kw">def</span> linear_model(x,<span class="op">*</span>,a<span class="op">=</span><span class="fl">0.0</span>,b<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="cf">return</span> a<span class="op">+</span>b<span class="op">*</span>x</span>
+<span id="cb20-6"><a href="#cb20-6"></a></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value,x)</span>
+<span id="cb20-9"><a href="#cb20-9"></a></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="kw">def</span> predict(x): </span>
+<span id="cb20-11"><a href="#cb20-11"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a>    <span class="cf">return</span>  clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="inline-method" class="slide level2">
 <h2>Inline method</h2>
 <p>Opposite of extract mehtod.</p>
-<div class="sourceCode" id="cb14" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> predict(x): </span>
-<span id="cb14-2"><a href="#cb14-2"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb14-3"><a href="#cb14-3"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">def</span> predict(x): </span>
+<span id="cb21-2"><a href="#cb21-2"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="composed-method" class="slide level2">
 <h2>Composed method</h2>
@@ -706,41 +864,41 @@
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># get data</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>os.shutil.copyfile(thisfile, localfile)</span>
-<span id="cb15-3"><a href="#cb15-3"></a>df<span class="op">=</span> read_csv(localfile)</span>
-<span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co"># clean data</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>df.dropna()</span>
-<span id="cb15-7"><a href="#cb15-7"></a>df.drop_duplicates()</span>
-<span id="cb15-8"><a href="#cb15-8"></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co"># transform data</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>df.date<span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="co"># predict</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># get data</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>os.shutil.copyfile(thisfile, localfile)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>df<span class="op">=</span> read_csv(localfile)</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co"># clean data</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>df.dropna()</span>
+<span id="cb22-7"><a href="#cb22-7"></a>df.drop_duplicates()</span>
+<span id="cb22-8"><a href="#cb22-8"></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="co"># transform data</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>df.date<span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co"># predict</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">def</span> get_data(filename,...):</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    ...</span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="kw">def</span> clean_data(df):</span>
-<span id="cb16-6"><a href="#cb16-6"></a>    ...</span>
-<span id="cb16-7"><a href="#cb16-7"></a></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="kw">def</span> transform_data(df):</span>
-<span id="cb16-9"><a href="#cb16-9"></a>    ...</span>
-<span id="cb16-10"><a href="#cb16-10"></a></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="kw">def</span> predict(df):</span>
-<span id="cb16-12"><a href="#cb16-12"></a>    ...</span>
-<span id="cb16-13"><a href="#cb16-13"></a></span>
-<span id="cb16-14"><a href="#cb16-14"></a><span class="kw">def</span> main():</span>
-<span id="cb16-15"><a href="#cb16-15"></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
-<span id="cb16-16"><a href="#cb16-16"></a>    clean_data <span class="op">=</span> clean_data(df)</span>
-<span id="cb16-17"><a href="#cb16-17"></a>    final_data <span class="op">=</span> transform_data(clean_data)</span>
-<span id="cb16-18"><a href="#cb16-18"></a>    predictions <span class="op">=</span> predict(final_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">def</span> get_data(filename,...):</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    ...</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="kw">def</span> clean_data(df):</span>
+<span id="cb23-6"><a href="#cb23-6"></a>    ...</span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="kw">def</span> transform_data(df):</span>
+<span id="cb23-9"><a href="#cb23-9"></a>    ...</span>
+<span id="cb23-10"><a href="#cb23-10"></a></span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="kw">def</span> predict(df):</span>
+<span id="cb23-12"><a href="#cb23-12"></a>    ...</span>
+<span id="cb23-13"><a href="#cb23-13"></a></span>
+<span id="cb23-14"><a href="#cb23-14"></a><span class="kw">def</span> main():</span>
+<span id="cb23-15"><a href="#cb23-15"></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
+<span id="cb23-16"><a href="#cb23-16"></a>    clean_data <span class="op">=</span> clean_data(df)</span>
+<span id="cb23-17"><a href="#cb23-17"></a>    final_data <span class="op">=</span> transform_data(clean_data)</span>
+<span id="cb23-18"><a href="#cb23-18"></a>    predictions <span class="op">=</span> predict(final_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="composed-method-1" class="slide level2">
 <h2>Composed method<sup>1</sup></h2>
@@ -753,7 +911,13 @@
 <aside><ol class="aside-footnotes"><li id="fn2"><p>https://wiki.c2.com/?ComposedMethod</p></li></ol></aside></section>
 <section class="slide level2">
 
+<div class="columns">
+<div class="column">
 <p><img data-src="images/refactoring_book.png"></p>
+</div><div class="column">
+<p>If you want to learn more about refactoring, I recommend the book “Refactoring: Improving the Design of Existing Code” by Martin Fowler.</p>
+</div>
+</div>
 
 <p><img src="campus_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
