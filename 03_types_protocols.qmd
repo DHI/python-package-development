@@ -3,6 +3,8 @@ title: "Python types, interfaces and protocols"
 format: revealjs
 footer: Python package development
 logo: campus_logo.png
+execute:
+  echo: true
 ---
 
 ## Python types
@@ -18,8 +20,57 @@ logo: campus_logo.png
 
 ## Collections Abstract Base Classes
 
+```{mermaid}
+classDiagram
+    Container <|-- Collection
+    Sized <|-- Collection
+    Iterable <|-- Collection
+   
+    class Container{
+        __contains__(self, x)
+    }
+
+    class Sized{
+        __len__(self)
+    }
+
+    class Iterable{
+        __iter__(self)
+    }
+```
+
+## Collections Abstract Base Classes {.smaller}
+
+```{.python code-line-numbers="1|2 -5|6-9|10-11|12-25"}
+>>> a = [1, 2, 3]
+>>> 1 in a
+True
+>>> a.__contains__(1)
+True
+>>> len(a)
+3
+>>> a.__len__()
+3
+>>> for x in a:
+...     v.append(x)
+>>> it = a.__iter__()
+>>> next(it)
+1
+>>> next(it)
+2
+>>> next(it)
+3
+>>> next(it)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+```
+
+## Collections Abstract Base Classes
+
 
 ```{mermaid}
+
 classDiagram
     Container <|-- Collection
     Sized <|-- Collection
@@ -33,7 +84,6 @@ classDiagram
     MutableSequence <|-- List
     Sequence <|-- Tuple
     MutableMapping <|-- Dict
-    
 ```
 
 
@@ -102,7 +152,7 @@ class Toolbox:
 
 ---
 
-An exmample is a Scikit learn transformers
+An example is a Scikit learn transformers
 
 * `fit`
 * `transform`
@@ -188,35 +238,85 @@ As long as the `start`, `end` and `x` are comparable, the `Interval` class is a 
 
 ## Protocols
 
-// TODO 
-
 ::: {.incremental}
 
 * Protocols were introduced in Python 3.8
 * Protocols are a way to define a set of methods that a class must implement
+* Protocols are not checked at runtime
+* Protocols are a hint to the developer
 
 :::
 
----
+## Protocols {.smaller}
 
-```python
-from typing import Protocol
 
-class SupportsAbs(Protocol):
-    def __abs__(self):
+```{.python}
+from dataclasses import dataclass
+from typing import Protocol, List
+import matplotlib.pyplot as plt
+
+
+@dataclass
+class Station:
+    name: str
+    longitude: float
+    latitude: float
+
+
+class StationRepository(Protocol):
+    def __getitem__(self, key: str) -> Station:
         ...
 
-class MyCustomFloat(SupportsAbs)):
-    def __init__(self, value: float) -> None:
-        self.value = value
 
-    def __abs__(self) -> float:
-        return self.value
-
-def transform(x: SupportsAbs) -> float:
-    return abs(x)
-
+def plot_stations(station_ids: List[int], repo: StationRepository) -> None:
+    for id in station_ids:
+        station = repo[id]
+        plt.plot(station.longitude, station.latitude, "o")
+        plt.text(station.longitude, station.latitude, station.name)
 ```
+
+## Protocols {.smaller}
+
+```{.python code-line-numbers="1-7|9-13|15-19"}
+class DictStationRepository:  # useful for testing (Module 4)
+    def __getitem__(self, key: int) -> Station:
+        stations = {
+            42: Station("Antwerp", 4.42, 51.22),
+            365: Station("Brussels", 4.35, 50.85),
+            182: Station("Ghent", 3.72, 51.05),
+        }
+        return stations[key]
+
+
+class FileStationRepository:
+    def __getitem__(self, key: int) -> Station:
+        df = pd.read_csv("stations.csv", index_col="id")
+        row = df.loc[key]
+        return Station(row["name"], key, row["longitude"], row["latitude"])
+
+
+class DatabaseStationRepository:
+    def __getitem__(self, key: int) -> Station:
+        # read from database
+        station = read_from_db(key)
+        return station
+```
+
+## Protocols
+
+```python
+repo = DictStationRepository()
+# repo = FileStationRepository()
+
+plot_stations([42, 365], repo=repo)
+```
+
+. . .
+
+Protocols allows to work with abstract types, without having to know the implementation details.
+
+This is useful for testing, but allows for more flexible code.
+
 
 ## Postel's law
 a.k.a. the Robustness principle of software design
@@ -245,7 +345,45 @@ The consumers of your package (future self), will be grateful if you are not ove
 
 ## `isinstance`
 
-// TODO
+In Python it is generally considered bad practice to use `isinstance` to check the type of an object.
+
+```python
+def process_numbers(numbers):
+    if not isinstance(numbers, list):
+        raise NotImplementedError("Only lists are supported")
+    # do something with numbers
+    return something
+
+>>> process_numbers([1,2,3])
+ 3
+>>> process_numbers((1,2,3))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in process_numbers
+NotImplementedError: Only lists are supported
+```
+
+## `isinstance`
+
+```python
+def process_numbers(numbers):
+    if not isinstance(numbers, Iterable):
+        raise NotImplementedError("Only iterables are supported")
+    # do something with numbers
+    return something
+
+>>> process_numbers([1,2,3]) # a list is an iterable
+3
+>>> process_numbers((1,2,3)) # a tuple is also an iterable
+3
+```
+
+. . . 
+
+But using `isinstance` is not always bad.
+It can be useful to check if an object is an instance of a specific class.
+
+Especially when you want to check if an object is an instance of a class that you have defined **yourself**.
 
 
 ## Refactoring
@@ -404,4 +542,19 @@ def main():
 
 ---
 
+:::: {.columns}
+
+
+::: {.column}
+
 ![](images/refactoring_book.png)
+
+:::
+
+::: {.column}
+
+If you want to learn more about refactoring, I recommend the book "Refactoring: Improving the Design of Existing Code" by Martin Fowler.
+
+:::
+
+::::
