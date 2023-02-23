@@ -259,6 +259,13 @@
     "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge"
   },
   {
+    "objectID": "02_version_control.html#github-or-azure-devops",
+    "href": "02_version_control.html#github-or-azure-devops",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "GitHub or Azure DevOps?",
+    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories"
+  },
+  {
     "objectID": "02_version_control.html#desktop-application-github-desktop",
     "href": "02_version_control.html#desktop-application-github-desktop",
     "title": "Git, GitHub, Pull Requests, and code reviews",
