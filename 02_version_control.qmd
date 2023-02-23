@@ -1,6 +1,8 @@
 ---
 title: "Git, GitHub, Pull Requests, and code reviews"
-format: revealjs
+format: 
+  revealjs:
+    theme: moon
 footer: Python package development
 logo: campus_logo.png
 ---
@@ -95,9 +97,18 @@ GitHub is a powerful platform for collaborating on software development projects
 ![](images/git_workflow.png)
 
 
+## GitHub or Azure DevOps?
+
+* Both hosts Git repositories and provide tools for collaboration
+* GitHub is free for public repositories
+* DHI has a GitHub account for private repositories
+* DHI has an Azure DevOps account for private repositories
+
+
 ## Desktop Application: [GitHub Desktop](https://desktop.github.com/)
 
 ![](images/GitHubDesktop.png)
+
 
 
 ## Resources
