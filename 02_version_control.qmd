@@ -20,7 +20,7 @@ logo: campus_logo.png
 * Manage changes to code over time
 * Keep track of changes and revert to previous versions if needed.
 * Collaborate and merge changes from different people
-* Ensure code stability and error-free development
+* Ensure code stability
 * Best practice for software development
 :::
 
