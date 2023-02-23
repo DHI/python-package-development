@@ -214,7 +214,7 @@
     "href": "02_version_control.html#why-use-version-control",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Why use version control?",
-    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability and error-free development\nBest practice for software development\n\n\n\n\n\nVersion control is a tool for managing changes to code over time.\nIt allows you to keep track of changes and revert to previous versions if needed.\nIt makes collaboration on code easier by providing a way to merge changes made by different people.\nIt helps ensure that code is stable and error-free, especially in large and complex projects.\nUsing version control is a best practice for software development, and is used by most engineering and tech companies."
+    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability\nBest practice for software development\n\n\n\n\n\nVersion control is a tool for managing changes to code over time.\nIt allows you to keep track of changes and revert to previous versions if needed.\nIt makes collaboration on code easier by providing a way to merge changes made by different people.\nIt helps ensure that code is stable and error-free, especially in large and complex projects.\nUsing version control is a best practice for software development, and is used by most engineering and tech companies."
   },
   {
     "objectID": "02_version_control.html#centralized-version-control",
