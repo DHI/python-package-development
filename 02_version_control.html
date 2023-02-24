@@ -347,7 +347,7 @@
 <aside class="notes">
 <ul>
 <li>Version control is a tool for managing changes to code over time.</li>
-<li>It allows you to <strong>keep track</strong> of changes and revert to previous versions if needed.</li>
+<li>It allows you to <strong>keep track</strong> of changes and revert to previous versions if needed</li>
 <li>It makes collaboration on code easier by providing a way to merge changes made by different people.</li>
 <li>It helps ensure that code is stable and error-free, especially in large and complex projects.</li>
 <li>Using version control is a best practice for software development, and is used by most engineering and tech companies.</li>
@@ -367,20 +367,23 @@
 <section id="centralized-version-control" class="slide level2">
 <h2>Centralized version control</h2>
 <ul>
-<li>single source with the entire history</li>
-<li>local copy with latest version</li>
+<li>Single source with the entire history</li>
+<li>Local copy with latest version</li>
+<li>Examples: SVN, Surround</li>
 </ul>
 </section>
 <section id="distributed-version-control" class="slide level2">
 <h2>Distributed version control</h2>
 <ul>
-<li>local copy has the entire history</li>
-<li>commit changes to code offline</li>
-<li>authorative source (origin)</li>
+<li>Local copy has the entire history</li>
+<li>Commit changes to code offline</li>
+<li>Authorative source (origin)</li>
+<li>Examples: Git, Mercurial</li>
 </ul>
 </section>
 <section id="git" class="slide level2">
 <h2>Git</h2>
+<p>Git is a powerful tool for managing code changes and collaborating with others on a project.</p>
 <ol type="1">
 <li><code>git add foo.py</code></li>
 <li><code>git commit -m "Nailed it"</code></li>
@@ -391,8 +394,29 @@
 <h2></h2>
 
 <img data-src="https://imgs.xkcd.com/comics/git.png" class="r-stretch"></section>
-<section id="branching" class="slide level2">
-<h2>Branching</h2>
+<section id="basic-git-commands" class="slide level2">
+<h2>Basic Git commands</h2>
+<ul>
+<li><code>git add</code>: adds a file to the staging area</li>
+<li><code>git commit</code>: creates a new commit with the changes in the staging area</li>
+<li><code>git status</code>: shows the current status of your repository</li>
+<li><code>git log</code>: shows the commit history of your repository</li>
+</ul>
+</section>
+<section id="working-with-remote-repositories" class="slide level2">
+<h2>Working with remote repositories</h2>
+<ul>
+<li><code>git clone</code>: creates a copy of the codebase on your local machine.</li>
+<li><code>git push</code>: pushes changes back to the remote repository.</li>
+<li><code>git pull</code>: pulls changes from the remote repository.</li>
+</ul>
+</section>
+<section id="branching-and-merging" class="slide level2">
+<h2>Branching and Merging</h2>
+<ul>
+<li>A branch is a separate version of your code that you can work on independently from the main branch.</li>
+<li><code>git merge</code>: merges changes back into the main branch.</li>
+</ul>
 </section>
 <section id="github" class="slide level2">
 <h2>GitHub</h2>
@@ -438,6 +462,40 @@
 <h2></h2>
 
 <img data-src="images/git_workflow.png" class="r-stretch"></section>
+<section id="common-github-flow" class="slide level2">
+<h2>Common GitHub flow</h2>
+<ul>
+<li>Clone a repository to work on a copy (optionally: fork first)</li>
+<li>Create a branch for each new feature or fix</li>
+<li>Commit changes and push to remote repository</li>
+<li>Open a pull request to propose changes and request code review</li>
+<li>Merge changes back into the main branch</li>
+</ul>
+</section>
+<section id="time-for-a-discussion" class="slide level2 smaller">
+<h2>Time for a discussion</h2>
+<p>Discuss in learning teams (15 minutes):</p>
+<ul>
+<li>Introduce your project briefly</li>
+<li>Briefly explain the difference between Git and GitHub</li>
+<li>Think about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?</li>
+<li>What are some <strong>best practices</strong> for collaborating on code with others, and how can Git and GitHub help to support those best practices?</li>
+</ul>
+<p>After break out session:</p>
+<ul>
+<li>One person from each team briefly presents their discussion outcomes</li>
+</ul>
+</section>
+<section id="github-best-practices" class="slide level2">
+<h2>Github best practices</h2>
+<ul>
+<li>Commit often</li>
+<li>Use descriptive commit messages</li>
+<li>Keep pull requests small and focused</li>
+<li>Use “issues” to track work</li>
+<li>Review code regularly</li>
+</ul>
+</section>
 <section id="github-or-azure-devops" class="slide level2">
 <h2>GitHub or Azure DevOps?</h2>
 <ul>
@@ -445,12 +503,16 @@
 <li>GitHub is free for public repositories</li>
 <li>DHI has a GitHub account for private repositories</li>
 <li>DHI has an Azure DevOps account for private repositories</li>
+<li>Azure DevOps is organized in “projects”, which can contain multiple repositories</li>
 </ul>
 </section>
 <section id="desktop-application-github-desktop" class="slide level2">
 <h2>Desktop Application: <a href="https://desktop.github.com/">GitHub Desktop</a></h2>
 
 <img data-src="images/GitHubDesktop.png" class="r-stretch"></section>
+<section id="demo" class="slide level2">
+<h2>Demo</h2>
+</section>
 <section id="resources" class="slide level2">
 <h2>Resources</h2>
 <ul>
@@ -459,12 +521,35 @@
 <li><a href="https://app.datacamp.com/learn/courses/introduction-to-git">Datacamp: introduction to Git</a></li>
 </ul>
 </section>
+<section id="word-list" class="slide level2 smaller">
+<h2>Word list</h2>
+<p>Git - a distributed version control system that allows you to track changes in your code.</p>
+<p>GitHub - a web-based platform for hosting Git repositories, collaborating with others, and managing projects.</p>
+<p>Repository - a collection of files and version control history that you can track changes to and collaborate on.</p>
+<p>Branch - a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.</p>
+<p>Commit - a record of changes made to a repository, including the changes themselves and a message describing what was changed.</p>
+<p>Pull request - a way to propose changes to a repository by asking the repository owner to “pull” in the changes from a branch or fork.</p>
+<p>Merge - the process of combining changes from one branch or fork into another, typically the main codebase.</p>
+<p>Conflict - when Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.</p>
+<p>Clone - making a local copy of a remote repository on your computer.</p>
+<p>Remote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.</p>
+<p>Fork - a copy of a repository that you create on your own account, which you can modify without affecting the original repository.</p>
+<p>Rebase - a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.</p>
+<p>Stage - selecting changes that you want to include in the next commit.</p>
+<p>Push - sending changes from your local repository to a remote repository.</p>
+<p>Pull - retrieving changes from a remote repository and merging them into your local repository.</p>
+<p>Merge conflict - when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.</p>
+<p>Checkout - switching between different branches or commits in a repository.</p>
+<p>Tag - a specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.</p>
+<p>Clone - creating a local copy of a remote repository on your own computer.</p>
+<p>Remote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.</p>
+</section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
 <ul>
 <li>Version control is a tool for managing changes to code</li>
-<li>Git is a distributed version control system (software)</li>
-<li>GitHub is a platform for hosting and collaborating on Git repositories</li>
+<li>Git is a distributed version control system (<em>software</em>)</li>
+<li>GitHub is a <em>platform</em> for hosting and collaborating on Git repositories</li>
 <li>GitHub Desktop is a GUI for Git (and GitHub)</li>
 <li>Pull requests are a way to propose changes to a repository</li>
 </ul>

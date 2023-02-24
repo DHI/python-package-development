@@ -214,35 +214,49 @@
     "href": "02_version_control.html#why-use-version-control",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Why use version control?",
-    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability\nBest practice for software development\n\n\n\n\n\nVersion control is a tool for managing changes to code over time.\nIt allows you to keep track of changes and revert to previous versions if needed.\nIt makes collaboration on code easier by providing a way to merge changes made by different people.\nIt helps ensure that code is stable and error-free, especially in large and complex projects.\nUsing version control is a best practice for software development, and is used by most engineering and tech companies."
+    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability\nBest practice for software development\n\n\n\n\n\nVersion control is a tool for managing changes to code over time.\nIt allows you to keep track of changes and revert to previous versions if needed\nIt makes collaboration on code easier by providing a way to merge changes made by different people.\nIt helps ensure that code is stable and error-free, especially in large and complex projects.\nUsing version control is a best practice for software development, and is used by most engineering and tech companies."
   },
   {
     "objectID": "02_version_control.html#centralized-version-control",
     "href": "02_version_control.html#centralized-version-control",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Centralized version control",
-    "text": "Centralized version control\n\nsingle source with the entire history\nlocal copy with latest version"
+    "text": "Centralized version control\n\nSingle source with the entire history\nLocal copy with latest version\nExamples: SVN, Surround"
   },
   {
     "objectID": "02_version_control.html#distributed-version-control",
     "href": "02_version_control.html#distributed-version-control",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Distributed version control",
-    "text": "Distributed version control\n\nlocal copy has the entire history\ncommit changes to code offline\nauthorative source (origin)"
+    "text": "Distributed version control\n\nLocal copy has the entire history\nCommit changes to code offline\nAuthorative source (origin)\nExamples: Git, Mercurial"
   },
   {
     "objectID": "02_version_control.html#git",
     "href": "02_version_control.html#git",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Git",
-    "text": "Git\n\ngit add foo.py\ngit commit -m \"Nailed it\"\ngit push"
+    "text": "Git\nGit is a powerful tool for managing code changes and collaborating with others on a project.\n\ngit add foo.py\ngit commit -m \"Nailed it\"\ngit push"
   },
   {
-    "objectID": "02_version_control.html#branching",
-    "href": "02_version_control.html#branching",
+    "objectID": "02_version_control.html#basic-git-commands",
+    "href": "02_version_control.html#basic-git-commands",
     "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Branching",
-    "text": "Branching"
+    "section": "Basic Git commands",
+    "text": "Basic Git commands\n\ngit add: adds a file to the staging area\ngit commit: creates a new commit with the changes in the staging area\ngit status: shows the current status of your repository\ngit log: shows the commit history of your repository"
+  },
+  {
+    "objectID": "02_version_control.html#working-with-remote-repositories",
+    "href": "02_version_control.html#working-with-remote-repositories",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Working with remote repositories",
+    "text": "Working with remote repositories\n\ngit clone: creates a copy of the codebase on your local machine.\ngit push: pushes changes back to the remote repository.\ngit pull: pulls changes from the remote repository."
+  },
+  {
+    "objectID": "02_version_control.html#branching-and-merging",
+    "href": "02_version_control.html#branching-and-merging",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Branching and Merging",
+    "text": "Branching and Merging\n\nA branch is a separate version of your code that you can work on independently from the main branch.\ngit merge: merges changes back into the main branch."
   },
   {
     "objectID": "02_version_control.html#github",
@@ -259,11 +273,32 @@
     "text": "Github flow\n\ncreate a branch\nmake changes\ncreate a pull request\nreview\nmerge"
   },
   {
+    "objectID": "02_version_control.html#common-github-flow",
+    "href": "02_version_control.html#common-github-flow",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Common GitHub flow",
+    "text": "Common GitHub flow\n\nClone a repository to work on a copy (optionally: fork first)\nCreate a branch for each new feature or fix\nCommit changes and push to remote repository\nOpen a pull request to propose changes and request code review\nMerge changes back into the main branch"
+  },
+  {
+    "objectID": "02_version_control.html#time-for-a-discussion",
+    "href": "02_version_control.html#time-for-a-discussion",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce your project briefly\nBriefly explain the difference between Git and GitHub\nThink about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?\nWhat are some best practices for collaborating on code with others, and how can Git and GitHub help to support those best practices?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes"
+  },
+  {
+    "objectID": "02_version_control.html#github-best-practices",
+    "href": "02_version_control.html#github-best-practices",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Github best practices",
+    "text": "Github best practices\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
+  },
+  {
     "objectID": "02_version_control.html#github-or-azure-devops",
     "href": "02_version_control.html#github-or-azure-devops",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "GitHub or Azure DevOps?",
-    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories"
+    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories\nAzure DevOps is organized in “projects”, which can contain multiple repositories"
   },
   {
     "objectID": "02_version_control.html#desktop-application-github-desktop",
@@ -273,11 +308,25 @@
     "text": "Desktop Application: GitHub Desktop"
   },
   {
+    "objectID": "02_version_control.html#demo",
+    "href": "02_version_control.html#demo",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Demo",
+    "text": "Demo"
+  },
+  {
     "objectID": "02_version_control.html#resources",
     "href": "02_version_control.html#resources",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Resources",
     "text": "Resources\n\nGitHub: quickstart\nRealPython: git and github intro\nDatacamp: introduction to Git"
+  },
+  {
+    "objectID": "02_version_control.html#word-list",
+    "href": "02_version_control.html#word-list",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Word list",
+    "text": "Word list\nGit - a distributed version control system that allows you to track changes in your code.\nGitHub - a web-based platform for hosting Git repositories, collaborating with others, and managing projects.\nRepository - a collection of files and version control history that you can track changes to and collaborate on.\nBranch - a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.\nCommit - a record of changes made to a repository, including the changes themselves and a message describing what was changed.\nPull request - a way to propose changes to a repository by asking the repository owner to “pull” in the changes from a branch or fork.\nMerge - the process of combining changes from one branch or fork into another, typically the main codebase.\nConflict - when Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.\nClone - making a local copy of a remote repository on your computer.\nRemote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.\nFork - a copy of a repository that you create on your own account, which you can modify without affecting the original repository.\nRebase - a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.\nStage - selecting changes that you want to include in the next commit.\nPush - sending changes from your local repository to a remote repository.\nPull - retrieving changes from a remote repository and merging them into your local repository.\nMerge conflict - when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.\nCheckout - switching between different branches or commits in a repository.\nTag - a specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.\nClone - creating a local copy of a remote repository on your own computer.\nRemote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub."
   },
   {
     "objectID": "02_version_control.html#summary",
