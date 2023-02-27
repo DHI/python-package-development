@@ -3,9 +3,11 @@ title: "Git, GitHub, Pull Requests, and code reviews"
 format: 
   revealjs:
     theme: moon
+    transition: fade
 footer: Python package development
 logo: campus_logo.png
 ---
+
 
 
 ## Why use version control? 
@@ -26,105 +28,112 @@ logo: campus_logo.png
 
 :::
 
-::: {.notes}
-
-* Version control is a tool for managing changes to code over time.
-* It allows you to **keep track** of changes and revert to previous versions if needed
-* It makes collaboration on code easier by providing a way to merge changes made by different people.
-* It helps ensure that code is stable and error-free, especially in large and complex projects.
-* Using version control is a best practice for software development, and is used by most engineering and tech companies.
-
-:::
 
 
 ## Centralized version control
 
 * Single source with the entire history
 * Local copy with latest version
+. . .
 * Examples: SVN, Surround
+
 
 ## Distributed version control
 
 * Local copy has the entire history
 * Commit changes to code offline
 * Authorative source (origin)
+. . .
 * Examples: Git, Mercurial
+
 
 ## Git
 
+
 Git is a powerful tool for managing code changes and collaborating with others on a project.
 
-1. `git add foo.py`
-2. `git commit -m "Nailed it"`
-3. `git push`
+. . .
+
+You can use Git from the *command line*, or with a graphical user interface (GUI).
+
+. . .
+
+`> git add foo.py`
+
+. . .
+
+`> git commit -m "Nailed it"`
+
+. . .
+
+`> git push`
+
 
 ##
 
 ![](https://imgs.xkcd.com/comics/git.png)
 
-## Basic Git commands
 
+
+
+## Basic Git commands 
+
+:::{.incremental}
 * `git add`: adds a file to the staging area
 * `git commit`: creates a new commit with the changes in the staging area
 * `git status`: shows the current status of your repository
 * `git log`: shows the commit history of your repository
+::: 
 
-## Working with remote repositories
 
+
+## Working with remote repositories  
+
+::: {.incremental}
 * `git clone`: creates a copy of the codebase on your local machine.
 * `git push`: pushes changes back to the remote repository.
 * `git pull`: pulls changes from the remote repository.
+:::
 
 
 ## Branching and Merging 
 
 * A branch is a separate version of your code that you can work on independently from the main branch.
-* `git merge`: merges changes back into the main branch.
+* `git merge`: merges changes back into the main branch (we will do this from GitHub)
 
-## GitHub
 
+## GitHub 
+
+::: {.incremental}
 * Git repository hosting service
 * Collaborate with others on codebase
 * **Fork** a repository to work on your own version
 * **Pull requests** for code review and merging changes
 * **Issue tracking** and project management tools
-
-
-::: {.notes}
-GitHub is a powerful platform for collaborating on software development projects:
-
-* Creating a repository: A repository is a place to store code and collaborate with others. You can create a new repository on GitHub by clicking the "New" button on your dashboard.
-
-* Cloning a repository: To work on code from a repository on your local machine, you can "clone" the repository using the git clone command. This creates a local copy of the repository that you can work with.
-
-* Pull requests: A pull request is a way to propose changes to a repository and request that they be merged in. You can create a pull request on GitHub by making changes in a branch of your repository and submitting the changes as a pull request.
-
-* Code reviews: Code reviews are an important part of collaborating on code with others. You can use GitHub's built-in code review tools to review and comment on changes that have been proposed in a pull request.
-
-* Issues: Issues are a way to track bugs, feature requests, and other tasks related to a project. You can create and manage issues in GitHub, and use them to keep track of what needs to be done.
+* **GitHub Pages** for hosting websites
 :::
 
-## Github flow
 
-1. create a branch
-2. make changes
-3. create a pull request
-4. review
-5. merge
-
-## 
+## Github flow {background-color="white" .smaller .incremental}
 
 ![](images/git_workflow.png)
 
+::: {.incremental}
+1. Create a branch
+2. Make changes
+3. Create a pull request
+4. Review
+5. Merge
+:::
 
-## Common GitHub flow
 
+::: {.notes}
 * Clone a repository to work on a copy (optionally: fork first)
 * Create a branch for each new feature or fix
 * Commit changes and push to remote repository
 * Open a pull request to propose changes and request code review
 * Merge changes back into the main branch
-
+:::
 
 
 ## Time for a discussion {.smaller}
@@ -133,6 +142,7 @@ Discuss in learning teams (15 minutes):
 
 * Introduce your project briefly
 * Briefly explain the difference between Git and GitHub
+* What is the benefit of working in branches?
 * Think about a project you've worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?
 * What are some **best practices** for collaborating on code with others, and how can Git and GitHub help to support those best practices?
 
@@ -143,19 +153,26 @@ After break out session:
 ## Github best practices
 
 
+::: {.incremental}
 * Commit often
 * Use descriptive commit messages
 * Keep pull requests small and focused
 * Use "issues" to track work
 * Review code regularly
-
+::: 
 
 ## GitHub or Azure DevOps?
 
 * Both hosts Git repositories and provide tools for collaboration
 * GitHub is free for public repositories
+
+. . .
+
 * DHI has a GitHub account for private repositories
 * DHI has an Azure DevOps account for private repositories
+
+. . .
+
 * Azure DevOps is organized in "projects", which can contain multiple repositories 
 
 
@@ -178,34 +195,8 @@ After break out session:
 
 
 
-## Word list {.smaller}
+## Word list {.smaller .scrollable}
 
-
-Git 
-  : a distributed version control system that allows you to track changes in your code.
-
-GitHub 
-  : a web-based platform for hosting Git repositories, collaborating with others, and managing projects.
-
-Repository 
-  : a collection of files and version control history that you can track changes to and collaborate on.
-
-Branch 
-  : a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
-
-Commit 
-  : a record of changes made to a repository, including the changes themselves and a message describing what was changed.
-
-## Word list (2) {.smaller}
-
-Pull request 
-  : a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
-
-Merge 
-  : the process of combining changes from one branch or fork into another, typically the main codebase.
-
-Conflict 
-  : when Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.
 
 Clone 
   : making a local copy of a remote repository on your computer.
@@ -213,16 +204,13 @@ Clone
 Remote 
   : a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
 
-## Word list (3) {.smaller}
-
-Fork 
-  : a copy of a repository that you create on your own account, which you can modify without affecting the original repository.
-
-Rebase 
-  : a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
+Commit 
+  : a record of changes made to a repository, including the changes themselves and a message describing what was changed.
 
 Stage 
   : selecting changes that you want to include in the next commit.
+
+. . .
 
 Push 
   : sending changes from your local repository to a remote repository.
@@ -230,28 +218,42 @@ Push
 Pull 
   : retrieving changes from a remote repository and merging them into your local repository.
 
-## Word list (4) {.smaller}
+. . .
+
+Branch 
+  : a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
+
+Pull request 
+  : a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
+
+Merge 
+  : the process of combining changes from one branch or fork into another, typically the main codebase.
+
+. . .
+
+Rebase 
+  : a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
 
 Merge conflict 
   : when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.
 
+. . .
+
 Checkout 
   : switching between different branches or commits in a repository.
 
-Tag 
-  : a specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.
-
-Clone 
-  : creating a local copy of a remote repository on your own computer.
-
-Remote 
-  : a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
+Fork 
+  : a copy of a repository that you create on your own account, which you can modify without affecting the original repository.
 
 
 ## Summary
+
+::: {.incremental}
 
 * Version control is a tool for managing changes to code 
 * Git is a distributed version control system (*software*)
 * GitHub is a *platform* for hosting and collaborating on Git repositories
 * GitHub Desktop is a GUI for Git (and GitHub)
 * Pull requests are a way to propose changes to a repository 
+
+:::
