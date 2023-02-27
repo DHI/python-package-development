@@ -210,15 +210,11 @@ Commit
 Stage 
   : selecting changes that you want to include in the next commit.
 
-. . .
-
 Push 
   : sending changes from your local repository to a remote repository.
 
 Pull 
   : retrieving changes from a remote repository and merging them into your local repository.
-
-. . .
 
 Branch 
   : a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
@@ -229,15 +225,11 @@ Pull request
 Merge 
   : the process of combining changes from one branch or fork into another, typically the main codebase.
 
-. . .
-
 Rebase 
   : a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
 
 Merge conflict 
   : when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.
-
-. . .
 
 Checkout 
   : switching between different branches or commits in a repository.
