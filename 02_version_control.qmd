@@ -180,47 +180,72 @@ After break out session:
 
 ## Word list {.smaller}
 
-Git - a distributed version control system that allows you to track changes in your code.
 
-GitHub - a web-based platform for hosting Git repositories, collaborating with others, and managing projects.
+Git 
+  : a distributed version control system that allows you to track changes in your code.
 
-Repository - a collection of files and version control history that you can track changes to and collaborate on.
+GitHub 
+  : a web-based platform for hosting Git repositories, collaborating with others, and managing projects.
 
-Branch - a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
+Repository 
+  : a collection of files and version control history that you can track changes to and collaborate on.
 
-Commit - a record of changes made to a repository, including the changes themselves and a message describing what was changed.
+Branch 
+  : a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
 
-Pull request - a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
+Commit 
+  : a record of changes made to a repository, including the changes themselves and a message describing what was changed.
 
-Merge - the process of combining changes from one branch or fork into another, typically the main codebase.
+## Word list (2) {.smaller}
 
-Conflict - when Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.
+Pull request 
+  : a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
 
-Clone - making a local copy of a remote repository on your computer.
+Merge 
+  : the process of combining changes from one branch or fork into another, typically the main codebase.
 
-Remote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
+Conflict 
+  : when Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.
 
-Fork - a copy of a repository that you create on your own account, which you can modify without affecting the original repository.
+Clone 
+  : making a local copy of a remote repository on your computer.
 
-Rebase - a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
+Remote 
+  : a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
 
-Stage - selecting changes that you want to include in the next commit.
+## Word list (3) {.smaller}
 
-Push - sending changes from your local repository to a remote repository.
+Fork 
+  : a copy of a repository that you create on your own account, which you can modify without affecting the original repository.
 
-Pull - retrieving changes from a remote repository and merging them into your local repository.
+Rebase 
+  : a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
 
-Merge conflict - when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.
+Stage 
+  : selecting changes that you want to include in the next commit.
 
-Checkout - switching between different branches or commits in a repository.
+Push 
+  : sending changes from your local repository to a remote repository.
 
-Tag - a specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.
+Pull 
+  : retrieving changes from a remote repository and merging them into your local repository.
 
-Clone - creating a local copy of a remote repository on your own computer.
+## Word list (4) {.smaller}
 
-Remote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
+Merge conflict 
+  : when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.
 
+Checkout 
+  : switching between different branches or commits in a repository.
 
+Tag 
+  : a specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.
+
+Clone 
+  : creating a local copy of a remote repository on your own computer.
+
+Remote 
+  : a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
 
 
 ## Summary
