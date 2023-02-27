@@ -19,6 +19,15 @@ scipy==0.17.0
 matplotlib==1.5.1
 ```
 
+## Branch naming convention
+
+There doesn't exist a clear naming conventions.
+
+* `main` is the main branch🙄, this was previously named `master`.
+* Feature branches uses lowercase separated with dashes, e.g. `interpolation-options`
+* Branches related to fixing issues, start with the id of the issue, e.g. `42-fix-missing-value-handling`
+
+
 ## Continuous Integration
 
 Running tests on every commit in a well defined environment ensures that the code is working as expected.

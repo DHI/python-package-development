@@ -175,6 +175,13 @@
     "text": "Dependency management\nRequirements.txt\nExample:\n$ cat requirements.txt\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1"
   },
   {
+    "objectID": "05_dependecies_ci.html#branch-naming-convention",
+    "href": "05_dependecies_ci.html#branch-naming-convention",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Branch naming convention",
+    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling"
+  },
+  {
     "objectID": "05_dependecies_ci.html#continuous-integration",
     "href": "05_dependecies_ci.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
@@ -327,6 +334,41 @@
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Summary",
     "text": "Summary\n\n\nVersion control is a tool for managing changes to code\nGit is a distributed version control system (software)\nGitHub is a platform for hosting and collaborating on Git repositories\nGitHub Desktop is a GUI for Git (and GitHub)\nPull requests are a way to propose changes to a repository\n\n\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#variables-function-and-method-names",
+    "href": "01b_naming_conventions.html#variables-function-and-method-names",
+    "title": "Python - Naming conventions",
+    "section": "Variables, function and method names",
+    "text": "Variables, function and method names\n\nUse lowercase characters\nSeparate words with underscores\n\n\nmodel_name = \"NorthSeaModel\"\nn_epochs = 100\n\ndef my_function():\n    pass"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#constants",
+    "href": "01b_naming_conventions.html#constants",
+    "title": "Python - Naming conventions",
+    "section": "Constants",
+    "text": "Constants\n\nUse all uppercase characters\n\nGRAVITY = 9.81\n\nAVOGADRO_CONSTANT = 6.02214076e23\n\nSECONDS_IN_A_DAY = 86400\n\nN_LEGS_PER_ANIMAL = {\n    \"human\": 2,\n    \"dog\": 4,\n    \"spider\": 8,\n}\n\nPython will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants."
+  },
+  {
+    "objectID": "01b_naming_conventions.html#classes",
+    "href": "01b_naming_conventions.html#classes",
+    "title": "Python - Naming conventions",
+    "section": "Classes",
+    "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\n\nclass RandomClassifier: # CamelCase ✅\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y): # lowercase ✅\n        self.fit(X, y)\n        return self.predict(X)"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#function-return-values",
+    "href": "01b_naming_conventions.html#function-return-values",
+    "title": "Python - Naming conventions",
+    "section": "Function return values",
+    "text": "Function return values\ndef my_function() -> str:\n    return \"42\"\n\ndef my_other_function() -> None: # it doesn't return anything 🤔\n    print(\"42\")\n\nIn action:\n>>> my_function()\n'42'\n>>> my_other_function()\n42\n>>> x = my_function()\n>>> x\n'42'\n>>> y = my_other_function()\n>>> y"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#github-repo-naming-convention",
+    "href": "01b_naming_conventions.html#github-repo-naming-convention",
+    "title": "Python - Naming conventions",
+    "section": "Github repo naming convention",
+    "text": "Github repo naming convention\n\nThis is just a suggestion\nUse lowercase characters\nSeparate words with dashes\n\nExample: my-awesome-repo\n\n\n\nPython package development"
   },
   {
     "objectID": "04_testing.html#testing",
