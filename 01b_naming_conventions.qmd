@@ -1,0 +1,100 @@
+---
+title: Python - Naming conventions
+format: revealjs
+footer: Python package development
+logo: campus_logo.png
+---
+
+## Variables, function and method names
+
+* Use lowercase characters
+* Separate words with underscores
+
+. . .
+
+```python
+model_name = "NorthSeaModel"
+n_epochs = 100
+
+def my_function():
+    pass
+```
+
+## Constants
+
+* Use all uppercase characters
+
+```python
+GRAVITY = 9.81
+
+AVOGADRO_CONSTANT = 6.02214076e23
+
+SECONDS_IN_A_DAY = 86400
+
+N_LEGS_PER_ANIMAL = {
+    "human": 2,
+    "dog": 4,
+    "spider": 8,
+}
+```
+. . .
+
+Python will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants.
+
+
+## Classes
+
+* Use CamelCase for the name of the class
+* Use lowercase characters for the name of the methods
+* Separate words with underscores
+
+. . .
+
+```{.python code-line-numbers="|1|9"}
+class RandomClassifier: # CamelCase ✅
+
+    def fit(self, X, y):
+        self.classes_ = np.unique(y)
+
+    def predict(self, X):
+        return np.random.choice(self.classes_, size=len(X))
+
+    def fit_predict(self, X, y): # lowercase ✅
+        self.fit(X, y)
+        return self.predict(X)
+```
+
+## Function return values
+
+```python
+def my_function() -> str:
+    return "42"
+
+def my_other_function() -> None: # it doesn't return anything 🤔
+    print("42")
+```
+
+. . .
+
+In action:
+
+```{.python code-line-numbers="1-2|3-4|5-7|8-10"}
+>>> my_function()
+'42'
+>>> my_other_function()
+42
+>>> x = my_function()
+>>> x
+'42'
+>>> y = my_other_function()
+>>> y
+   
+```
+
+## Github repo naming convention
+
+* This is just a suggestion
+* Use lowercase characters
+* Separate words with dashes
+
+Example: `my-awesome-repo`
