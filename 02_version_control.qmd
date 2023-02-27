@@ -226,6 +226,9 @@ Branch
 Pull request 
   : a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
 
+Stash
+  : temporarily save changes that are not ready to be committed (bring them back later when needed).
+
 Merge 
   : the process of combining changes from one branch or fork into another, typically the main codebase.
 
