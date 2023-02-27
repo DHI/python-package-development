@@ -141,14 +141,18 @@ You can use Git from the *command line*, or with a graphical user interface (GUI
 Discuss in learning teams (15 minutes):
 
 * Introduce your project briefly
-* Briefly explain the difference between Git and GitHub
-* What is the benefit of working in branches?
 * Think about a project you've worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?
-* What are some **best practices** for collaborating on code with others, and how can Git and GitHub help to support those best practices?
+
 
 After break out session:
 
 * One person from each team briefly presents their discussion outcomes
+
+::: {.notes}
+* What is the benefit of working in branches?
+* What are some **best practices** for collaborating on code with others, and how can Git and GitHub help to support those best practices?
+:::
+
 
 ## Github best practices
 
