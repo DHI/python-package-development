@@ -277,7 +277,7 @@
     "href": "02_version_control.html#time-for-a-discussion",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce your project briefly\nBriefly explain the difference between Git and GitHub\nWhat is the benefit of working in branches?\nThink about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?\nWhat are some best practices for collaborating on code with others, and how can Git and GitHub help to support those best practices?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes"
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce your project briefly\nThink about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes\n\n\n\nWhat is the benefit of working in branches?\nWhat are some best practices for collaborating on code with others, and how can Git and GitHub help to support those best practices?"
   },
   {
     "objectID": "02_version_control.html#github-best-practices",
