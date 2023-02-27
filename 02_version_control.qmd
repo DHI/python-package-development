@@ -165,8 +165,14 @@ After break out session:
 
 * Both hosts Git repositories and provide tools for collaboration
 * GitHub is free for public repositories
+
+. . .
+
 * DHI has a GitHub account for private repositories
 * DHI has an Azure DevOps account for private repositories
+
+. . .
+
 * Azure DevOps is organized in "projects", which can contain multiple repositories 
 
 
@@ -189,44 +195,65 @@ After break out session:
 
 
 
-## Word list {.smaller scrollable}
+## Word list {.smaller .scrollable}
 
 
-Repository - a collection of files and version control history that you can track changes to and collaborate on.
+Clone 
+  : making a local copy of a remote repository on your computer.
 
-Clone - making a local copy of a remote repository on your computer.
+Remote 
+  : a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
 
-Branch - a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
+Commit 
+  : a record of changes made to a repository, including the changes themselves and a message describing what was changed.
 
-Commit - a record of changes made to a repository, including the changes themselves and a message describing what was changed.
+Stage 
+  : selecting changes that you want to include in the next commit.
 
-Stage - selecting changes that you want to include in the next commit.
+. . .
 
-Push - sending changes from your local repository to a remote repository.
+Push 
+  : sending changes from your local repository to a remote repository.
 
-Pull - retrieving changes from a remote repository and merging them into your local repository.
+Pull 
+  : retrieving changes from a remote repository and merging them into your local repository.
 
-Pull request - a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
+. . .
 
-Merge - the process of combining changes from one branch or fork into another, typically the main codebase.
+Branch 
+  : a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.
 
-Remote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.
+Pull request 
+  : a way to propose changes to a repository by asking the repository owner to "pull" in the changes from a branch or fork.
 
-Rebase - a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
+Merge 
+  : the process of combining changes from one branch or fork into another, typically the main codebase.
 
-Merge conflict - when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.
+. . .
 
-Checkout - switching between different branches or commits in a repository.
+Rebase 
+  : a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.
 
-Fork - a copy of a repository that you create on your own account, which you can modify without affecting the original repository.
+Merge conflict 
+  : when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.
 
+. . .
 
+Checkout 
+  : switching between different branches or commits in a repository.
+
+Fork 
+  : a copy of a repository that you create on your own account, which you can modify without affecting the original repository.
 
 
 ## Summary
+
+::: {.incremental}
 
 * Version control is a tool for managing changes to code 
 * Git is a distributed version control system (*software*)
 * GitHub is a *platform* for hosting and collaborating on Git repositories
 * GitHub Desktop is a GUI for Git (and GitHub)
 * Pull requests are a way to propose changes to a repository 
+
+:::
