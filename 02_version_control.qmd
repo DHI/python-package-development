@@ -83,6 +83,7 @@ You can use Git from the *command line*, or with a graphical user interface (GUI
 * `git commit`: creates a new commit with the changes in the staging area
 * `git status`: shows the current status of your repository
 * `git log`: shows the commit history of your repository
+* `git stash`: temporarily save changes that are not ready to be committed
 ::: 
 
 
@@ -100,6 +101,7 @@ You can use Git from the *command line*, or with a graphical user interface (GUI
 
 * A branch is a separate version of your code that you can work on independently from the main branch.
 * `git merge`: merges changes back into the main branch (we will do this from GitHub)
+
 
 
 ## GitHub 
@@ -154,8 +156,18 @@ After break out session:
 :::
 
 
-## Github best practices
 
+
+## Desktop Application: [GitHub Desktop](https://desktop.github.com/)
+
+![](images/GitHubDesktop.png)
+
+
+## Demo
+
+
+
+## Github best practices
 
 ::: {.incremental}
 * Commit often
@@ -164,6 +176,7 @@ After break out session:
 * Use "issues" to track work
 * Review code regularly
 ::: 
+
 
 ## GitHub or Azure DevOps?
 
@@ -178,15 +191,6 @@ After break out session:
 . . .
 
 * Azure DevOps is organized in "projects", which can contain multiple repositories 
-
-
-## Desktop Application: [GitHub Desktop](https://desktop.github.com/)
-
-![](images/GitHubDesktop.png)
-
-
-## Demo
-
 
 
 

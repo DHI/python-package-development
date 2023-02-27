@@ -242,7 +242,7 @@
     "href": "02_version_control.html#basic-git-commands",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Basic Git commands",
-    "text": "Basic Git commands\n\n\ngit add: adds a file to the staging area\ngit commit: creates a new commit with the changes in the staging area\ngit status: shows the current status of your repository\ngit log: shows the commit history of your repository"
+    "text": "Basic Git commands\n\n\ngit add: adds a file to the staging area\ngit commit: creates a new commit with the changes in the staging area\ngit status: shows the current status of your repository\ngit log: shows the commit history of your repository\ngit stash: temporarily save changes that are not ready to be committed"
   },
   {
     "objectID": "02_version_control.html#working-with-remote-repositories",
@@ -280,20 +280,6 @@
     "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce your project briefly\nThink about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes\n\n\n\nWhat is the benefit of working in branches?\nWhat are some best practices for collaborating on code with others, and how can Git and GitHub help to support those best practices?"
   },
   {
-    "objectID": "02_version_control.html#github-best-practices",
-    "href": "02_version_control.html#github-best-practices",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Github best practices",
-    "text": "Github best practices\n\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
-  },
-  {
-    "objectID": "02_version_control.html#github-or-azure-devops",
-    "href": "02_version_control.html#github-or-azure-devops",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "GitHub or Azure DevOps?",
-    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\n\n\n\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories\n\n\n\n\nAzure DevOps is organized in “projects”, which can contain multiple repositories"
-  },
-  {
     "objectID": "02_version_control.html#desktop-application-github-desktop",
     "href": "02_version_control.html#desktop-application-github-desktop",
     "title": "Git, GitHub, Pull Requests, and code reviews",
@@ -306,6 +292,20 @@
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Demo",
     "text": "Demo"
+  },
+  {
+    "objectID": "02_version_control.html#github-best-practices",
+    "href": "02_version_control.html#github-best-practices",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Github best practices",
+    "text": "Github best practices\n\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
+  },
+  {
+    "objectID": "02_version_control.html#github-or-azure-devops",
+    "href": "02_version_control.html#github-or-azure-devops",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "GitHub or Azure DevOps?",
+    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\n\n\n\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories\n\n\n\n\nAzure DevOps is organized in “projects”, which can contain multiple repositories"
   },
   {
     "objectID": "02_version_control.html#resources",
