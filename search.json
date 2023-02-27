@@ -326,7 +326,28 @@
     "href": "02_version_control.html#word-list",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Word list",
-    "text": "Word list\nGit - a distributed version control system that allows you to track changes in your code.\nGitHub - a web-based platform for hosting Git repositories, collaborating with others, and managing projects.\nRepository - a collection of files and version control history that you can track changes to and collaborate on.\nBranch - a separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.\nCommit - a record of changes made to a repository, including the changes themselves and a message describing what was changed.\nPull request - a way to propose changes to a repository by asking the repository owner to “pull” in the changes from a branch or fork.\nMerge - the process of combining changes from one branch or fork into another, typically the main codebase.\nConflict - when Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.\nClone - making a local copy of a remote repository on your computer.\nRemote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.\nFork - a copy of a repository that you create on your own account, which you can modify without affecting the original repository.\nRebase - a way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.\nStage - selecting changes that you want to include in the next commit.\nPush - sending changes from your local repository to a remote repository.\nPull - retrieving changes from a remote repository and merging them into your local repository.\nMerge conflict - when Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.\nCheckout - switching between different branches or commits in a repository.\nTag - a specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.\nClone - creating a local copy of a remote repository on your own computer.\nRemote - a reference to a Git repository that is hosted on a remote server, typically on a service like GitHub."
+    "text": "Word list\n\nGit\n\na distributed version control system that allows you to track changes in your code.\n\nGitHub\n\na web-based platform for hosting Git repositories, collaborating with others, and managing projects.\n\nRepository\n\na collection of files and version control history that you can track changes to and collaborate on.\n\nBranch\n\na separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.\n\nCommit\n\na record of changes made to a repository, including the changes themselves and a message describing what was changed."
+  },
+  {
+    "objectID": "02_version_control.html#word-list-2",
+    "href": "02_version_control.html#word-list-2",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Word list (2)",
+    "text": "Word list (2)\n\nPull request\n\na way to propose changes to a repository by asking the repository owner to “pull” in the changes from a branch or fork.\n\nMerge\n\nthe process of combining changes from one branch or fork into another, typically the main codebase.\n\nConflict\n\nwhen Git is unable to automatically merge changes from two different branches or forks, and requires manual intervention to resolve the differences.\n\nClone\n\nmaking a local copy of a remote repository on your computer.\n\nRemote\n\na reference to a Git repository that is hosted on a remote server, typically on a service like GitHub."
+  },
+  {
+    "objectID": "02_version_control.html#word-list-3",
+    "href": "02_version_control.html#word-list-3",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Word list (3)",
+    "text": "Word list (3)\n\nFork\n\na copy of a repository that you create on your own account, which you can modify without affecting the original repository.\n\nRebase\n\na way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.\n\nStage\n\nselecting changes that you want to include in the next commit.\n\nPush\n\nsending changes from your local repository to a remote repository.\n\nPull\n\nretrieving changes from a remote repository and merging them into your local repository."
+  },
+  {
+    "objectID": "02_version_control.html#word-list-4",
+    "href": "02_version_control.html#word-list-4",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Word list (4)",
+    "text": "Word list (4)\n\nMerge conflict\n\nwhen Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.\n\nCheckout\n\nswitching between different branches or commits in a repository.\n\nTag\n\na specific point in the history of a repository that is marked as important, typically used to indicate a release or other significant event.\n\nClone\n\ncreating a local copy of a remote repository on your own computer.\n\nRemote\n\na reference to a Git repository that is hosted on a remote server, typically on a service like GitHub."
   },
   {
     "objectID": "02_version_control.html#summary",
