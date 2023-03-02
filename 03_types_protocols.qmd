@@ -17,6 +17,45 @@ execute:
 
 :::
 
+## Abstraction
+
+:::: {.columns}
+
+::: {.column}
+**Version A**
+```python
+total = 0.0
+for x in values:
+    total = total +x
+```
+
+:::
+
+::: {.column}
+**Version B**
+```python
+total = sum(values)
+```
+:::
+::::
+
+. . . 
+
+::: {.incremental}
+
+* Using functions, e.g. `sum()` allows us to operate on a higher level of abstraction.
+* Too little abstraction will force you to write many lines of boiler-plate code
+* Too much abstraction limits the flexibility
+* ✨Find the right level of abstraction!✨
+
+:::
+
+
+::: {.notes}
+* Which version is easiest to understand?
+* Which version is easiest to change?
+:::
+
 
 ## Collections Abstract Base Classes
 
