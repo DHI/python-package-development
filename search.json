@@ -18,7 +18,7 @@
     "href": "03_types_protocols.html#collections-abstract-base-classes",
     "title": "Python types, interfaces and protocols",
     "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }"
+    "text": "Collections Abstract Base Classes\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }"
   },
   {
     "objectID": "03_types_protocols.html#collections-abstract-base-classes-1",
@@ -32,7 +32,7 @@
     "href": "03_types_protocols.html#collections-abstract-base-classes-2",
     "title": "Python types, interfaces and protocols",
     "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict"
+    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict"
   },
   {
     "objectID": "03_types_protocols.html#pythonic",
@@ -61,6 +61,13 @@
     "title": "Python types, interfaces and protocols",
     "section": "Some other interval",
     "text": "Some other interval\nclass Interval:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n\n    def __contains__(self, x):\n        return self.start < x < self.end\n    \n>>> interval = Interval(5, 10)\n\n>>> 8 in interval\nTrue\n>>> 12 in interval\nFalse\n\nAs long as the start, end and x are comparable, the Interval class is a generic class able to handle integers, floats, dates, datetimes, strings …"
+  },
+  {
+    "objectID": "03_types_protocols.html#time-for-a-discussion",
+    "href": "03_types_protocols.html#time-for-a-discussion",
+    "title": "Python types, interfaces and protocols",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nWhat is the benefit of treating functions as black boxes?\nIs there a downside to this approach?\nWhen is it appropriate to store data in a list?\nWhen is it better to store data in a dictionary?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes"
   },
   {
     "objectID": "03_types_protocols.html#protocols",

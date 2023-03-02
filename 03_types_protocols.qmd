@@ -1,10 +1,10 @@
 ---
 title: "Python types, interfaces and protocols"
-format: revealjs
+format: 
+    revealjs:
+        slide-number: true
 footer: Python package development
 logo: campus_logo.png
-execute:
-  echo: true
 ---
 
 ## Python types
@@ -274,6 +274,24 @@ False
 . . .
 
 As long as the `start`, `end` and `x` are comparable, the `Interval` class is a generic class able to handle integers, floats, dates, datetimes, strings ...
+
+## Time for a discussion {.smaller}
+
+Discuss in learning teams (15 minutes):
+
+
+* What is the benefit of treating functions as black boxes?
+* Is there a downside to this approach?
+
+* When is it appropriate to store data in a list?
+* When is it better to store data in a dictionary?
+
+
+After break out session:
+
+* One person from each team briefly presents their discussion outcomes
+
+
 
 ## Protocols
 
