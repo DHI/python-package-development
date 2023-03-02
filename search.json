@@ -7,6 +7,13 @@
     "text": "Python types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time\nTypes are checked at runtime"
   },
   {
+    "objectID": "03_types_protocols.html#abstraction",
+    "href": "03_types_protocols.html#abstraction",
+    "title": "Python types, interfaces and protocols",
+    "section": "Abstraction",
+    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\n\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
+  },
+  {
     "objectID": "03_types_protocols.html#collections-abstract-base-classes",
     "href": "03_types_protocols.html#collections-abstract-base-classes",
     "title": "Python types, interfaces and protocols",
