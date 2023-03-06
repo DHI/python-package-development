@@ -277,19 +277,39 @@ As long as the `start`, `end` and `x` are comparable, the `Interval` class is a 
 
 ## Time for a discussion {.smaller}
 
-Discuss in learning teams (15 minutes):
+Pre-work for this Module
 
+> Read chapters
+>
+> 3. Abstraction and encapsulation
+>
+> 4. Designing for high performance
+> 
+> in Hillard, 2019
+>
+> Do you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?
+> 
+> Consider the implications of storing data in a list or in a dictionary.
 
-* What is the benefit of treating functions as black boxes?
-* Is there a downside to this approach?
+## Time for a discussion
 
-* When is it appropriate to store data in a list?
-* When is it better to store data in a dictionary?
+*Discuss in learning teams (15 minutes):*
 
+**Chapter 3:** Abstraction and encapsulation
 
-After break out session:
+What are some pros/cons of treating functions as black boxes?
 
-* One person from each team briefly presents their discussion outcomes
+. . .
+
+**Chapter 4: Designing for high performance**
+
+What is the performance impact of using a list instead of a dictionary?
+
+. . .
+
+*After break out session:*
+
+One person from each team briefly presents their discussion outcomes
 
 
 

@@ -67,7 +67,14 @@
     "href": "03_types_protocols.html#time-for-a-discussion",
     "title": "Python types, interfaces and protocols",
     "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nWhat is the benefit of treating functions as black boxes?\nIs there a downside to this approach?\nWhen is it appropriate to store data in a list?\nWhen is it better to store data in a dictionary?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes"
+    "text": "Time for a discussion\nPre-work for this Module\n\nRead chapters\n\nAbstraction and encapsulation\nDesigning for high performance\n\nin Hillard, 2019\nDo you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?\nConsider the implications of storing data in a list or in a dictionary."
+  },
+  {
+    "objectID": "03_types_protocols.html#time-for-a-discussion-1",
+    "href": "03_types_protocols.html#time-for-a-discussion-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 3: Abstraction and encapsulation\nWhat are some pros/cons of treating functions as black boxes?\n\nChapter 4: Designing for high performance\nWhat is the performance impact of using a list instead of a dictionary?\n\n\nAfter break out session:\nOne person from each team briefly presents their discussion outcomes"
   },
   {
     "objectID": "03_types_protocols.html#protocols",
