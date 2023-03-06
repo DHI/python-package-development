@@ -49,12 +49,36 @@ Classes contain many pieces that can be isolated further, so they’re generally
 bigger than a unit, but they are occasionally treated as units.
 ::: 
 
-## Unit testing
+## A **good** unit test {.smaller}
 
-* Running a unit test should be fast.
+:::: {.columns}
 
-* It should be so fast that you can run it every time you make a change to your code.
-* It should ideally not depend on any external resources (e.g. a database, files on disk, a web service, etc.)
+::: {.column width=70%}
+
+::: {.incremental}
+* Fully automated
+* Has full control over all the pieces running (fake out external dependencies)
+* Can be run in any order  if part of many other tests
+* Runs in memory (no DB or File access, for example)
+* Consistently returns the same result (no random numbers)
+* Runs fast
+* Tests a single logical concept in the system
+* Readable
+* Maintainable
+* Trustworthy
+:::
+
+:::
+
+::: {.column width="30%"}
+
+
+[![](https://images.manning.com/360/480/resize/book/6/5b5ac1d-637b-4f00-9f5d-7fb583b6dac5/Osherove-UT-3ed-MEAP-HI.png)](https://www.artofunittesting.com/)
+
+:::
+
+::::
+
 
 
 
@@ -171,13 +195,40 @@ It is also too easy to write a test that passes without actually testing the cod
 
 ##
 
-::: {.big}
+::: {.r-fit-text}
 
-and now for something completely different...
+and now for
+ something completely different...
 
 :::
 
-## Exceptions
+## [The Zen of Python](https://peps.python.org/pep-0020/) {.smaller}
+Beautiful is better than ugly.
+
+Explicit is better than implicit.
+
+Simple is better than complex.
+
+Complex is better than complicated.
+
+Flat is better than nested.
+
+Sparse is better than dense.
+
+Readability counts.
+
+. . .
+
+...
+
+**Errors should never pass silently.**
+
+**Unless explicitly silenced.**
+
+...
+
+
+## Exceptions {.smaller}
 
 ::: {.incremental}
 * Exceptions are a way to handle errors in your code.
@@ -192,7 +243,9 @@ and now for something completely different...
 :::
 
 
-```python
+## Example {.smaller}
+
+```{.python filename="src/ops.py"}
 def is_operable(height:float, period:float) -> bool:
     if height < 0.0:
         raise ValueError(f"Supplied value of {height=} is unphysical.")
@@ -204,16 +257,20 @@ Traceback (most recent call last):
 ValueError: Supplied value of height=-1.0 is unphysical.
 ```
 
-## How to test exceptions
+. . .
 
-```python
+It is better to raise an exception (that can terminate the program), than to propagate a bad value.
+
+## [How to test exceptions](https://docs.pytest.org/en/7.2.x/how-to/assert.html#assertions-about-expected-exceptions)
+
+```{.python filename="tests/test_ops.py"}
+import pytest
 from ops import is_operable
 
 def test_negative_heights_are_not_valid():
     with pytest.raises(ValueError):
         is_operable(height=-1.0, period=4.0)
 ```
-
 
 
 
@@ -265,7 +322,7 @@ Enforcing a particular style can be a common source of discussion among develope
 
 . . .
 
-`black`^[https://black.readthedocs.io/] is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.
+[`black`](https://black.readthedocs.io/) is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.
 
 . . .
 
@@ -275,7 +332,7 @@ Having a unified style makes it easier to collaborate since the code changes wil
 
 ## Running Black
 
-```
+```bash
 $ black .
 reformatted data_utils.py
 reformatted dfsu/__init__.py
