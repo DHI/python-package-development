@@ -413,11 +413,11 @@
     "text": "Unit testing\n\n\n\n\n\n\nDefinition\n\n\nA unit is a small, fundamental piece of software.\nA piece of code that can be isolated for testing.\nFunctions are generally considered units—they can be executed in isolation by calling them with the appropriate inputs.\nLines of code within those functions can’t be isolated, so they’re smaller than a unit.\nClasses contain many pieces that can be isolated further, so they’re generally bigger than a unit, but they are occasionally treated as units."
   },
   {
-    "objectID": "04_testing.html#unit-testing-1",
-    "href": "04_testing.html#unit-testing-1",
+    "objectID": "04_testing.html#a-good-unit-test",
+    "href": "04_testing.html#a-good-unit-test",
     "title": "Testing, linting and formatting",
-    "section": "Unit testing",
-    "text": "Unit testing\n\nRunning a unit test should be fast.\nIt should be so fast that you can run it every time you make a change to your code.\nIt should ideally not depend on any external resources (e.g. a database, files on disk, a web service, etc.)"
+    "section": "A good unit test",
+    "text": "A good unit test\n\n\n\n\nFully automated\nHas full control over all the pieces running (fake out external dependencies)\nCan be run in any order if part of many other tests\nRuns in memory (no DB or File access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
   },
   {
     "objectID": "04_testing.html#example",
@@ -469,18 +469,32 @@
     "text": "and now for something completely different…"
   },
   {
+    "objectID": "04_testing.html#the-zen-of-python",
+    "href": "04_testing.html#the-zen-of-python",
+    "title": "Testing, linting and formatting",
+    "section": "The Zen of Python",
+    "text": "The Zen of Python\nBeautiful is better than ugly.\nExplicit is better than implicit.\nSimple is better than complex.\nComplex is better than complicated.\nFlat is better than nested.\nSparse is better than dense.\nReadability counts.\n\n…\nErrors should never pass silently.\nUnless explicitly silenced.\n…"
+  },
+  {
     "objectID": "04_testing.html#exceptions",
     "href": "04_testing.html#exceptions",
     "title": "Testing, linting and formatting",
     "section": "Exceptions",
-    "text": "Exceptions\n\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitialistionError, MissingLicenseError?\n\n\ndef is_operable(height:float, period:float) -> bool:\n    if height < 0.0:\n        raise ValueError(f\"Supplied value of {height=} is unphysical.\")\n\n>>> is_operable(height=-1.0, period=4.0\n\nTraceback (most recent call last):\n  ...\nValueError: Supplied value of height=-1.0 is unphysical."
+    "text": "Exceptions\n\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitialistionError, MissingLicenseError?"
+  },
+  {
+    "objectID": "04_testing.html#example-1",
+    "href": "04_testing.html#example-1",
+    "title": "Testing, linting and formatting",
+    "section": "Example",
+    "text": "Example\n\n\nsrc/ops.py\n\ndef is_operable(height:float, period:float) -> bool:\n    if height < 0.0:\n        raise ValueError(f\"Supplied value of {height=} is unphysical.\")\n\n>>> is_operable(height=-1.0, period=4.0\n\nTraceback (most recent call last):\n  ...\nValueError: Supplied value of height=-1.0 is unphysical.\n\n\nIt is better to raise an exception (that can terminate the program), than to propagate a bad value."
   },
   {
     "objectID": "04_testing.html#how-to-test-exceptions",
     "href": "04_testing.html#how-to-test-exceptions",
     "title": "Testing, linting and formatting",
     "section": "How to test exceptions",
-    "text": "How to test exceptions\nfrom ops import is_operable\n\ndef test_negative_heights_are_not_valid():\n    with pytest.raises(ValueError):\n        is_operable(height=-1.0, period=4.0)"
+    "text": "How to test exceptions\n\n\ntests/test_ops.py\n\nimport pytest\nfrom ops import is_operable\n\ndef test_negative_heights_are_not_valid():\n    with pytest.raises(ValueError):\n        is_operable(height=-1.0, period=4.0)"
   },
   {
     "objectID": "04_testing.html#linting",
@@ -501,7 +515,7 @@
     "href": "04_testing.html#formatting",
     "title": "Testing, linting and formatting",
     "section": "Formatting",
-    "text": "Formatting\nFormatting code according to a common style is a good practice. It makes your code more readable and easier to maintain.\n\nEnforcing a particular style can be a common source of discussion among developers.\n\n\nblack1 is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.\n\n\nHaving a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style.\n\nhttps://black.readthedocs.io/"
+    "text": "Formatting\nFormatting code according to a common style is a good practice. It makes your code more readable and easier to maintain.\n\nEnforcing a particular style can be a common source of discussion among developers.\n\n\nblack is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.\n\n\nHaving a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style."
   },
   {
     "objectID": "04_testing.html#running-black",

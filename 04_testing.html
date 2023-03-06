@@ -448,13 +448,32 @@
 </div>
 </div>
 </section>
-<section id="unit-testing-1" class="slide level2">
-<h2>Unit testing</h2>
+<section id="a-good-unit-test" class="slide level2 smaller">
+<h2>A <strong>good</strong> unit test</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div>
 <ul>
-<li><p>Running a unit test should be fast.</p></li>
-<li><p>It should be so fast that you can run it every time you make a change to your code.</p></li>
-<li><p>It should ideally not depend on any external resources (e.g.&nbsp;a database, files on disk, a web service, etc.)</p></li>
+<li class="fragment">Fully automated</li>
+<li class="fragment">Has full control over all the pieces running (fake out external dependencies)</li>
+<li class="fragment">Can be run in any order if part of many other tests</li>
+<li class="fragment">Runs in memory (no DB or File access, for example)</li>
+<li class="fragment">Consistently returns the same result (no random numbers)</li>
+<li class="fragment">Runs fast</li>
+<li class="fragment">Tests a single logical concept in the system</li>
+<li class="fragment">Readable</li>
+<li class="fragment">Maintainable</li>
+<li class="fragment">Trustworthy</li>
 </ul>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://www.artofunittesting.com/"><img data-src="https://images.manning.com/360/480/resize/book/6/5b5ac1d-637b-4f00-9f5d-7fb583b6dac5/Osherove-UT-3ed-MEAP-HI.png"></a></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
@@ -566,11 +585,27 @@
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div class="big">
+<div class="r-fit-text">
 <p>and now for something completely different…</p>
 </div>
 </section>
-<section id="exceptions" class="slide level2">
+<section id="the-zen-of-python" class="slide level2 smaller">
+<h2><a href="https://peps.python.org/pep-0020/">The Zen of Python</a></h2>
+<p>Beautiful is better than ugly.</p>
+<p>Explicit is better than implicit.</p>
+<p>Simple is better than complex.</p>
+<p>Complex is better than complicated.</p>
+<p>Flat is better than nested.</p>
+<p>Sparse is better than dense.</p>
+<p>Readability counts.</p>
+<div class="fragment">
+<p>…</p>
+<p><strong>Errors should never pass silently.</strong></p>
+<p><strong>Unless explicitly silenced.</strong></p>
+<p>…</p>
+</div>
+</section>
+<section id="exceptions" class="slide level2 smaller">
 <h2>Exceptions</h2>
 <div>
 <ul>
@@ -586,6 +621,13 @@
 <li class="fragment">You can also create your own custom exceptions, e.g.&nbsp;<code>ModelInitialistionError</code>, <code>MissingLicenseError</code>?</li>
 </ul>
 </div>
+</section>
+<section id="example-1" class="slide level2 smaller">
+<h2>Example</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/ops.py</strong></pre>
+</div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> is_operable(height:<span class="bu">float</span>, period:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
 <span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="fl">0.0</span>:</span>
 <span id="cb6-3"><a href="#cb6-3"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Supplied value of </span><span class="sc">{</span>height<span class="op">=</span><span class="sc">}</span><span class="ss"> is unphysical."</span>)</span>
@@ -595,14 +637,24 @@
 <span id="cb6-7"><a href="#cb6-7"></a>Traceback (most recent call last):</span>
 <span id="cb6-8"><a href="#cb6-8"></a>  ...</span>
 <span id="cb6-9"><a href="#cb6-9"></a><span class="pp">ValueError</span>: Supplied value of height<span class="op">=-</span><span class="fl">1.0</span> <span class="kw">is</span> unphysical.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>It is better to raise an exception (that can terminate the program), than to propagate a bad value.</p>
+</div>
 </section>
 <section id="how-to-test-exceptions" class="slide level2">
-<h2>How to test exceptions</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> ops <span class="im">import</span> is_operable</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">def</span> test_negative_heights_are_not_valid():</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
-<span id="cb7-5"><a href="#cb7-5"></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h2><a href="https://docs.pytest.org/en/7.2.x/how-to/assert.html#assertions-about-expected-exceptions">How to test exceptions</a></h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>tests/test_ops.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> pytest</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> ops <span class="im">import</span> is_operable</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">def</span> test_negative_heights_are_not_valid():</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb7-6"><a href="#cb7-6"></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="linting" class="slide level2">
 <h2>Linting</h2>
@@ -640,24 +692,24 @@
 <p>Enforcing a particular style can be a common source of discussion among developers.</p>
 </div>
 <div class="fragment">
-<p><code>black</code><sup>1</sup> is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.</p>
+<p><a href="https://black.readthedocs.io/"><code>black</code></a> is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.</p>
 </div>
 <div class="fragment">
 <p>Having a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style.</p>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>https://black.readthedocs.io/</p></li></ol></aside></section>
+</section>
 <section id="running-black" class="slide level2">
 <h2>Running Black</h2>
-<pre><code>$ black .
-reformatted data_utils.py
-reformatted dfsu/__init__.py
-reformatted dataarray.py
-reformatted dataset.py
-reformatted spatial/geometry.py
-reformatted pfs/pfssection.py
-
-All done! ✨ 🍰 ✨
-6 files reformatted, 27 files left unchanged.</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">$</span> black .</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="ex">reformatted</span> data_utils.py</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="ex">reformatted</span> dfsu/__init__.py</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="ex">reformatted</span> dataarray.py</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="ex">reformatted</span> dataset.py</span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="ex">reformatted</span> spatial/geometry.py</span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="ex">reformatted</span> pfs/pfssection.py</span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="ex">All</span> done! ✨ 🍰 ✨</span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="ex">6</span> files reformatted, 27 files left unchanged.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="running-black-1" class="slide level2 smaller">
 <h2>Running Black</h2>
@@ -669,7 +721,6 @@ All done! ✨ 🍰 ✨
 <p>Python package development</p>
 </div>
 </section>
-
     </div>
   </div>
 
