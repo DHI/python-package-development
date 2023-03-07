@@ -273,10 +273,9 @@ def test_negative_heights_are_not_valid():
 ```
 
 
-
 ## Linting
 
-Python is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code. 
+Linting is a way to check your code for common errors and style issues.
 
 `flake8` is a popular tool for linting Python code.
 
