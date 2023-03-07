@@ -501,7 +501,7 @@
     "href": "04_testing.html#linting",
     "title": "Testing, linting and formatting",
     "section": "Linting",
-    "text": "Linting\nPython is an interpreted and dynamic language, thus there is no compiler to check the syntax of your code.\nflake8 is a popular tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
+    "text": "Linting\nLinting is a way to check your code for common errors and style issues.\nflake8 is a popular tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
   },
   {
     "objectID": "04_testing.html#unused-variables",
