@@ -565,9 +565,11 @@
 <span id="cb5-7"><a href="#cb5-7"></a></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="kw">def</span> test_height_can_not_be_missing():</span>
 <span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>, match<span class="op">=</span><span class="st">"height"</span>):</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>) <span class="im">as</span> excinfo:</span>
 <span id="cb5-11"><a href="#cb5-11"></a>        is_operable(height<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>        is_operable(height<span class="op">=</span>np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12"><a href="#cb5-12"></a>        is_operable(height<span class="op">=</span>np.nan)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>        </span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="cf">assert</span> <span class="st">"height"</span> <span class="kw">in</span> <span class="bu">str</span>(excinfo.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="test-driven-development" class="slide level2">
 <h2>Test driven development</h2>

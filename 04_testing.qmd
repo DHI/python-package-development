@@ -170,9 +170,11 @@ def test_operable_period_can_be_missing():
 
 def test_height_can_not_be_missing():
 
-    with pytest.raises(ValueError, match="height"):
+    with pytest.raises(ValueError) as excinfo:
         is_operable(height=None)
         is_operable(height=np.nan)
+        
+    assert "height" in str(excinfo.value)
 ```
 
 ## Test driven development

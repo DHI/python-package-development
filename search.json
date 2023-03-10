@@ -326,7 +326,7 @@
     "href": "04_testing.html#tests-act-as-specification",
     "title": "Testing, linting and formatting",
     "section": "Tests act as specification",
-    "text": "Tests act as specification\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError, match=\"height\"):\n        is_operable(height=None)\n        is_operable(height=np.nan)"
+    "text": "Tests act as specification\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
   },
   {
     "objectID": "04_testing.html#test-driven-development",
