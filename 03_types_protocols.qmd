@@ -7,15 +7,51 @@ footer: Python package development
 logo: campus_logo.png
 ---
 
-## Python types
+## Types
+
+**C#**
+
+```{.csharp code-line-numbers="1-4"}
+int n = 2;
+String s = "Hello";
+
+public String RepeatedString(String s, int n) {
+    return Enumerable.Repeat(s, n).Aggregate((a, b) => a + b);
+}
+```
+
+. . . 
+
+**Python**
+
+```{.python code-line-numbers="1-4"}
+n = 2
+s = "Hello"
+
+def repeated_string(s, n):
+    return s * n
+```
+
+## Types
 
 ::: {.incremental}
-
 * Python is a dynamically typed language
 * Types are not checked at compile time
 * Types are checked at runtime
-
 :::
+
+. . .
+
+**Python** with type hints
+
+```python
+n: int = 2
+s: str = "Hello"
+
+def repeated_string(s:str, n:int) -> str:
+    return s * n
+```
+
 
 ## Abstraction
 
@@ -30,6 +66,7 @@ for x in values:
 ```
 
 :::
+
 
 ::: {.column}
 **Version B**
@@ -78,9 +115,18 @@ classDiagram
     }
 ```
 
+. . .
+
+::: {.incremental}
+
+* If a class implements `__len__` it is a `Sized` object.
+* If a class implements `__contains__` it is a `Container` object.
+* If a class implements `__iter__` it is a `Iterable` object.
+:::
+
 ## Collections Abstract Base Classes {.smaller}
 
-```{.python code-line-numbers="1|2 -5|6-9|10-11|12-25"}
+```{.python code-line-numbers="1|2-5|6-9|10-11|12-25"}
 >>> a = [1, 2, 3]
 >>> 1 in a
 True
@@ -144,18 +190,18 @@ Dundermethods:
 ```python
 class JavaLikeToolbox:
     
-    def get_tool_by_name(self, name: str) -> Tool:
+    def getToolByName(self, name: str) -> Tool:
         for tool in self.tools:
             if tool.name == name:
                 return tool
 
-    def number_of_tools(self) -> int:
+    def numberOfTools(self) -> int:
         return len(self.tools)
 
 >>> tb = JavaLikeToolbox([Hammer(), Screwdriver()])
->>> tb.get_tool_by_name("hammer")
+>>> tb.getToolByName("hammer")
 Hammer()
->>> tb.number_of_tools()
+>>> tb.numberOfTools()
 2
 ```
 
@@ -177,14 +223,20 @@ class Toolbox:
 2
 ```
 
+::: {.notes}
+You want your code to be feel like the built-in types.
+:::
+
 
 ## Duck typing
 
 ::: {.incremental}
 
-* If it walks like a duck and quacks like a duck, it's a duck
+* "*If it walks like a duck and quacks like a duck, it's a duck*"
+* From the perspectie of the caller, it doesn't matter if it is a rubber duck or a real duck.
 * If it has a `__getitem__` method, it's a sequence
 * If it has a `__len__` method, it's a collection
+* The type of the object is **not important**, as long as it has the right methods.
 
 :::
 
@@ -354,7 +406,7 @@ def plot_stations(station_ids: List[int], repo: StationRepository) -> None:
 
 ## Protocols {.smaller}
 
-```{.python code-line-numbers="1-7|9-13|15-19"}
+```{.python code-line-numbers="1-2|11-12|18-19"}
 class DictStationRepository:  # useful for testing (Module 4)
     def __getitem__(self, key: int) -> Station:
         stations = {
@@ -420,47 +472,6 @@ def process(number: Union[int,str,float]) -> int:
 
 The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input.
 
-## `isinstance`
-
-In Python it is generally considered bad practice to use `isinstance` to check the type of an object.
-
-```python
-def process_numbers(numbers):
-    if not isinstance(numbers, list):
-        raise NotImplementedError("Only lists are supported")
-    # do something with numbers
-    return something
-
->>> process_numbers([1,2,3])
- 3
->>> process_numbers((1,2,3))
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 3, in process_numbers
-NotImplementedError: Only lists are supported
-```
-
-## `isinstance`
-
-```python
-def process_numbers(numbers):
-    if not isinstance(numbers, Iterable):
-        raise NotImplementedError("Only iterables are supported")
-    # do something with numbers
-    return something
-
->>> process_numbers([1,2,3]) # a list is an iterable
-3
->>> process_numbers((1,2,3)) # a tuple is also an iterable
-3
-```
-
-. . . 
-
-But using `isinstance` is not always bad.
-It can be useful to check if an object is an instance of a specific class.
-
-Especially when you want to check if an object is an instance of a class that you have defined **yourself**.
 
 
 ## Refactoring
