@@ -19,6 +19,15 @@ scipy==0.17.0
 matplotlib==1.5.1
 ```
 
+## Virtual environments
+
+* Allows different versions of a package to coexist on your machine
+* TODO
+
+```bash
+$ python -m venv venv
+```
+
 ## Branch naming convention
 
 There doesn't exist a clear naming conventions.
@@ -40,6 +49,13 @@ Two main approaches are:
 
 * GitHub Actions
 * Azure Pipelines
+
+
+::: {.notes}
+
+GitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies.
+
+:::
 
 ## GitHub Actions
 
