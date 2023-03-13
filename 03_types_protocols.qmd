@@ -234,9 +234,7 @@ You want your code to be feel like the built-in types.
 ::: {.incremental}
 
 * "*If it walks like a duck and quacks like a duck, it's a duck*"
-* From the perspectie of the caller, it doesn't matter if it is a rubber duck or a real duck.
-* If it has a `__getitem__` method, it's a sequence
-* If it has a `__len__` method, it's a collection
+* From the perspective of the caller, it doesn't matter if it is a rubber duck or a real duck.
 * The type of the object is **not important**, as long as it has the right methods.
 
 :::
@@ -338,7 +336,7 @@ Pre-work for this Module
 >
 > 4. Designing for high performance
 > 
-> in Hillard, 2019
+> in Hillard, 2020
 >
 > Do you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?
 > 
@@ -373,6 +371,7 @@ One person from each team briefly presents their discussion outcomes
 * Protocols were introduced in Python 3.8
 * Protocols are a way to define a set of methods that a class must implement
 * Protocols are not checked at runtime
+* Protocols can be used for static type checking (mypy)
 * Protocols are a hint to the developer
 
 :::
