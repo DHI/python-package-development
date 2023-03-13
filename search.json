@@ -718,7 +718,7 @@
     "href": "03_types_protocols.html#duck-typing",
     "title": "Python types, interfaces and protocols",
     "section": "Duck typing",
-    "text": "Duck typing\n\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspectie of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nIf it has a __getitem__ method, it’s a sequence\nIf it has a __len__ method, it’s a collection\nThe type of the object is not important, as long as it has the right methods."
+    "text": "Duck typing\n\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods."
   },
   {
     "objectID": "03_types_protocols.html#lets-revisit-the-date-interval",
@@ -739,7 +739,7 @@
     "href": "03_types_protocols.html#time-for-a-discussion",
     "title": "Python types, interfaces and protocols",
     "section": "Time for a discussion",
-    "text": "Time for a discussion\nPre-work for this Module\n\nRead chapters\n\nAbstraction and encapsulation\nDesigning for high performance\n\nin Hillard, 2019\nDo you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?\nConsider the implications of storing data in a list or in a dictionary."
+    "text": "Time for a discussion\nPre-work for this Module\n\nRead chapters\n\nAbstraction and encapsulation\nDesigning for high performance\n\nin Hillard, 2020\nDo you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?\nConsider the implications of storing data in a list or in a dictionary."
   },
   {
     "objectID": "03_types_protocols.html#time-for-a-discussion-1",
@@ -753,7 +753,7 @@
     "href": "03_types_protocols.html#protocols",
     "title": "Python types, interfaces and protocols",
     "section": "Protocols",
-    "text": "Protocols\n\n\nProtocols were introduced in Python 3.8\nProtocols are a way to define a set of methods that a class must implement\nProtocols are not checked at runtime\nProtocols are a hint to the developer"
+    "text": "Protocols\n\n\nProtocols were introduced in Python 3.8\nProtocols are a way to define a set of methods that a class must implement\nProtocols are not checked at runtime\nProtocols can be used for static type checking (mypy)\nProtocols are a hint to the developer"
   },
   {
     "objectID": "03_types_protocols.html#protocols-1",
