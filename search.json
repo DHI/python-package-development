@@ -39,7 +39,7 @@
     "href": "00_introduction.html#course-material",
     "title": "Python package development",
     "section": "Course material",
-    "text": "Course material\n\nHillard, 2019, Practices of the Python Pro, Manning\nSlides\nCampus\nCourse Yammer channel"
+    "text": "Course material\n\nHillard, 2020, Practices of the Python Pro, Manning\nSlides\nCampus\nCourse Yammer channel"
   },
   {
     "objectID": "00_introduction.html#poll",
@@ -420,29 +420,36 @@
     "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package\n\n©️ DHI 2023"
   },
   {
-    "objectID": "05_dependecies_ci.html#dependency-management",
-    "href": "05_dependecies_ci.html#dependency-management",
+    "objectID": "05_dependencies_ci.html#dependency-management",
+    "href": "05_dependencies_ci.html#dependency-management",
     "title": "Dependencies and Continuous Integration",
     "section": "Dependency management",
     "text": "Dependency management\nRequirements.txt\nExample:\n$ cat requirements.txt\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1"
   },
   {
-    "objectID": "05_dependecies_ci.html#branch-naming-convention",
-    "href": "05_dependecies_ci.html#branch-naming-convention",
+    "objectID": "05_dependencies_ci.html#virtual-environments",
+    "href": "05_dependencies_ci.html#virtual-environments",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Virtual environments",
+    "text": "Virtual environments\n\nAllows different versions of a package to coexist on your machine\nTODO\n\n$ python -m venv venv"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#branch-naming-convention",
+    "href": "05_dependencies_ci.html#branch-naming-convention",
     "title": "Dependencies and Continuous Integration",
     "section": "Branch naming convention",
     "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling"
   },
   {
-    "objectID": "05_dependecies_ci.html#continuous-integration",
-    "href": "05_dependecies_ci.html#continuous-integration",
+    "objectID": "05_dependencies_ci.html#continuous-integration",
+    "href": "05_dependencies_ci.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
     "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines"
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines\n\n\nGitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
   },
   {
-    "objectID": "05_dependecies_ci.html#github-actions",
-    "href": "05_dependecies_ci.html#github-actions",
+    "objectID": "05_dependencies_ci.html#github-actions",
+    "href": "05_dependencies_ci.html#github-actions",
     "title": "Dependencies and Continuous Integration",
     "section": "GitHub Actions",
     "text": "GitHub Actions\nWorkflow are stored in the .github/workflows folder.\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
@@ -788,7 +795,7 @@
     "href": "03_types_protocols.html#refactoring",
     "title": "Python types, interfaces and protocols",
     "section": "Refactoring",
-    "text": "Refactoring\n\n\nRefactoring is a way to improve the design of existing code\nChanging a software system in such a way that it does not alter the external behavior of the code, yet improves its internal structure\nRefactoring is a way to make code more readable and maintainable"
+    "text": "Refactoring\n\n\nRefactoring is a way to improve the design of existing code\nChanging a software system in such a way that it does not alter the external behavior of the code, yet improves its internal structure\nRefactoring is a way to make code more readable and maintainable\nHousekeeping"
   },
   {
     "objectID": "03_types_protocols.html#common-refactoring-techniques",
@@ -816,14 +823,14 @@
     "href": "03_types_protocols.html#extract-method",
     "title": "Python types, interfaces and protocols",
     "section": "Extract method",
-    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale)\n\ndef linear_model(x,*,a=0.0,b=1.0):\n    return a+b*x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value,x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return  clip(draft, min_value=0.)"
+    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale)\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
   },
   {
     "objectID": "03_types_protocols.html#inline-method",
     "href": "03_types_protocols.html#inline-method",
     "title": "Python types, interfaces and protocols",
     "section": "Inline method",
-    "text": "Inline method\nOpposite of extract mehtod.\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return  min(0.0,x)"
+    "text": "Inline method\nOpposite of extract mehtod.\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return min(0.0, x)"
   },
   {
     "objectID": "03_types_protocols.html#composed-method",

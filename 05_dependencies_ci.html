@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.335">
 
-  <title>Python package development</title>
+  <title>Python package development - Dependencies and Continuous Integration</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -27,6 +27,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -323,66 +387,119 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Python package development</h1>
+  <h1 class="title">Dependencies and Continuous Integration</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="instructors" class="slide level2">
-<h2>Instructors</h2>
+<section id="dependency-management" class="slide level2">
+<h2>Dependency management</h2>
+<p><code>Requirements.txt</code></p>
+<p>Example:</p>
+<pre><code>$ cat requirements.txt
+numpy==1.11.0
+scipy==0.17.0
+matplotlib==1.5.1</code></pre>
+</section>
+<section id="virtual-environments" class="slide level2">
+<h2>Virtual environments</h2>
 <ul>
-<li>Jesper</li>
-<li>Henrik</li>
-<li>Thomas</li>
+<li>Allows different versions of a package to coexist on your machine</li>
+<li>TODO</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> python <span class="at">-m</span> venv venv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="branch-naming-convention" class="slide level2">
+<h2>Branch naming convention</h2>
+<p>There doesn’t exist a clear naming conventions.</p>
+<ul>
+<li><code>main</code> is the main branch🙄, this was previously named <code>master</code>.</li>
+<li>Feature branches uses lowercase separated with dashes, e.g.&nbsp;<code>interpolation-options</code></li>
+<li>Branches related to fixing issues, start with the id of the issue, e.g.&nbsp;<code>42-fix-missing-value-handling</code></li>
 </ul>
 </section>
-<section id="participants" class="slide level2">
-<h2>Participants</h2>
-<p>Introduce yourselves in a break out session later today.</p>
-</section>
-<section id="learning-modules" class="slide level2">
-<h2>Learning modules</h2>
-<ol type="1">
-<li><a href="01_function_classes.qmd">Python functions, classes, and modules</a></li>
-<li><a href="02_version_control.qmd">Git, Pull Requests, and code reviews</a></li>
-<li><a href="03_types_protocols.qmd">Types, abstraction, and refactoring</a></li>
-<li><a href="04_testing.qmd">Testing and auto-formatting</a></li>
-<li><a href="05_dependecies_ci.qmd">Dependencies and GitHub actions</a></li>
-<li><a href="06_documentation.qmd">Documentation</a></li>
-<li><a href="07_packaging.qmd">Distributing your package</a></li>
-</ol>
-</section>
-<section id="learning-objectives" class="slide level2">
-<h2>Learning objectives</h2>
+<section id="continuous-integration" class="slide level2">
+<h2>Continuous Integration</h2>
+<p>Running tests on every commit in a well defined environment ensures that the code is working as expected.</p>
+<p>It solves the “it works on my machine” problem.</p>
+<p>Executing code on a remote server is a good way to ensure that the code is working as expected.</p>
+<p>Two main approaches are:</p>
 <ul>
-<li>improved Python skills</li>
-<li>knowledge of how to create reusable Python code</li>
-<li>know how to share code with others through a Python package</li>
+<li>GitHub Actions</li>
+<li>Azure Pipelines</li>
 </ul>
+<aside class="notes">
+<p>GitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="format" class="slide level2">
-<h2>Format</h2>
-<ul>
-<li>Online session (Zoom) almost every Monday</li>
-<li>Homework assignments</li>
-<li>Quiz (Campus)</li>
-</ul>
+<section id="github-actions" class="slide level2">
+<h2>GitHub Actions</h2>
+<p>Workflow are stored in the <code>.github/workflows</code> folder.</p>
+<pre><code>$ tree mikeio/.github/
+mikeio/.github/
+└── workflows
+    ├── docs.yml
+    ├── downstream_test.yml
+    ├── full_test.yml
+    ├── notebooks_test.yml
+    ├── perf_test.yml
+    ├── python-publish.yml
+    └── quick_test.yml</code></pre>
 </section>
-<section id="course-material" class="slide level2">
-<h2>Course material</h2>
-<ul>
-<li>Hillard, 2020, Practices of the Python Pro, Manning</li>
-<li><a href="https://dhi.github.io/python-package-development">Slides</a></li>
-<li>Campus</li>
-<li>Course Yammer channel</li>
-</ul>
-</section>
-<section id="poll" class="slide level2">
-<h2>Poll</h2>
+<section class="slide level2">
 
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Quick test</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">on</span><span class="kw">:</span><span class="co"> # when to run the workflow</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main</span><span class="kw">]</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="fu">jobs</span><span class="kw">:</span><span class="co"> # what to run</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="co"> # on what operating system</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.9</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>        python -m pip install --upgrade pip</span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install mikeio</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>        pip install .[test]</span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>        pytest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section class="slide level2">
 
-<img src="campus_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p>🙂🚀</p>
+
+<img data-src="images/github_action_result.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<p>☹️</p>
+<p><img data-src="images/github_action_result_fail.png"></p>
+
+<p><img src="campus_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p>Python package development</p>
 </div>
 </section>

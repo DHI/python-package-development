@@ -219,6 +219,7 @@ class Toolbox:
 
 >>> tb = Toolbox([Hammer(), Screwdriver()])
 >>> tb["hammer"]
+Hammer()
 >>> len(tb)
 2
 ```
@@ -347,7 +348,7 @@ Pre-work for this Module
 
 *Discuss in learning teams (15 minutes):*
 
-**Chapter 3:** Abstraction and encapsulation
+**Chapter 3: Abstraction and encapsulation**
 
 What are some pros/cons of treating functions as black boxes?
 
@@ -481,6 +482,7 @@ The consumers of your package (future self), will be grateful if you are not ove
 * Refactoring is a way to improve the design of existing code
 * Changing a software system in such a way that it **does not alter the external behavior of the code**, yet improves its internal structure
 * Refactoring is a way to make code more readable and maintainable
+* Housekeeping
 
 :::
 
@@ -549,15 +551,15 @@ def predict(x):
 def error(scale):
     return (random.random() - 0.5) / scale)
 
-def linear_model(x,*,a=0.0,b=1.0):
-    return a+b*x
+def linear_model(x, *, a=0.0, b=1.0):
+    return a + b * x
 
 def clip(x, *, min_value=0.0):
-    return min(min_value,x)
+    return min(min_value, x)
 
 def predict(x): 
     draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
-    return  clip(draft, min_value=0.)
+    return clip(draft, min_value=0.)
 ```
 
 ## Inline method
@@ -568,7 +570,7 @@ Opposite of extract mehtod.
 ```{.python code-line-numbers="3"}
 def predict(x): 
     draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)
-    return  min(0.0,x)
+    return min(0.0, x)
 ```
 
 
@@ -581,7 +583,7 @@ Break up a long method into smaller methods.
 ```python
 # get data
 os.shutil.copyfile(thisfile, localfile)
-df= read_csv(localfile)
+df = read_csv(localfile)
 
 # clean data
 df.dropna()
@@ -589,7 +591,7 @@ df.drop_duplicates()
 df[somevar<0.0] = 0.0
 
 # transform data
-df.date= pd.to_datetime(df.date) - 86400
+df.date = pd.to_datetime(df.date) - 86400
 
 # predict
 predictions = df.height + df.weight * df.age

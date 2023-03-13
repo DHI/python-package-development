@@ -608,8 +608,9 @@
 <span id="cb8-8"><a href="#cb8-8"></a></span>
 <span id="cb8-9"><a href="#cb8-9"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
 <span id="cb8-10"><a href="#cb8-10"></a><span class="op">&gt;&gt;&gt;</span> tb[<span class="st">"hammer"</span>]</span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a href="#cb8-11"></a>Hammer()</span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>You want your code to be feel like the built-in types.</p>
 <style type="text/css">
@@ -730,7 +731,7 @@
 <section id="time-for-a-discussion-1" class="slide level2">
 <h2>Time for a discussion</h2>
 <p><em>Discuss in learning teams (15 minutes):</em></p>
-<p><strong>Chapter 3:</strong> Abstraction and encapsulation</p>
+<p><strong>Chapter 3: Abstraction and encapsulation</strong></p>
 <p>What are some pros/cons of treating functions as black boxes?</p>
 <div class="fragment">
 <p><strong>Chapter 4: Designing for high performance</strong></p>
@@ -843,6 +844,7 @@
 <li class="fragment">Refactoring is a way to improve the design of existing code</li>
 <li class="fragment">Changing a software system in such a way that it <strong>does not alter the external behavior of the code</strong>, yet improves its internal structure</li>
 <li class="fragment">Refactoring is a way to make code more readable and maintainable</li>
+<li class="fragment">Housekeeping</li>
 </ul>
 </div>
 </section>
@@ -896,22 +898,22 @@
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">def</span> error(scale):</span>
 <span id="cb21-2"><a href="#cb21-2"></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
 <span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">def</span> linear_model(x,<span class="op">*</span>,a<span class="op">=</span><span class="fl">0.0</span>,b<span class="op">=</span><span class="fl">1.0</span>):</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="cf">return</span> a<span class="op">+</span>b<span class="op">*</span>x</span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">def</span> linear_model(x, <span class="op">*</span>, a<span class="op">=</span><span class="fl">0.0</span>, b<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">*</span> x</span>
 <span id="cb21-6"><a href="#cb21-6"></a></span>
 <span id="cb21-7"><a href="#cb21-7"></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
-<span id="cb21-8"><a href="#cb21-8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value,x)</span>
+<span id="cb21-8"><a href="#cb21-8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value, x)</span>
 <span id="cb21-9"><a href="#cb21-9"></a></span>
 <span id="cb21-10"><a href="#cb21-10"></a><span class="kw">def</span> predict(x): </span>
 <span id="cb21-11"><a href="#cb21-11"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb21-12"><a href="#cb21-12"></a>    <span class="cf">return</span>  clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-12"><a href="#cb21-12"></a>    <span class="cf">return</span> clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="inline-method" class="slide level2">
 <h2>Inline method</h2>
 <p>Opposite of extract mehtod.</p>
 <div class="sourceCode" id="cb22" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">def</span> predict(x): </span>
 <span id="cb22-2"><a href="#cb22-2"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="composed-method" class="slide level2">
 <h2>Composed method</h2>
@@ -921,7 +923,7 @@
 
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># get data</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a>os.shutil.copyfile(thisfile, localfile)</span>
-<span id="cb23-3"><a href="#cb23-3"></a>df<span class="op">=</span> read_csv(localfile)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>df <span class="op">=</span> read_csv(localfile)</span>
 <span id="cb23-4"><a href="#cb23-4"></a></span>
 <span id="cb23-5"><a href="#cb23-5"></a><span class="co"># clean data</span></span>
 <span id="cb23-6"><a href="#cb23-6"></a>df.dropna()</span>
@@ -929,7 +931,7 @@
 <span id="cb23-8"><a href="#cb23-8"></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb23-9"><a href="#cb23-9"></a></span>
 <span id="cb23-10"><a href="#cb23-10"></a><span class="co"># transform data</span></span>
-<span id="cb23-11"><a href="#cb23-11"></a>df.date<span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>df.date <span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
 <span id="cb23-12"><a href="#cb23-12"></a></span>
 <span id="cb23-13"><a href="#cb23-13"></a><span class="co"># predict</span></span>
 <span id="cb23-14"><a href="#cb23-14"></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
