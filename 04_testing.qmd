@@ -56,9 +56,9 @@ bigger than a unit, but they are occasionally treated as units.
 ::: {.column width=70%}
 
 ::: {.incremental}
-* Fully automated
+* Fully automated (next week)
 * Has full control over all the pieces running (fake out external dependencies)
-* Can be run in any order  if part of many other tests
+* Can be run in any order if part of many other tests
 * Runs in memory (no DB or File access, for example)
 * Consistently returns the same result (no random numbers)
 * Runs fast
@@ -235,6 +235,7 @@ Readability counts.
 ::: {.incremental}
 * Exceptions are a way to handle errors in your code.
 * Raising an exception can prevent propagating bad values. 
+* Exceptions are *communication* between the programmer and the user.
 * There are many built-in exceptions in Python
     + `IndexError`
     + `KeyError`
@@ -263,6 +264,12 @@ ValueError: Supplied value of height=-1.0 is unphysical.
 
 It is better to raise an exception (that can terminate the program), than to propagate a bad value.
 
+
+## Warnings 
+
+TODO
+
+
 ## [How to test exceptions](https://docs.pytest.org/en/7.2.x/how-to/assert.html#assertions-about-expected-exceptions)
 
 ```{.python filename="tests/test_ops.py"}
@@ -274,6 +281,7 @@ def test_negative_heights_are_not_valid():
         is_operable(height=-1.0, period=4.0)
 ```
 
+The same can be done with warnings.
 
 ## Linting
 

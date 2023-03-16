@@ -454,7 +454,7 @@
 <div class="column" style="width:70%;">
 <div>
 <ul>
-<li class="fragment">Fully automated</li>
+<li class="fragment">Fully automated (next week)</li>
 <li class="fragment">Has full control over all the pieces running (fake out external dependencies)</li>
 <li class="fragment">Can be run in any order if part of many other tests</li>
 <li class="fragment">Runs in memory (no DB or File access, for example)</li>
@@ -613,6 +613,7 @@
 <ul>
 <li class="fragment">Exceptions are a way to handle errors in your code.</li>
 <li class="fragment">Raising an exception can prevent propagating bad values.</li>
+<li class="fragment">Exceptions are <em>communication</em> between the programmer and the user.</li>
 <li class="fragment">There are many built-in exceptions in Python
 <ul>
 <li class="fragment"><code>IndexError</code></li>
@@ -644,6 +645,10 @@
 <p>It is better to raise an exception (that can terminate the program), than to propagate a bad value.</p>
 </div>
 </section>
+<section id="warnings" class="slide level2">
+<h2>Warnings</h2>
+<p>TODO</p>
+</section>
 <section id="how-to-test-exceptions" class="slide level2">
 <h2><a href="https://docs.pytest.org/en/7.2.x/how-to/assert.html#assertions-about-expected-exceptions">How to test exceptions</a></h2>
 <div class="code-with-filename">
@@ -657,6 +662,7 @@
 <span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
 <span id="cb7-6"><a href="#cb7-6"></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The same can be done with warnings.</p>
 </section>
 <section id="linting" class="slide level2">
 <h2>Linting</h2>
