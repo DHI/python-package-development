@@ -123,28 +123,28 @@
     "href": "04_testing.html#testing",
     "title": "Testing, linting and formatting",
     "section": "Testing",
-    "text": "Testing\nTesting is a way to verify that your code is working as expected.\nThe simplest way to test your code is to run it and check the output.\n\nAutomated testing is a way to run your code and check the output automatically.\nChanges to your code can break other parts of your code.\nBeing able to run tests automatically is a way to verify that your code is still working as expected."
+    "text": "Testing\nVerify code is working as expected. Simplest way to test is to run code and check output.\n\nAutomated testing checks output automatically. Code changes can break other parts of code. Automatic testing verifies code is still working."
   },
   {
     "objectID": "04_testing.html#testing-workflow",
     "href": "04_testing.html#testing-workflow",
     "title": "Testing, linting and formatting",
     "section": "Testing workflow",
-    "text": "Testing workflow\n\n\n\n\nflowchart TD\n    A[Prepare inputs]\n    B[Identify expected output]\n    C[Obtain actual output]\n    D[Compare actual and\\n expected output]\n\n    A --> B --> C --> D"
+    "text": "Testing workflow\n\n\n\n\nflowchart TD\n    A[Prepare inputs]\n    B[Describe expected output]\n    C[Obtain actual output]\n    D[Compare actual and\\n expected output]\n\n    A --> B --> C --> D"
   },
   {
     "objectID": "04_testing.html#unit-testing",
     "href": "04_testing.html#unit-testing",
     "title": "Testing, linting and formatting",
     "section": "Unit testing",
-    "text": "Unit testing\n\n\n\n\n\n\nDefinition\n\n\nA unit is a small, fundamental piece of software.\nA piece of code that can be isolated for testing.\nFunctions are generally considered units—they can be executed in isolation by calling them with the appropriate inputs.\nLines of code within those functions can’t be isolated, so they’re smaller than a unit.\nClasses contain many pieces that can be isolated further, so they’re generally bigger than a unit, but they are occasionally treated as units."
+    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\nA function is typically considerd a “unit”.\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
   },
   {
     "objectID": "04_testing.html#a-good-unit-test",
     "href": "04_testing.html#a-good-unit-test",
     "title": "Testing, linting and formatting",
     "section": "A good unit test",
-    "text": "A good unit test\n\n\n\n\nFully automated (next week)\nHas full control over all the pieces running (fake out external dependencies)\nCan be run in any order if part of many other tests\nRuns in memory (no DB or File access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
+    "text": "A good unit test\n\n\n\n\nFully automated (next week)\nHas full control over all the pieces running (“fake” external dependencies)\nCan be run in any order\nRuns in memory (no DB or file access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
   },
   {
     "objectID": "04_testing.html#example",
@@ -166,6 +166,34 @@
     "title": "Testing, linting and formatting",
     "section": "Testing in VS Code",
     "text": "Testing in VS Code"
+  },
+  {
+    "objectID": "04_testing.html#fixtures",
+    "href": "04_testing.html#fixtures",
+    "title": "Testing, linting and formatting",
+    "section": "Fixtures",
+    "text": "Fixtures\n\nA piece of code that is used by multiple tests\nProvide data or services to tests\nDefined with @pytest.fixture\nSet up test environment\nPass fixtures as test arguments"
+  },
+  {
+    "objectID": "04_testing.html#fixture-example",
+    "href": "04_testing.html#fixture-example",
+    "title": "Testing, linting and formatting",
+    "section": "Fixture example",
+    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, .., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
+  },
+  {
+    "objectID": "04_testing.html#test-coverage",
+    "href": "04_testing.html#test-coverage",
+    "title": "Testing, linting and formatting",
+    "section": "Test coverage",
+    "text": "Test coverage\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
+  },
+  {
+    "objectID": "04_testing.html#test-coverage-report",
+    "href": "04_testing.html#test-coverage-report",
+    "title": "Testing, linting and formatting",
+    "section": "Test coverage report",
+    "text": "Test coverage report\npytest --cov=myproj tests/\n-------------------- coverage: ... ---------------------\nName                 Stmts   Miss  Cover\n----------------------------------------\nmyproj/__init__          2      0   100%\nmyproj/myproj          257     13    94%\nmyproj/feature4286      94      7    92%\n----------------------------------------\nTOTAL                  353     20    94%"
   },
   {
     "objectID": "04_testing.html#testing-advice",
@@ -221,7 +249,7 @@
     "href": "04_testing.html#warnings",
     "title": "Testing, linting and formatting",
     "section": "Warnings",
-    "text": "Warnings\nTODO"
+    "text": "Warnings\nWarnings are a way to alert users of your code to potential issues or usage errors without actually halting the program’s execution.\n\n\nsrc/ops.py\n\nimport warnings\nwarnings.warn(\"This is a warning\")"
   },
   {
     "objectID": "04_testing.html#how-to-test-exceptions",

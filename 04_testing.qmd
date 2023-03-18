@@ -7,24 +7,22 @@ logo: campus_logo.png
 
 ## Testing
 
-Testing is a way to verify that your code is working as expected.
-
-The simplest way to test your code is to run it and check the output.
+Verify code is working as expected.
+Simplest way to test is to run code and check output.
 
 . . .
 
-Automated testing is a way to run your code and check the output automatically.
+Automated testing checks output automatically.
+Code changes can break other parts of code.
+Automatic testing verifies code is still working.
 
-Changes to your code can break other parts of your code.
-
-Being able to run tests automatically is a way to verify that your code is still working as expected.
 
 ## Testing workflow
 
 ```{mermaid}
 flowchart TD
     A[Prepare inputs]
-    B[Identify expected output]
+    B[Describe expected output]
     C[Obtain actual output]
     D[Compare actual and\n expected output]
 
@@ -36,18 +34,15 @@ flowchart TD
 ## Unit testing
 
 ::: {.callout-note}
-## Definition
-A unit is a small, fundamental piece of software.
+## Definition "Unit"
 
-A piece of code that can be isolated for testing.
-
-Functions are generally considered units—they can be executed in isolation by calling them with the appropriate inputs.
-
-Lines of code within those functions can’t be isolated, so they’re smaller than a unit.
-
-Classes contain many pieces that can be isolated further, so they’re generally
-bigger than a unit, but they are occasionally treated as units.
+* A small, fundamental piece of code.
+* Executed in isolation with appropriate inputs.
 ::: 
+
+* A function is typically considerd a "unit".
+* Lines of code within functions are smaller (can't be isolated)
+* Classes are considered bigger (but can be treated as units)
 
 ## A **good** unit test {.smaller}
 
@@ -57,9 +52,9 @@ bigger than a unit, but they are occasionally treated as units.
 
 ::: {.incremental}
 * Fully automated (next week)
-* Has full control over all the pieces running (fake out external dependencies)
-* Can be run in any order if part of many other tests
-* Runs in memory (no DB or File access, for example)
+* Has full control over all the pieces running ("fake" external dependencies)
+* Can be run in any order 
+* Runs in memory (no DB or file access, for example)
 * Consistently returns the same result (no random numbers)
 * Runs fast
 * Tests a single logical concept in the system
@@ -142,6 +137,62 @@ def test_integration():
 ## Testing in VS Code
 
 ![](images/vs_code_test.png)
+
+
+## Fixtures
+
+* A piece of code that is used by multiple tests
+* Provide data or services to tests
+* Defined with @pytest.fixture
+* Set up test environment
+* Pass fixtures as test arguments
+
+
+## Fixture example
+
+```python
+@pytest.fixture
+def water_level():
+    return TimeSeries([1.0, .., 3.0], start = "2019-01-01")
+
+def test_get_max_water_level(water_level):
+    max_wls = get_max_water_level(water_level, freq="Y")
+    
+    assert len(max_wls) == 1
+    assert max_wls[0] == 3.0
+```
+
+
+## Test coverage
+
+* A measure of how much of your code is tested
+* A good test suite should cover all the code
+* Install `pytest-cov`
+* Run tests with coverage report
+    - `pytest --cov=myproj`
+* Use coverage report to identify untested code
+
+
+## Test coverage report
+```bash
+pytest --cov=myproj tests/
+```
+
+
+```bash
+-------------------- coverage: ... ---------------------
+Name                 Stmts   Miss  Cover
+----------------------------------------
+myproj/__init__          2      0   100%
+myproj/myproj          257     13    94%
+myproj/feature4286      94      7    92%
+----------------------------------------
+TOTAL                  353     20    94%
+```
+
+
+
+
 
 
 ## Testing advice
@@ -267,7 +318,12 @@ It is better to raise an exception (that can terminate the program), than to pro
 
 ## Warnings 
 
-TODO
+Warnings are a way to alert users of your code to potential issues or usage errors without actually halting the program's execution.
+
+```{.python filename="src/ops.py"}
+import warnings
+warnings.warn("This is a warning")
+```
 
 
 ## [How to test exceptions](https://docs.pytest.org/en/7.2.x/how-to/assert.html#assertions-about-expected-exceptions)
@@ -283,6 +339,7 @@ def test_negative_heights_are_not_valid():
 
 The same can be done with warnings.
 
+
 ## Linting
 
 Linting is a way to check your code for common errors and style issues.
@@ -294,6 +351,7 @@ Linting is a way to check your code for common errors and style issues.
 * unused variables
 * undefined names
 * code style (e.g. line length, indentation, whitespace, etc.)
+
 
 ## Unused variables
 
@@ -353,6 +411,7 @@ reformatted pfs/pfssection.py
 All done! ✨ 🍰 ✨
 6 files reformatted, 27 files left unchanged.
 ```
+
 
 ## Running Black {.smaller}
 

@@ -398,12 +398,9 @@
 </section>
 <section id="testing" class="slide level2">
 <h2>Testing</h2>
-<p>Testing is a way to verify that your code is working as expected.</p>
-<p>The simplest way to test your code is to run it and check the output.</p>
+<p>Verify code is working as expected. Simplest way to test is to run code and check output.</p>
 <div class="fragment">
-<p>Automated testing is a way to run your code and check the output automatically.</p>
-<p>Changes to your code can break other parts of your code.</p>
-<p>Being able to run tests automatically is a way to verify that your code is still working as expected.</p>
+<p>Automated testing checks output automatically. Code changes can break other parts of code. Automatic testing verifies code is still working.</p>
 </div>
 </section>
 <section id="testing-workflow" class="slide level2">
@@ -414,7 +411,7 @@
 <p>
 </p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
     A[Prepare inputs]
-    B[Identify expected output]
+    B[Describe expected output]
     C[Obtain actual output]
     D[Compare actual and\n expected output]
 
@@ -436,17 +433,21 @@
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Definition</strong></p>
+<p><strong>Definition “Unit”</strong></p>
 </div>
 <div class="callout-content">
-<p>A unit is a small, fundamental piece of software.</p>
-<p>A piece of code that can be isolated for testing.</p>
-<p>Functions are generally considered units—they can be executed in isolation by calling them with the appropriate inputs.</p>
-<p>Lines of code within those functions can’t be isolated, so they’re smaller than a unit.</p>
-<p>Classes contain many pieces that can be isolated further, so they’re generally bigger than a unit, but they are occasionally treated as units.</p>
+<ul>
+<li>A small, fundamental piece of code.</li>
+<li>Executed in isolation with appropriate inputs.</li>
+</ul>
 </div>
 </div>
 </div>
+<ul>
+<li>A function is typically considerd a “unit”.</li>
+<li>Lines of code within functions are smaller (can’t be isolated)</li>
+<li>Classes are considered bigger (but can be treated as units)</li>
+</ul>
 </section>
 <section id="a-good-unit-test" class="slide level2 smaller">
 <h2>A <strong>good</strong> unit test</h2>
@@ -455,9 +456,9 @@
 <div>
 <ul>
 <li class="fragment">Fully automated (next week)</li>
-<li class="fragment">Has full control over all the pieces running (fake out external dependencies)</li>
-<li class="fragment">Can be run in any order if part of many other tests</li>
-<li class="fragment">Runs in memory (no DB or File access, for example)</li>
+<li class="fragment">Has full control over all the pieces running (“fake” external dependencies)</li>
+<li class="fragment">Can be run in any order</li>
+<li class="fragment">Runs in memory (no DB or file access, for example)</li>
 <li class="fragment">Consistently returns the same result (no random numbers)</li>
 <li class="fragment">Runs fast</li>
 <li class="fragment">Tests a single logical concept in the system</li>
@@ -531,6 +532,53 @@
 <h2>Testing in VS Code</h2>
 
 <img data-src="images/vs_code_test.png" class="r-stretch"></section>
+<section id="fixtures" class="slide level2">
+<h2>Fixtures</h2>
+<ul>
+<li>A piece of code that is used by multiple tests</li>
+<li>Provide data or services to tests</li>
+<li>Defined with <span class="citation" data-cites="pytest.fixture">@pytest.fixture</span></li>
+<li>Set up test environment</li>
+<li>Pass fixtures as test arguments</li>
+</ul>
+</section>
+<section id="fixture-example" class="slide level2">
+<h2>Fixture example</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="at">@pytest.fixture</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">def</span> water_level():</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="cf">return</span> TimeSeries([<span class="fl">1.0</span>, .., <span class="fl">3.0</span>], start <span class="op">=</span> <span class="st">"2019-01-01"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="kw">def</span> test_get_max_water_level(water_level):</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    max_wls <span class="op">=</span> get_max_water_level(water_level, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    </span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="cf">assert</span> <span class="bu">len</span>(max_wls) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="cf">assert</span> max_wls[<span class="dv">0</span>] <span class="op">==</span> <span class="fl">3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="test-coverage" class="slide level2">
+<h2>Test coverage</h2>
+<ul>
+<li>A measure of how much of your code is tested</li>
+<li>A good test suite should cover all the code</li>
+<li>Install <code>pytest-cov</code></li>
+<li>Run tests with coverage report
+<ul>
+<li><code>pytest --cov=myproj</code></li>
+</ul></li>
+<li>Use coverage report to identify untested code</li>
+</ul>
+</section>
+<section id="test-coverage-report" class="slide level2">
+<h2>Test coverage report</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">pytest</span> <span class="at">--cov</span><span class="op">=</span>myproj tests/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">--------------------</span> coverage: ... <span class="at">---------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">Name</span>                 Stmts   Miss  Cover</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">----------------------------------------</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">myproj/__init__</span>          2      0   100%</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">myproj/myproj</span>          257     13    94%</span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="ex">myproj/feature4286</span>      94      7    92%</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="ex">----------------------------------------</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="ex">TOTAL</span>                  353     20    94%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="testing-advice" class="slide level2">
 <h2>Testing advice</h2>
 <div class="callout callout-tip callout-captioned callout-style-default">
@@ -556,20 +604,20 @@
 </section>
 <section id="tests-act-as-specification" class="slide level2">
 <h2>Tests act as specification</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> test_operable_period_can_be_missing():</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span>np.nan)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="cf">assert</span> <span class="kw">not</span> is_operable(height<span class="op">=</span><span class="fl">11.0</span>)</span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">def</span> test_height_can_not_be_missing():</span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>) <span class="im">as</span> excinfo:</span>
-<span id="cb5-11"><a href="#cb5-11"></a>        is_operable(height<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>        is_operable(height<span class="op">=</span>np.nan)</span>
-<span id="cb5-13"><a href="#cb5-13"></a>        </span>
-<span id="cb5-14"><a href="#cb5-14"></a>    <span class="cf">assert</span> <span class="st">"height"</span> <span class="kw">in</span> <span class="bu">str</span>(excinfo.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> test_operable_period_can_be_missing():</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span>np.nan)</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="cf">assert</span> <span class="kw">not</span> is_operable(height<span class="op">=</span><span class="fl">11.0</span>)</span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">def</span> test_height_can_not_be_missing():</span>
+<span id="cb8-9"><a href="#cb8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>) <span class="im">as</span> excinfo:</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        is_operable(height<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>        is_operable(height<span class="op">=</span>np.nan)</span>
+<span id="cb8-13"><a href="#cb8-13"></a>        </span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="cf">assert</span> <span class="st">"height"</span> <span class="kw">in</span> <span class="bu">str</span>(excinfo.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="test-driven-development" class="slide level2">
 <h2>Test driven development</h2>
@@ -631,15 +679,15 @@
 <div class="code-with-filename-file">
 <pre><strong>src/ops.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> is_operable(height:<span class="bu">float</span>, period:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="fl">0.0</span>:</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Supplied value of </span><span class="sc">{</span>height<span class="op">=</span><span class="sc">}</span><span class="ss"> is unphysical."</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>Traceback (most recent call last):</span>
-<span id="cb6-8"><a href="#cb6-8"></a>  ...</span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="pp">ValueError</span>: Supplied value of height<span class="op">=-</span><span class="fl">1.0</span> <span class="kw">is</span> unphysical.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> is_operable(height:<span class="bu">float</span>, period:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="fl">0.0</span>:</span>
+<span id="cb9-3"><a href="#cb9-3"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Supplied value of </span><span class="sc">{</span>height<span class="op">=</span><span class="sc">}</span><span class="ss"> is unphysical."</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>Traceback (most recent call last):</span>
+<span id="cb9-8"><a href="#cb9-8"></a>  ...</span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="pp">ValueError</span>: Supplied value of height<span class="op">=-</span><span class="fl">1.0</span> <span class="kw">is</span> unphysical.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>It is better to raise an exception (that can terminate the program), than to propagate a bad value.</p>
@@ -647,7 +695,14 @@
 </section>
 <section id="warnings" class="slide level2">
 <h2>Warnings</h2>
-<p>TODO</p>
+<p>Warnings are a way to alert users of your code to potential issues or usage errors without actually halting the program’s execution.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>src/ops.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> warnings</span>
+<span id="cb10-2"><a href="#cb10-2"></a>warnings.warn(<span class="st">"This is a warning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="how-to-test-exceptions" class="slide level2">
 <h2><a href="https://docs.pytest.org/en/7.2.x/how-to/assert.html#assertions-about-expected-exceptions">How to test exceptions</a></h2>
@@ -655,12 +710,12 @@
 <div class="code-with-filename-file">
 <pre><strong>tests/test_ops.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> pytest</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> ops <span class="im">import</span> is_operable</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">def</span> test_negative_heights_are_not_valid():</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
-<span id="cb7-6"><a href="#cb7-6"></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> pytest</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="im">from</span> ops <span class="im">import</span> is_operable</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="kw">def</span> test_negative_heights_are_not_valid():</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb11-6"><a href="#cb11-6"></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The same can be done with warnings.</p>
 </section>
@@ -678,19 +733,19 @@
 </section>
 <section id="unused-variables" class="slide level2">
 <h2>Unused variables</h2>
-<div class="sourceCode" id="cb8" data-code-line-numbers="|3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> model(a, b):</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="cf">return</span> a <span class="op">+</span> (b <span class="op">-</span> a)</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a>y <span class="op">=</span> model(a<span class="op">=</span><span class="dv">1</span>, b<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> model(a, b):</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="cf">return</span> a <span class="op">+</span> (b <span class="op">-</span> a)</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>y <span class="op">=</span> model(a<span class="op">=</span><span class="dv">1</span>, b<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Unused variables is either a mistake or simply a source of confusion.</p>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">$</span> flake8 models.py</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="ex">models.py:3:5:</span> F841 local variable <span class="st">'method'</span> is assigned to but never used</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">$</span> flake8 models.py</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="ex">models.py:3:5:</span> F841 local variable <span class="st">'method'</span> is assigned to but never used</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="formatting" class="slide level2">
@@ -708,16 +763,16 @@
 </section>
 <section id="running-black" class="slide level2">
 <h2>Running Black</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">$</span> black .</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="ex">reformatted</span> data_utils.py</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="ex">reformatted</span> dfsu/__init__.py</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="ex">reformatted</span> dataarray.py</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="ex">reformatted</span> dataset.py</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="ex">reformatted</span> spatial/geometry.py</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="ex">reformatted</span> pfs/pfssection.py</span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="ex">All</span> done! ✨ 🍰 ✨</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="ex">6</span> files reformatted, 27 files left unchanged.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">$</span> black .</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="ex">reformatted</span> data_utils.py</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="ex">reformatted</span> dfsu/__init__.py</span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="ex">reformatted</span> dataarray.py</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="ex">reformatted</span> dataset.py</span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="ex">reformatted</span> spatial/geometry.py</span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="ex">reformatted</span> pfs/pfssection.py</span>
+<span id="cb14-8"><a href="#cb14-8"></a></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="ex">All</span> done! ✨ 🍰 ✨</span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="ex">6</span> files reformatted, 27 files left unchanged.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="running-black-1" class="slide level2 smaller">
 <h2>Running Black</h2>
