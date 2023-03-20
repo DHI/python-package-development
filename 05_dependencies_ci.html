@@ -448,6 +448,9 @@ matplotlib==1.5.1</code></pre>
 <li class="fragment">To achieve complete isolation, use Docker containers (not covered in this course)</li>
 </ul>
 </div>
+</section>
+<section id="virtual-environments-1" class="slide level2">
+<h2>Virtual environments</h2>
 <div class="sourceCode" id="cb2" data-code-line-numbers="|3-4|5-6|7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> which python</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ex">/usr/bin/python</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="ex">$</span> python <span class="at">-m</span> venv venv</span>
@@ -505,19 +508,29 @@ matplotlib==1.5.1</code></pre>
           display:block!important;
       }</style></aside>
 </section>
-<section id="github-actions" class="slide level2">
+<section id="github-actions" class="slide level2 smaller">
 <h2>GitHub Actions</h2>
-<p>Workflow are stored in the <code>.github/workflows</code> folder.</p>
-<pre><code>$ tree mikeio/.github/
-mikeio/.github/
-└── workflows
-    ├── docs.yml
-    ├── downstream_test.yml
-    ├── full_test.yml
-    ├── notebooks_test.yml
-    ├── perf_test.yml
-    ├── python-publish.yml
-    └── quick_test.yml</code></pre>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Workflow are stored in the <code>.github/workflows</code> folder.</li>
+<li>Workflow is described in a YAML file.</li>
+<li>YAML is whitespace sensitive (like Python).</li>
+<li>YAML can contain lists, dictionaries and strings, and can be nested.</li>
+</ul>
+</div><div class="column">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">$</span> tree mikeio/.github/</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">mikeio/.github/</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">└──</span> workflows</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="ex">├──</span> docs.yml</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="ex">├──</span> downstream_test.yml</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="ex">├──</span> full_test.yml</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="ex">├──</span> notebooks_test.yml</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="ex">├──</span> perf_test.yml</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="ex">├──</span> python-publish.yml</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="ex">└──</span> quick_test.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
 <section class="slide level2">
 
