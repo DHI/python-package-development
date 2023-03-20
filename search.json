@@ -137,7 +137,7 @@
     "href": "04_testing.html#unit-testing",
     "title": "Testing, linting and formatting",
     "section": "Unit testing",
-    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\n\nA function is typically considerd a “unit”.\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
+    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
   },
   {
     "objectID": "04_testing.html#a-good-unit-test",
