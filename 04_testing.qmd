@@ -43,7 +43,7 @@ flowchart TD
 ::: 
 
 ::: {.incremental}
-* A function is typically considerd a "unit".
+* A function is typically considered a "unit"
 * Lines of code within functions are smaller (can't be isolated)
 * Classes are considered bigger (but can be treated as units)
 :::
