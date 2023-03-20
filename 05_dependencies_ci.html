@@ -402,13 +402,75 @@ numpy==1.11.0
 scipy==0.17.0
 matplotlib==1.5.1</code></pre>
 </section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column">
+<p><strong>Application</strong></p>
+<p><em>A program that is run by a user</em></p>
+<ul>
+<li>command line tool</li>
+<li>script</li>
+<li>web application</li>
+</ul>
+<p>Pin versions to ensure reproducibility, e.g.&nbsp;<code>numpy==1.11.0</code></p>
+</div><div class="column">
+<p><strong>Library</strong></p>
+<p><em>A program that is used by another program</em></p>
+<ul>
+<li>Python package</li>
+<li>Low level library (C, Fortran, Rust, …)</li>
+</ul>
+<p>Make the requirements as loose as possible, e.g.&nbsp;<code>numpy&gt;=1.11.0</code></p>
+</div>
+</div>
+<aside class="notes">
+<p>Make the requirements loose, to avoid conflicts with other packages.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="virtual-environments" class="slide level2">
 <h2>Virtual environments</h2>
+<div>
 <ul>
-<li>Allows different versions of a package to coexist on your machine</li>
-<li>TODO</li>
+<li class="fragment">Creates a clean environment for each project</li>
+<li class="fragment">Allows different versions of a package to coexist on your machine</li>
+<li class="fragment">Can be used to create a reproducible environment for a project</li>
+<li class="fragment">To achieve complete isolation, use Docker containers (not covered in this course)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> python <span class="at">-m</span> venv venv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb2" data-code-line-numbers="|3-4|5-6|7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">$</span> which python</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">/usr/bin/python</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">$</span> python <span class="at">-m</span> venv venv</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="ex">$</span> source venv/bin/activate <span class="co"># for 🐧 or venv\Scripts\activate.bat 🪟</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span><span class="ex">$</span> which python</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ex">/home/user/src/myproj/venv/bin/python</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">(</span><span class="ex">venv</span><span class="kw">)</span><span class="ex">$</span> pip install <span class="at">-r</span> requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<ul>
+<li>Back in the days, when disk space was limited, it was a good idea to have a separate environment for each project.</li>
+<li>Today, disk space is cheap, and it is a good idea to have a separate environment for each project.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="branch-naming-convention" class="slide level2">
 <h2>Branch naming convention</h2>
@@ -496,7 +558,68 @@ mikeio/.github/
 <section class="slide level2">
 
 <p>☹️</p>
-<p><img data-src="images/github_action_result_fail.png"></p>
+
+<img data-src="images/github_action_result_fail.png" class="r-stretch"></section>
+<section id="benefits-of-ci" class="slide level2">
+<h2>Benefits of CI</h2>
+<div>
+<ul>
+<li class="fragment">Run tests on every commit</li>
+<li class="fragment">Test on different operating systems</li>
+<li class="fragment">Test on different Python versions</li>
+<li class="fragment">Create API documentation (next week)</li>
+<li class="fragment">Publish package to PyPI or similar package repository (two weeks from now)</li>
+</ul>
+</div>
+</section>
+<section id="triggers" class="slide level2">
+<h2>Triggers</h2>
+<ul>
+<li><code>push</code> and <code>pull_request</code> are the most common triggers</li>
+<li><code>schedule</code> can be used to run the workflow on a schedule</li>
+<li><code>workflow_dispatch</code> can be used to trigger the workflow manually</li>
+</ul>
+<div class="sourceCode" id="cb5" data-code-line-numbers="2-3|4-5|6-7|8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">'0 0 * * 0'</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="jobs" class="slide level2">
+<h2>Jobs</h2>
+<ul>
+<li>Operating system</li>
+<li>Python version</li>
+<li>…</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {.yaml&quot;} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>...</span>
+<span id="cb6-2"><a href="#cb6-2"></a>jobs:</span>
+<span id="cb6-3"><a href="#cb6-3"></a>  build:</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    runs-on: ${{ matrix.os }}</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    strategy:</span>
+<span id="cb6-6"><a href="#cb6-6"></a>      matrix:</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        os: [ubuntu-latest, windows-latest]</span>
+<span id="cb6-8"><a href="#cb6-8"></a>        python-version: [3.8, 3.9, "3.10","3.11"]</span>
+<span id="cb6-9"><a href="#cb6-9"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="github-releases" class="slide level2 smaller">
+<h2>GitHub Releases</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>GitHub releases are a way to publish software releases.</p></li>
+<li><p>You can upload files, write release notes and tag the release.</p></li>
+<li><p>As a minimum, the release will contain the source code at the time of the release.</p></li>
+<li><p>Creating a release can trigger other workflows, e.g.&nbsp;publishing a package to PyPI.</p></li>
+</ul>
+</div><div class="column">
+<p><img data-src="images/github_release.png"></p>
+</div>
+</div>
+<p><a href="https://github.com/pydata/xarray/releases/tag/v2022.12.0" class="uri">https://github.com/pydata/xarray/releases/tag/v2022.12.0</a></p>
 
 <p><img src="campus_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">

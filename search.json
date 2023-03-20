@@ -56,11 +56,18 @@
     "text": "Dependency management\nRequirements.txt\nExample:\n$ cat requirements.txt\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1"
   },
   {
+    "objectID": "05_dependencies_ci.html#section",
+    "href": "05_dependencies_ci.html#section",
+    "title": "Dependencies and Continuous Integration",
+    "section": "",
+    "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy>=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
+  },
+  {
     "objectID": "05_dependencies_ci.html#virtual-environments",
     "href": "05_dependencies_ci.html#virtual-environments",
     "title": "Dependencies and Continuous Integration",
     "section": "Virtual environments",
-    "text": "Virtual environments\n\nAllows different versions of a package to coexist on your machine\nTODO\n\n$ python -m venv venv"
+    "text": "Virtual environments\n\n\nCreates a clean environment for each project\nAllows different versions of a package to coexist on your machine\nCan be used to create a reproducible environment for a project\nTo achieve complete isolation, use Docker containers (not covered in this course)\n\n\n$ which python\n/usr/bin/python\n$ python -m venv venv\n$ source venv/bin/activate # for 🐧 or venv\\Scripts\\activate.bat 🪟\n(venv)$ which python\n/home/user/src/myproj/venv/bin/python\n(venv)$ pip install -r requirements.txt\n\n\nBack in the days, when disk space was limited, it was a good idea to have a separate environment for each project.\nToday, disk space is cheap, and it is a good idea to have a separate environment for each project."
   },
   {
     "objectID": "05_dependencies_ci.html#branch-naming-convention",
@@ -82,6 +89,34 @@
     "title": "Dependencies and Continuous Integration",
     "section": "GitHub Actions",
     "text": "GitHub Actions\nWorkflow are stored in the .github/workflows folder.\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#benefits-of-ci",
+    "href": "05_dependencies_ci.html#benefits-of-ci",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Benefits of CI",
+    "text": "Benefits of CI\n\n\nRun tests on every commit\nTest on different operating systems\nTest on different Python versions\nCreate API documentation (next week)\nPublish package to PyPI or similar package repository (two weeks from now)"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#triggers",
+    "href": "05_dependencies_ci.html#triggers",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Triggers",
+    "text": "Triggers\n\npush and pull_request are the most common triggers\nschedule can be used to run the workflow on a schedule\nworkflow_dispatch can be used to trigger the workflow manually\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n  schedule:\n    - cron: '0 0 * * 0'\n  workflow_dispatch:"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#jobs",
+    "href": "05_dependencies_ci.html#jobs",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Jobs",
+    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#github-releases",
+    "href": "05_dependencies_ci.html#github-releases",
+    "title": "Dependencies and Continuous Integration",
+    "section": "GitHub Releases",
+    "text": "GitHub Releases\n\n\n\nGitHub releases are a way to publish software releases.\nYou can upload files, write release notes and tag the release.\nAs a minimum, the release will contain the source code at the time of the release.\nCreating a release can trigger other workflows, e.g. publishing a package to PyPI.\n\n\n\n\n\nhttps://github.com/pydata/xarray/releases/tag/v2022.12.0\n\n\n\nPython package development"
   },
   {
     "objectID": "01b_naming_conventions.html#variables-function-and-method-names",
