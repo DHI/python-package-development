@@ -242,7 +242,7 @@
     "href": "04_testing.html#example-1",
     "title": "Testing, linting and formatting",
     "section": "Example",
-    "text": "Example\n\n\nsrc/ops.py\n\ndef is_operable(height:float, period:float) -> bool:\n    if height < 0.0:\n        raise ValueError(f\"Supplied value of {height=} is unphysical.\")\n\n>>> is_operable(height=-1.0, period=4.0\n\nTraceback (most recent call last):\n  ...\nValueError: Supplied value of height=-1.0 is unphysical.\n\n\nIt is better to raise an exception (that can terminate the program), than to propagate a bad value."
+    "text": "Example\n\n\nsrc/ops.py\n\ndef is_operable(height:float, period:float) -> bool:\n    if height < 0.0:\n        raise ValueError(f\"Supplied value of {height=} is unphysical.\")\n\n>>> is_operable(height=-1.0, period=4.0)\n\nTraceback (most recent call last):\n  ...\nValueError: Supplied value of height=-1.0 is unphysical.\n\n\nIt is better to raise an exception (that can terminate the program), than to propagate a bad value."
   },
   {
     "objectID": "04_testing.html#warnings",
