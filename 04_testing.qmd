@@ -8,12 +8,15 @@ logo: campus_logo.png
 ## Testing
 
 Verify code is working as expected.
+
 Simplest way to test is to run code and check output.
 
 . . .
 
-Automated testing checks output automatically.
+**Automated** testing checks output automatically.
+
 Code changes can break other parts of code.
+
 Automatic testing verifies code is still working.
 
 
@@ -30,7 +33,6 @@ flowchart TD
 ```
 
 
-
 ## Unit testing
 
 ::: {.callout-note}
@@ -40,9 +42,12 @@ flowchart TD
 * Executed in isolation with appropriate inputs.
 ::: 
 
+::: {.incremental}
 * A function is typically considerd a "unit".
 * Lines of code within functions are smaller (can't be isolated)
 * Classes are considered bigger (but can be treated as units)
+:::
+
 
 ## A **good** unit test {.smaller}
 
@@ -141,11 +146,15 @@ def test_integration():
 
 ## Fixtures
 
+::: {.incremental}
+
 * A piece of code that is used by multiple tests
 * Provide data or services to tests
 * Defined with @pytest.fixture
 * Set up test environment
 * Pass fixtures as test arguments
+
+:::
 
 
 ## Fixture example
@@ -165,12 +174,16 @@ def test_get_max_water_level(water_level):
 
 ## Test coverage
 
+::: {.incremental}
+
 * A measure of how much of your code is tested
 * A good test suite should cover all the code
 * Install `pytest-cov`
 * Run tests with coverage report
     - `pytest --cov=myproj`
 * Use coverage report to identify untested code
+
+:::
 
 
 ## Test coverage report

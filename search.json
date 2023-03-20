@@ -123,7 +123,7 @@
     "href": "04_testing.html#testing",
     "title": "Testing, linting and formatting",
     "section": "Testing",
-    "text": "Testing\nVerify code is working as expected. Simplest way to test is to run code and check output.\n\nAutomated testing checks output automatically. Code changes can break other parts of code. Automatic testing verifies code is still working."
+    "text": "Testing\nVerify code is working as expected.\nSimplest way to test is to run code and check output.\n\nAutomated testing checks output automatically.\nCode changes can break other parts of code.\nAutomatic testing verifies code is still working."
   },
   {
     "objectID": "04_testing.html#testing-workflow",
@@ -137,7 +137,7 @@
     "href": "04_testing.html#unit-testing",
     "title": "Testing, linting and formatting",
     "section": "Unit testing",
-    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\nA function is typically considerd a “unit”.\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
+    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\n\nA function is typically considerd a “unit”.\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
   },
   {
     "objectID": "04_testing.html#a-good-unit-test",
@@ -172,7 +172,7 @@
     "href": "04_testing.html#fixtures",
     "title": "Testing, linting and formatting",
     "section": "Fixtures",
-    "text": "Fixtures\n\nA piece of code that is used by multiple tests\nProvide data or services to tests\nDefined with @pytest.fixture\nSet up test environment\nPass fixtures as test arguments"
+    "text": "Fixtures\n\n\nA piece of code that is used by multiple tests\nProvide data or services to tests\nDefined with @pytest.fixture\nSet up test environment\nPass fixtures as test arguments"
   },
   {
     "objectID": "04_testing.html#fixture-example",
@@ -186,7 +186,7 @@
     "href": "04_testing.html#test-coverage",
     "title": "Testing, linting and formatting",
     "section": "Test coverage",
-    "text": "Test coverage\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
+    "text": "Test coverage\n\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
   },
   {
     "objectID": "04_testing.html#test-coverage-report",

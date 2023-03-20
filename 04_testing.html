@@ -398,9 +398,12 @@
 </section>
 <section id="testing" class="slide level2">
 <h2>Testing</h2>
-<p>Verify code is working as expected. Simplest way to test is to run code and check output.</p>
+<p>Verify code is working as expected.</p>
+<p>Simplest way to test is to run code and check output.</p>
 <div class="fragment">
-<p>Automated testing checks output automatically. Code changes can break other parts of code. Automatic testing verifies code is still working.</p>
+<p><strong>Automated</strong> testing checks output automatically.</p>
+<p>Code changes can break other parts of code.</p>
+<p>Automatic testing verifies code is still working.</p>
 </div>
 </section>
 <section id="testing-workflow" class="slide level2">
@@ -443,11 +446,13 @@
 </div>
 </div>
 </div>
+<div>
 <ul>
-<li>A function is typically considerd a “unit”.</li>
-<li>Lines of code within functions are smaller (can’t be isolated)</li>
-<li>Classes are considered bigger (but can be treated as units)</li>
+<li class="fragment">A function is typically considerd a “unit”.</li>
+<li class="fragment">Lines of code within functions are smaller (can’t be isolated)</li>
+<li class="fragment">Classes are considered bigger (but can be treated as units)</li>
 </ul>
+</div>
 </section>
 <section id="a-good-unit-test" class="slide level2 smaller">
 <h2>A <strong>good</strong> unit test</h2>
@@ -534,13 +539,15 @@
 <img data-src="images/vs_code_test.png" class="r-stretch"></section>
 <section id="fixtures" class="slide level2">
 <h2>Fixtures</h2>
+<div>
 <ul>
-<li>A piece of code that is used by multiple tests</li>
-<li>Provide data or services to tests</li>
-<li>Defined with <span class="citation" data-cites="pytest.fixture">@pytest.fixture</span></li>
-<li>Set up test environment</li>
-<li>Pass fixtures as test arguments</li>
+<li class="fragment">A piece of code that is used by multiple tests</li>
+<li class="fragment">Provide data or services to tests</li>
+<li class="fragment">Defined with <span class="citation" data-cites="pytest.fixture">@pytest.fixture</span></li>
+<li class="fragment">Set up test environment</li>
+<li class="fragment">Pass fixtures as test arguments</li>
 </ul>
+</div>
 </section>
 <section id="fixture-example" class="slide level2">
 <h2>Fixture example</h2>
@@ -556,16 +563,18 @@
 </section>
 <section id="test-coverage" class="slide level2">
 <h2>Test coverage</h2>
+<div>
 <ul>
-<li>A measure of how much of your code is tested</li>
-<li>A good test suite should cover all the code</li>
-<li>Install <code>pytest-cov</code></li>
-<li>Run tests with coverage report
+<li class="fragment">A measure of how much of your code is tested</li>
+<li class="fragment">A good test suite should cover all the code</li>
+<li class="fragment">Install <code>pytest-cov</code></li>
+<li class="fragment">Run tests with coverage report
 <ul>
-<li><code>pytest --cov=myproj</code></li>
+<li class="fragment"><code>pytest --cov=myproj</code></li>
 </ul></li>
-<li>Use coverage report to identify untested code</li>
+<li class="fragment">Use coverage report to identify untested code</li>
 </ul>
+</div>
 </section>
 <section id="test-coverage-report" class="slide level2">
 <h2>Test coverage report</h2>
