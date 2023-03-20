@@ -65,8 +65,9 @@ Make the requirements loose, to avoid conflicts with other packages.
 * Can be used to create a reproducible environment for a project
 * To achieve complete isolation, use Docker containers (not covered in this course)
 
-
 :::
+
+## Virtual environments
 
 ```{.bash code-line-numbers="|3-4|5-6|7"}
 $ which python
@@ -112,11 +113,22 @@ GitHub actions was forked from Azure Pipelines and runs on the same type of infr
 
 :::
 
-## GitHub Actions
+## GitHub Actions {.smaller}
 
-Workflow are stored in the `.github/workflows` folder.
+:::: {.columns}
 
-```
+::: {.column}
+
+* Workflow are stored in the `.github/workflows` folder.
+* Workflow is described in a YAML file.
+* YAML is whitespace sensitive (like Python).
+* YAML can contain lists, dictionaries and strings, and can be nested.
+
+:::
+
+::: {.column}
+
+```bash
 $ tree mikeio/.github/
 mikeio/.github/
 └── workflows
@@ -128,6 +140,9 @@ mikeio/.github/
     ├── python-publish.yml
     └── quick_test.yml
 ```
+
+:::
+::::
 
 ---
 
