@@ -19,14 +19,69 @@ scipy==0.17.0
 matplotlib==1.5.1
 ```
 
+##
+
+:::: {.columns}
+
+::: {.column}
+
+**Application**
+
+*A program that is run by a user*
+
+* command line tool
+* script
+* web application
+
+Pin versions to ensure reproducibility, e.g. `numpy==1.11.0`
+:::
+
+::: {.column}
+
+**Library**
+
+*A program that is used by another program*
+
+* Python package
+* Low level library (C, Fortran, Rust, ...)
+
+Make the requirements as loose as possible, e.g. `numpy>=1.11.0`
+:::
+
+::::
+
+::: {.notes}
+Make the requirements loose, to avoid conflicts with other packages.
+
+:::
+
+
 ## Virtual environments
 
-* Allows different versions of a package to coexist on your machine
-* TODO
+::: {.incremental}
 
-```bash
+* Creates a clean environment for each project
+* Allows different versions of a package to coexist on your machine
+* Can be used to create a reproducible environment for a project
+* To achieve complete isolation, use Docker containers (not covered in this course)
+
+
+:::
+
+```{.bash code-line-numbers="|3-4|5-6|7"}
+$ which python
+/usr/bin/python
 $ python -m venv venv
+$ source venv/bin/activate # for 🐧 or venv\Scripts\activate.bat 🪟
+(venv)$ which python
+/home/user/src/myproj/venv/bin/python
+(venv)$ pip install -r requirements.txt
 ```
+
+::: {.notes}
+* Back in the days, when disk space was limited, it was a good idea to have a separate environment for each project.
+* Today, disk space is cheap, and it is a good idea to have a separate environment for each project.
+:::
 
 ## Branch naming convention
 
@@ -118,4 +173,79 @@ jobs: # what to run
 ☹️
 
 ![](images/github_action_result_fail.png)
+
+## Benefits of CI
+
+::: {.incremental}
+
+* Run tests on every commit
+* Test on different operating systems
+* Test on different Python versions
+* Create API documentation (next week)
+* Publish package to PyPI or similar package repository (two weeks from now)
+
+:::
+
+## Triggers
+
+* `push` and `pull_request` are the most common triggers
+* `schedule` can be used to run the workflow on a schedule
+* `workflow_dispatch` can be used to trigger the workflow manually
+
+```{.yaml code-line-numbers="2-3|4-5|6-7|8"}
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+```
+
+## Jobs
+
+* Operating system
+* Python version
+* ...
+
+```{.yaml"}
+...
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: [3.8, 3.9, "3.10","3.11"]
+...
+```
+
+## GitHub Releases {.smaller}
+
+:::: {.columns}
+
+::: {.column}
+
+* GitHub releases are a way to publish software releases.
+
+* You can upload files, write release notes and tag the release.
+
+* As a minimum, the release will contain the source code at the time of the release.
+
+* Creating a release can trigger other workflows, e.g. publishing a package to PyPI.
+
+:::
+
+::: {.column}
+
+![](images/github_release.png)
+
+:::
+::::
+
+
+<https://github.com/pydata/xarray/releases/tag/v2022.12.0>
+
+
 
