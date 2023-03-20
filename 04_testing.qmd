@@ -394,21 +394,15 @@ models.py:3:5: F841 local variable 'method' is assigned to but never used
 
 ## Formatting
 
-Formatting code according to a common style is a good practice. It makes your code more readable and easier to maintain.
+::: {.incremental}
 
-. . .
+* Formatting code for readability and maintainability is essential.
+* black is an opinionated automatic code formatter for Python.
+* It enforces its own rules for formatting, which are not configurable.
+* Having a unified style makes code changes easier to understand and collaborate on.
 
-Enforcing a particular style can be a common source of discussion among developers. 
+:::
 
-. . .
-
-[`black`](https://black.readthedocs.io/) is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.
-
-. . .
-
-Having a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style.
-
----
 
 ## Running Black
 
