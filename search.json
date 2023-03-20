@@ -277,7 +277,7 @@
     "href": "04_testing.html#formatting",
     "title": "Testing, linting and formatting",
     "section": "Formatting",
-    "text": "Formatting\nFormatting code according to a common style is a good practice. It makes your code more readable and easier to maintain.\n\nEnforcing a particular style can be a common source of discussion among developers.\n\n\nblack is a automatic code formatter for Python. It is opinionated and will format your code according to its own rules. It is not configurable.\n\n\nHaving a unified style makes it easier to collaborate since the code changes will be related to the content and not to the style."
+    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nblack is an opinionated automatic code formatter for Python.\nIt enforces its own rules for formatting, which are not configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
   },
   {
     "objectID": "04_testing.html#running-black",
