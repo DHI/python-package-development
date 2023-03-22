@@ -92,6 +92,27 @@ There doesn't exist a clear naming conventions.
 * Feature branches uses lowercase separated with dashes, e.g. `interpolation-options`
 * Branches related to fixing issues, start with the id of the issue, e.g. `42-fix-missing-value-handling`
 
+## Time for a discussion
+
+*Discuss in learning teams (15 minutes):*
+
+**Chapter 6: Separations of concerns in practice**
+
+Discuss what belongs in each layer of the application.
+
+* Persistence layer
+* Business logic layer
+* Presentation layer
+
+Should your library have these three layers? If not, which layer is the focus of your library?
+
+. . .
+
+*After break out session:*
+
+One person from each team briefly presents their discussion outcomes
+
+
 
 ## Continuous Integration
 
