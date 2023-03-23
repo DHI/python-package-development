@@ -84,6 +84,13 @@
     "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling"
   },
   {
+    "objectID": "05_dependencies_ci.html#time-for-a-discussion",
+    "href": "05_dependencies_ci.html#time-for-a-discussion",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?\n\nAfter break out session:\nOne person from each team briefly presents their discussion outcomes"
+  },
+  {
     "objectID": "05_dependencies_ci.html#continuous-integration",
     "href": "05_dependencies_ci.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
