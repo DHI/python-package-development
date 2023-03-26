@@ -6,19 +6,6 @@ logo: campus_logo.png
 ---
 
 
-## Dependency management
-
-`Requirements.txt`
-
-Example:
-
-```
-$ cat requirements.txt
-numpy==1.11.0
-scipy==0.17.0
-matplotlib==1.5.1
-```
-
 ##
 
 :::: {.columns}
@@ -55,6 +42,73 @@ Make the requirements loose, to avoid conflicts with other packages.
 
 :::
 
+## Dependency management
+
+Example of pinning versions:
+
+```{.txt filename="requirements.txt"}
+numpy==1.11.0
+scipy==0.17.0
+matplotlib==1.5.1
+```
+. . .
+
+Or using a range of versions:
+
+```{.txt filename="requirements.txt"}
+numpy>=1.11.0
+scipy>=0.17.0
+matplotlib>=1.5.1,<=2.0.0
+```
+. . .
+
+Install dependencies:
+
+```{.bash}
+$ pip install -r requirements.txt
+```
+
+::: {.notes}
+
+A common way to declare dependencies is to use a `requirements.txt` file.
+
+:::
+
+## Creating an installable package
+
+
+![](images/project.png)
+
+## Creating an installable package
+
+Install package in editable mode:
+```{.bash}
+$ pip install -e .
+```
+
+. . .
+
+Start a Python session:
+```{.python}
+>>> import mini
+>>> mini.foo()
+42
+```
+
+. . .
+
+Run tests:
+```{.bash}
+$ pytest
+...
+
+tests/test_foo.py .                       [100%]
+
+=============== 1 passed in 0.01s ===============
+```
+
+
+
 
 ## Virtual environments
 
@@ -88,9 +142,14 @@ $ source venv/bin/activate # for 🐧 or venv\Scripts\activate.bat 🪟
 
 There doesn't exist a clear naming conventions.
 
+::: {.incremental}
+
 * `main` is the main branch🙄, this was previously named `master`.
 * Feature branches uses lowercase separated with dashes, e.g. `interpolation-options`
 * Branches related to fixing issues, start with the id of the issue, e.g. `42-fix-missing-value-handling`
+* Find a naming convention that works for you and your team.
+
+:::
 
 ## Time for a discussion
 
