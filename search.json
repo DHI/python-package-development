@@ -49,18 +49,32 @@
     "text": "Poll\n\n\n\nPython package development"
   },
   {
-    "objectID": "05_dependencies_ci.html#dependency-management",
-    "href": "05_dependencies_ci.html#dependency-management",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Dependency management",
-    "text": "Dependency management\nRequirements.txt\nExample:\n$ cat requirements.txt\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1"
-  },
-  {
     "objectID": "05_dependencies_ci.html#section",
     "href": "05_dependencies_ci.html#section",
     "title": "Dependencies and Continuous Integration",
     "section": "",
     "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy>=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#dependency-management",
+    "href": "05_dependencies_ci.html#dependency-management",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency management",
+    "text": "Dependency management\nExample of pinning versions:\n\n\nrequirements.txt\n\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1\n\n\nOr using a range of versions:\n\n\nrequirements.txt\n\nnumpy>=1.11.0\nscipy>=0.17.0\nmatplotlib>=1.5.1,<=2.0.0\n\n\n\nInstall dependencies:\n$ pip install -r requirements.txt\n\nA common way to declare dependencies is to use a requirements.txt file."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#creating-an-installable-package",
+    "href": "05_dependencies_ci.html#creating-an-installable-package",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Creating an installable package",
+    "text": "Creating an installable package"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#creating-an-installable-package-1",
+    "href": "05_dependencies_ci.html#creating-an-installable-package-1",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Creating an installable package",
+    "text": "Creating an installable package\nInstall package in editable mode:\n$ pip install -e .\n\nStart a Python session:\n>>> import mini\n>>> mini.foo()\n42\n\n\nRun tests:\n$ pytest\n...\n\ntests/test_foo.py .                       [100%]\n\n=============== 1 passed in 0.01s ==============="
   },
   {
     "objectID": "05_dependencies_ci.html#virtual-environments",
@@ -81,7 +95,7 @@
     "href": "05_dependencies_ci.html#branch-naming-convention",
     "title": "Dependencies and Continuous Integration",
     "section": "Branch naming convention",
-    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling"
+    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling\nFind a naming convention that works for you and your team."
   },
   {
     "objectID": "05_dependencies_ci.html#time-for-a-discussion",

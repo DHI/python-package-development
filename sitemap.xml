@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/DHI/python-package-development/00_introduction.html</loc>
-    <lastmod>2023-03-23T10:06:30.447Z</lastmod>
+    <lastmod>2023-03-26T14:00:44.027Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/05_dependencies_ci.html</loc>
-    <lastmod>2023-03-23T10:06:32.239Z</lastmod>
+    <lastmod>2023-03-26T14:00:45.651Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/01b_naming_conventions.html</loc>
-    <lastmod>2023-03-23T10:06:32.559Z</lastmod>
+    <lastmod>2023-03-26T14:00:45.919Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/04_testing.html</loc>
-    <lastmod>2023-03-23T10:06:33.055Z</lastmod>
+    <lastmod>2023-03-26T14:00:46.315Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/03_types_protocols.html</loc>
-    <lastmod>2023-03-23T10:06:33.607Z</lastmod>
+    <lastmod>2023-03-26T14:00:46.787Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/index.html</loc>
-    <lastmod>2023-03-23T10:06:34.403Z</lastmod>
+    <lastmod>2023-03-26T14:00:47.423Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/02_version_control.html</loc>
-    <lastmod>2023-03-23T10:06:34.879Z</lastmod>
+    <lastmod>2023-03-26T14:00:47.807Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/07_packaging.html</loc>
-    <lastmod>2023-03-23T10:06:35.251Z</lastmod>
+    <lastmod>2023-03-26T14:00:48.103Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/06_documentation.html</loc>
-    <lastmod>2023-03-23T10:06:35.667Z</lastmod>
+    <lastmod>2023-03-26T14:00:48.423Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/01_function_classes.html</loc>
-    <lastmod>2023-03-23T10:06:36.275Z</lastmod>
+    <lastmod>2023-03-26T14:00:48.915Z</lastmod>
   </url>
 </urlset>
