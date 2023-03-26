@@ -2,6 +2,7 @@
 title: "Git, GitHub, Pull Requests, and code reviews"
 format: 
   revealjs:
+    slide-number: true
     theme: moon
     transition: fade
 footer: Python package development
