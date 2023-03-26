@@ -1,6 +1,8 @@
 ---
 title: Functions, classes and modules
-format: revealjs
+format: 
+    revealjs:
+        slide-number: true
 footer: Python package development
 logo: campus_logo.png
 ---
