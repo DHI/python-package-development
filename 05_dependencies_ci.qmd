@@ -81,6 +81,47 @@ A common way to declare dependencies is to use a `requirements.txt` file.
 
 ![](images/project.png)
 
+
+## `setup.py` vs `pyproject.toml` {.smaller}
+
+`setup.py`
+
+* Traditional approach to defining package configuration and dependencies.
+* Defines metadata, dependencies, and entry points in a Python script.
+* Uses `setuptools` to generate packages and install the package.
+
+. . . 
+
+`pyproject.toml`
+
+* Modern approach to defining package configuration and dependencies.
+* Defines metadata, dependencies, build tools, and packaging config in a TOML file.
+* Uses `poetry` or `hatchling` to generate packages and install the package.
+
+
+## Install with optional dependencies
+
+```{.toml filename="pyproject.toml"}
+[project.optional-dependencies]
+dev = ["pytest",
+       "black==22.3.0",
+       "sphinx",
+       "sphinx-rtd-theme",
+       "myst-parser",
+       ]
+
+test = ["pytest", "pytest-cov"]
+```
+
+&nbsp;
+
+```{.bash}
+$ pip install mini[test]
+```
+
+
+
+
 ## Creating an installable package
 
 Install package in editable mode:
