@@ -140,6 +140,19 @@ $ source venv/bin/activate # for 🐧 or venv\Scripts\activate.bat 🪟
 * Today, disk space is cheap, and it is a good idea to have a separate environment for each project.
 :::
 
+## Conda/mamba environments
+
+Conda/mamba is a package manager that can be used to create virtual environments.
+
+```{.console}
+$ where python
+C:\Users\JAN\AppData\Local\miniforge3\python.exe
+$ conda create -n myproj -f requirements.txt
+$ conda activate myproj
+(myproj)$ where python
+C:\Users\JAN\AppData\Local\miniforge3\envs\myproj\python.exe
+```
+
 ## Branch naming convention
 
 There doesn't exist a clear naming conventions.
