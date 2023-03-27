@@ -530,6 +530,16 @@
           display:block!important;
       }</style></aside>
 </section>
+<section id="condamamba-environments" class="slide level2">
+<h2>Conda/mamba environments</h2>
+<p>Conda/mamba is a package manager that can be used to create virtual environments.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource console number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>$ where python</span>
+<span id="cb8-2"><a href="#cb8-2"></a>C:\Users\JAN\AppData\Local\miniforge3\python.exe</span>
+<span id="cb8-3"><a href="#cb8-3"></a>$ conda create -n myproj -f requirements.txt</span>
+<span id="cb8-4"><a href="#cb8-4"></a>$ conda activate myproj</span>
+<span id="cb8-5"><a href="#cb8-5"></a>(myproj)$ where python</span>
+<span id="cb8-6"><a href="#cb8-6"></a>C:\Users\JAN\AppData\Local\miniforge3\envs\myproj\python.exe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="branch-naming-convention" class="slide level2">
 <h2>Branch naming convention</h2>
 <p>There doesn’t exist a clear naming conventions.</p>
@@ -593,49 +603,49 @@
 <li>YAML can contain lists, dictionaries and strings, and can be nested.</li>
 </ul>
 </div><div class="column">
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">$</span> tree mikeio/.github/</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">mikeio/.github/</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">└──</span> workflows</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="ex">├──</span> docs.yml</span>
-<span id="cb8-5"><a href="#cb8-5"></a>    <span class="ex">├──</span> downstream_test.yml</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    <span class="ex">├──</span> full_test.yml</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    <span class="ex">├──</span> notebooks_test.yml</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="ex">├──</span> perf_test.yml</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="ex">├──</span> python-publish.yml</span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="ex">└──</span> quick_test.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">$</span> tree mikeio/.github/</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="ex">mikeio/.github/</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="ex">└──</span> workflows</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="ex">├──</span> docs.yml</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="ex">├──</span> downstream_test.yml</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="ex">├──</span> full_test.yml</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="ex">├──</span> notebooks_test.yml</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="ex">├──</span> perf_test.yml</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="ex">├──</span> python-publish.yml</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="ex">└──</span> quick_test.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Quick test</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">on</span><span class="kw">:</span><span class="co"> # when to run the workflow</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main</span><span class="kw">]</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="fu">jobs</span><span class="kw">:</span><span class="co"> # what to run</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="co"> # on what operating system</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.9</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb9-21"><a href="#cb9-21"></a>        python -m pip install --upgrade pip</span>
-<span id="cb9-22"><a href="#cb9-22"></a></span>
-<span id="cb9-23"><a href="#cb9-23"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install mikeio</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a>        pip install .[test]</span>
-<span id="cb9-26"><a href="#cb9-26"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
-<span id="cb9-27"><a href="#cb9-27"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb9-28"><a href="#cb9-28"></a>        pytest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Quick test</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">on</span><span class="kw">:</span><span class="co"> # when to run the workflow</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main</span><span class="kw">]</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="fu">jobs</span><span class="kw">:</span><span class="co"> # what to run</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="co"> # on what operating system</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.9</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>        python -m pip install --upgrade pip</span>
+<span id="cb10-22"><a href="#cb10-22"></a></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install mikeio</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>        pip install .[test]</span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>        pytest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
@@ -666,14 +676,14 @@
 <li><code>schedule</code> can be used to run the workflow on a schedule</li>
 <li><code>workflow_dispatch</code> can be used to trigger the workflow manually</li>
 </ul>
-<div class="sourceCode" id="cb10" data-code-line-numbers="2-3|4-5|6-7|8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">'0 0 * * 0'</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-code-line-numbers="2-3|4-5|6-7|8"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> main </span><span class="kw">]</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">'0 0 * * 0'</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="jobs" class="slide level2">
 <h2>Jobs</h2>
@@ -682,15 +692,15 @@
 <li>Python version</li>
 <li>…</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource {.yaml&quot;} number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>...</span>
-<span id="cb11-2"><a href="#cb11-2"></a>jobs:</span>
-<span id="cb11-3"><a href="#cb11-3"></a>  build:</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    runs-on: ${{ matrix.os }}</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    strategy:</span>
-<span id="cb11-6"><a href="#cb11-6"></a>      matrix:</span>
-<span id="cb11-7"><a href="#cb11-7"></a>        os: [ubuntu-latest, windows-latest]</span>
-<span id="cb11-8"><a href="#cb11-8"></a>        python-version: [3.8, 3.9, "3.10","3.11"]</span>
-<span id="cb11-9"><a href="#cb11-9"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource {.yaml&quot;} number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>...</span>
+<span id="cb12-2"><a href="#cb12-2"></a>jobs:</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  build:</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    runs-on: ${{ matrix.os }}</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    strategy:</span>
+<span id="cb12-6"><a href="#cb12-6"></a>      matrix:</span>
+<span id="cb12-7"><a href="#cb12-7"></a>        os: [ubuntu-latest, windows-latest]</span>
+<span id="cb12-8"><a href="#cb12-8"></a>        python-version: [3.8, 3.9, "3.10","3.11"]</span>
+<span id="cb12-9"><a href="#cb12-9"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="github-releases" class="slide level2 smaller">
 <h2>GitHub Releases</h2>

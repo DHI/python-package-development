@@ -91,6 +91,13 @@
     "text": "Virtual environments\n$ which python\n/usr/bin/python\n$ python -m venv venv\n$ source venv/bin/activate # for 🐧 or venv\\Scripts\\activate.bat 🪟\n(venv)$ which python\n/home/user/src/myproj/venv/bin/python\n(venv)$ pip install -r requirements.txt\n\n\nBack in the days, when disk space was limited, it was a good idea to have a separate environment for each project.\nToday, disk space is cheap, and it is a good idea to have a separate environment for each project."
   },
   {
+    "objectID": "05_dependencies_ci.html#condamamba-environments",
+    "href": "05_dependencies_ci.html#condamamba-environments",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Conda/mamba environments",
+    "text": "Conda/mamba environments\nConda/mamba is a package manager that can be used to create virtual environments.\n$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\python.exe\n$ conda create -n myproj -f requirements.txt\n$ conda activate myproj\n(myproj)$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\envs\\myproj\\python.exe"
+  },
+  {
     "objectID": "05_dependencies_ci.html#branch-naming-convention",
     "href": "05_dependencies_ci.html#branch-naming-convention",
     "title": "Dependencies and Continuous Integration",
