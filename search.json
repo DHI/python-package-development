@@ -70,6 +70,20 @@
     "text": "Creating an installable package"
   },
   {
+    "objectID": "05_dependencies_ci.html#setup.py-vs-pyproject.toml",
+    "href": "05_dependencies_ci.html#setup.py-vs-pyproject.toml",
+    "title": "Dependencies and Continuous Integration",
+    "section": "setup.py vs pyproject.toml",
+    "text": "setup.py vs pyproject.toml\nsetup.py\n\nTraditional approach to defining package configuration and dependencies.\nDefines metadata, dependencies, and entry points in a Python script.\nUses setuptools to generate packages and install the package.\n\n\npyproject.toml\n\nModern approach to defining package configuration and dependencies.\nDefines metadata, dependencies, build tools, and packaging config in a TOML file.\nUses poetry or hatchling to generate packages and install the package."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#install-with-optional-dependencies",
+    "href": "05_dependencies_ci.html#install-with-optional-dependencies",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Install with optional dependencies",
+    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"black==22.3.0\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
+  },
+  {
     "objectID": "05_dependencies_ci.html#creating-an-installable-package-1",
     "href": "05_dependencies_ci.html#creating-an-installable-package-1",
     "title": "Dependencies and Continuous Integration",
@@ -109,7 +123,7 @@
     "href": "05_dependencies_ci.html#time-for-a-discussion",
     "title": "Dependencies and Continuous Integration",
     "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?\n\nAfter break out session:\nOne person from each team briefly presents their discussion outcomes"
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?"
   },
   {
     "objectID": "05_dependencies_ci.html#continuous-integration",
