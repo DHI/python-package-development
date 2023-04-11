@@ -663,6 +663,8 @@
 <ol type="1">
 <li class="fragment"><p>install mkdocstrings</p>
 <p><code>$ pip install mkdocstrings[python]</code></p></li>
+<li class="fragment"><p>Install theme, e.g.&nbsp;material</p>
+<p><code>$ pip install mkdocs-material</code></p></li>
 <li class="fragment"><p>Add plugin to mkdocs.yml (see above)</p></li>
 <li class="fragment"><p>Create <code>index.md</code> in docs folder</p></li>
 <li class="fragment"><p>Run <code>mkdocs serve</code> to view locally</p></li>
@@ -693,10 +695,26 @@
 </section>
 <section id="github-pages-1" class="slide level2">
 <h2>GitHub pages</h2>
-<p><img data-src="images/github_pages.png"></p>
 
-<p><img src="campus_logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
+<img data-src="images/github_pages.png" class="r-stretch"></section>
+<section id="private-website" class="slide level2">
+<h2>“Private” website</h2>
+<ul>
+<li>A GitHub repository can be made private</li>
+<li>The website is still publicly available</li>
+<li>In order to “hide” it from search engines, add a <code>robots.txt</code> file to the root of the website</li>
+<li>This is <strong>not</strong> a secure way to hide a website, but it is a simple way to hide it from search engines.</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>robots.txt</strong></pre>
+</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1"></a>User-agent: *</span>
+<span id="cb9-2"><a href="#cb9-2"></a>Disallow: /</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<img src="campus_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>Python package development</p>
 </div>
 </section>

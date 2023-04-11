@@ -375,7 +375,7 @@
     "href": "06_documentation.html#api-docs",
     "title": "Documentation",
     "section": "API docs",
-    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings[python]\nAdd plugin to mkdocs.yml (see above)\nCreate index.md in docs folder\nRun mkdocs serve to view locally\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
+    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings[python]\nInstall theme, e.g. material\n$ pip install mkdocs-material\nAdd plugin to mkdocs.yml (see above)\nCreate index.md in docs folder\nRun mkdocs serve to view locally\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
   },
   {
     "objectID": "06_documentation.html#github-pages",
@@ -389,7 +389,14 @@
     "href": "06_documentation.html#github-pages-1",
     "title": "Documentation",
     "section": "GitHub pages",
-    "text": "GitHub pages\n\n\n\n\nPython package development"
+    "text": "GitHub pages"
+  },
+  {
+    "objectID": "06_documentation.html#private-website",
+    "href": "06_documentation.html#private-website",
+    "title": "Documentation",
+    "section": "“Private” website",
+    "text": "“Private” website\n\nA GitHub repository can be made private\nThe website is still publicly available\nIn order to “hide” it from search engines, add a robots.txt file to the root of the website\nThis is not a secure way to hide a website, but it is a simple way to hide it from search engines.\n\n\n\nrobots.txt\n\nUser-agent: *\nDisallow: /\n\n\n\n\nPython package development"
   },
   {
     "objectID": "03_types_protocols.html#types",
