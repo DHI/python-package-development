@@ -218,8 +218,7 @@ Sphinx has been around for a long time, has lot's of functionality but is based 
 
 ## Configuration
 
-```yaml
-# mkdocs.yml
+```{.yaml filename="mkdocs.yml"}
 site_name: my_library
 
 theme: "material" # or readthedocs, mkdocs, etc.
