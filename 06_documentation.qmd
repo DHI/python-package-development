@@ -233,7 +233,7 @@ plugins:
           docstring_style: "numpy" # important!, since default is google
 ```
 
-## API docs
+## API docs {.smaller}
 
 ::: {.incremental}
 
@@ -247,7 +247,6 @@ plugins:
 4. Create `index.md` in docs folder
 5. Run `mkdocs serve` to view locally
 :::
-
 
 . . . 
 
@@ -267,7 +266,7 @@ plugins:
 
 ::: {.incremental}
 
-* Once you have a static website, you need s
+* Once you have a static website, you need to share it with the world
 * GitHub pages allows you to easily host a static website on GitHub
 * The website is available at `https://dhi.github.io/<repository>/`
 * The website can be created locally by manually editing html pages.
