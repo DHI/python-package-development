@@ -375,7 +375,7 @@
     "href": "06_documentation.html#api-docs",
     "title": "Documentation",
     "section": "API docs",
-    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings[python]\nadd plugin to mkdocs.yml (see above)\nReference your code in markdown in the docs folder\nRun mkdocs serve to view locally\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
+    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings[python]\nAdd plugin to mkdocs.yml (see above)\nCreate index.md in docs folder\nRun mkdocs serve to view locally\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
   },
   {
     "objectID": "06_documentation.html#github-pages",

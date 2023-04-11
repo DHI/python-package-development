@@ -241,8 +241,8 @@ plugins:
 1. install mkdocstrings
     
     `$ pip install mkdocstrings[python]`
-2. add plugin to mkdocs.yml (see above)
-3. Reference your code in markdown in the docs folder
+2. Add plugin to mkdocs.yml (see above)
+3. Create `index.md` in docs folder
 4. Run `mkdocs serve` to view locally
 :::
 
