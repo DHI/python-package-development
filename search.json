@@ -382,7 +382,7 @@
     "href": "06_documentation.html#github-pages",
     "title": "Documentation",
     "section": "GitHub pages",
-    "text": "GitHub pages\n\n\nOnce you have a static website, you need s\nGitHub pages allows you to easily host a static website on GitHub\nThe website is available at https://dhi.github.io/<repository>/\nThe website can be created locally by manually editing html pages.\nFor use as documentation, it is easier to use a documentation generator like mkdocs."
+    "text": "GitHub pages\n\n\nOnce you have a static website, you need to share it with the world\nGitHub pages allows you to easily host a static website on GitHub\nThe website is available at https://dhi.github.io/<repository>/\nThe website can be created locally by manually editing html pages.\nFor use as documentation, it is easier to use a documentation generator like mkdocs."
   },
   {
     "objectID": "06_documentation.html#github-pages-1",
