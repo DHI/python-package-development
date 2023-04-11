@@ -7,6 +7,76 @@ footer: Python package development
 logo: campus_logo.png
 ---
 
+## Packaging
+
+Packaging means creating a package that can be installed by `pip`.
+
+There are many ways to create an installable package, and many ways to distribute it.
+
+We will show how to create a package using `hatchling`, and how to distribute it on GitHub, PyPI and a private PyPI server.
+
+## Packaging workflow
+
+1. Create a `pyproject.toml` in the root folder of the project
+2. Build a package (e.g. `myproject-0.1.0-py3-none-any.whl`)
+3. Upload the package to location, where others can find it
+
+## `pyproject.toml` {.scrollable}
+
+```toml
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my_library"
+version = "0.0.1"
+dependencies = [
+    "numpy"
+]
+
+authors = [
+  { name="First Last", email="initials@dhigroup.com" },
+]
+description = "Useful library"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 2 - Pre-Alpha",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+dev = ["pytest","flake8","black","sphinx", "myst-parser","sphinx-book-theme"]
+test= ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/DHI/my_library"
+"Bug Tracker" = "https://github.com/DHI/my_library/issues"
+```
+## Versioning
+
+Versioning your package is important for reproducibility and to avoid breaking changes.
+
+. . .
+
+
+Semantic versioning use three numbers `{major}.{minor}.{patch}`, e.g. `1.1.0`
+
+* A new *major* version indicates **breaking** changes
+* A new *minor* version indicates new features, without breaking changes
+* A new *patch* version indicates a small change, e.g. a bug fix
+
+## Packaging non-Python files
+
+TODO look at <https://hatch.pypa.io/latest/config/build/#artifacts>
+
+If you are creating an application, you might want to include non-Python files in the package.
+E.g. an application that uses machine learning, and includes a trained model.
+
 ## Packages
 
 ## Packaging
@@ -15,3 +85,51 @@ logo: campus_logo.png
 
 * Install from a private git repository
 * Install from a private PyPI server
+
+## GitHub secrets
+
+* Store sensitive information, e.g. passwords, in your repository.
+* Secrets are encrypted, and only visible to you and GitHub Actions.
+* Add secrets in the repository settings.
+
+
+To use secrets as environment variables in GitHub Actions, add them to the `env` section of the workflow:
+
+```yaml
+env:
+  TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+  TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+```
+
+
+
+## GitHub Actions {.smaller}
+
+```{.yaml filename=.github/workflows/python-package.yml}
+name: Publish Python Package
+on:
+  release:
+    types: [created]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build
+    - name: Build package
+      run: python -m build
+    
+    - name: Publish to PyPI
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        twine upload dist/* 
+```
