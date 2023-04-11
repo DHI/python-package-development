@@ -240,9 +240,12 @@ plugins:
 1. install mkdocstrings
     
     `$ pip install mkdocstrings[python]`
-2. Add plugin to mkdocs.yml (see above)
-3. Create `index.md` in docs folder
-4. Run `mkdocs serve` to view locally
+2. Install theme, e.g. material
+    
+    `$ pip install mkdocs-material`
+3. Add plugin to mkdocs.yml (see above)
+4. Create `index.md` in docs folder
+5. Run `mkdocs serve` to view locally
 :::
 
 
@@ -275,3 +278,16 @@ plugins:
 ## GitHub pages
 
 ![](images/github_pages.png)
+
+## "Private" website
+
+* A GitHub repository can be made private
+* The website is still publicly available
+* In order to "hide" it from search engines, add a `robots.txt` file to the root of the website
+* This is **not** a secure way to hide a website, but it is a simple way to hide it from search engines.
+
+```{.txt filename="robots.txt"}
+User-agent: *
+Disallow: /
+```
+
