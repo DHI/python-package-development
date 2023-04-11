@@ -368,7 +368,7 @@
     "href": "06_documentation.html#configuration",
     "title": "Documentation",
     "section": "Configuration",
-    "text": "Configuration\n# mkdocs.yml\nsite_name: my_library\n\ntheme: \"material\" # or readthedocs, mkdocs, etc.\n\nplugins:\n- mkdocstrings:\n    handlers:\n      python:\n        options:\n          show_source: false # change if you want able to show source code\n          heading_level: 2\n          docstring_style: \"numpy\" # important!, since default is google"
+    "text": "Configuration\n\n\nmkdocs.yml\n\nsite_name: my_library\n\ntheme: \"material\" # or readthedocs, mkdocs, etc.\n\nplugins:\n- mkdocstrings:\n    handlers:\n      python:\n        options:\n          show_source: false # change if you want able to show source code\n          heading_level: 2\n          docstring_style: \"numpy\" # important!, since default is google"
   },
   {
     "objectID": "06_documentation.html#api-docs",

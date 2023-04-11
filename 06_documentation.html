@@ -639,19 +639,23 @@
 </section>
 <section id="configuration" class="slide level2">
 <h2>Configuration</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># mkdocs.yml</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">plugins</span><span class="kw">:</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>mkdocs.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">plugins</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="api-docs" class="slide level2">
 <h2>API docs</h2>
