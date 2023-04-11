@@ -19,17 +19,37 @@ logo: campus_logo.png
 
 :::
 
+## Readme.md
 
+* A readme file is a text file that introduces and explains a project.
+* Always include a readme file in your project.
+* You can put readme files in any directory, and you can have more than one in a single project.
+
+## Requirements
+
+* Mention the requirements for your package
+    - Operating system
+    - Python version
+    - Other non-Python dependencies, e.g. VC++ redistributables
+* Include information on how to install your package
+    - `pip install my_package`
+    - `pip install pip install https://github.com/DHI/{repo}/archive/main.zip`
 
 ## Notebooks
+
+* Jupyter notebooks are a great way to document your code
+* Good for prototyping
+* In a later stage, notebooks can be used to demonstrate how to use your code
+* Not a replacement for documentation for a professional package
+
 
 ## Docstrings
 
   ```{.python code-line-numbers="|1|4-18"}
-"""K-means clustering.""" # module docstring
+"""K-means clustering."""
 
 class KMeans(_BaseKMeans):
-    """K-Means clustering. # class docstring 
+    """K-Means clustering.
     
     Parameters
     ----------
@@ -69,13 +89,13 @@ class KMeans(_BaseKMeans)
 ![](images/api_docs.png)
 
 ::: {.notes}
-Write once, ready anywhere!
+Write once, read anywhere!
 :::
 
 
-## Numpy format {.smaller}
+## Docstring - Numpy format {.smaller}
 
-There are several ways to document your code. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc. 
+
 
 ```python
 def function_name(param1, param2, param3):
@@ -100,7 +120,29 @@ def function_name(param1, param2, param3):
     pass
 ```
 
-## Type hints
+::: {.notes}
+There are several docstring formats. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc. 
+:::
+
+## Type hints {.smaller}
+
+From Python 3.6, type hints can be used in addition to the type in the docstring.
+
+```{.python code-line-numbers="|1"}
+def remove_outlier(data:pd.DataFrame, column:str, threshold:float=3) -> pd.DataFrame:
+    """Remove outliers from a dataframe.
+    
+    Parameters
+    ----------
+    data : pd.DataFrame
+        Dataframe to remove outliers from.
+    column : str
+        Column to remove outliers from.
+    threshold : float, optional
+        Number of standard deviations to use as threshold, by default 3
+    
+```
+
 
 ## doctest
 
@@ -198,10 +240,10 @@ plugins:
 
 1. install mkdocstrings
     
-    `$ pip install mkdocstrings`
+    `$ pip install mkdocstrings[python]`
 2. add plugin to mkdocs.yml (see above)
-3. Reference your code in markdown
-
+3. Reference your code in markdown in the docs folder
+4. Run `mkdocs serve` to view locally
 :::
 
 
@@ -217,3 +259,20 @@ plugins:
 ## 
 
 ![](images/mkdocs_api.png)
+
+
+## GitHub pages 
+
+::: {.incremental}
+
+* Once you have a static website, you need s
+* GitHub pages allows you to easily host a static website on GitHub
+* The website is available at `https://dhi.github.io/<repository>/`
+* The website can be created locally by manually editing html pages.
+* For use as documentation, it is easier to use a documentation generator like mkdocs.
+
+:::
+
+## GitHub pages
+
+![](images/github_pages.png)

@@ -403,15 +403,45 @@
 </ul>
 </div>
 </section>
+<section id="readme.md" class="slide level2">
+<h2>Readme.md</h2>
+<ul>
+<li>A readme file is a text file that introduces and explains a project.</li>
+<li>Always include a readme file in your project.</li>
+<li>You can put readme files in any directory, and you can have more than one in a single project.</li>
+</ul>
+</section>
+<section id="requirements" class="slide level2">
+<h2>Requirements</h2>
+<ul>
+<li>Mention the requirements for your package
+<ul>
+<li>Operating system</li>
+<li>Python version</li>
+<li>Other non-Python dependencies, e.g.&nbsp;VC++ redistributables</li>
+</ul></li>
+<li>Include information on how to install your package
+<ul>
+<li><code>pip install my_package</code></li>
+<li><code>pip install pip install https://github.com/DHI/{repo}/archive/main.zip</code></li>
+</ul></li>
+</ul>
+</section>
 <section id="notebooks" class="slide level2">
 <h2>Notebooks</h2>
+<ul>
+<li>Jupyter notebooks are a great way to document your code</li>
+<li>Good for prototyping</li>
+<li>In a later stage, notebooks can be used to demonstrate how to use your code</li>
+<li>Not a replacement for documentation for a professional package</li>
+</ul>
 </section>
 <section id="docstrings" class="slide level2">
 <h2>Docstrings</h2>
-<div class="sourceCode" id="cb1" data-code-line-numbers="|1|4-18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">"""K-means clustering."""</span> <span class="co"># module docstring</span></span>
+<div class="sourceCode" id="cb1" data-code-line-numbers="|1|4-18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">"""K-means clustering."""</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw">class</span> KMeans(_BaseKMeans):</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="co">"""K-Means clustering. # class docstring </span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="co">"""K-Means clustering.</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="co">  </span></span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="co">  Parameters</span></span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="co">  ----------</span></span>
@@ -446,7 +476,7 @@
 
 
 <img data-src="images/api_docs.png" class="r-stretch"><aside class="notes">
-<p>Write once, ready anywhere!</p>
+<p>Write once, read anywhere!</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -459,9 +489,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="numpy-format" class="slide level2 smaller">
-<h2>Numpy format</h2>
-<p>There are several ways to document your code. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc.</p>
+<section id="docstring---numpy-format" class="slide level2 smaller">
+<h2>Docstring - Numpy format</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> function_name(param1, param2, param3):</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="co">"""Short summary.</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co">    </span></span>
@@ -482,9 +511,35 @@
 <span id="cb3-18"><a href="#cb3-18"></a><span class="co">        Description of return value.</span></span>
 <span id="cb3-19"><a href="#cb3-19"></a><span class="co">    """</span></span>
 <span id="cb3-20"><a href="#cb3-20"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<p>There are several docstring formats. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="type-hints" class="slide level2">
+<section id="type-hints" class="slide level2 smaller">
 <h2>Type hints</h2>
+<p>From Python 3.6, type hints can be used in addition to the type in the docstring.</p>
+<div class="sourceCode" id="cb4" data-code-line-numbers="|1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> remove_outlier(data:pd.DataFrame, column:<span class="bu">str</span>, threshold:<span class="bu">float</span><span class="op">=</span><span class="dv">3</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"""Remove outliers from a dataframe.</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">    </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    Parameters</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">    ----------</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">    data : pd.DataFrame</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">        Dataframe to remove outliers from.</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">    column : str</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">        Column to remove outliers from.</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">    threshold : float, optional</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">        Number of standard deviations to use as threshold, by default 3</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">    </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="doctest" class="slide level2">
 <h2>doctest</h2>
@@ -512,26 +567,26 @@
 <section class="slide level2">
 
 <p>Input, output examples in docstrings are run as tests.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> add(a, b):</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"""Add two numbers.</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">    &gt;&gt;&gt; add(1, 2)</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    3</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">    &gt;&gt;&gt; add(1, 3)</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">    5</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">    """</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> add(a, b):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">"""Add two numbers.</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">    &gt;&gt;&gt; add(1, 2)</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">    3</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">    &gt;&gt;&gt; add(1, 3)</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">    5</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">    """</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">$</span> python <span class="at">-m</span> doctest <span class="at">-v</span> add.py</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">Failed</span> example:</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="ex">add</span><span class="er">(</span><span class="ex">1,</span> 3<span class="kw">)</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">Expected:</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="ex">5</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">Got:</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="ex">4</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="ex">**********************************************************************</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="ex">1</span> items had failures:</span>
-<span id="cb5-10"><a href="#cb5-10"></a>   <span class="ex">1</span> of   2 in mod.add</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="ex">***Test</span> Failed<span class="pp">***</span> 1 failures.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">$</span> python <span class="at">-m</span> doctest <span class="at">-v</span> add.py</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">Failed</span> example:</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="ex">add</span><span class="er">(</span><span class="ex">1,</span> 3<span class="kw">)</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">Expected:</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="ex">5</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="ex">Got:</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="ex">4</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="ex">**********************************************************************</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="ex">1</span> items had failures:</span>
+<span id="cb6-10"><a href="#cb6-10"></a>   <span class="ex">1</span> of   2 in mod.add</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="ex">***Test</span> Failed<span class="pp">***</span> 1 failures.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Doctest can pick up anything that looks like a Python session and run it as a test.</p>
 <style type="text/css">
@@ -584,40 +639,57 @@
 </section>
 <section id="configuration" class="slide level2">
 <h2>Configuration</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># mkdocs.yml</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="fu">plugins</span><span class="kw">:</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># mkdocs.yml</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">plugins</span><span class="kw">:</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="api-docs" class="slide level2">
 <h2>API docs</h2>
 <div>
 <ol type="1">
 <li class="fragment"><p>install mkdocstrings</p>
-<p><code>$ pip install mkdocstrings</code></p></li>
+<p><code>$ pip install mkdocstrings[python]</code></p></li>
 <li class="fragment"><p>add plugin to mkdocs.yml (see above)</p></li>
-<li class="fragment"><p>Reference your code in markdown</p></li>
+<li class="fragment"><p>Reference your code in markdown in the docs folder</p></li>
+<li class="fragment"><p>Run <code>mkdocs serve</code> to view locally</p></li>
 </ol>
 </div>
 <div class="fragment">
 <p><code>docs/index.md</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu"># Reference</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>::: my_library.simulation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu"># Reference</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>::: my_library.simulation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-<p><img data-src="images/mkdocs_api.png"></p>
+
+<img data-src="images/mkdocs_api.png" class="r-stretch"></section>
+<section id="github-pages" class="slide level2">
+<h2>GitHub pages</h2>
+<div>
+<ul>
+<li class="fragment">Once you have a static website, you need s</li>
+<li class="fragment">GitHub pages allows you to easily host a static website on GitHub</li>
+<li class="fragment">The website is available at <code>https://dhi.github.io/&lt;repository&gt;/</code></li>
+<li class="fragment">The website can be created locally by manually editing html pages.</li>
+<li class="fragment">For use as documentation, it is easier to use a documentation generator like mkdocs.</li>
+</ul>
+</div>
+</section>
+<section id="github-pages-1" class="slide level2">
+<h2>GitHub pages</h2>
+<p><img data-src="images/github_pages.png"></p>
 
 <p><img src="campus_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">

@@ -1,565 +1,5 @@
 [
   {
-    "objectID": "00_introduction.html#instructors",
-    "href": "00_introduction.html#instructors",
-    "title": "Python package development",
-    "section": "Instructors",
-    "text": "Instructors\n\nJesper\nHenrik\nThomas"
-  },
-  {
-    "objectID": "00_introduction.html#participants",
-    "href": "00_introduction.html#participants",
-    "title": "Python package development",
-    "section": "Participants",
-    "text": "Participants\nIntroduce yourselves in a break out session later today."
-  },
-  {
-    "objectID": "00_introduction.html#learning-modules",
-    "href": "00_introduction.html#learning-modules",
-    "title": "Python package development",
-    "section": "Learning modules",
-    "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package"
-  },
-  {
-    "objectID": "00_introduction.html#learning-objectives",
-    "href": "00_introduction.html#learning-objectives",
-    "title": "Python package development",
-    "section": "Learning objectives",
-    "text": "Learning objectives\n\nimproved Python skills\nknowledge of how to create reusable Python code\nknow how to share code with others through a Python package"
-  },
-  {
-    "objectID": "00_introduction.html#format",
-    "href": "00_introduction.html#format",
-    "title": "Python package development",
-    "section": "Format",
-    "text": "Format\n\nOnline session (Zoom) almost every Monday\nHomework assignments\nQuiz (Campus)"
-  },
-  {
-    "objectID": "00_introduction.html#course-material",
-    "href": "00_introduction.html#course-material",
-    "title": "Python package development",
-    "section": "Course material",
-    "text": "Course material\n\nHillard, 2020, Practices of the Python Pro, Manning\nSlides\nCampus\nCourse Yammer channel"
-  },
-  {
-    "objectID": "00_introduction.html#poll",
-    "href": "00_introduction.html#poll",
-    "title": "Python package development",
-    "section": "Poll",
-    "text": "Poll\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#section",
-    "href": "05_dependencies_ci.html#section",
-    "title": "Dependencies and Continuous Integration",
-    "section": "",
-    "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy>=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#dependency-management",
-    "href": "05_dependencies_ci.html#dependency-management",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Dependency management",
-    "text": "Dependency management\nExample of pinning versions:\n\n\nrequirements.txt\n\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1\n\n\nOr using a range of versions:\n\n\nrequirements.txt\n\nnumpy>=1.11.0\nscipy>=0.17.0\nmatplotlib>=1.5.1,<=2.0.0\n\n\n\nInstall dependencies:\n$ pip install -r requirements.txt\n\nA common way to declare dependencies is to use a requirements.txt file."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#creating-an-installable-package",
-    "href": "05_dependencies_ci.html#creating-an-installable-package",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Creating an installable package",
-    "text": "Creating an installable package"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#setup.py-vs-pyproject.toml",
-    "href": "05_dependencies_ci.html#setup.py-vs-pyproject.toml",
-    "title": "Dependencies and Continuous Integration",
-    "section": "setup.py vs pyproject.toml",
-    "text": "setup.py vs pyproject.toml\nsetup.py\n\nTraditional approach to defining package configuration and dependencies.\nDefines metadata, dependencies, and entry points in a Python script.\nUses setuptools to generate packages and install the package.\n\n\npyproject.toml\n\nModern approach to defining package configuration and dependencies.\nDefines metadata, dependencies, build tools, and packaging config in a TOML file.\nUses poetry or hatchling to generate packages and install the package."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#install-with-optional-dependencies",
-    "href": "05_dependencies_ci.html#install-with-optional-dependencies",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Install with optional dependencies",
-    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"black==22.3.0\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#creating-an-installable-package-1",
-    "href": "05_dependencies_ci.html#creating-an-installable-package-1",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Creating an installable package",
-    "text": "Creating an installable package\nInstall package in editable mode:\n$ pip install -e .\n\nStart a Python session:\n>>> import mini\n>>> mini.foo()\n42\n\n\nRun tests:\n$ pytest\n...\n\ntests/test_foo.py .                       [100%]\n\n=============== 1 passed in 0.01s ==============="
-  },
-  {
-    "objectID": "05_dependencies_ci.html#virtual-environments",
-    "href": "05_dependencies_ci.html#virtual-environments",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Virtual environments",
-    "text": "Virtual environments\n\n\nCreates a clean environment for each project\nAllows different versions of a package to coexist on your machine\nCan be used to create a reproducible environment for a project\nTo achieve complete isolation, use Docker containers (not covered in this course)"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#virtual-environments-1",
-    "href": "05_dependencies_ci.html#virtual-environments-1",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Virtual environments",
-    "text": "Virtual environments\n$ which python\n/usr/bin/python\n$ python -m venv venv\n$ source venv/bin/activate # for 🐧 or venv\\Scripts\\activate.bat 🪟\n(venv)$ which python\n/home/user/src/myproj/venv/bin/python\n(venv)$ pip install -r requirements.txt\n\n\nBack in the days, when disk space was limited, it was a good idea to have a separate environment for each project.\nToday, disk space is cheap, and it is a good idea to have a separate environment for each project."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#condamamba-environments",
-    "href": "05_dependencies_ci.html#condamamba-environments",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Conda/mamba environments",
-    "text": "Conda/mamba environments\nConda/mamba is a package manager that can be used to create virtual environments.\n$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\python.exe\n$ conda create -n myproj -f requirements.txt\n$ conda activate myproj\n(myproj)$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\envs\\myproj\\python.exe"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#branch-naming-convention",
-    "href": "05_dependencies_ci.html#branch-naming-convention",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Branch naming convention",
-    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling\nFind a naming convention that works for you and your team."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#time-for-a-discussion",
-    "href": "05_dependencies_ci.html#time-for-a-discussion",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#continuous-integration",
-    "href": "05_dependencies_ci.html#continuous-integration",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines\n\n\nGitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#github-actions",
-    "href": "05_dependencies_ci.html#github-actions",
-    "title": "Dependencies and Continuous Integration",
-    "section": "GitHub Actions",
-    "text": "GitHub Actions\n\n\n\nWorkflow are stored in the .github/workflows folder.\nWorkflow is described in a YAML file.\nYAML is whitespace sensitive (like Python).\nYAML can contain lists, dictionaries and strings, and can be nested.\n\n\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#benefits-of-ci",
-    "href": "05_dependencies_ci.html#benefits-of-ci",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Benefits of CI",
-    "text": "Benefits of CI\n\n\nRun tests on every commit\nTest on different operating systems\nTest on different Python versions\nCreate API documentation (next week)\nPublish package to PyPI or similar package repository (two weeks from now)"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#triggers",
-    "href": "05_dependencies_ci.html#triggers",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Triggers",
-    "text": "Triggers\n\npush and pull_request are the most common triggers\nschedule can be used to run the workflow on a schedule\nworkflow_dispatch can be used to trigger the workflow manually\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n  schedule:\n    - cron: '0 0 * * 0'\n  workflow_dispatch:"
-  },
-  {
-    "objectID": "05_dependencies_ci.html#jobs",
-    "href": "05_dependencies_ci.html#jobs",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Jobs",
-    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
-  },
-  {
-    "objectID": "05_dependencies_ci.html#github-releases",
-    "href": "05_dependencies_ci.html#github-releases",
-    "title": "Dependencies and Continuous Integration",
-    "section": "GitHub Releases",
-    "text": "GitHub Releases\n\n\n\nGitHub releases are a way to publish software releases.\nYou can upload files, write release notes and tag the release.\nAs a minimum, the release will contain the source code at the time of the release.\nCreating a release can trigger other workflows, e.g. publishing a package to PyPI.\n\n\n\n\n\nhttps://github.com/pydata/xarray/releases/tag/v2022.12.0\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "01b_naming_conventions.html#variables-function-and-method-names",
-    "href": "01b_naming_conventions.html#variables-function-and-method-names",
-    "title": "Python - Naming conventions",
-    "section": "Variables, function and method names",
-    "text": "Variables, function and method names\n\nUse lowercase characters\nSeparate words with underscores\n\n\nmodel_name = \"NorthSeaModel\"\nn_epochs = 100\n\ndef my_function():\n    pass"
-  },
-  {
-    "objectID": "01b_naming_conventions.html#constants",
-    "href": "01b_naming_conventions.html#constants",
-    "title": "Python - Naming conventions",
-    "section": "Constants",
-    "text": "Constants\n\nUse all uppercase characters\n\nGRAVITY = 9.81\n\nAVOGADRO_CONSTANT = 6.02214076e23\n\nSECONDS_IN_A_DAY = 86400\n\nN_LEGS_PER_ANIMAL = {\n    \"human\": 2,\n    \"dog\": 4,\n    \"spider\": 8,\n}\n\nPython will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants."
-  },
-  {
-    "objectID": "01b_naming_conventions.html#classes",
-    "href": "01b_naming_conventions.html#classes",
-    "title": "Python - Naming conventions",
-    "section": "Classes",
-    "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\n\nclass RandomClassifier: # CamelCase ✅\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y): # lowercase ✅\n        self.fit(X, y)\n        return self.predict(X)"
-  },
-  {
-    "objectID": "01b_naming_conventions.html#function-return-values",
-    "href": "01b_naming_conventions.html#function-return-values",
-    "title": "Python - Naming conventions",
-    "section": "Function return values",
-    "text": "Function return values\ndef my_function() -> str:\n    return \"42\"\n\ndef my_other_function() -> None: # it doesn't return anything 🤔\n    print(\"42\")\n\nIn action:\n>>> my_function()\n'42'\n>>> my_other_function()\n42\n>>> x = my_function()\n>>> x\n'42'\n>>> y = my_other_function()\n>>> y"
-  },
-  {
-    "objectID": "01b_naming_conventions.html#github-repo-naming-convention",
-    "href": "01b_naming_conventions.html#github-repo-naming-convention",
-    "title": "Python - Naming conventions",
-    "section": "Github repo naming convention",
-    "text": "Github repo naming convention\n\nThis is just a suggestion\nUse lowercase characters\nSeparate words with dashes\n\nExample: my-awesome-repo\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "04_testing.html#testing",
-    "href": "04_testing.html#testing",
-    "title": "Testing, linting and formatting",
-    "section": "Testing",
-    "text": "Testing\nVerify code is working as expected.\nSimplest way to test is to run code and check output.\n\nAutomated testing checks output automatically.\nCode changes can break other parts of code.\nAutomatic testing verifies code is still working."
-  },
-  {
-    "objectID": "04_testing.html#testing-workflow",
-    "href": "04_testing.html#testing-workflow",
-    "title": "Testing, linting and formatting",
-    "section": "Testing workflow",
-    "text": "Testing workflow\n\n\n\n\nflowchart TD\n    A[Prepare inputs]\n    B[Describe expected output]\n    C[Obtain actual output]\n    D[Compare actual and\\n expected output]\n\n    A --> B --> C --> D"
-  },
-  {
-    "objectID": "04_testing.html#unit-testing",
-    "href": "04_testing.html#unit-testing",
-    "title": "Testing, linting and formatting",
-    "section": "Unit testing",
-    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
-  },
-  {
-    "objectID": "04_testing.html#a-good-unit-test",
-    "href": "04_testing.html#a-good-unit-test",
-    "title": "Testing, linting and formatting",
-    "section": "A good unit test",
-    "text": "A good unit test\n\n\n\n\nFully automated (next week)\nHas full control over all the pieces running (“fake” external dependencies)\nCan be run in any order\nRuns in memory (no DB or file access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
-  },
-  {
-    "objectID": "04_testing.html#example",
-    "href": "04_testing.html#example",
-    "title": "Testing, linting and formatting",
-    "section": "Example",
-    "text": "Example\n\nget a timeseries of water levels\nfind the maxiumum water level each year\ncreate a summary report for the subset of data"
-  },
-  {
-    "objectID": "04_testing.html#integration-testing",
-    "href": "04_testing.html#integration-testing",
-    "title": "Testing, linting and formatting",
-    "section": "Integration testing",
-    "text": "Integration testing\ndef test_integration():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    max_wls = get_max_water_level(wl, freq=\"Y\")\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
-  },
-  {
-    "objectID": "04_testing.html#testing-in-vs-code",
-    "href": "04_testing.html#testing-in-vs-code",
-    "title": "Testing, linting and formatting",
-    "section": "Testing in VS Code",
-    "text": "Testing in VS Code"
-  },
-  {
-    "objectID": "04_testing.html#fixtures",
-    "href": "04_testing.html#fixtures",
-    "title": "Testing, linting and formatting",
-    "section": "Fixtures",
-    "text": "Fixtures\n\n\nA piece of code that is used by multiple tests\nProvide data or services to tests\nDefined with @pytest.fixture\nSet up test environment\nPass fixtures as test arguments"
-  },
-  {
-    "objectID": "04_testing.html#fixture-example",
-    "href": "04_testing.html#fixture-example",
-    "title": "Testing, linting and formatting",
-    "section": "Fixture example",
-    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, .., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
-  },
-  {
-    "objectID": "04_testing.html#test-coverage",
-    "href": "04_testing.html#test-coverage",
-    "title": "Testing, linting and formatting",
-    "section": "Test coverage",
-    "text": "Test coverage\n\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
-  },
-  {
-    "objectID": "04_testing.html#test-coverage-report",
-    "href": "04_testing.html#test-coverage-report",
-    "title": "Testing, linting and formatting",
-    "section": "Test coverage report",
-    "text": "Test coverage report\npytest --cov=myproj tests/\n-------------------- coverage: ... ---------------------\nName                 Stmts   Miss  Cover\n----------------------------------------\nmyproj/__init__          2      0   100%\nmyproj/myproj          257     13    94%\nmyproj/feature4286      94      7    92%\n----------------------------------------\nTOTAL                  353     20    94%"
-  },
-  {
-    "objectID": "04_testing.html#testing-advice",
-    "href": "04_testing.html#testing-advice",
-    "title": "Testing, linting and formatting",
-    "section": "Testing advice",
-    "text": "Testing advice\n\n\n\n\n\n\nTest edge cases\n\n\n\nempty lists\nlists with a single element\nempty strings\nempty dictionaries\nNone\nnp.nan"
-  },
-  {
-    "objectID": "04_testing.html#tests-act-as-specification",
-    "href": "04_testing.html#tests-act-as-specification",
-    "title": "Testing, linting and formatting",
-    "section": "Tests act as specification",
-    "text": "Tests act as specification\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
-  },
-  {
-    "objectID": "04_testing.html#test-driven-development",
-    "href": "04_testing.html#test-driven-development",
-    "title": "Testing, linting and formatting",
-    "section": "Test driven development",
-    "text": "Test driven development\n\n\nWrite a test that fails ❌\nWrite the code to make the test pass ✅\nRefactor the code ⚒️\n\n\n\nThe benefit of this approach is that you are forced to think about the expected behaviour of your code before you write it.\nIt is also too easy to write a test that passes without actually testing the code."
-  },
-  {
-    "objectID": "04_testing.html#section",
-    "href": "04_testing.html#section",
-    "title": "Testing, linting and formatting",
-    "section": "",
-    "text": "and now for something completely different…"
-  },
-  {
-    "objectID": "04_testing.html#the-zen-of-python",
-    "href": "04_testing.html#the-zen-of-python",
-    "title": "Testing, linting and formatting",
-    "section": "The Zen of Python",
-    "text": "The Zen of Python\nBeautiful is better than ugly.\nExplicit is better than implicit.\nSimple is better than complex.\nComplex is better than complicated.\nFlat is better than nested.\nSparse is better than dense.\nReadability counts.\n\n…\nErrors should never pass silently.\nUnless explicitly silenced.\n…"
-  },
-  {
-    "objectID": "04_testing.html#exceptions",
-    "href": "04_testing.html#exceptions",
-    "title": "Testing, linting and formatting",
-    "section": "Exceptions",
-    "text": "Exceptions\n\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nExceptions are communication between the programmer and the user.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitialistionError, MissingLicenseError?"
-  },
-  {
-    "objectID": "04_testing.html#example-1",
-    "href": "04_testing.html#example-1",
-    "title": "Testing, linting and formatting",
-    "section": "Example",
-    "text": "Example\n\n\nsrc/ops.py\n\ndef is_operable(height:float, period:float) -> bool:\n    if height < 0.0:\n        raise ValueError(f\"Supplied value of {height=} is unphysical.\")\n\n>>> is_operable(height=-1.0, period=4.0)\n\nTraceback (most recent call last):\n  ...\nValueError: Supplied value of height=-1.0 is unphysical.\n\n\nIt is better to raise an exception (that can terminate the program), than to propagate a bad value."
-  },
-  {
-    "objectID": "04_testing.html#warnings",
-    "href": "04_testing.html#warnings",
-    "title": "Testing, linting and formatting",
-    "section": "Warnings",
-    "text": "Warnings\nWarnings are a way to alert users of your code to potential issues or usage errors without actually halting the program’s execution.\n\n\nsrc/ops.py\n\nimport warnings\nwarnings.warn(\"This is a warning\")"
-  },
-  {
-    "objectID": "04_testing.html#how-to-test-exceptions",
-    "href": "04_testing.html#how-to-test-exceptions",
-    "title": "Testing, linting and formatting",
-    "section": "How to test exceptions",
-    "text": "How to test exceptions\n\n\ntests/test_ops.py\n\nimport pytest\nfrom ops import is_operable\n\ndef test_negative_heights_are_not_valid():\n    with pytest.raises(ValueError):\n        is_operable(height=-1.0, period=4.0)\n\nThe same can be done with warnings."
-  },
-  {
-    "objectID": "04_testing.html#linting",
-    "href": "04_testing.html#linting",
-    "title": "Testing, linting and formatting",
-    "section": "Linting",
-    "text": "Linting\nLinting is a way to check your code for common errors and style issues.\nflake8 is a popular tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
-  },
-  {
-    "objectID": "04_testing.html#unused-variables",
-    "href": "04_testing.html#unused-variables",
-    "title": "Testing, linting and formatting",
-    "section": "Unused variables",
-    "text": "Unused variables\ndef model(a, b):\n\n    method = \"cubic\"\n    return a + (b - a)\n\n\ny = model(a=1, b=2)\n\nUnused variables is either a mistake or simply a source of confusion.\n\n\n$ flake8 models.py\nmodels.py:3:5: F841 local variable 'method' is assigned to but never used"
-  },
-  {
-    "objectID": "04_testing.html#formatting",
-    "href": "04_testing.html#formatting",
-    "title": "Testing, linting and formatting",
-    "section": "Formatting",
-    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nblack is an opinionated automatic code formatter for Python.\nIt enforces its own rules for formatting, which are not configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
-  },
-  {
-    "objectID": "04_testing.html#running-black",
-    "href": "04_testing.html#running-black",
-    "title": "Testing, linting and formatting",
-    "section": "Running Black",
-    "text": "Running Black\n$ black .\nreformatted data_utils.py\nreformatted dfsu/__init__.py\nreformatted dataarray.py\nreformatted dataset.py\nreformatted spatial/geometry.py\nreformatted pfs/pfssection.py\n\nAll done! ✨ 🍰 ✨\n6 files reformatted, 27 files left unchanged."
-  },
-  {
-    "objectID": "04_testing.html#running-black-1",
-    "href": "04_testing.html#running-black-1",
-    "title": "Testing, linting and formatting",
-    "section": "Running Black",
-    "text": "Running Black\nVisual Studio Code can be configured to run black automatically when saving a file.\n\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "03_types_protocols.html#types",
-    "href": "03_types_protocols.html#types",
-    "title": "Python types, interfaces and protocols",
-    "section": "Types",
-    "text": "Types\nC#\nint n = 2;\nString s = \"Hello\";\n\npublic String RepeatedString(String s, int n) {\n    return Enumerable.Repeat(s, n).Aggregate((a, b) => a + b);\n}\n\nPython\nn = 2\ns = \"Hello\"\n\ndef repeated_string(s, n):\n    return s * n"
-  },
-  {
-    "objectID": "03_types_protocols.html#types-1",
-    "href": "03_types_protocols.html#types-1",
-    "title": "Python types, interfaces and protocols",
-    "section": "Types",
-    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time\nTypes are checked at runtime\n\n\n\nPython with type hints\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -> str:\n    return s * n"
-  },
-  {
-    "objectID": "03_types_protocols.html#abstraction",
-    "href": "03_types_protocols.html#abstraction",
-    "title": "Python types, interfaces and protocols",
-    "section": "Abstraction",
-    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\n\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
-  },
-  {
-    "objectID": "03_types_protocols.html#collections-abstract-base-classes",
-    "href": "03_types_protocols.html#collections-abstract-base-classes",
-    "title": "Python types, interfaces and protocols",
-    "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\n\n\n\n\n\n\n\n\nIf a class implements __len__ it is a Sized object.\nIf a class implements __contains__ it is a Container object.\nIf a class implements __iter__ it is a Iterable object."
-  },
-  {
-    "objectID": "03_types_protocols.html#collections-abstract-base-classes-1",
-    "href": "03_types_protocols.html#collections-abstract-base-classes-1",
-    "title": "Python types, interfaces and protocols",
-    "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n>>> a = [1, 2, 3]\n>>> 1 in a\nTrue\n>>> a.__contains__(1)\nTrue\n>>> len(a)\n3\n>>> a.__len__()\n3\n>>> for x in a:\n...     v.append(x)\n>>> it = a.__iter__()\n>>> next(it)\n1\n>>> next(it)\n2\n>>> next(it)\n3\n>>> next(it)\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nStopIteration"
-  },
-  {
-    "objectID": "03_types_protocols.html#collections-abstract-base-classes-2",
-    "href": "03_types_protocols.html#collections-abstract-base-classes-2",
-    "title": "Python types, interfaces and protocols",
-    "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict"
-  },
-  {
-    "objectID": "03_types_protocols.html#pythonic",
-    "href": "03_types_protocols.html#pythonic",
-    "title": "Python types, interfaces and protocols",
-    "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…"
-  },
-  {
-    "objectID": "03_types_protocols.html#duck-typing",
-    "href": "03_types_protocols.html#duck-typing",
-    "title": "Python types, interfaces and protocols",
-    "section": "Duck typing",
-    "text": "Duck typing\n\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods."
-  },
-  {
-    "objectID": "03_types_protocols.html#lets-revisit-the-date-interval",
-    "href": "03_types_protocols.html#lets-revisit-the-date-interval",
-    "title": "Python types, interfaces and protocols",
-    "section": "Let’s revisit the (date) Interval1",
-    "text": "Let’s revisit the (date) Interval1\nclass Interval:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n\n    def __contains__(self, x):\n        return self.start < x < self.end\n\n>>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))\n\n>>> date(2020,1,15) in dr\nTrue\n>>> date(1970,1,1) in dr\nFalse\nhttps://martinfowler.com/eaaDev/Range.html"
-  },
-  {
-    "objectID": "03_types_protocols.html#some-other-interval",
-    "href": "03_types_protocols.html#some-other-interval",
-    "title": "Python types, interfaces and protocols",
-    "section": "Some other interval",
-    "text": "Some other interval\nclass Interval:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n\n    def __contains__(self, x):\n        return self.start < x < self.end\n    \n>>> interval = Interval(5, 10)\n\n>>> 8 in interval\nTrue\n>>> 12 in interval\nFalse\n\nAs long as the start, end and x are comparable, the Interval class is a generic class able to handle integers, floats, dates, datetimes, strings …"
-  },
-  {
-    "objectID": "03_types_protocols.html#time-for-a-discussion",
-    "href": "03_types_protocols.html#time-for-a-discussion",
-    "title": "Python types, interfaces and protocols",
-    "section": "Time for a discussion",
-    "text": "Time for a discussion\nPre-work for this Module\n\nRead chapters\n\nAbstraction and encapsulation\nDesigning for high performance\n\nin Hillard, 2020\nDo you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?\nConsider the implications of storing data in a list or in a dictionary."
-  },
-  {
-    "objectID": "03_types_protocols.html#time-for-a-discussion-1",
-    "href": "03_types_protocols.html#time-for-a-discussion-1",
-    "title": "Python types, interfaces and protocols",
-    "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 3: Abstraction and encapsulation\nWhat are some pros/cons of treating functions as black boxes?\n\nChapter 4: Designing for high performance\nWhat is the performance impact of using a list instead of a dictionary?\n\n\nAfter break out session:\nOne person from each team briefly presents their discussion outcomes"
-  },
-  {
-    "objectID": "03_types_protocols.html#protocols",
-    "href": "03_types_protocols.html#protocols",
-    "title": "Python types, interfaces and protocols",
-    "section": "Protocols",
-    "text": "Protocols\n\n\nProtocols were introduced in Python 3.8\nProtocols are a way to define a set of methods that a class must implement\nProtocols are not checked at runtime\nProtocols can be used for static type checking (mypy)\nProtocols are a hint to the developer"
-  },
-  {
-    "objectID": "03_types_protocols.html#protocols-1",
-    "href": "03_types_protocols.html#protocols-1",
-    "title": "Python types, interfaces and protocols",
-    "section": "Protocols",
-    "text": "Protocols\nfrom dataclasses import dataclass\nfrom typing import Protocol, List\nimport matplotlib.pyplot as plt\n\n\n@dataclass\nclass Station:\n    name: str\n    longitude: float\n    latitude: float\n\n\nclass StationRepository(Protocol):\n    def __getitem__(self, key: str) -> Station:\n        ...\n\n\ndef plot_stations(station_ids: List[int], repo: StationRepository) -> None:\n    for id in station_ids:\n        station = repo[id]\n        plt.plot(station.longitude, station.latitude, \"o\")\n        plt.text(station.longitude, station.latitude, station.name)"
-  },
-  {
-    "objectID": "03_types_protocols.html#protocols-2",
-    "href": "03_types_protocols.html#protocols-2",
-    "title": "Python types, interfaces and protocols",
-    "section": "Protocols",
-    "text": "Protocols\nclass DictStationRepository:  # useful for testing (Module 4)\n    def __getitem__(self, key: int) -> Station:\n        stations = {\n            42: Station(\"Antwerp\", 4.42, 51.22),\n            365: Station(\"Brussels\", 4.35, 50.85),\n            182: Station(\"Ghent\", 3.72, 51.05),\n        }\n        return stations[key]\n\n\nclass FileStationRepository:\n    def __getitem__(self, key: int) -> Station:\n        df = pd.read_csv(\"stations.csv\", index_col=\"id\")\n        row = df.loc[key]\n        return Station(row[\"name\"], key, row[\"longitude\"], row[\"latitude\"])\n\n\nclass DatabaseStationRepository:\n    def __getitem__(self, key: int) -> Station:\n        # read from database\n        station = read_from_db(key)\n        return station"
-  },
-  {
-    "objectID": "03_types_protocols.html#protocols-3",
-    "href": "03_types_protocols.html#protocols-3",
-    "title": "Python types, interfaces and protocols",
-    "section": "Protocols",
-    "text": "Protocols\nrepo = DictStationRepository()\n# repo = FileStationRepository()\n\nplot_stations([42, 365], repo=repo)\n\nProtocols allows to work with abstract types, without having to know the implementation details.\nThis is useful for testing, but allows for more flexible code."
-  },
-  {
-    "objectID": "03_types_protocols.html#postels-law",
-    "href": "03_types_protocols.html#postels-law",
-    "title": "Python types, interfaces and protocols",
-    "section": "Postel’s law",
-    "text": "Postel’s law\na.k.a. the Robustness principle of software design\n\nBe liberal in what you accept\nBe conservative in what you send\n\n\ndef process(number: Union[int,str,float]) -> int:\n    # make sure number is an int from now on\n    number = int(number)\n\n    result = number * 2\n    return result"
-  },
-  {
-    "objectID": "03_types_protocols.html#section",
-    "href": "03_types_protocols.html#section",
-    "title": "Python types, interfaces and protocols",
-    "section": "",
-    "text": "The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
-  },
-  {
-    "objectID": "03_types_protocols.html#refactoring",
-    "href": "03_types_protocols.html#refactoring",
-    "title": "Python types, interfaces and protocols",
-    "section": "Refactoring",
-    "text": "Refactoring\n\n\nRefactoring is a way to improve the design of existing code\nChanging a software system in such a way that it does not alter the external behavior of the code, yet improves its internal structure\nRefactoring is a way to make code more readable and maintainable\nHousekeeping"
-  },
-  {
-    "objectID": "03_types_protocols.html#common-refactoring-techniques",
-    "href": "03_types_protocols.html#common-refactoring-techniques",
-    "title": "Python types, interfaces and protocols",
-    "section": "Common refactoring techniques:",
-    "text": "Common refactoring techniques:\n\nExtract method\nExtract variable\nRename method\nRename variable\nRename class\nInline method\nInline variable\nInline class"
-  },
-  {
-    "objectID": "03_types_protocols.html#rename-variable",
-    "href": "03_types_protocols.html#rename-variable",
-    "title": "Python types, interfaces and protocols",
-    "section": "Rename variable",
-    "text": "Rename variable\nBefore\nn = 0\nfor v in y:\n    if v < 0:\n        n = n + 1\n\nAfter\nFREEZING_POINT = 0.0\nn_freezing_days = 0\nfor temp in daily_max_temperatures:\n    if temp < FREEZING_POINT:\n        n_freezing_days = n_freezing_days + 1"
-  },
-  {
-    "objectID": "03_types_protocols.html#extract-variable",
-    "href": "03_types_protocols.html#extract-variable",
-    "title": "Python types, interfaces and protocols",
-    "section": "Extract variable",
-    "text": "Extract variable\nBefore\ndef predict(x):\n    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)\n\nAfter\ndef predict(x):\n    scale = 10.0\n    error = (random.random() - 0.5) / scale)\n    a = 0.5\n    b = 2.0 \n    draft = a + b * x + error\n    return  min(0.0, draft)"
-  },
-  {
-    "objectID": "03_types_protocols.html#extract-method",
-    "href": "03_types_protocols.html#extract-method",
-    "title": "Python types, interfaces and protocols",
-    "section": "Extract method",
-    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale)\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
-  },
-  {
-    "objectID": "03_types_protocols.html#inline-method",
-    "href": "03_types_protocols.html#inline-method",
-    "title": "Python types, interfaces and protocols",
-    "section": "Inline method",
-    "text": "Inline method\nOpposite of extract mehtod.\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return min(0.0, x)"
-  },
-  {
-    "objectID": "03_types_protocols.html#composed-method",
-    "href": "03_types_protocols.html#composed-method",
-    "title": "Python types, interfaces and protocols",
-    "section": "Composed method",
-    "text": "Composed method\nBreak up a long method into smaller methods."
-  },
-  {
-    "objectID": "03_types_protocols.html#composed-method-1",
-    "href": "03_types_protocols.html#composed-method-1",
-    "title": "Python types, interfaces and protocols",
-    "section": "Composed method1",
-    "text": "Composed method1\n\nDivide your program into methods that perform one identifiable task\nKeep all of the operations in a method at the same level of abstraction.\nThis will naturally result in programs with many small methods, each a few lines long.\nWhen you use Extract method a bunch of times on a method the original method becomes a Composed method.\n\nhttps://wiki.c2.com/?ComposedMethod"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Python package development",
@@ -572,223 +12,6 @@
     "title": "Python package development",
     "section": "Learning modules",
     "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package\n\n©️ DHI 2023"
-  },
-  {
-    "objectID": "02_version_control.html#why-use-version-control",
-    "href": "02_version_control.html#why-use-version-control",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Why use version control?",
-    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability\nBest practice for software development"
-  },
-  {
-    "objectID": "02_version_control.html#centralized-version-control",
-    "href": "02_version_control.html#centralized-version-control",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Centralized version control",
-    "text": "Centralized version control\n\nSingle source with the entire history\nLocal copy with latest version . . .\nExamples: SVN, Surround"
-  },
-  {
-    "objectID": "02_version_control.html#distributed-version-control",
-    "href": "02_version_control.html#distributed-version-control",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Distributed version control",
-    "text": "Distributed version control\n\nLocal copy has the entire history\nCommit changes to code offline\nAuthorative source (origin) . . .\nExamples: Git, Mercurial"
-  },
-  {
-    "objectID": "02_version_control.html#git",
-    "href": "02_version_control.html#git",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Git",
-    "text": "Git\nGit is a powerful tool for managing code changes and collaborating with others on a project.\n\nYou can use Git from the command line, or with a graphical user interface (GUI).\n\n\n> git add foo.py\n\n\n> git commit -m \"Nailed it\"\n\n\n> git push"
-  },
-  {
-    "objectID": "02_version_control.html#basic-git-commands",
-    "href": "02_version_control.html#basic-git-commands",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Basic Git commands",
-    "text": "Basic Git commands\n\n\ngit add: adds a file to the staging area\ngit commit: creates a new commit with the changes in the staging area\ngit status: shows the current status of your repository\ngit log: shows the commit history of your repository\ngit stash: temporarily save changes that are not ready to be committed"
-  },
-  {
-    "objectID": "02_version_control.html#working-with-remote-repositories",
-    "href": "02_version_control.html#working-with-remote-repositories",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Working with remote repositories",
-    "text": "Working with remote repositories\n\n\ngit clone: creates a copy of the codebase on your local machine.\ngit push: pushes changes back to the remote repository.\ngit pull: pulls changes from the remote repository."
-  },
-  {
-    "objectID": "02_version_control.html#branching-and-merging",
-    "href": "02_version_control.html#branching-and-merging",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Branching and Merging",
-    "text": "Branching and Merging\n\nA branch is a separate version of your code that you can work on independently from the main branch.\ngit merge: merges changes back into the main branch (we will do this from GitHub)"
-  },
-  {
-    "objectID": "02_version_control.html#github",
-    "href": "02_version_control.html#github",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "GitHub",
-    "text": "GitHub\n\n\nGit repository hosting service\nCollaborate with others on codebase\nFork a repository to work on your own version\nPull requests for code review and merging changes\nIssue tracking and project management tools\nGitHub Pages for hosting websites"
-  },
-  {
-    "objectID": "02_version_control.html#github-flow",
-    "href": "02_version_control.html#github-flow",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Github flow",
-    "text": "Github flow\n\n\n\nCreate a branch\nMake changes\nCreate a pull request\nReview\nMerge\n\n\n\n\nClone a repository to work on a copy (optionally: fork first)\nCreate a branch for each new feature or fix\nCommit changes and push to remote repository\nOpen a pull request to propose changes and request code review\nMerge changes back into the main branch"
-  },
-  {
-    "objectID": "02_version_control.html#time-for-a-discussion",
-    "href": "02_version_control.html#time-for-a-discussion",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce your project briefly\nThink about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes\n\n\n\nWhat is the benefit of working in branches?\nWhat are some best practices for collaborating on code with others, and how can Git and GitHub help to support those best practices?"
-  },
-  {
-    "objectID": "02_version_control.html#desktop-application-github-desktop",
-    "href": "02_version_control.html#desktop-application-github-desktop",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Desktop Application: GitHub Desktop",
-    "text": "Desktop Application: GitHub Desktop"
-  },
-  {
-    "objectID": "02_version_control.html#demo",
-    "href": "02_version_control.html#demo",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Demo",
-    "text": "Demo"
-  },
-  {
-    "objectID": "02_version_control.html#github-best-practices",
-    "href": "02_version_control.html#github-best-practices",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Github best practices",
-    "text": "Github best practices\n\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
-  },
-  {
-    "objectID": "02_version_control.html#github-or-azure-devops",
-    "href": "02_version_control.html#github-or-azure-devops",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "GitHub or Azure DevOps?",
-    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\n\n\n\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories\n\n\n\n\nAzure DevOps is organized in “projects”, which can contain multiple repositories"
-  },
-  {
-    "objectID": "02_version_control.html#resources",
-    "href": "02_version_control.html#resources",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Resources",
-    "text": "Resources\n\nGitHub: quickstart\nRealPython: git and github intro\nDatacamp: introduction to Git"
-  },
-  {
-    "objectID": "02_version_control.html#word-list",
-    "href": "02_version_control.html#word-list",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Word list",
-    "text": "Word list\n\nClone\n\nmaking a local copy of a remote repository on your computer.\n\nRemote\n\na reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.\n\nCommit\n\na record of changes made to a repository, including the changes themselves and a message describing what was changed.\n\nStage\n\nselecting changes that you want to include in the next commit.\n\nPush\n\nsending changes from your local repository to a remote repository.\n\nPull\n\nretrieving changes from a remote repository and merging them into your local repository.\n\nBranch\n\na separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.\n\nPull request\n\na way to propose changes to a repository by asking the repository owner to “pull” in the changes from a branch or fork.\n\nStash\n\ntemporarily save changes that are not ready to be committed (bring them back later when needed).\n\nMerge\n\nthe process of combining changes from one branch or fork into another, typically the main codebase.\n\nRebase\n\na way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.\n\nMerge conflict\n\nwhen Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.\n\nCheckout\n\nswitching between different branches or commits in a repository.\n\nFork\n\na copy of a repository that you create on your own account, which you can modify without affecting the original repository."
-  },
-  {
-    "objectID": "02_version_control.html#summary",
-    "href": "02_version_control.html#summary",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Summary",
-    "text": "Summary\n\n\nVersion control is a tool for managing changes to code\nGit is a distributed version control system (software)\nGitHub is a platform for hosting and collaborating on Git repositories\nGitHub Desktop is a GUI for Git (and GitHub)\nPull requests are a way to propose changes to a repository\n\n\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "07_packaging.html#packages",
-    "href": "07_packaging.html#packages",
-    "title": "Distributing your Python package",
-    "section": "Packages",
-    "text": "Packages"
-  },
-  {
-    "objectID": "07_packaging.html#packaging",
-    "href": "07_packaging.html#packaging",
-    "title": "Distributing your Python package",
-    "section": "Packaging",
-    "text": "Packaging"
-  },
-  {
-    "objectID": "07_packaging.html#private-packages",
-    "href": "07_packaging.html#private-packages",
-    "title": "Distributing your Python package",
-    "section": "Private packages",
-    "text": "Private packages\n\nInstall from a private git repository\nInstall from a private PyPI server\n\n\n\n\nPython package development"
-  },
-  {
-    "objectID": "06_documentation.html#why-document-your-code",
-    "href": "06_documentation.html#why-document-your-code",
-    "title": "Documentation",
-    "section": "Why document your code?",
-    "text": "Why document your code?\n\n\n\nMake it easier for others to use your code\nMake it easier for you to use your code"
-  },
-  {
-    "objectID": "06_documentation.html#notebooks",
-    "href": "06_documentation.html#notebooks",
-    "title": "Documentation",
-    "section": "Notebooks",
-    "text": "Notebooks"
-  },
-  {
-    "objectID": "06_documentation.html#docstrings",
-    "href": "06_documentation.html#docstrings",
-    "title": "Documentation",
-    "section": "Docstrings",
-    "text": "Docstrings\n\"\"\"K-means clustering.\"\"\" # module docstring\n\nclass KMeans(_BaseKMeans):\n  \"\"\"K-Means clustering. # class docstring \n  \n  Parameters\n  ----------\n  n_clusters : int, default=8\n      The number of clusters to form as well as the number of\n      centroids to generate.\n\n  Examples\n  --------\n  >>> X = np.array([[1, 2], [1, 4], [1, 0],\n  ...               [10, 2], [10, 4], [10, 0]])\n  >>> kmeans = KMeans(n_clusters=2, random_state=0, n_init=\"auto\").fit(X)\n  >>> kmeans.labels_\n  array([1, 1, 1, 0, 0, 0], dtype=int32)\nsklearn.KMeans"
-  },
-  {
-    "objectID": "06_documentation.html#numpy-format",
-    "href": "06_documentation.html#numpy-format",
-    "title": "Documentation",
-    "section": "Numpy format",
-    "text": "Numpy format\nThere are several ways to document your code. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc.\ndef function_name(param1, param2, param3):\n    \"\"\"Short summary.\n    \n    Long description.\n    \n    Parameters\n    ----------\n    param1 : int\n        Description of `param1`.\n    param2 : str\n        Description of `param2`.\n    param3 : list of str\n        Description of `param3`.\n    \n    Returns\n    -------\n    bool\n        Description of return value.\n    \"\"\"\n    pass"
-  },
-  {
-    "objectID": "06_documentation.html#type-hints",
-    "href": "06_documentation.html#type-hints",
-    "title": "Documentation",
-    "section": "Type hints",
-    "text": "Type hints"
-  },
-  {
-    "objectID": "06_documentation.html#doctest",
-    "href": "06_documentation.html#doctest",
-    "title": "Documentation",
-    "section": "doctest",
-    "text": "doctest\nUsing code without documentation is hard, but using code with wrong documentation is even harder.\nHow can you make sure that the documentation is correct?\n\nThe answer is the doctest module built in to the Python standard library.\n\n\n\n\n\n\n\n\nTip\n\n\nThe extensive standard library is why Python is described as a language with “batteries included!”"
-  },
-  {
-    "objectID": "06_documentation.html#documentation-generators",
-    "href": "06_documentation.html#documentation-generators",
-    "title": "Documentation",
-    "section": "Documentation generators",
-    "text": "Documentation generators\n\nSphinx\nmkdocs\n\n\nSphinx has been around for a long time, has lot’s of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality."
-  },
-  {
-    "objectID": "06_documentation.html#mkdocs",
-    "href": "06_documentation.html#mkdocs",
-    "title": "Documentation",
-    "section": "mkdocs",
-    "text": "mkdocs\n\nText is written in markdown\nEasy to use\nAPI documentation can be generated with mkdocstrings\nThe end result is a static website that can be hosted on e.g. GitHub pages"
-  },
-  {
-    "objectID": "06_documentation.html#configuration",
-    "href": "06_documentation.html#configuration",
-    "title": "Documentation",
-    "section": "Configuration",
-    "text": "Configuration\n# mkdocs.yml\nsite_name: my_library\n\ntheme: \"material\" # or readthedocs, mkdocs, etc.\n\nplugins:\n- mkdocstrings:\n    handlers:\n      python:\n        options:\n          show_source: false # change if you want able to show source code\n          heading_level: 2\n          docstring_style: \"numpy\" # important!, since default is google"
-  },
-  {
-    "objectID": "06_documentation.html#api-docs",
-    "href": "06_documentation.html#api-docs",
-    "title": "Documentation",
-    "section": "API docs",
-    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings\nadd plugin to mkdocs.yml (see above)\nReference your code in markdown\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
-  },
-  {
-    "objectID": "06_documentation.html#section-2",
-    "href": "06_documentation.html#section-2",
-    "title": "Documentation",
-    "section": "",
-    "text": "Python package development"
   },
   {
     "objectID": "01_function_classes.html#functions-as-black-boxes",
@@ -999,5 +222,852 @@
     "title": "Functions, classes and modules",
     "section": "Homework until next week",
     "text": "Homework until next week\n\n\nDecide on a name for your project (5-20 characters)\nWrite a one line description of your project\nCreate a repository on GitHub\nCreate a README.md file with the description of your project\nWrite a function to calculate the fraction of values within a given range, with the lower bound optional\n\nName, inputs, output, types\n\nCreate a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval\n\nName, attributes, methods?\n\nRead Introduction to Git and GitHub for Python Developers\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "07_packaging.html#packaging",
+    "href": "07_packaging.html#packaging",
+    "title": "Distributing your Python package",
+    "section": "Packaging",
+    "text": "Packaging\nPackaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using hatchling, and how to distribute it on GitHub, PyPI and a private PyPI server."
+  },
+  {
+    "objectID": "07_packaging.html#packaging-workflow",
+    "href": "07_packaging.html#packaging-workflow",
+    "title": "Distributing your Python package",
+    "section": "Packaging workflow",
+    "text": "Packaging workflow\n\nCreate a pyproject.toml in the root folder of the project\nBuild a package (e.g. myproject-0.1.0-py3-none-any.whl)\nUpload the package to location, where others can find it"
+  },
+  {
+    "objectID": "07_packaging.html#pyproject.toml",
+    "href": "07_packaging.html#pyproject.toml",
+    "title": "Distributing your Python package",
+    "section": "pyproject.toml",
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \">=3.7\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\",\"flake8\",\"black\",\"sphinx\", \"myst-parser\",\"sphinx-book-theme\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
+  },
+  {
+    "objectID": "07_packaging.html#versioning",
+    "href": "07_packaging.html#versioning",
+    "title": "Distributing your Python package",
+    "section": "Versioning",
+    "text": "Versioning\nVersioning your package is important for reproducibility and to avoid breaking changes.\n\nSemantic versioning use three numbers {major}.{minor}.{patch}, e.g. 1.1.0\n\nA new major version indicates breaking changes\nA new minor version indicates new features, without breaking changes\nA new patch version indicates a small change, e.g. a bug fix"
+  },
+  {
+    "objectID": "07_packaging.html#packaging-non-python-files",
+    "href": "07_packaging.html#packaging-non-python-files",
+    "title": "Distributing your Python package",
+    "section": "Packaging non-Python files",
+    "text": "Packaging non-Python files\nTODO look at https://hatch.pypa.io/latest/config/build/#artifacts\nIf you are creating an application, you might want to include non-Python files in the package. E.g. an application that uses machine learning, and includes a trained model."
+  },
+  {
+    "objectID": "07_packaging.html#packages",
+    "href": "07_packaging.html#packages",
+    "title": "Distributing your Python package",
+    "section": "Packages",
+    "text": "Packages"
+  },
+  {
+    "objectID": "07_packaging.html#packaging-1",
+    "href": "07_packaging.html#packaging-1",
+    "title": "Distributing your Python package",
+    "section": "Packaging",
+    "text": "Packaging"
+  },
+  {
+    "objectID": "07_packaging.html#private-packages",
+    "href": "07_packaging.html#private-packages",
+    "title": "Distributing your Python package",
+    "section": "Private packages",
+    "text": "Private packages\n\nInstall from a private git repository\nInstall from a private PyPI server"
+  },
+  {
+    "objectID": "07_packaging.html#github-secrets",
+    "href": "07_packaging.html#github-secrets",
+    "title": "Distributing your Python package",
+    "section": "GitHub secrets",
+    "text": "GitHub secrets\n\nStore sensitive information, e.g. passwords, in your repository.\nSecrets are encrypted, and only visible to you and GitHub Actions.\nAdd secrets in the repository settings.\n\nTo use secrets as environment variables in GitHub Actions, add them to the env section of the workflow:\nenv:\n  TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}\n  TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}"
+  },
+  {
+    "objectID": "07_packaging.html#github-actions",
+    "href": "07_packaging.html#github-actions",
+    "title": "Distributing your Python package",
+    "section": "GitHub Actions",
+    "text": "GitHub Actions\n\n\n.github/workflows/python-package.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [created]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: Set up Python\n      uses: actions/setup-python@v2\n      with:\n        python-version: '3.10'\n    - name: Install dependencies\n      run: |\n        python -m pip install --upgrade pip\n        pip install build\n    - name: Build package\n      run: python -m build\n    \n    - name: Publish to PyPI\n      env:\n        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}\n        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}\n      run: |\n        twine upload dist/* \n\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "06_documentation.html#why-document-your-code",
+    "href": "06_documentation.html#why-document-your-code",
+    "title": "Documentation",
+    "section": "Why document your code?",
+    "text": "Why document your code?\n\n\n\nMake it easier for others to use your code\nMake it easier for you to use your code"
+  },
+  {
+    "objectID": "06_documentation.html#readme.md",
+    "href": "06_documentation.html#readme.md",
+    "title": "Documentation",
+    "section": "Readme.md",
+    "text": "Readme.md\n\nA readme file is a text file that introduces and explains a project.\nAlways include a readme file in your project.\nYou can put readme files in any directory, and you can have more than one in a single project."
+  },
+  {
+    "objectID": "06_documentation.html#requirements",
+    "href": "06_documentation.html#requirements",
+    "title": "Documentation",
+    "section": "Requirements",
+    "text": "Requirements\n\nMention the requirements for your package\n\nOperating system\nPython version\nOther non-Python dependencies, e.g. VC++ redistributables\n\nInclude information on how to install your package\n\npip install my_package\npip install pip install https://github.com/DHI/{repo}/archive/main.zip"
+  },
+  {
+    "objectID": "06_documentation.html#notebooks",
+    "href": "06_documentation.html#notebooks",
+    "title": "Documentation",
+    "section": "Notebooks",
+    "text": "Notebooks\n\nJupyter notebooks are a great way to document your code\nGood for prototyping\nIn a later stage, notebooks can be used to demonstrate how to use your code\nNot a replacement for documentation for a professional package"
+  },
+  {
+    "objectID": "06_documentation.html#docstrings",
+    "href": "06_documentation.html#docstrings",
+    "title": "Documentation",
+    "section": "Docstrings",
+    "text": "Docstrings\n\"\"\"K-means clustering.\"\"\"\n\nclass KMeans(_BaseKMeans):\n  \"\"\"K-Means clustering.\n  \n  Parameters\n  ----------\n  n_clusters : int, default=8\n      The number of clusters to form as well as the number of\n      centroids to generate.\n\n  Examples\n  --------\n  >>> X = np.array([[1, 2], [1, 4], [1, 0],\n  ...               [10, 2], [10, 4], [10, 0]])\n  >>> kmeans = KMeans(n_clusters=2, random_state=0, n_init=\"auto\").fit(X)\n  >>> kmeans.labels_\n  array([1, 1, 1, 0, 0, 0], dtype=int32)\nsklearn.KMeans"
+  },
+  {
+    "objectID": "06_documentation.html#docstring---numpy-format",
+    "href": "06_documentation.html#docstring---numpy-format",
+    "title": "Documentation",
+    "section": "Docstring - Numpy format",
+    "text": "Docstring - Numpy format\ndef function_name(param1, param2, param3):\n    \"\"\"Short summary.\n    \n    Long description.\n    \n    Parameters\n    ----------\n    param1 : int\n        Description of `param1`.\n    param2 : str\n        Description of `param2`.\n    param3 : list of str\n        Description of `param3`.\n    \n    Returns\n    -------\n    bool\n        Description of return value.\n    \"\"\"\n    pass\n\nThere are several docstring formats. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc."
+  },
+  {
+    "objectID": "06_documentation.html#type-hints",
+    "href": "06_documentation.html#type-hints",
+    "title": "Documentation",
+    "section": "Type hints",
+    "text": "Type hints\nFrom Python 3.6, type hints can be used in addition to the type in the docstring.\ndef remove_outlier(data:pd.DataFrame, column:str, threshold:float=3) -> pd.DataFrame:\n    \"\"\"Remove outliers from a dataframe.\n    \n    Parameters\n    ----------\n    data : pd.DataFrame\n        Dataframe to remove outliers from.\n    column : str\n        Column to remove outliers from.\n    threshold : float, optional\n        Number of standard deviations to use as threshold, by default 3"
+  },
+  {
+    "objectID": "06_documentation.html#doctest",
+    "href": "06_documentation.html#doctest",
+    "title": "Documentation",
+    "section": "doctest",
+    "text": "doctest\nUsing code without documentation is hard, but using code with wrong documentation is even harder.\nHow can you make sure that the documentation is correct?\n\nThe answer is the doctest module built in to the Python standard library.\n\n\n\n\n\n\n\n\nTip\n\n\nThe extensive standard library is why Python is described as a language with “batteries included!”"
+  },
+  {
+    "objectID": "06_documentation.html#documentation-generators",
+    "href": "06_documentation.html#documentation-generators",
+    "title": "Documentation",
+    "section": "Documentation generators",
+    "text": "Documentation generators\n\nSphinx\nmkdocs\n\n\nSphinx has been around for a long time, has lot’s of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality."
+  },
+  {
+    "objectID": "06_documentation.html#mkdocs",
+    "href": "06_documentation.html#mkdocs",
+    "title": "Documentation",
+    "section": "mkdocs",
+    "text": "mkdocs\n\nText is written in markdown\nEasy to use\nAPI documentation can be generated with mkdocstrings\nThe end result is a static website that can be hosted on e.g. GitHub pages"
+  },
+  {
+    "objectID": "06_documentation.html#configuration",
+    "href": "06_documentation.html#configuration",
+    "title": "Documentation",
+    "section": "Configuration",
+    "text": "Configuration\n# mkdocs.yml\nsite_name: my_library\n\ntheme: \"material\" # or readthedocs, mkdocs, etc.\n\nplugins:\n- mkdocstrings:\n    handlers:\n      python:\n        options:\n          show_source: false # change if you want able to show source code\n          heading_level: 2\n          docstring_style: \"numpy\" # important!, since default is google"
+  },
+  {
+    "objectID": "06_documentation.html#api-docs",
+    "href": "06_documentation.html#api-docs",
+    "title": "Documentation",
+    "section": "API docs",
+    "text": "API docs\n\n\ninstall mkdocstrings\n$ pip install mkdocstrings[python]\nadd plugin to mkdocs.yml (see above)\nReference your code in markdown in the docs folder\nRun mkdocs serve to view locally\n\n\n\ndocs/index.md\n# Reference\n\n::: my_library.simulation"
+  },
+  {
+    "objectID": "06_documentation.html#github-pages",
+    "href": "06_documentation.html#github-pages",
+    "title": "Documentation",
+    "section": "GitHub pages",
+    "text": "GitHub pages\n\n\nOnce you have a static website, you need s\nGitHub pages allows you to easily host a static website on GitHub\nThe website is available at https://dhi.github.io/<repository>/\nThe website can be created locally by manually editing html pages.\nFor use as documentation, it is easier to use a documentation generator like mkdocs."
+  },
+  {
+    "objectID": "06_documentation.html#github-pages-1",
+    "href": "06_documentation.html#github-pages-1",
+    "title": "Documentation",
+    "section": "GitHub pages",
+    "text": "GitHub pages\n\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "03_types_protocols.html#types",
+    "href": "03_types_protocols.html#types",
+    "title": "Python types, interfaces and protocols",
+    "section": "Types",
+    "text": "Types\nC#\nint n = 2;\nString s = \"Hello\";\n\npublic String RepeatedString(String s, int n) {\n    return Enumerable.Repeat(s, n).Aggregate((a, b) => a + b);\n}\n\nPython\nn = 2\ns = \"Hello\"\n\ndef repeated_string(s, n):\n    return s * n"
+  },
+  {
+    "objectID": "03_types_protocols.html#types-1",
+    "href": "03_types_protocols.html#types-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Types",
+    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time\nTypes are checked at runtime\n\n\n\nPython with type hints\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -> str:\n    return s * n"
+  },
+  {
+    "objectID": "03_types_protocols.html#abstraction",
+    "href": "03_types_protocols.html#abstraction",
+    "title": "Python types, interfaces and protocols",
+    "section": "Abstraction",
+    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\n\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
+  },
+  {
+    "objectID": "03_types_protocols.html#collections-abstract-base-classes",
+    "href": "03_types_protocols.html#collections-abstract-base-classes",
+    "title": "Python types, interfaces and protocols",
+    "section": "Collections Abstract Base Classes",
+    "text": "Collections Abstract Base Classes\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\n\n\n\n\n\n\n\n\nIf a class implements __len__ it is a Sized object.\nIf a class implements __contains__ it is a Container object.\nIf a class implements __iter__ it is a Iterable object."
+  },
+  {
+    "objectID": "03_types_protocols.html#collections-abstract-base-classes-1",
+    "href": "03_types_protocols.html#collections-abstract-base-classes-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Collections Abstract Base Classes",
+    "text": "Collections Abstract Base Classes\n>>> a = [1, 2, 3]\n>>> 1 in a\nTrue\n>>> a.__contains__(1)\nTrue\n>>> len(a)\n3\n>>> a.__len__()\n3\n>>> for x in a:\n...     v.append(x)\n>>> it = a.__iter__()\n>>> next(it)\n1\n>>> next(it)\n2\n>>> next(it)\n3\n>>> next(it)\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nStopIteration"
+  },
+  {
+    "objectID": "03_types_protocols.html#collections-abstract-base-classes-2",
+    "href": "03_types_protocols.html#collections-abstract-base-classes-2",
+    "title": "Python types, interfaces and protocols",
+    "section": "Collections Abstract Base Classes",
+    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container <|-- Collection\n    Sized <|-- Collection\n    Iterable <|-- Collection\n    Collection <|-- Sequence\n    Collection <|-- Set\n    Sequence <|-- MutableSequence\n    Mapping <|-- MutableMapping\n    Collection <|-- Mapping\n\n    MutableSequence <|-- List\n    Sequence <|-- Tuple\n    MutableMapping <|-- Dict"
+  },
+  {
+    "objectID": "03_types_protocols.html#pythonic",
+    "href": "03_types_protocols.html#pythonic",
+    "title": "Python types, interfaces and protocols",
+    "section": "Pythonic",
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…"
+  },
+  {
+    "objectID": "03_types_protocols.html#duck-typing",
+    "href": "03_types_protocols.html#duck-typing",
+    "title": "Python types, interfaces and protocols",
+    "section": "Duck typing",
+    "text": "Duck typing\n\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods."
+  },
+  {
+    "objectID": "03_types_protocols.html#lets-revisit-the-date-interval",
+    "href": "03_types_protocols.html#lets-revisit-the-date-interval",
+    "title": "Python types, interfaces and protocols",
+    "section": "Let’s revisit the (date) Interval1",
+    "text": "Let’s revisit the (date) Interval1\nclass Interval:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n\n    def __contains__(self, x):\n        return self.start < x < self.end\n\n>>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))\n\n>>> date(2020,1,15) in dr\nTrue\n>>> date(1970,1,1) in dr\nFalse\nhttps://martinfowler.com/eaaDev/Range.html"
+  },
+  {
+    "objectID": "03_types_protocols.html#some-other-interval",
+    "href": "03_types_protocols.html#some-other-interval",
+    "title": "Python types, interfaces and protocols",
+    "section": "Some other interval",
+    "text": "Some other interval\nclass Interval:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n\n    def __contains__(self, x):\n        return self.start < x < self.end\n    \n>>> interval = Interval(5, 10)\n\n>>> 8 in interval\nTrue\n>>> 12 in interval\nFalse\n\nAs long as the start, end and x are comparable, the Interval class is a generic class able to handle integers, floats, dates, datetimes, strings …"
+  },
+  {
+    "objectID": "03_types_protocols.html#time-for-a-discussion",
+    "href": "03_types_protocols.html#time-for-a-discussion",
+    "title": "Python types, interfaces and protocols",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nPre-work for this Module\n\nRead chapters\n\nAbstraction and encapsulation\nDesigning for high performance\n\nin Hillard, 2020\nDo you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?\nConsider the implications of storing data in a list or in a dictionary."
+  },
+  {
+    "objectID": "03_types_protocols.html#time-for-a-discussion-1",
+    "href": "03_types_protocols.html#time-for-a-discussion-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 3: Abstraction and encapsulation\nWhat are some pros/cons of treating functions as black boxes?\n\nChapter 4: Designing for high performance\nWhat is the performance impact of using a list instead of a dictionary?\n\n\nAfter break out session:\nOne person from each team briefly presents their discussion outcomes"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols",
+    "href": "03_types_protocols.html#protocols",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\n\n\nProtocols were introduced in Python 3.8\nProtocols are a way to define a set of methods that a class must implement\nProtocols are not checked at runtime\nProtocols can be used for static type checking (mypy)\nProtocols are a hint to the developer"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols-1",
+    "href": "03_types_protocols.html#protocols-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\nfrom dataclasses import dataclass\nfrom typing import Protocol, List\nimport matplotlib.pyplot as plt\n\n\n@dataclass\nclass Station:\n    name: str\n    longitude: float\n    latitude: float\n\n\nclass StationRepository(Protocol):\n    def __getitem__(self, key: str) -> Station:\n        ...\n\n\ndef plot_stations(station_ids: List[int], repo: StationRepository) -> None:\n    for id in station_ids:\n        station = repo[id]\n        plt.plot(station.longitude, station.latitude, \"o\")\n        plt.text(station.longitude, station.latitude, station.name)"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols-2",
+    "href": "03_types_protocols.html#protocols-2",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\nclass DictStationRepository:  # useful for testing (Module 4)\n    def __getitem__(self, key: int) -> Station:\n        stations = {\n            42: Station(\"Antwerp\", 4.42, 51.22),\n            365: Station(\"Brussels\", 4.35, 50.85),\n            182: Station(\"Ghent\", 3.72, 51.05),\n        }\n        return stations[key]\n\n\nclass FileStationRepository:\n    def __getitem__(self, key: int) -> Station:\n        df = pd.read_csv(\"stations.csv\", index_col=\"id\")\n        row = df.loc[key]\n        return Station(row[\"name\"], key, row[\"longitude\"], row[\"latitude\"])\n\n\nclass DatabaseStationRepository:\n    def __getitem__(self, key: int) -> Station:\n        # read from database\n        station = read_from_db(key)\n        return station"
+  },
+  {
+    "objectID": "03_types_protocols.html#protocols-3",
+    "href": "03_types_protocols.html#protocols-3",
+    "title": "Python types, interfaces and protocols",
+    "section": "Protocols",
+    "text": "Protocols\nrepo = DictStationRepository()\n# repo = FileStationRepository()\n\nplot_stations([42, 365], repo=repo)\n\nProtocols allows to work with abstract types, without having to know the implementation details.\nThis is useful for testing, but allows for more flexible code."
+  },
+  {
+    "objectID": "03_types_protocols.html#postels-law",
+    "href": "03_types_protocols.html#postels-law",
+    "title": "Python types, interfaces and protocols",
+    "section": "Postel’s law",
+    "text": "Postel’s law\na.k.a. the Robustness principle of software design\n\nBe liberal in what you accept\nBe conservative in what you send\n\n\ndef process(number: Union[int,str,float]) -> int:\n    # make sure number is an int from now on\n    number = int(number)\n\n    result = number * 2\n    return result"
+  },
+  {
+    "objectID": "03_types_protocols.html#section",
+    "href": "03_types_protocols.html#section",
+    "title": "Python types, interfaces and protocols",
+    "section": "",
+    "text": "The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
+  },
+  {
+    "objectID": "03_types_protocols.html#refactoring",
+    "href": "03_types_protocols.html#refactoring",
+    "title": "Python types, interfaces and protocols",
+    "section": "Refactoring",
+    "text": "Refactoring\n\n\nRefactoring is a way to improve the design of existing code\nChanging a software system in such a way that it does not alter the external behavior of the code, yet improves its internal structure\nRefactoring is a way to make code more readable and maintainable\nHousekeeping"
+  },
+  {
+    "objectID": "03_types_protocols.html#common-refactoring-techniques",
+    "href": "03_types_protocols.html#common-refactoring-techniques",
+    "title": "Python types, interfaces and protocols",
+    "section": "Common refactoring techniques:",
+    "text": "Common refactoring techniques:\n\nExtract method\nExtract variable\nRename method\nRename variable\nRename class\nInline method\nInline variable\nInline class"
+  },
+  {
+    "objectID": "03_types_protocols.html#rename-variable",
+    "href": "03_types_protocols.html#rename-variable",
+    "title": "Python types, interfaces and protocols",
+    "section": "Rename variable",
+    "text": "Rename variable\nBefore\nn = 0\nfor v in y:\n    if v < 0:\n        n = n + 1\n\nAfter\nFREEZING_POINT = 0.0\nn_freezing_days = 0\nfor temp in daily_max_temperatures:\n    if temp < FREEZING_POINT:\n        n_freezing_days = n_freezing_days + 1"
+  },
+  {
+    "objectID": "03_types_protocols.html#extract-variable",
+    "href": "03_types_protocols.html#extract-variable",
+    "title": "Python types, interfaces and protocols",
+    "section": "Extract variable",
+    "text": "Extract variable\nBefore\ndef predict(x):\n    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)\n\nAfter\ndef predict(x):\n    scale = 10.0\n    error = (random.random() - 0.5) / scale)\n    a = 0.5\n    b = 2.0 \n    draft = a + b * x + error\n    return  min(0.0, draft)"
+  },
+  {
+    "objectID": "03_types_protocols.html#extract-method",
+    "href": "03_types_protocols.html#extract-method",
+    "title": "Python types, interfaces and protocols",
+    "section": "Extract method",
+    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale)\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
+  },
+  {
+    "objectID": "03_types_protocols.html#inline-method",
+    "href": "03_types_protocols.html#inline-method",
+    "title": "Python types, interfaces and protocols",
+    "section": "Inline method",
+    "text": "Inline method\nOpposite of extract mehtod.\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return min(0.0, x)"
+  },
+  {
+    "objectID": "03_types_protocols.html#composed-method",
+    "href": "03_types_protocols.html#composed-method",
+    "title": "Python types, interfaces and protocols",
+    "section": "Composed method",
+    "text": "Composed method\nBreak up a long method into smaller methods."
+  },
+  {
+    "objectID": "03_types_protocols.html#composed-method-1",
+    "href": "03_types_protocols.html#composed-method-1",
+    "title": "Python types, interfaces and protocols",
+    "section": "Composed method1",
+    "text": "Composed method1\n\nDivide your program into methods that perform one identifiable task\nKeep all of the operations in a method at the same level of abstraction.\nThis will naturally result in programs with many small methods, each a few lines long.\nWhen you use Extract method a bunch of times on a method the original method becomes a Composed method.\n\nhttps://wiki.c2.com/?ComposedMethod"
+  },
+  {
+    "objectID": "04_testing.html#testing",
+    "href": "04_testing.html#testing",
+    "title": "Testing, linting and formatting",
+    "section": "Testing",
+    "text": "Testing\nVerify code is working as expected.\nSimplest way to test is to run code and check output.\n\nAutomated testing checks output automatically.\nCode changes can break other parts of code.\nAutomatic testing verifies code is still working."
+  },
+  {
+    "objectID": "04_testing.html#testing-workflow",
+    "href": "04_testing.html#testing-workflow",
+    "title": "Testing, linting and formatting",
+    "section": "Testing workflow",
+    "text": "Testing workflow\n\n\n\n\nflowchart TD\n    A[Prepare inputs]\n    B[Describe expected output]\n    C[Obtain actual output]\n    D[Compare actual and\\n expected output]\n\n    A --> B --> C --> D"
+  },
+  {
+    "objectID": "04_testing.html#unit-testing",
+    "href": "04_testing.html#unit-testing",
+    "title": "Testing, linting and formatting",
+    "section": "Unit testing",
+    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
+  },
+  {
+    "objectID": "04_testing.html#a-good-unit-test",
+    "href": "04_testing.html#a-good-unit-test",
+    "title": "Testing, linting and formatting",
+    "section": "A good unit test",
+    "text": "A good unit test\n\n\n\n\nFully automated (next week)\nHas full control over all the pieces running (“fake” external dependencies)\nCan be run in any order\nRuns in memory (no DB or file access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
+  },
+  {
+    "objectID": "04_testing.html#example",
+    "href": "04_testing.html#example",
+    "title": "Testing, linting and formatting",
+    "section": "Example",
+    "text": "Example\n\nget a timeseries of water levels\nfind the maxiumum water level each year\ncreate a summary report for the subset of data"
+  },
+  {
+    "objectID": "04_testing.html#integration-testing",
+    "href": "04_testing.html#integration-testing",
+    "title": "Testing, linting and formatting",
+    "section": "Integration testing",
+    "text": "Integration testing\ndef test_integration():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    max_wls = get_max_water_level(wl, freq=\"Y\")\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
+  },
+  {
+    "objectID": "04_testing.html#testing-in-vs-code",
+    "href": "04_testing.html#testing-in-vs-code",
+    "title": "Testing, linting and formatting",
+    "section": "Testing in VS Code",
+    "text": "Testing in VS Code"
+  },
+  {
+    "objectID": "04_testing.html#fixtures",
+    "href": "04_testing.html#fixtures",
+    "title": "Testing, linting and formatting",
+    "section": "Fixtures",
+    "text": "Fixtures\n\n\nA piece of code that is used by multiple tests\nProvide data or services to tests\nDefined with @pytest.fixture\nSet up test environment\nPass fixtures as test arguments"
+  },
+  {
+    "objectID": "04_testing.html#fixture-example",
+    "href": "04_testing.html#fixture-example",
+    "title": "Testing, linting and formatting",
+    "section": "Fixture example",
+    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, .., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
+  },
+  {
+    "objectID": "04_testing.html#test-coverage",
+    "href": "04_testing.html#test-coverage",
+    "title": "Testing, linting and formatting",
+    "section": "Test coverage",
+    "text": "Test coverage\n\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
+  },
+  {
+    "objectID": "04_testing.html#test-coverage-report",
+    "href": "04_testing.html#test-coverage-report",
+    "title": "Testing, linting and formatting",
+    "section": "Test coverage report",
+    "text": "Test coverage report\npytest --cov=myproj tests/\n-------------------- coverage: ... ---------------------\nName                 Stmts   Miss  Cover\n----------------------------------------\nmyproj/__init__          2      0   100%\nmyproj/myproj          257     13    94%\nmyproj/feature4286      94      7    92%\n----------------------------------------\nTOTAL                  353     20    94%"
+  },
+  {
+    "objectID": "04_testing.html#testing-advice",
+    "href": "04_testing.html#testing-advice",
+    "title": "Testing, linting and formatting",
+    "section": "Testing advice",
+    "text": "Testing advice\n\n\n\n\n\n\nTest edge cases\n\n\n\nempty lists\nlists with a single element\nempty strings\nempty dictionaries\nNone\nnp.nan"
+  },
+  {
+    "objectID": "04_testing.html#tests-act-as-specification",
+    "href": "04_testing.html#tests-act-as-specification",
+    "title": "Testing, linting and formatting",
+    "section": "Tests act as specification",
+    "text": "Tests act as specification\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
+  },
+  {
+    "objectID": "04_testing.html#test-driven-development",
+    "href": "04_testing.html#test-driven-development",
+    "title": "Testing, linting and formatting",
+    "section": "Test driven development",
+    "text": "Test driven development\n\n\nWrite a test that fails ❌\nWrite the code to make the test pass ✅\nRefactor the code ⚒️\n\n\n\nThe benefit of this approach is that you are forced to think about the expected behaviour of your code before you write it.\nIt is also too easy to write a test that passes without actually testing the code."
+  },
+  {
+    "objectID": "04_testing.html#section",
+    "href": "04_testing.html#section",
+    "title": "Testing, linting and formatting",
+    "section": "",
+    "text": "and now for something completely different…"
+  },
+  {
+    "objectID": "04_testing.html#the-zen-of-python",
+    "href": "04_testing.html#the-zen-of-python",
+    "title": "Testing, linting and formatting",
+    "section": "The Zen of Python",
+    "text": "The Zen of Python\nBeautiful is better than ugly.\nExplicit is better than implicit.\nSimple is better than complex.\nComplex is better than complicated.\nFlat is better than nested.\nSparse is better than dense.\nReadability counts.\n\n…\nErrors should never pass silently.\nUnless explicitly silenced.\n…"
+  },
+  {
+    "objectID": "04_testing.html#exceptions",
+    "href": "04_testing.html#exceptions",
+    "title": "Testing, linting and formatting",
+    "section": "Exceptions",
+    "text": "Exceptions\n\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nExceptions are communication between the programmer and the user.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitialistionError, MissingLicenseError?"
+  },
+  {
+    "objectID": "04_testing.html#example-1",
+    "href": "04_testing.html#example-1",
+    "title": "Testing, linting and formatting",
+    "section": "Example",
+    "text": "Example\n\n\nsrc/ops.py\n\ndef is_operable(height:float, period:float) -> bool:\n    if height < 0.0:\n        raise ValueError(f\"Supplied value of {height=} is unphysical.\")\n\n>>> is_operable(height=-1.0, period=4.0)\n\nTraceback (most recent call last):\n  ...\nValueError: Supplied value of height=-1.0 is unphysical.\n\n\nIt is better to raise an exception (that can terminate the program), than to propagate a bad value."
+  },
+  {
+    "objectID": "04_testing.html#warnings",
+    "href": "04_testing.html#warnings",
+    "title": "Testing, linting and formatting",
+    "section": "Warnings",
+    "text": "Warnings\nWarnings are a way to alert users of your code to potential issues or usage errors without actually halting the program’s execution.\n\n\nsrc/ops.py\n\nimport warnings\nwarnings.warn(\"This is a warning\")"
+  },
+  {
+    "objectID": "04_testing.html#how-to-test-exceptions",
+    "href": "04_testing.html#how-to-test-exceptions",
+    "title": "Testing, linting and formatting",
+    "section": "How to test exceptions",
+    "text": "How to test exceptions\n\n\ntests/test_ops.py\n\nimport pytest\nfrom ops import is_operable\n\ndef test_negative_heights_are_not_valid():\n    with pytest.raises(ValueError):\n        is_operable(height=-1.0, period=4.0)\n\nThe same can be done with warnings."
+  },
+  {
+    "objectID": "04_testing.html#linting",
+    "href": "04_testing.html#linting",
+    "title": "Testing, linting and formatting",
+    "section": "Linting",
+    "text": "Linting\nLinting is a way to check your code for common errors and style issues.\nflake8 is a popular tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
+  },
+  {
+    "objectID": "04_testing.html#unused-variables",
+    "href": "04_testing.html#unused-variables",
+    "title": "Testing, linting and formatting",
+    "section": "Unused variables",
+    "text": "Unused variables\ndef model(a, b):\n\n    method = \"cubic\"\n    return a + (b - a)\n\n\ny = model(a=1, b=2)\n\nUnused variables is either a mistake or simply a source of confusion.\n\n\n$ flake8 models.py\nmodels.py:3:5: F841 local variable 'method' is assigned to but never used"
+  },
+  {
+    "objectID": "04_testing.html#formatting",
+    "href": "04_testing.html#formatting",
+    "title": "Testing, linting and formatting",
+    "section": "Formatting",
+    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nblack is an opinionated automatic code formatter for Python.\nIt enforces its own rules for formatting, which are not configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
+  },
+  {
+    "objectID": "04_testing.html#running-black",
+    "href": "04_testing.html#running-black",
+    "title": "Testing, linting and formatting",
+    "section": "Running Black",
+    "text": "Running Black\n$ black .\nreformatted data_utils.py\nreformatted dfsu/__init__.py\nreformatted dataarray.py\nreformatted dataset.py\nreformatted spatial/geometry.py\nreformatted pfs/pfssection.py\n\nAll done! ✨ 🍰 ✨\n6 files reformatted, 27 files left unchanged."
+  },
+  {
+    "objectID": "04_testing.html#running-black-1",
+    "href": "04_testing.html#running-black-1",
+    "title": "Testing, linting and formatting",
+    "section": "Running Black",
+    "text": "Running Black\nVisual Studio Code can be configured to run black automatically when saving a file.\n\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#section",
+    "href": "05_dependencies_ci.html#section",
+    "title": "Dependencies and Continuous Integration",
+    "section": "",
+    "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy>=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#dependency-management",
+    "href": "05_dependencies_ci.html#dependency-management",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency management",
+    "text": "Dependency management\nExample of pinning versions:\n\n\nrequirements.txt\n\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1\n\n\nOr using a range of versions:\n\n\nrequirements.txt\n\nnumpy>=1.11.0\nscipy>=0.17.0\nmatplotlib>=1.5.1,<=2.0.0\n\n\n\nInstall dependencies:\n$ pip install -r requirements.txt\n\nA common way to declare dependencies is to use a requirements.txt file."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#creating-an-installable-package",
+    "href": "05_dependencies_ci.html#creating-an-installable-package",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Creating an installable package",
+    "text": "Creating an installable package"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#setup.py-vs-pyproject.toml",
+    "href": "05_dependencies_ci.html#setup.py-vs-pyproject.toml",
+    "title": "Dependencies and Continuous Integration",
+    "section": "setup.py vs pyproject.toml",
+    "text": "setup.py vs pyproject.toml\nsetup.py\n\nTraditional approach to defining package configuration and dependencies.\nDefines metadata, dependencies, and entry points in a Python script.\nUses setuptools to generate packages and install the package.\n\n\npyproject.toml\n\nModern approach to defining package configuration and dependencies.\nDefines metadata, dependencies, build tools, and packaging config in a TOML file.\nUses poetry or hatchling to generate packages and install the package."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#install-with-optional-dependencies",
+    "href": "05_dependencies_ci.html#install-with-optional-dependencies",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Install with optional dependencies",
+    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"black==22.3.0\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#creating-an-installable-package-1",
+    "href": "05_dependencies_ci.html#creating-an-installable-package-1",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Creating an installable package",
+    "text": "Creating an installable package\nInstall package in editable mode:\n$ pip install -e .\n\nStart a Python session:\n>>> import mini\n>>> mini.foo()\n42\n\n\nRun tests:\n$ pytest\n...\n\ntests/test_foo.py .                       [100%]\n\n=============== 1 passed in 0.01s ==============="
+  },
+  {
+    "objectID": "05_dependencies_ci.html#virtual-environments",
+    "href": "05_dependencies_ci.html#virtual-environments",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Virtual environments",
+    "text": "Virtual environments\n\n\nCreates a clean environment for each project\nAllows different versions of a package to coexist on your machine\nCan be used to create a reproducible environment for a project\nTo achieve complete isolation, use Docker containers (not covered in this course)"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#virtual-environments-1",
+    "href": "05_dependencies_ci.html#virtual-environments-1",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Virtual environments",
+    "text": "Virtual environments\n$ which python\n/usr/bin/python\n$ python -m venv venv\n$ source venv/bin/activate # for 🐧 or venv\\Scripts\\activate.bat 🪟\n(venv)$ which python\n/home/user/src/myproj/venv/bin/python\n(venv)$ pip install -r requirements.txt\n\n\nBack in the days, when disk space was limited, it was a good idea to have a separate environment for each project.\nToday, disk space is cheap, and it is a good idea to have a separate environment for each project."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#condamamba-environments",
+    "href": "05_dependencies_ci.html#condamamba-environments",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Conda/mamba environments",
+    "text": "Conda/mamba environments\nConda/mamba is a package manager that can be used to create virtual environments.\n$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\python.exe\n$ conda create -n myproj -f requirements.txt\n$ conda activate myproj\n(myproj)$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\envs\\myproj\\python.exe"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#branch-naming-convention",
+    "href": "05_dependencies_ci.html#branch-naming-convention",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Branch naming convention",
+    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling\nFind a naming convention that works for you and your team."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#time-for-a-discussion",
+    "href": "05_dependencies_ci.html#time-for-a-discussion",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#continuous-integration",
+    "href": "05_dependencies_ci.html#continuous-integration",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Continuous Integration",
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines\n\n\nGitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#github-actions",
+    "href": "05_dependencies_ci.html#github-actions",
+    "title": "Dependencies and Continuous Integration",
+    "section": "GitHub Actions",
+    "text": "GitHub Actions\n\n\n\nWorkflow are stored in the .github/workflows folder.\nWorkflow is described in a YAML file.\nYAML is whitespace sensitive (like Python).\nYAML can contain lists, dictionaries and strings, and can be nested.\n\n\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#benefits-of-ci",
+    "href": "05_dependencies_ci.html#benefits-of-ci",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Benefits of CI",
+    "text": "Benefits of CI\n\n\nRun tests on every commit\nTest on different operating systems\nTest on different Python versions\nCreate API documentation (next week)\nPublish package to PyPI or similar package repository (two weeks from now)"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#triggers",
+    "href": "05_dependencies_ci.html#triggers",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Triggers",
+    "text": "Triggers\n\npush and pull_request are the most common triggers\nschedule can be used to run the workflow on a schedule\nworkflow_dispatch can be used to trigger the workflow manually\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n  schedule:\n    - cron: '0 0 * * 0'\n  workflow_dispatch:"
+  },
+  {
+    "objectID": "05_dependencies_ci.html#jobs",
+    "href": "05_dependencies_ci.html#jobs",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Jobs",
+    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
+  },
+  {
+    "objectID": "05_dependencies_ci.html#github-releases",
+    "href": "05_dependencies_ci.html#github-releases",
+    "title": "Dependencies and Continuous Integration",
+    "section": "GitHub Releases",
+    "text": "GitHub Releases\n\n\n\nGitHub releases are a way to publish software releases.\nYou can upload files, write release notes and tag the release.\nAs a minimum, the release will contain the source code at the time of the release.\nCreating a release can trigger other workflows, e.g. publishing a package to PyPI.\n\n\n\n\n\nhttps://github.com/pydata/xarray/releases/tag/v2022.12.0\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "02_version_control.html#why-use-version-control",
+    "href": "02_version_control.html#why-use-version-control",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Why use version control?",
+    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability\nBest practice for software development"
+  },
+  {
+    "objectID": "02_version_control.html#centralized-version-control",
+    "href": "02_version_control.html#centralized-version-control",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Centralized version control",
+    "text": "Centralized version control\n\nSingle source with the entire history\nLocal copy with latest version . . .\nExamples: SVN, Surround"
+  },
+  {
+    "objectID": "02_version_control.html#distributed-version-control",
+    "href": "02_version_control.html#distributed-version-control",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Distributed version control",
+    "text": "Distributed version control\n\nLocal copy has the entire history\nCommit changes to code offline\nAuthorative source (origin) . . .\nExamples: Git, Mercurial"
+  },
+  {
+    "objectID": "02_version_control.html#git",
+    "href": "02_version_control.html#git",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Git",
+    "text": "Git\nGit is a powerful tool for managing code changes and collaborating with others on a project.\n\nYou can use Git from the command line, or with a graphical user interface (GUI).\n\n\n> git add foo.py\n\n\n> git commit -m \"Nailed it\"\n\n\n> git push"
+  },
+  {
+    "objectID": "02_version_control.html#basic-git-commands",
+    "href": "02_version_control.html#basic-git-commands",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Basic Git commands",
+    "text": "Basic Git commands\n\n\ngit add: adds a file to the staging area\ngit commit: creates a new commit with the changes in the staging area\ngit status: shows the current status of your repository\ngit log: shows the commit history of your repository\ngit stash: temporarily save changes that are not ready to be committed"
+  },
+  {
+    "objectID": "02_version_control.html#working-with-remote-repositories",
+    "href": "02_version_control.html#working-with-remote-repositories",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Working with remote repositories",
+    "text": "Working with remote repositories\n\n\ngit clone: creates a copy of the codebase on your local machine.\ngit push: pushes changes back to the remote repository.\ngit pull: pulls changes from the remote repository."
+  },
+  {
+    "objectID": "02_version_control.html#branching-and-merging",
+    "href": "02_version_control.html#branching-and-merging",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Branching and Merging",
+    "text": "Branching and Merging\n\nA branch is a separate version of your code that you can work on independently from the main branch.\ngit merge: merges changes back into the main branch (we will do this from GitHub)"
+  },
+  {
+    "objectID": "02_version_control.html#github",
+    "href": "02_version_control.html#github",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "GitHub",
+    "text": "GitHub\n\n\nGit repository hosting service\nCollaborate with others on codebase\nFork a repository to work on your own version\nPull requests for code review and merging changes\nIssue tracking and project management tools\nGitHub Pages for hosting websites"
+  },
+  {
+    "objectID": "02_version_control.html#github-flow",
+    "href": "02_version_control.html#github-flow",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Github flow",
+    "text": "Github flow\n\n\n\nCreate a branch\nMake changes\nCreate a pull request\nReview\nMerge\n\n\n\n\nClone a repository to work on a copy (optionally: fork first)\nCreate a branch for each new feature or fix\nCommit changes and push to remote repository\nOpen a pull request to propose changes and request code review\nMerge changes back into the main branch"
+  },
+  {
+    "objectID": "02_version_control.html#time-for-a-discussion",
+    "href": "02_version_control.html#time-for-a-discussion",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Time for a discussion",
+    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\n\nIntroduce your project briefly\nThink about a project you’ve worked on in the past that involved collaborating with others on code. What challenges did you face, and how do you think Git and GitHub could have helped to address those challenges?\n\nAfter break out session:\n\nOne person from each team briefly presents their discussion outcomes\n\n\n\nWhat is the benefit of working in branches?\nWhat are some best practices for collaborating on code with others, and how can Git and GitHub help to support those best practices?"
+  },
+  {
+    "objectID": "02_version_control.html#desktop-application-github-desktop",
+    "href": "02_version_control.html#desktop-application-github-desktop",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Desktop Application: GitHub Desktop",
+    "text": "Desktop Application: GitHub Desktop"
+  },
+  {
+    "objectID": "02_version_control.html#demo",
+    "href": "02_version_control.html#demo",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Demo",
+    "text": "Demo"
+  },
+  {
+    "objectID": "02_version_control.html#github-best-practices",
+    "href": "02_version_control.html#github-best-practices",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Github best practices",
+    "text": "Github best practices\n\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
+  },
+  {
+    "objectID": "02_version_control.html#github-or-azure-devops",
+    "href": "02_version_control.html#github-or-azure-devops",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "GitHub or Azure DevOps?",
+    "text": "GitHub or Azure DevOps?\n\nBoth hosts Git repositories and provide tools for collaboration\nGitHub is free for public repositories\n\n\n\nDHI has a GitHub account for private repositories\nDHI has an Azure DevOps account for private repositories\n\n\n\n\nAzure DevOps is organized in “projects”, which can contain multiple repositories"
+  },
+  {
+    "objectID": "02_version_control.html#resources",
+    "href": "02_version_control.html#resources",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Resources",
+    "text": "Resources\n\nGitHub: quickstart\nRealPython: git and github intro\nDatacamp: introduction to Git"
+  },
+  {
+    "objectID": "02_version_control.html#word-list",
+    "href": "02_version_control.html#word-list",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Word list",
+    "text": "Word list\n\nClone\n\nmaking a local copy of a remote repository on your computer.\n\nRemote\n\na reference to a Git repository that is hosted on a remote server, typically on a service like GitHub.\n\nCommit\n\na record of changes made to a repository, including the changes themselves and a message describing what was changed.\n\nStage\n\nselecting changes that you want to include in the next commit.\n\nPush\n\nsending changes from your local repository to a remote repository.\n\nPull\n\nretrieving changes from a remote repository and merging them into your local repository.\n\nBranch\n\na separate line of development that can be used to work on new features or bug fixes without affecting the main codebase.\n\nPull request\n\na way to propose changes to a repository by asking the repository owner to “pull” in the changes from a branch or fork.\n\nStash\n\ntemporarily save changes that are not ready to be committed (bring them back later when needed).\n\nMerge\n\nthe process of combining changes from one branch or fork into another, typically the main codebase.\n\nRebase\n\na way to integrate changes from one branch into another by applying the changes from the first branch to the second branch as if they were made there all along.\n\nMerge conflict\n\nwhen Git is unable to automatically merge changes from two different branches, because the changes overlap or conflict.\n\nCheckout\n\nswitching between different branches or commits in a repository.\n\nFork\n\na copy of a repository that you create on your own account, which you can modify without affecting the original repository."
+  },
+  {
+    "objectID": "02_version_control.html#summary",
+    "href": "02_version_control.html#summary",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Summary",
+    "text": "Summary\n\n\nVersion control is a tool for managing changes to code\nGit is a distributed version control system (software)\nGitHub is a platform for hosting and collaborating on Git repositories\nGitHub Desktop is a GUI for Git (and GitHub)\nPull requests are a way to propose changes to a repository\n\n\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#variables-function-and-method-names",
+    "href": "01b_naming_conventions.html#variables-function-and-method-names",
+    "title": "Python - Naming conventions",
+    "section": "Variables, function and method names",
+    "text": "Variables, function and method names\n\nUse lowercase characters\nSeparate words with underscores\n\n\nmodel_name = \"NorthSeaModel\"\nn_epochs = 100\n\ndef my_function():\n    pass"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#constants",
+    "href": "01b_naming_conventions.html#constants",
+    "title": "Python - Naming conventions",
+    "section": "Constants",
+    "text": "Constants\n\nUse all uppercase characters\n\nGRAVITY = 9.81\n\nAVOGADRO_CONSTANT = 6.02214076e23\n\nSECONDS_IN_A_DAY = 86400\n\nN_LEGS_PER_ANIMAL = {\n    \"human\": 2,\n    \"dog\": 4,\n    \"spider\": 8,\n}\n\nPython will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants."
+  },
+  {
+    "objectID": "01b_naming_conventions.html#classes",
+    "href": "01b_naming_conventions.html#classes",
+    "title": "Python - Naming conventions",
+    "section": "Classes",
+    "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\n\nclass RandomClassifier: # CamelCase ✅\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y): # lowercase ✅\n        self.fit(X, y)\n        return self.predict(X)"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#function-return-values",
+    "href": "01b_naming_conventions.html#function-return-values",
+    "title": "Python - Naming conventions",
+    "section": "Function return values",
+    "text": "Function return values\ndef my_function() -> str:\n    return \"42\"\n\ndef my_other_function() -> None: # it doesn't return anything 🤔\n    print(\"42\")\n\nIn action:\n>>> my_function()\n'42'\n>>> my_other_function()\n42\n>>> x = my_function()\n>>> x\n'42'\n>>> y = my_other_function()\n>>> y"
+  },
+  {
+    "objectID": "01b_naming_conventions.html#github-repo-naming-convention",
+    "href": "01b_naming_conventions.html#github-repo-naming-convention",
+    "title": "Python - Naming conventions",
+    "section": "Github repo naming convention",
+    "text": "Github repo naming convention\n\nThis is just a suggestion\nUse lowercase characters\nSeparate words with dashes\n\nExample: my-awesome-repo\n\n\n\nPython package development"
+  },
+  {
+    "objectID": "00_introduction.html#instructors",
+    "href": "00_introduction.html#instructors",
+    "title": "Python package development",
+    "section": "Instructors",
+    "text": "Instructors\n\nJesper\nHenrik\nThomas"
+  },
+  {
+    "objectID": "00_introduction.html#participants",
+    "href": "00_introduction.html#participants",
+    "title": "Python package development",
+    "section": "Participants",
+    "text": "Participants\nIntroduce yourselves in a break out session later today."
+  },
+  {
+    "objectID": "00_introduction.html#learning-modules",
+    "href": "00_introduction.html#learning-modules",
+    "title": "Python package development",
+    "section": "Learning modules",
+    "text": "Learning modules\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package"
+  },
+  {
+    "objectID": "00_introduction.html#learning-objectives",
+    "href": "00_introduction.html#learning-objectives",
+    "title": "Python package development",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\nimproved Python skills\nknowledge of how to create reusable Python code\nknow how to share code with others through a Python package"
+  },
+  {
+    "objectID": "00_introduction.html#format",
+    "href": "00_introduction.html#format",
+    "title": "Python package development",
+    "section": "Format",
+    "text": "Format\n\nOnline session (Zoom) almost every Monday\nHomework assignments\nQuiz (Campus)"
+  },
+  {
+    "objectID": "00_introduction.html#course-material",
+    "href": "00_introduction.html#course-material",
+    "title": "Python package development",
+    "section": "Course material",
+    "text": "Course material\n\nHillard, 2020, Practices of the Python Pro, Manning\nSlides\nCampus\nCourse Yammer channel"
+  },
+  {
+    "objectID": "00_introduction.html#poll",
+    "href": "00_introduction.html#poll",
+    "title": "Python package development",
+    "section": "Poll",
+    "text": "Poll\n\n\n\nPython package development"
   }
 ]
