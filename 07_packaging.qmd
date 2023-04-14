@@ -15,6 +15,20 @@ There are many ways to create an installable package, and many ways to distribut
 
 We will show how to create a package using `hatchling`, and how to distribute it on GitHub, PyPI and a private PyPI server.
 
+## Benefits of packaging
+
+::: {.incremental}
+
+* Distribute your package to others
+* Install your package with `pip`
+* Specify dependencies
+* Reproducibility
+* Specify version
+* Release vs. development versions
+
+:::
+
+
 ## Packaging workflow
 
 1. Create a `pyproject.toml` in the root folder of the project
@@ -57,34 +71,213 @@ test= ["pytest"]
 "Homepage" = "https://github.com/DHI/my_library"
 "Bug Tracker" = "https://github.com/DHI/my_library/issues"
 ```
-## Versioning
+
+## Versioning {.smaller}
+
+
 
 Versioning your package is important for reproducibility and to avoid breaking changes.
 
 . . .
 
+::: {.columns}
 
-Semantic versioning use three numbers `{major}.{minor}.{patch}`, e.g. `1.1.0`
+::: {.column width="70%"}
+
+[Semantic versioning](https://semver.org/) use three numbers `{major}.{minor}.{patch}`, e.g. `1.1.0`
+
+::: {.incremental}
 
 * A new *major* version indicates **breaking** changes
-* A new *minor* version indicates new features, without breaking changes
-* A new *patch* version indicates a small change, e.g. a bug fix
+* A new *minor* version indicates new *features*, without breaking changes
+* A new *patch* version indicates a *small* change, e.g. a bug fix
+* Each of the numbers can be higher than 9, e.g. `1.0.0` is more recent than `0.24.12`
+
+:::
+
+:::
+
+::: {.column width="30%"}
+![](images/scikit.png)
+:::
+::::
+
+## Version 1.0
+
+::: {.incremental}
+
+* A version number of `1.0` indicates that the package is ready for production
+* The API is stable, and breaking changes will only be introduced in new major versions
+* The package is well tested, and the documentation is complete
+* Start with version `0.1.0` and increase the version number as you add features
+
+:::
+
+## Breaking changes
+
+What is a breaking change?
+
+::: {.incremental}
+
+* Removing a function
+* Changing the name of a function
+* Changing the signature of a function (arguments, types, return value)
+
+:::
+
+. . .
+
+Try to avoid breaking changes, if possible, but if you do, increase the major version number! 
+
+
+## Installing specific versions
+
+* `pip install my_library` will install the latest version
+* `pip install my_library==1.0.0` will install version 1.0.0
+* `pip install my_library>=1.0.0` will install version 1.0.0 or higher
+
+
+## Pre-release versions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+* Versions that are not ready for production
+* Indicated by a suffix, e.g. `1.0.0rc1`
+* Will not be installed by default
+* Can be installed with `pip install my_library==1.0.0rc1`
+* Listed on PyPI, but not on the search page
+
+
+:::
+
+::: {.column width="30%"}
+
+![](images/prerelease.png)
+
+:::
+::::
+
+
+## License
+
+::: {.incremental}
+
+* A license is a legal agreement between you and others who use your package
+* If you do not specify a license, others cannot use your package legally
+* The license is specified in the `pyproject.toml` file
+* Read more about licenses on <https://choosealicense.com/>
+* Check if your package is compatible with the license of the dependencies
+
+:::
+
+## Dependencies
+
+:::: {.columns}
+
+::: {.column}
+
+**Application**
+
+*A program that is run by a user*
+
+* command line tool
+* script
+* web application
+
+Pin versions to ensure reproducibility, e.g. `numpy==1.11.0`
+:::
+
+::: {.column}
+
+**Library**
+
+*A program that is used by another program*
+
+* Python package
+* Low level library (C, Fortran, Rust, ...)
+
+Make the requirements as loose as possible, e.g. `numpy>=1.11.0`
+:::
+
+::::
+
+::: {.notes}
+Make the requirements loose, to avoid conflicts with other packages.
+
+:::
+
+## pyproject.toml {.smaller}
+
+```{.toml code-line-numbers="8-10|26-28"}
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my_library"
+version = "0.0.1"
+dependencies = [
+    "numpy"
+]
+
+authors = [
+  { name="First Last", email="initials@dhigroup.com" },
+]
+description = "Useful library"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 2 - Pre-Alpha",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+dev = ["pytest","flake8","black","sphinx", "myst-parser","sphinx-book-theme"]
+test= ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/DHI/my_library"
+"Bug Tracker" = "https://github.com/DHI/my_library/issues"
+```
+
+::: {.notes}
+
+* Mandatory dependencies are specified in the `dependencies` section.
+* Optional dependencies are specified in the `optional-dependencies` section.
+
+:::
+
+
+## Classifiers
+
+
+```{.toml file=pyproject.toml}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 2 - Pre-Alpha",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+```
+
+* Classifiers are used to categorize your package
+* Less relevant for internal packages
+* Operating system (Windows, Linux, MacOS)
+* Development status (Alpha, Beta, Production/Stable)
+
 
 ## Packaging non-Python files
 
-TODO look at <https://hatch.pypa.io/latest/config/build/#artifacts>
+* Including non-Python files can be useful for e.g. machine learning models.
+* If you use `hatchling`, you can include non-Python files in your package.
+* `hatchling` uses .gitignore to determine which files to include.
 
-If you are creating an application, you might want to include non-Python files in the package.
-E.g. an application that uses machine learning, and includes a trained model.
-
-## Packages
-
-## Packaging
-
-## Private packages
-
-* Install from a private git repository
-* Install from a private PyPI server
 
 ## GitHub secrets
 
@@ -101,11 +294,9 @@ env:
   TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 ```
 
-
-
 ## GitHub Actions {.smaller}
 
-```{.yaml filename=.github/workflows/python-package.yml}
+```{.yaml filename=.github/workflows/python-package.yml code-line-numbers="|2-4|18-19|21-26"}
 name: Publish Python Package
 on:
   release:
@@ -133,3 +324,36 @@ jobs:
       run: |
         twine upload dist/* 
 ```
+
+
+## Private PyPI server {.smaller}
+
+* Private packages can be be hosted on Azure Arfifacts
+* This server behaves like PyPI, and can be used with `pip`
+* Access is limited to DHI (members of the `dhigroup` organization)
+
+. . .
+
+To install from private PyPI server (once):
+
+```bash
+$ pip install keyring artifacts-keyring
+```
+
+. . .
+
+Example:
+
+```{.bash code-line-numbers="|2"}
+$ pip install --extra-index-url https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling
+Looking in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/
+...
+Successfully installed sampling-0.0.1
+```
+
+## Installing a development version
+
+* Install latest dev version, e.g. `pip install https://github.com/DHI/mikeio/archive/main.zip`
+* Install from `fix-interp` branch, e.g. `pip install https://github.com/DHI/mikeio/archive/fix-interp.zip`
+
+
