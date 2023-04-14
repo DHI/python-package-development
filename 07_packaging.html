@@ -399,6 +399,19 @@
 <p>There are many ways to create an installable package, and many ways to distribute it.</p>
 <p>We will show how to create a package using <code>hatchling</code>, and how to distribute it on GitHub, PyPI and a private PyPI server.</p>
 </section>
+<section id="benefits-of-packaging" class="slide level2">
+<h2>Benefits of packaging</h2>
+<div>
+<ul>
+<li class="fragment">Distribute your package to others</li>
+<li class="fragment">Install your package with <code>pip</code></li>
+<li class="fragment">Specify dependencies</li>
+<li class="fragment">Reproducibility</li>
+<li class="fragment">Specify version</li>
+<li class="fragment">Release vs.&nbsp;development versions</li>
+</ul>
+</div>
+</section>
 <section id="packaging-workflow" class="slide level2">
 <h2>Packaging workflow</h2>
 <ol type="1">
@@ -442,34 +455,197 @@
 <span id="cb1-31"><a href="#cb1-31"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
 <span id="cb1-32"><a href="#cb1-32"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="versioning" class="slide level2">
+<section id="versioning" class="slide level2 smaller">
 <h2>Versioning</h2>
 <p>Versioning your package is important for reproducibility and to avoid breaking changes.</p>
 <div class="fragment">
-<p>Semantic versioning use three numbers <code>{major}.{minor}.{patch}</code>, e.g.&nbsp;<code>1.1.0</code></p>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p><a href="https://semver.org/">Semantic versioning</a> use three numbers <code>{major}.{minor}.{patch}</code>, e.g.&nbsp;<code>1.1.0</code></p>
+<div>
 <ul>
-<li>A new <em>major</em> version indicates <strong>breaking</strong> changes</li>
-<li>A new <em>minor</em> version indicates new features, without breaking changes</li>
-<li>A new <em>patch</em> version indicates a small change, e.g.&nbsp;a bug fix</li>
+<li class="fragment">A new <em>major</em> version indicates <strong>breaking</strong> changes</li>
+<li class="fragment">A new <em>minor</em> version indicates new <em>features</em>, without breaking changes</li>
+<li class="fragment">A new <em>patch</em> version indicates a <em>small</em> change, e.g.&nbsp;a bug fix</li>
+<li class="fragment">Each of the numbers can be higher than 9, e.g.&nbsp;<code>1.0.0</code> is more recent than <code>0.24.12</code></li>
+</ul>
+</div>
+</div><div class="column" style="width:30%;">
+<p><img data-src="images/scikit.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="version-1.0" class="slide level2">
+<h2>Version 1.0</h2>
+<div>
+<ul>
+<li class="fragment">A version number of <code>1.0</code> indicates that the package is ready for production</li>
+<li class="fragment">The API is stable, and breaking changes will only be introduced in new major versions</li>
+<li class="fragment">The package is well tested, and the documentation is complete</li>
+<li class="fragment">Start with version <code>0.1.0</code> and increase the version number as you add features</li>
 </ul>
 </div>
 </section>
+<section id="breaking-changes" class="slide level2">
+<h2>Breaking changes</h2>
+<p>What is a breaking change?</p>
+<div>
+<ul>
+<li class="fragment">Removing a function</li>
+<li class="fragment">Changing the name of a function</li>
+<li class="fragment">Changing the signature of a function (arguments, types, return value)</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Try to avoid breaking changes, if possible, but if you do, increase the major version number!</p>
+</div>
+</section>
+<section id="installing-specific-versions" class="slide level2">
+<h2>Installing specific versions</h2>
+<ul>
+<li><code>pip install my_library</code> will install the latest version</li>
+<li><code>pip install my_library==1.0.0</code> will install version 1.0.0</li>
+<li><code>pip install my_library&gt;=1.0.0</code> will install version 1.0.0 or higher</li>
+</ul>
+</section>
+<section id="pre-release-versions" class="slide level2 smaller">
+<h2>Pre-release versions</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Versions that are not ready for production</li>
+<li>Indicated by a suffix, e.g.&nbsp;<code>1.0.0rc1</code></li>
+<li>Will not be installed by default</li>
+<li>Can be installed with <code>pip install my_library==1.0.0rc1</code></li>
+<li>Listed on PyPI, but not on the search page</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="images/prerelease.png"></p>
+</div>
+</div>
+</section>
+<section id="license" class="slide level2">
+<h2>License</h2>
+<div>
+<ul>
+<li class="fragment">A license is a legal agreement between you and others who use your package</li>
+<li class="fragment">If you do not specify a license, others cannot use your package legally</li>
+<li class="fragment">The license is specified in the <code>pyproject.toml</code> file</li>
+<li class="fragment">Read more about licenses on <a href="https://choosealicense.com/" class="uri">https://choosealicense.com/</a></li>
+<li class="fragment">Check if your package is compatible with the license of the dependencies</li>
+</ul>
+</div>
+</section>
+<section id="dependencies" class="slide level2">
+<h2>Dependencies</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Application</strong></p>
+<p><em>A program that is run by a user</em></p>
+<ul>
+<li>command line tool</li>
+<li>script</li>
+<li>web application</li>
+</ul>
+<p>Pin versions to ensure reproducibility, e.g.&nbsp;<code>numpy==1.11.0</code></p>
+</div><div class="column">
+<p><strong>Library</strong></p>
+<p><em>A program that is used by another program</em></p>
+<ul>
+<li>Python package</li>
+<li>Low level library (C, Fortran, Rust, …)</li>
+</ul>
+<p>Make the requirements as loose as possible, e.g.&nbsp;<code>numpy&gt;=1.11.0</code></p>
+</div>
+</div>
+<aside class="notes">
+<p>Make the requirements loose, to avoid conflicts with other packages.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="pyproject.toml-1" class="slide level2 smaller">
+<h2>pyproject.toml</h2>
+<div class="sourceCode" id="cb2" data-code-line-numbers="8-10|26-28"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">[</span><span class="dt">build-system</span><span class="kw">]</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">]</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"numpy"</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="op">]</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span> <span class="op">},</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="op">]</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="op">]</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">.</span><span class="dt">optional-dependencies</span><span class="kw">]</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">.</span><span class="dt">urls</span><span class="kw">]</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<ul>
+<li>Mandatory dependencies are specified in the <code>dependencies</code> section.</li>
+<li>Optional dependencies are specified in the <code>optional-dependencies</code> section.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="classifiers" class="slide level2">
+<h2>Classifiers</h2>
+<div class="sourceCode" id="cb3" data-file="pyproject.toml"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Classifiers are used to categorize your package</li>
+<li>Less relevant for internal packages</li>
+<li>Operating system (Windows, Linux, MacOS)</li>
+<li>Development status (Alpha, Beta, Production/Stable)</li>
+</ul>
+</section>
 <section id="packaging-non-python-files" class="slide level2">
 <h2>Packaging non-Python files</h2>
-<p>TODO look at <a href="https://hatch.pypa.io/latest/config/build/#artifacts" class="uri">https://hatch.pypa.io/latest/config/build/#artifacts</a></p>
-<p>If you are creating an application, you might want to include non-Python files in the package. E.g. an application that uses machine learning, and includes a trained model.</p>
-</section>
-<section id="packages" class="slide level2">
-<h2>Packages</h2>
-</section>
-<section id="packaging-1" class="slide level2">
-<h2>Packaging</h2>
-</section>
-<section id="private-packages" class="slide level2">
-<h2>Private packages</h2>
 <ul>
-<li>Install from a private git repository</li>
-<li>Install from a private PyPI server</li>
+<li>Including non-Python files can be useful for e.g.&nbsp;machine learning models.</li>
+<li>If you use <code>hatchling</code>, you can include non-Python files in your package.</li>
+<li><code>hatchling</code> uses .gitignore to determine which files to include.</li>
 </ul>
 </section>
 <section id="github-secrets" class="slide level2">
@@ -480,9 +656,9 @@
 <li>Add secrets in the repository settings.</li>
 </ul>
 <p>To use secrets as environment variables in GitHub Actions, add them to the <code>env</code> section of the workflow:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="at">  </span><span class="fu">TWINE_USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_USERNAME }}</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="at">  </span><span class="fu">TWINE_PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_PASSWORD }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="at">  </span><span class="fu">TWINE_USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_USERNAME }}</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">TWINE_PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_PASSWORD }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="github-actions" class="slide level2 smaller">
 <h2>GitHub Actions</h2>
@@ -490,33 +666,59 @@
 <div class="code-with-filename-file">
 <pre><strong>.github/workflows/python-package.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">created</span><span class="kw">]</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.10'</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>        python -m pip install --upgrade pip</span>
-<span id="cb3-17"><a href="#cb3-17"></a>        pip install build</span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="at">    </span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish to PyPI</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="at">      </span><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="at">        </span><span class="fu">TWINE_USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_USERNAME }}</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="at">        </span><span class="fu">TWINE_PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_PASSWORD }}</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a>        twine upload dist/* </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-code-line-numbers="|2-4|18-19|21-26"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">created</span><span class="kw">]</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.10'</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>        python -m pip install --upgrade pip</span>
+<span id="cb5-17"><a href="#cb5-17"></a>        pip install build</span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="at">    </span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish to PyPI</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="at">      </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="at">        </span><span class="fu">TWINE_USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_USERNAME }}</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="at">        </span><span class="fu">TWINE_PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_PASSWORD }}</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a>        twine upload dist/* </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="private-pypi-server" class="slide level2 smaller">
+<h2>Private PyPI server</h2>
+<ul>
+<li>Private packages can be be hosted on Azure Arfifacts</li>
+<li>This server behaves like PyPI, and can be used with <code>pip</code></li>
+<li>Access is limited to DHI (members of the <code>dhigroup</code> organization)</li>
+</ul>
+<div class="fragment">
+<p>To install from private PyPI server (once):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">$</span> pip install keyring artifacts-keyring</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>Example:</p>
+<div class="sourceCode" id="cb7" data-code-line-numbers="|2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">$</span> pip install <span class="at">--extra-index-url</span> https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">Looking</span> in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">...</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">Successfully</span> installed sampling-0.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="installing-a-development-version" class="slide level2">
+<h2>Installing a development version</h2>
+<ul>
+<li>Install latest dev version, e.g.&nbsp;<code>pip install https://github.com/DHI/mikeio/archive/main.zip</code></li>
+<li>Install from <code>fix-interp</code> branch, e.g.&nbsp;<code>pip install https://github.com/DHI/mikeio/archive/fix-interp.zip</code></li>
+</ul>
 
 
 <img src="campus_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">

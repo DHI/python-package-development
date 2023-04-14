@@ -231,6 +231,13 @@
     "text": "Packaging\nPackaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using hatchling, and how to distribute it on GitHub, PyPI and a private PyPI server."
   },
   {
+    "objectID": "07_packaging.html#benefits-of-packaging",
+    "href": "07_packaging.html#benefits-of-packaging",
+    "title": "Distributing your Python package",
+    "section": "Benefits of packaging",
+    "text": "Benefits of packaging\n\n\nDistribute your package to others\nInstall your package with pip\nSpecify dependencies\nReproducibility\nSpecify version\nRelease vs. development versions"
+  },
+  {
     "objectID": "07_packaging.html#packaging-workflow",
     "href": "07_packaging.html#packaging-workflow",
     "title": "Distributing your Python package",
@@ -249,35 +256,70 @@
     "href": "07_packaging.html#versioning",
     "title": "Distributing your Python package",
     "section": "Versioning",
-    "text": "Versioning\nVersioning your package is important for reproducibility and to avoid breaking changes.\n\nSemantic versioning use three numbers {major}.{minor}.{patch}, e.g. 1.1.0\n\nA new major version indicates breaking changes\nA new minor version indicates new features, without breaking changes\nA new patch version indicates a small change, e.g. a bug fix"
+    "text": "Versioning\nVersioning your package is important for reproducibility and to avoid breaking changes.\n\n\n\nSemantic versioning use three numbers {major}.{minor}.{patch}, e.g. 1.1.0\n\n\nA new major version indicates breaking changes\nA new minor version indicates new features, without breaking changes\nA new patch version indicates a small change, e.g. a bug fix\nEach of the numbers can be higher than 9, e.g. 1.0.0 is more recent than 0.24.12"
+  },
+  {
+    "objectID": "07_packaging.html#version-1.0",
+    "href": "07_packaging.html#version-1.0",
+    "title": "Distributing your Python package",
+    "section": "Version 1.0",
+    "text": "Version 1.0\n\n\nA version number of 1.0 indicates that the package is ready for production\nThe API is stable, and breaking changes will only be introduced in new major versions\nThe package is well tested, and the documentation is complete\nStart with version 0.1.0 and increase the version number as you add features"
+  },
+  {
+    "objectID": "07_packaging.html#breaking-changes",
+    "href": "07_packaging.html#breaking-changes",
+    "title": "Distributing your Python package",
+    "section": "Breaking changes",
+    "text": "Breaking changes\nWhat is a breaking change?\n\n\nRemoving a function\nChanging the name of a function\nChanging the signature of a function (arguments, types, return value)\n\n\n\nTry to avoid breaking changes, if possible, but if you do, increase the major version number!"
+  },
+  {
+    "objectID": "07_packaging.html#installing-specific-versions",
+    "href": "07_packaging.html#installing-specific-versions",
+    "title": "Distributing your Python package",
+    "section": "Installing specific versions",
+    "text": "Installing specific versions\n\npip install my_library will install the latest version\npip install my_library==1.0.0 will install version 1.0.0\npip install my_library>=1.0.0 will install version 1.0.0 or higher"
+  },
+  {
+    "objectID": "07_packaging.html#pre-release-versions",
+    "href": "07_packaging.html#pre-release-versions",
+    "title": "Distributing your Python package",
+    "section": "Pre-release versions",
+    "text": "Pre-release versions\n\n\n\nVersions that are not ready for production\nIndicated by a suffix, e.g. 1.0.0rc1\nWill not be installed by default\nCan be installed with pip install my_library==1.0.0rc1\nListed on PyPI, but not on the search page"
+  },
+  {
+    "objectID": "07_packaging.html#license",
+    "href": "07_packaging.html#license",
+    "title": "Distributing your Python package",
+    "section": "License",
+    "text": "License\n\n\nA license is a legal agreement between you and others who use your package\nIf you do not specify a license, others cannot use your package legally\nThe license is specified in the pyproject.toml file\nRead more about licenses on https://choosealicense.com/\nCheck if your package is compatible with the license of the dependencies"
+  },
+  {
+    "objectID": "07_packaging.html#dependencies",
+    "href": "07_packaging.html#dependencies",
+    "title": "Distributing your Python package",
+    "section": "Dependencies",
+    "text": "Dependencies\n\n\nApplication\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy>=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
+  },
+  {
+    "objectID": "07_packaging.html#pyproject.toml-1",
+    "href": "07_packaging.html#pyproject.toml-1",
+    "title": "Distributing your Python package",
+    "section": "pyproject.toml",
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \">=3.7\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\",\"flake8\",\"black\",\"sphinx\", \"myst-parser\",\"sphinx-book-theme\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nOptional dependencies are specified in the optional-dependencies section."
+  },
+  {
+    "objectID": "07_packaging.html#classifiers",
+    "href": "07_packaging.html#classifiers",
+    "title": "Distributing your Python package",
+    "section": "Classifiers",
+    "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
   },
   {
     "objectID": "07_packaging.html#packaging-non-python-files",
     "href": "07_packaging.html#packaging-non-python-files",
     "title": "Distributing your Python package",
     "section": "Packaging non-Python files",
-    "text": "Packaging non-Python files\nTODO look at https://hatch.pypa.io/latest/config/build/#artifacts\nIf you are creating an application, you might want to include non-Python files in the package. E.g. an application that uses machine learning, and includes a trained model."
-  },
-  {
-    "objectID": "07_packaging.html#packages",
-    "href": "07_packaging.html#packages",
-    "title": "Distributing your Python package",
-    "section": "Packages",
-    "text": "Packages"
-  },
-  {
-    "objectID": "07_packaging.html#packaging-1",
-    "href": "07_packaging.html#packaging-1",
-    "title": "Distributing your Python package",
-    "section": "Packaging",
-    "text": "Packaging"
-  },
-  {
-    "objectID": "07_packaging.html#private-packages",
-    "href": "07_packaging.html#private-packages",
-    "title": "Distributing your Python package",
-    "section": "Private packages",
-    "text": "Private packages\n\nInstall from a private git repository\nInstall from a private PyPI server"
+    "text": "Packaging non-Python files\n\nIncluding non-Python files can be useful for e.g. machine learning models.\nIf you use hatchling, you can include non-Python files in your package.\nhatchling uses .gitignore to determine which files to include."
   },
   {
     "objectID": "07_packaging.html#github-secrets",
@@ -291,7 +333,21 @@
     "href": "07_packaging.html#github-actions",
     "title": "Distributing your Python package",
     "section": "GitHub Actions",
-    "text": "GitHub Actions\n\n\n.github/workflows/python-package.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [created]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: Set up Python\n      uses: actions/setup-python@v2\n      with:\n        python-version: '3.10'\n    - name: Install dependencies\n      run: |\n        python -m pip install --upgrade pip\n        pip install build\n    - name: Build package\n      run: python -m build\n    \n    - name: Publish to PyPI\n      env:\n        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}\n        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}\n      run: |\n        twine upload dist/* \n\n\n\n\nPython package development"
+    "text": "GitHub Actions\n\n\n.github/workflows/python-package.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [created]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n    - name: Set up Python\n      uses: actions/setup-python@v2\n      with:\n        python-version: '3.10'\n    - name: Install dependencies\n      run: |\n        python -m pip install --upgrade pip\n        pip install build\n    - name: Build package\n      run: python -m build\n    \n    - name: Publish to PyPI\n      env:\n        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}\n        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}\n      run: |\n        twine upload dist/*"
+  },
+  {
+    "objectID": "07_packaging.html#private-pypi-server",
+    "href": "07_packaging.html#private-pypi-server",
+    "title": "Distributing your Python package",
+    "section": "Private PyPI server",
+    "text": "Private PyPI server\n\nPrivate packages can be be hosted on Azure Arfifacts\nThis server behaves like PyPI, and can be used with pip\nAccess is limited to DHI (members of the dhigroup organization)\n\n\nTo install from private PyPI server (once):\n$ pip install keyring artifacts-keyring\n\n\nExample:\n$ pip install --extra-index-url https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling\nLooking in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/\n...\nSuccessfully installed sampling-0.0.1"
+  },
+  {
+    "objectID": "07_packaging.html#installing-a-development-version",
+    "href": "07_packaging.html#installing-a-development-version",
+    "title": "Distributing your Python package",
+    "section": "Installing a development version",
+    "text": "Installing a development version\n\nInstall latest dev version, e.g. pip install https://github.com/DHI/mikeio/archive/main.zip\nInstall from fix-interp branch, e.g. pip install https://github.com/DHI/mikeio/archive/fix-interp.zip\n\n\n\n\nPython package development"
   },
   {
     "objectID": "06_documentation.html#why-document-your-code",
