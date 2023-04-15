@@ -381,6 +381,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -719,6 +722,263 @@
 <li>Install latest dev version, e.g.&nbsp;<code>pip install https://github.com/DHI/mikeio/archive/main.zip</code></li>
 <li>Install from <code>fix-interp</code> branch, e.g.&nbsp;<code>pip install https://github.com/DHI/mikeio/archive/fix-interp.zip</code></li>
 </ul>
+</section>
+<section id="recap" class="slide level2">
+<h2>Recap</h2>
+<ol type="1">
+<li><a href="01_function_classes.qmd">Python functions, classes, and modules</a></li>
+<li><a href="02_version_control.qmd">Git, Pull Requests, and code reviews</a></li>
+<li><a href="03_types_protocols.qmd">Types, abstraction, and refactoring</a></li>
+<li><a href="04_testing.qmd">Testing and auto-formatting</a></li>
+<li><a href="05_dependencies_ci.qmd">Dependencies and GitHub actions</a></li>
+<li><a href="06_documentation.qmd">Documentation</a></li>
+<li><a href="07_packaging.qmd">Distributing your package</a></li>
+</ol>
+</section>
+<section id="python-functions-classes-and-modules" class="slide level2 smaller">
+<h2>Python functions, classes, and modules</h2>
+</section>
+<section id="functions-as-black-boxes" class="slide level2">
+<h2>Functions as black boxes</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+    A(Input A) --&gt; F["Black box"]
+    B(Input B) --&gt;  F
+    F --&gt; O(Output)
+
+    style F fill:#000,color:#fff,stroke:#333,stroke-width:4px
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>A function is a black box that takes some input and produces some output.</li>
+<li>The input and output can be anything, including other functions.</li>
+<li>As long as the input and output are the same, the function body can be modified.</li>
+</ul>
+</section>
+<section id="naming-conventions---general" class="slide level2">
+<h2>Naming conventions - general</h2>
+<ul>
+<li>Use lowercase characters</li>
+<li>Separate words with underscores</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>model_name <span class="op">=</span> <span class="st">"NorthSeaModel"</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>n_epochs <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">def</span> my_function():</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="constants" class="slide level2">
+<h2>Constants</h2>
+<ul>
+<li>Use all uppercase characters</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>GRAVITY <span class="op">=</span> <span class="fl">9.81</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>AVOGADRO_CONSTANT <span class="op">=</span> <span class="fl">6.02214076e23</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>SECONDS_IN_A_DAY <span class="op">=</span> <span class="dv">86400</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>N_LEGS_PER_ANIMAL <span class="op">=</span> {</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="st">"human"</span>: <span class="dv">2</span>,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="st">"dog"</span>: <span class="dv">4</span>,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="st">"spider"</span>: <span class="dv">8</span>,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="classes" class="slide level2">
+<h2>Classes</h2>
+<ul>
+<li>Use CamelCase for the name of the class</li>
+<li>Use lowercase characters for the name of the methods</li>
+<li>Separate words with underscores</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">class</span> RandomClassifier:</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb10-4"><a href="#cb10-4"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb10-7"><a href="#cb10-7"></a>        <span class="cf">return</span> np.random.choice(<span class="va">self</span>.classes_, size<span class="op">=</span><span class="bu">len</span>(X))</span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="kw">def</span> fit_predict(<span class="va">self</span>, X, y):</span>
+<span id="cb10-10"><a href="#cb10-10"></a>        <span class="va">self</span>.fit(X, y)</span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="cf">return</span> <span class="va">self</span>.predict(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dataclasses" class="slide level2 smaller">
+<h2>Dataclasses</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> datetime</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="at">@dataclass</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">class</span> Interval:</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    start: date</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    end: date</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="op">&gt;&gt;&gt;</span> dr1</span>
+<span id="cb11-12"><a href="#cb11-12"></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="git-pull-requests-and-code-reviews" class="slide level2 smaller">
+<h2>Git, Pull Requests, and code reviews</h2>
+</section>
+<section id="github-flow" class="slide level2 smaller incremental" data-background-color="white">
+<h2>Github flow</h2>
+
+<img data-src="images/git_workflow.png" class="r-stretch"><ol type="1">
+<li>Create a branch</li>
+<li>Make changes</li>
+<li>Create a pull request</li>
+<li>Review</li>
+<li>Merge</li>
+</ol>
+</section>
+<section id="github-best-practices" class="slide level2">
+<h2>Github best practices</h2>
+<ul>
+<li>Commit often</li>
+<li>Use descriptive commit messages</li>
+<li>Keep pull requests small and focused</li>
+<li>Use “issues” to track work</li>
+<li>Review code regularly</li>
+</ul>
+</section>
+<section id="types-abstraction-and-refactoring" class="slide level2 smaller">
+<h2>Types, abstraction, and refactoring</h2>
+</section>
+<section id="pythonic" class="slide level2">
+<h2>Pythonic</h2>
+<p>If you want your code to be Pythonic, you have to be familiar with these types and their methods.</p>
+<p>Dundermethods:</p>
+<ul>
+<li><code>__getitem__</code></li>
+<li><code>__setitem__</code></li>
+<li><code>__len__</code></li>
+<li><code>__contains__</code></li>
+<li>…</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    </span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">def</span> getToolByName(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb12-4"><a href="#cb12-4"></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
+<span id="cb12-5"><a href="#cb12-5"></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
+<span id="cb12-6"><a href="#cb12-6"></a>                <span class="cf">return</span> tool</span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="kw">def</span> numberOfTools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb12-9"><a href="#cb12-9"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="op">&gt;&gt;&gt;</span> tb.getToolByName(<span class="st">"hammer"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13"></a>Hammer()</span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="op">&gt;&gt;&gt;</span> tb.numberOfTools()</span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section class="slide level2">
+
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">class</span> Toolbox:</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb13-4"><a href="#cb13-4"></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    </span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb13-7"><a href="#cb13-7"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb13-8"><a href="#cb13-8"></a></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="op">&gt;&gt;&gt;</span> tb[<span class="st">"hammer"</span>]</span>
+<span id="cb13-11"><a href="#cb13-11"></a>Hammer()</span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="duck-typing" class="slide level2">
+<h2>Duck typing</h2>
+<ul>
+<li>“<em>If it walks like a duck and quacks like a duck, it’s a duck</em>”</li>
+<li>From the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.</li>
+<li>The type of the object is <strong>not important</strong>, as long as it has the right methods.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>An example is a Scikit learn transformers</p>
+<ul>
+<li><code>fit</code></li>
+<li><code>transform</code></li>
+<li><code>fit_transform</code></li>
+</ul>
+<p>If you want to make a transformer compatible with sklearn, you have to implement these methods.</p>
+</section>
+<section class="slide level2">
+
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">class</span> MyTransformer:</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb14-3"><a href="#cb14-3"></a>        <span class="co"># do something</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
+<span id="cb14-7"><a href="#cb14-7"></a>        <span class="co"># do something</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>        <span class="cf">return</span> X</span>
+<span id="cb14-9"><a href="#cb14-9"></a></span>
+<span id="cb14-10"><a href="#cb14-10"></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb14-11"><a href="#cb14-11"></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="testing-and-auto-formatting" class="slide level2 smaller">
+<h2>Testing and auto-formatting</h2>
+</section>
+<section id="unit-testing" class="slide level2">
+<h2>Unit testing</h2>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition “Unit”</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>A small, fundamental piece of code.</li>
+<li>Executed in isolation with appropriate inputs.</li>
+</ul>
+</div>
+</div>
+</div>
+<ul>
+<li>A function is typically considered a “unit”</li>
+<li>Lines of code within functions are smaller (can’t be isolated)</li>
+<li>Classes are considered bigger (but can be treated as units)</li>
+</ul>
+</section>
+<section id="a-good-unit-test" class="slide level2 smaller">
+<h2>A <strong>good</strong> unit test</h2>
+<ul>
+<li>Fully automated (next week)</li>
+<li>Has full control over all the pieces running (“fake” external dependencies)</li>
+<li>Can be run in any order</li>
+<li>Runs in memory (no DB or file access, for example)</li>
+<li>Consistently returns the same result (no random numbers)</li>
+<li>Runs fast</li>
+<li>Tests a single logical concept in the system</li>
+<li>Readable</li>
+<li>Maintainable</li>
+<li>Trustworthy</li>
+</ul>
+</section>
+<section id="thank-you" class="slide level2">
+<h2>Thank you!</h2>
 
 
 <img src="campus_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">

@@ -347,7 +347,126 @@
     "href": "07_packaging.html#installing-a-development-version",
     "title": "Distributing your Python package",
     "section": "Installing a development version",
-    "text": "Installing a development version\n\nInstall latest dev version, e.g. pip install https://github.com/DHI/mikeio/archive/main.zip\nInstall from fix-interp branch, e.g. pip install https://github.com/DHI/mikeio/archive/fix-interp.zip\n\n\n\n\nPython package development"
+    "text": "Installing a development version\n\nInstall latest dev version, e.g. pip install https://github.com/DHI/mikeio/archive/main.zip\nInstall from fix-interp branch, e.g. pip install https://github.com/DHI/mikeio/archive/fix-interp.zip"
+  },
+  {
+    "objectID": "07_packaging.html#recap",
+    "href": "07_packaging.html#recap",
+    "title": "Distributing your Python package",
+    "section": "Recap",
+    "text": "Recap\n\nPython functions, classes, and modules\nGit, Pull Requests, and code reviews\nTypes, abstraction, and refactoring\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nDistributing your package"
+  },
+  {
+    "objectID": "07_packaging.html#python-functions-classes-and-modules",
+    "href": "07_packaging.html#python-functions-classes-and-modules",
+    "title": "Distributing your Python package",
+    "section": "Python functions, classes, and modules",
+    "text": "Python functions, classes, and modules"
+  },
+  {
+    "objectID": "07_packaging.html#functions-as-black-boxes",
+    "href": "07_packaging.html#functions-as-black-boxes",
+    "title": "Distributing your Python package",
+    "section": "Functions as black boxes",
+    "text": "Functions as black boxes\n\n\n\n\nflowchart LR\n    A(Input A) --> F[\"Black box\"]\n    B(Input B) -->  F\n    F --> O(Output)\n\n    style F fill:#000,color:#fff,stroke:#333,stroke-width:4px\n\n\n\n\n\n\n\n\n\nA function is a black box that takes some input and produces some output.\nThe input and output can be anything, including other functions.\nAs long as the input and output are the same, the function body can be modified."
+  },
+  {
+    "objectID": "07_packaging.html#naming-conventions---general",
+    "href": "07_packaging.html#naming-conventions---general",
+    "title": "Distributing your Python package",
+    "section": "Naming conventions - general",
+    "text": "Naming conventions - general\n\nUse lowercase characters\nSeparate words with underscores\n\nmodel_name = \"NorthSeaModel\"\nn_epochs = 100\n\ndef my_function():\n    pass"
+  },
+  {
+    "objectID": "07_packaging.html#constants",
+    "href": "07_packaging.html#constants",
+    "title": "Distributing your Python package",
+    "section": "Constants",
+    "text": "Constants\n\nUse all uppercase characters\n\nGRAVITY = 9.81\n\nAVOGADRO_CONSTANT = 6.02214076e23\n\nSECONDS_IN_A_DAY = 86400\n\nN_LEGS_PER_ANIMAL = {\n    \"human\": 2,\n    \"dog\": 4,\n    \"spider\": 8,\n}"
+  },
+  {
+    "objectID": "07_packaging.html#classes",
+    "href": "07_packaging.html#classes",
+    "title": "Distributing your Python package",
+    "section": "Classes",
+    "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\nclass RandomClassifier:\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y):\n        self.fit(X, y)\n        return self.predict(X)"
+  },
+  {
+    "objectID": "07_packaging.html#dataclasses",
+    "href": "07_packaging.html#dataclasses",
+    "title": "Distributing your Python package",
+    "section": "Dataclasses",
+    "text": "Dataclasses\nimport datetime\nfrom dataclasses import dataclass\n\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n>>> dr1 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n>>> dr1\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n>>> dr2 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n>>> dr1 == dr2\nTrue"
+  },
+  {
+    "objectID": "07_packaging.html#git-pull-requests-and-code-reviews",
+    "href": "07_packaging.html#git-pull-requests-and-code-reviews",
+    "title": "Distributing your Python package",
+    "section": "Git, Pull Requests, and code reviews",
+    "text": "Git, Pull Requests, and code reviews"
+  },
+  {
+    "objectID": "07_packaging.html#github-flow",
+    "href": "07_packaging.html#github-flow",
+    "title": "Distributing your Python package",
+    "section": "Github flow",
+    "text": "Github flow\n\n\nCreate a branch\nMake changes\nCreate a pull request\nReview\nMerge"
+  },
+  {
+    "objectID": "07_packaging.html#github-best-practices",
+    "href": "07_packaging.html#github-best-practices",
+    "title": "Distributing your Python package",
+    "section": "Github best practices",
+    "text": "Github best practices\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
+  },
+  {
+    "objectID": "07_packaging.html#types-abstraction-and-refactoring",
+    "href": "07_packaging.html#types-abstraction-and-refactoring",
+    "title": "Distributing your Python package",
+    "section": "Types, abstraction, and refactoring",
+    "text": "Types, abstraction, and refactoring"
+  },
+  {
+    "objectID": "07_packaging.html#pythonic",
+    "href": "07_packaging.html#pythonic",
+    "title": "Distributing your Python package",
+    "section": "Pythonic",
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…"
+  },
+  {
+    "objectID": "07_packaging.html#duck-typing",
+    "href": "07_packaging.html#duck-typing",
+    "title": "Distributing your Python package",
+    "section": "Duck typing",
+    "text": "Duck typing\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods."
+  },
+  {
+    "objectID": "07_packaging.html#testing-and-auto-formatting",
+    "href": "07_packaging.html#testing-and-auto-formatting",
+    "title": "Distributing your Python package",
+    "section": "Testing and auto-formatting",
+    "text": "Testing and auto-formatting"
+  },
+  {
+    "objectID": "07_packaging.html#unit-testing",
+    "href": "07_packaging.html#unit-testing",
+    "title": "Distributing your Python package",
+    "section": "Unit testing",
+    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
+  },
+  {
+    "objectID": "07_packaging.html#a-good-unit-test",
+    "href": "07_packaging.html#a-good-unit-test",
+    "title": "Distributing your Python package",
+    "section": "A good unit test",
+    "text": "A good unit test\n\nFully automated (next week)\nHas full control over all the pieces running (“fake” external dependencies)\nCan be run in any order\nRuns in memory (no DB or file access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
+  },
+  {
+    "objectID": "07_packaging.html#thank-you",
+    "href": "07_packaging.html#thank-you",
+    "title": "Distributing your Python package",
+    "section": "Thank you!",
+    "text": "Thank you!\n\n\n\nPython package development"
   },
   {
     "objectID": "06_documentation.html#why-document-your-code",
