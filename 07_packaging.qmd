@@ -357,3 +357,243 @@ Successfully installed sampling-0.0.1
 * Install from `fix-interp` branch, e.g. `pip install https://github.com/DHI/mikeio/archive/fix-interp.zip`
 
 
+## Recap
+
+1. [Python functions, classes, and modules](01_function_classes.qmd)
+2. [Git, Pull Requests, and code reviews](02_version_control.qmd)
+3. [Types, abstraction, and refactoring](03_types_protocols.qmd)
+4. [Testing and auto-formatting](04_testing.qmd)
+5. [Dependencies and GitHub actions](05_dependencies_ci.qmd)
+6. [Documentation](06_documentation.qmd)
+7. [Distributing your package](07_packaging.qmd)
+
+## Python functions, classes, and modules {.smaller}
+
+## Functions as black boxes
+
+```{mermaid}
+flowchart LR
+    A(Input A) --> F["Black box"]
+    B(Input B) -->  F
+    F --> O(Output)
+
+    style F fill:#000,color:#fff,stroke:#333,stroke-width:4px
+```  
+
+* A function is a black box that takes some input and produces some output.
+* The input and output can be anything, including other functions.
+* As long as the input and output are the same, the function body can be modified.
+
+## Naming conventions - general
+
+* Use lowercase characters
+* Separate words with underscores
+
+```python
+model_name = "NorthSeaModel"
+n_epochs = 100
+
+def my_function():
+    pass
+```
+
+## Constants
+
+* Use all uppercase characters
+
+```python
+GRAVITY = 9.81
+
+AVOGADRO_CONSTANT = 6.02214076e23
+
+SECONDS_IN_A_DAY = 86400
+
+N_LEGS_PER_ANIMAL = {
+    "human": 2,
+    "dog": 4,
+    "spider": 8,
+}
+```
+
+
+## Classes
+
+* Use CamelCase for the name of the class
+* Use lowercase characters for the name of the methods
+* Separate words with underscores
+
+
+```python
+class RandomClassifier:
+
+    def fit(self, X, y):
+        self.classes_ = np.unique(y)
+
+    def predict(self, X):
+        return np.random.choice(self.classes_, size=len(X))
+
+    def fit_predict(self, X, y):
+        self.fit(X, y)
+        return self.predict(X)
+```
+
+## Dataclasses {.smaller}
+
+```python
+import datetime
+from dataclasses import dataclass
+
+
+@dataclass
+class Interval:
+    start: date
+    end: date
+
+>>> dr1 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+>>> dr1
+Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+>>> dr2 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+>>> dr1 == dr2
+True
+```
+
+## Git, Pull Requests, and code reviews {.smaller}
+
+## Github flow {background-color="white" .smaller .incremental}
+
+![](images/git_workflow.png)
+
+1. Create a branch
+2. Make changes
+3. Create a pull request
+4. Review
+5. Merge
+
+
+## Github best practices
+
+* Commit often
+* Use descriptive commit messages
+* Keep pull requests small and focused
+* Use "issues" to track work
+* Review code regularly
+
+## Types, abstraction, and refactoring {.smaller}
+
+## Pythonic
+
+If you want your code to be Pythonic, you have to be familiar with these types and their methods.
+
+Dundermethods:
+
+* `__getitem__`
+* `__setitem__`
+* `__len__`
+* `__contains__`
+* ... 
+
+---
+
+```python
+class JavaLikeToolbox:
+    
+    def getToolByName(self, name: str) -> Tool:
+        for tool in self.tools:
+            if tool.name == name:
+                return tool
+
+    def numberOfTools(self) -> int:
+        return len(self.tools)
+
+>>> tb = JavaLikeToolbox([Hammer(), Screwdriver()])
+>>> tb.getToolByName("hammer")
+Hammer()
+>>> tb.numberOfTools()
+2
+```
+
+---
+
+```python
+class Toolbox:
+
+    def __getitem__(self, name: str) -> Tool:
+        return self._tools[name]
+    
+    def __len__(self) -> int:
+        return len(self.tools)
+
+>>> tb = Toolbox([Hammer(), Screwdriver()])
+>>> tb["hammer"]
+Hammer()
+>>> len(tb)
+2
+```
+
+
+## Duck typing
+
+* "*If it walks like a duck and quacks like a duck, it's a duck*"
+* From the perspective of the caller, it doesn't matter if it is a rubber duck or a real duck.
+* The type of the object is **not important**, as long as it has the right methods.
+
+---
+
+An example is a Scikit learn transformers
+
+* `fit`
+* `transform`
+* `fit_transform`
+
+If you want to make a transformer compatible with sklearn, you have to implement these methods.
+
+---
+
+```python
+class MyTransformer:
+    def fit(self, X, y=None):
+        # do something
+        return self
+
+    def transform(self, X):
+        # do something
+        return X
+
+    def fit_transform(self, X, y=None):
+        return self.fit(X, y).transform(X)
+```
+
+
+## Testing and auto-formatting {.smaller}
+
+## Unit testing
+
+::: {.callout-note}
+## Definition "Unit"
+
+* A small, fundamental piece of code.
+* Executed in isolation with appropriate inputs.
+::: 
+
+* A function is typically considered a "unit"
+* Lines of code within functions are smaller (can't be isolated)
+* Classes are considered bigger (but can be treated as units)
+
+
+## A **good** unit test {.smaller}
+
+
+* Fully automated (next week)
+* Has full control over all the pieces running ("fake" external dependencies)
+* Can be run in any order 
+* Runs in memory (no DB or file access, for example)
+* Consistently returns the same result (no random numbers)
+* Runs fast
+* Tests a single logical concept in the system
+* Readable
+* Maintainable
+* Trustworthy
+
+
+## Thank you!
+
