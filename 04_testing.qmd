@@ -357,9 +357,9 @@ The same can be done with warnings.
 
 ## Linting
 
-Linting is a way to check your code for common errors and style issues.
+A way to check your code for common errors and style issues.
 
-`flake8` is a popular tool for linting Python code.
+[`ruff`](https://beta.ruff.rs/docs/) is a new tool for linting Python code.
 
 * syntax errors
 * unused imports
@@ -368,30 +368,37 @@ Linting is a way to check your code for common errors and style issues.
 * code style (e.g. line length, indentation, whitespace, etc.)
 
 
-## Unused variables
+## Linting with ruff {.smaller}
 
-```{.python code-line-numbers="|3"}
-def model(a, b):
+```{.python code-line-numbers="|1|6|7" filename="examples/04_testing/process.py"}
+import requests
+import scipy
 
+def preprocess(x, y, xout):
+
+    x = x[~np.isnan(x)] 
     method = "cubic"
-    return a + (b - a)
-
-
-y = model(a=1, b=2)
+    # interpolate missing values with cubic spline
+    return scipy.interpolate.interp1d(x, y)(xout)
 ```
- 
-. . .
 
-Unused variables is either a mistake or simply a source of confusion.
+Run `ruff`:
 
-. . .
- 
 ```bash
-$ flake8 models.py
-models.py:3:5: F841 local variable 'method' is assigned to but never used
+$ ruff process.py
+process.py:1:8: F401 [*] `requests` imported but unused
+process.py:6:12: F821 Undefined name `np`
+process.py:7:5: F841 [*] Local variable `method` is assigned to but never used
+Found 3 errors.
+[*] 2 potentially fixable with the --fix option.
 ```
 
+::: {.notes}
+* Linting is a fast way to find common errors.
+* Unused imports are confusing.
+* Unused and undefined variables are usually a typo or a mistake. Fixing them can prevent bugs.
 
+:::
 
 
 ## Formatting
@@ -424,7 +431,7 @@ All done! ✨ 🍰 ✨
 
 ## Running Black {.smaller}
 
-Visual Studio Code can be configured to run `black` automatically when saving a file.
+Visual Studio Code can be configured to run `black` automatically when saving a file using the `Black` extension.
 
 ![](images/vs_code_format.png)
 
