@@ -2,7 +2,7 @@
 title: Python package development
 format: revealjs
 footer: Python package development
-logo: campus_logo.png
+logo: academy_logo.png
 ---
 
 
@@ -10,7 +10,6 @@ logo: campus_logo.png
 
 * Jesper
 * Henrik
-* Thomas
 
 ## Participants
 
@@ -33,17 +32,15 @@ Introduce yourselves in a break out session later today.
 
 ## Format
 
-* Online session (Zoom) almost every Monday
+* Online session (Zoom) Tuesday and Friday
 * Homework assignments
-* Quiz (Campus)
+* Quiz (learning platform)
 
 
 ## Course material
 
 * Hillard, 2020, Practices of the Python Pro, Manning
 * [Slides](https://dhi.github.io/python-package-development)
-* Campus
-* Course Yammer channel
 
 ## Poll
 

@@ -2,7 +2,7 @@
 title: Python - Naming conventions
 format: revealjs
 footer: Python package development
-logo: campus_logo.png
+logo: academy_logo.png
 ---
 
 ## Variables, function and method names
