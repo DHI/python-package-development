@@ -729,8 +729,8 @@
 </section>
 <section id="linting" class="slide level2">
 <h2>Linting</h2>
-<p>Linting is a way to check your code for common errors and style issues.</p>
-<p><code>flake8</code> is a popular tool for linting Python code.</p>
+<p>A way to check your code for common errors and style issues.</p>
+<p><a href="https://beta.ruff.rs/docs/"><code>ruff</code></a> is a new tool for linting Python code.</p>
 <ul>
 <li>syntax errors</li>
 <li>unused imports</li>
@@ -739,22 +739,46 @@
 <li>code style (e.g.&nbsp;line length, indentation, whitespace, etc.)</li>
 </ul>
 </section>
-<section id="unused-variables" class="slide level2">
-<h2>Unused variables</h2>
-<div class="sourceCode" id="cb12" data-code-line-numbers="|3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> model(a, b):</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>    <span class="cf">return</span> a <span class="op">+</span> (b <span class="op">-</span> a)</span>
+<section id="linting-with-ruff" class="slide level2 smaller">
+<h2>Linting with ruff</h2>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>examples/04_testing/process.py</strong></pre>
+</div>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|1|6|7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> requests</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> scipy</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">def</span> preprocess(x, y, xout):</span>
 <span id="cb12-5"><a href="#cb12-5"></a></span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a>y <span class="op">=</span> model(a<span class="op">=</span><span class="dv">1</span>, b<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<p>Unused variables is either a mistake or simply a source of confusion.</p>
+<span id="cb12-6"><a href="#cb12-6"></a>    x <span class="op">=</span> x[<span class="op">~</span>np.isnan(x)] </span>
+<span id="cb12-7"><a href="#cb12-7"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="co"># interpolate missing values with cubic spline</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="cf">return</span> scipy.interpolate.interp1d(x, y)(xout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">$</span> flake8 models.py</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="ex">models.py:3:5:</span> F841 local variable <span class="st">'method'</span> is assigned to but never used</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Run <code>ruff</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">$</span> ruff process.py</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="ex">process.py:1:8:</span> F401 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> <span class="kw">`</span><span class="ex">requests</span><span class="kw">`</span> imported but unused</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="ex">process.py:6:12:</span> F821 Undefined name <span class="kw">`</span><span class="ex">np</span><span class="kw">`</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="ex">process.py:7:5:</span> F841 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> Local variable <span class="kw">`</span><span class="ex">method</span><span class="kw">`</span> is assigned to but never used</span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="ex">Found</span> 3 errors.</span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="ex">[*]</span> 2 potentially fixable with the <span class="at">--fix</span> option.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside class="notes">
+<ul>
+<li>Linting is a fast way to find common errors.</li>
+<li>Unused imports are confusing.</li>
+<li>Unused and undefined variables are usually a typo or a mistake. Fixing them can prevent bugs.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="formatting" class="slide level2">
 <h2>Formatting</h2>
@@ -782,7 +806,7 @@
 </section>
 <section id="running-black-1" class="slide level2 smaller">
 <h2>Running Black</h2>
-<p>Visual Studio Code can be configured to run <code>black</code> automatically when saving a file.</p>
+<p>Visual Studio Code can be configured to run <code>black</code> automatically when saving a file using the <code>Black</code> extension.</p>
 <p><img data-src="images/vs_code_format.png"></p>
 
 <p><img src="campus_logo.png" class="slide-logo"></p>
