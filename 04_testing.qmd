@@ -437,5 +437,7 @@ Visual Studio Code can be configured to run `black` automatically when saving a 
 
   
 
+## Profiling
 
+* `line_profiler`
 
