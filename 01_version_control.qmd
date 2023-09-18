@@ -102,6 +102,9 @@ You can use Git from the *command line*, or with a graphical user interface (GUI
 * A branch is a separate version of your code that you can work on independently from the main branch.
 * `git merge`: merges changes back into the main branch (we will do this from GitHub)
 
+## Git hosting platforms
+
+![](images/git_local_remote.png)
 
 
 ## GitHub 
@@ -178,19 +181,6 @@ After break out session:
 ::: 
 
 
-## GitHub or Azure DevOps?
-
-* Both hosts Git repositories and provide tools for collaboration
-* GitHub is free for public repositories
-
-. . .
-
-* DHI has a GitHub account for private repositories
-* DHI has an Azure DevOps account for private repositories
-
-. . .
-
-* Azure DevOps is organized in "projects", which can contain multiple repositories 
 
 
 
