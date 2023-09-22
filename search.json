@@ -284,7 +284,7 @@
     "href": "07_packaging.html#a-good-unit-test",
     "title": "Distributing your Python package",
     "section": "A good unit test",
-    "text": "A good unit test\n\nFully automated (next week)\nHas full control over all the pieces running (“fake” external dependencies)\nCan be run in any order\nRuns in memory (no DB or file access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
+    "text": "A good unit test\n\nFully automated\nHas full control over all the pieces running (“fake” external dependencies)\nCan be run in any order\nRuns in memory (no DB or file access, for example)\nConsistently returns the same result (no random numbers)\nRuns fast\nTests a single logical concept in the system\nReadable\nMaintainable\nTrustworthy"
   },
   {
     "objectID": "07_packaging.html#thank-you",
