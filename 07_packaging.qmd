@@ -577,7 +577,7 @@ class MyTransformer:
 ## A **good** unit test {.smaller}
 
 
-* Fully automated (next week)
+* Fully automated
 * Has full control over all the pieces running ("fake" external dependencies)
 * Can be run in any order 
 * Runs in memory (no DB or file access, for example)
