@@ -529,7 +529,7 @@
     "href": "02_function_classes.html#side-effects",
     "title": "Functions, classes and modules",
     "section": "Side effects",
-    "text": "Side effects\nA function can have side effects, like appendig to a a file\ndef f_with_side_effect(x):\n    with open(\"output.txt\", \"a\") as f:\n        f.write(str(x))\n    return x**2\n\nThe function has x as input, returns the square of x, but also appends x to a file. If you run the function a second time, the file will contain two lines."
+    "text": "Side effects\nA function can have side effects, like appending to a a file\ndef f_with_side_effect(x):\n    with open(\"output.txt\", \"a\") as f:\n        f.write(str(x))\n    return x**2\n\nThe function has x as input, returns the square of x, but also appends x to a file. If you run the function a second time, the file will contain two lines."
   },
   {
     "objectID": "02_function_classes.html#side-effects-1",
@@ -718,7 +718,7 @@
     "href": "02_function_classes.html#homework-until-next-week",
     "title": "Functions, classes and modules",
     "section": "Homework until next week",
-    "text": "Homework until next week\n\n\nDecide on a name for your project (5-20 characters)\nWrite a one line description of your project\nCreate a repository on GitHub\nCreate a README.md file with the description of your project\nWrite a function to calculate the fraction of values within a given range, with the lower bound optional\n\nName, inputs, output, types\n\nCreate a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval\n\nName, attributes, methods?\n\nRead Introduction to Git and GitHub for Python Developers\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
+    "text": "Homework until next week\n\n\nCreate a repository on GitHub to store your code\nCreate a README.md file describing the purpose of the repository. (course project, …\nWrite a function to calculate the fraction of values within a given range, with the lower bound optional\n\nName, inputs, output, types\n\nCreate a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval\n\nName, attributes, methods?\n\n\n\n\n✨ See you next week! 🚀\n\n\n\nPython package development"
   },
   {
     "objectID": "index.html",
