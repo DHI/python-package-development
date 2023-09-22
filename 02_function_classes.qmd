@@ -98,7 +98,7 @@ def non_pure_function(x):
 
 ## Side effects
 
-A function can have side effects, like appendig to a a file
+A function can have side effects, like appending to a a file
 
 ```python
 def f_with_side_effect(x):
@@ -731,16 +731,12 @@ Try to anticipate the future, but not too much!
 
 ::: {.incremental}
 
-* Decide on a name for your project (5-20 characters) 
-* Write a one line description of your project
-* Create a repository on GitHub
-* Create a `README.md` file with the description of your project
+* Create a repository on GitHub to store your code
+* Create a `README.md` file describing the purpose of the repository. (course project, ...
 * Write a function to calculate the fraction of values within a given range, with the lower bound optional
   - Name, inputs, output, types
 * Create a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval
     - Name, attributes, methods?
-* Read [Introduction to Git and GitHub for Python Developers](https://realpython.com/python-git-github-intro/)
-
 :::
 
 . . .
