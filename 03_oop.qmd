@@ -7,20 +7,67 @@ footer: Python package development
 logo: academy_logo.png
 ---
 
-## Composition
+## Composition {.smaller}
 
-Composition ...
+::: {.columns}
 
-## Composition - Example
+::: {.column}
+
+
+Composition in object oriented design is a way to combine objects or data types into more complex objects.
+
+:::
+
+::: {.column}
+
+```{mermaid}
+classDiagram
+
+    class Grid{
+        + nx
+        + dx
+        + ny
+        + dy
+        + find_index()
+    }
+
+    class ItemInfo{
+        + name
+        + type
+        + unit
+    }
+
+    class DataArray{
+        + data
+        + time
+        + item
+        + geometry
+        + plot()
+    }
+
+    DataArray --* Grid
+    DataArray --* ItemInfo
+```
+
+:::
+
+::::
+
+## Composition - Example {.smaller}
 
 ```python
-class DataArray:
+class Grid:
+    def __init__(self, nx, dx, ny, dy):
+        self.nx = nx
+        self.dx = dx
+        self.ny = ny
+        self.dy = dy
+    
+    def find_index(self, x,y):
+        ...
 
-    def __init__(
-        self,data,
-        *,
-        time, item, geometry
-    ):
+class DataArray:
+    def __init__(self, data, time, item, geometry):
         self.data = data
         self.time = time
         self.item = item
@@ -70,28 +117,28 @@ class GeometryFMVerticalProfile{
 ## Inheritance - Example (2)
 
 ```python
-class _GeometryFMLayered(_GeometryFM):
-    def __init__(
-        self,
-        *,
-        node_coordinates,
-        element_table,
-        n_layers,
-        n_sigma,
-    ) -> None:
-
+class GeometryFMLayered(GeometryFM):
+    def __init__(self, nodes, elements, n_layers, n_sigma):
+        # call the parent class init method
         super().__init__(
-            node_coordinates=node_coordinates,
-            element_table=element_table,
+            nodes=nodes,
+            elements=elements,
         )
-
         self._n_layers = n_layers
         self._n_sigma: n_sigma
 ```
 
 ## Composition vs inheritance
 
+* Inheritance is often used to reuse code, but this is not the main purpose of inheritance.
+* Inheritance is used to specialize behavior.
+* In most cases, composition is a better choice than inheritance.
+* Some recent programming languages (e.g. Go & Rust) do not support this style of inheritance.
+
+::: aside
 Hillard, 2020, Ch. 8 "The rules (and exceptions) of inheritance"
+:::
+
 
 ## Types
 
@@ -420,6 +467,9 @@ Pre-work for this Module
 >
 > 3. Abstraction and encapsulation
 >
+> 8. The rules (and exceptions) of inheritance
+>
+# TODO move this part to next session, performance is related to profiling
 > 4. Designing for high performance
 > 
 > in Hillard, 2020
