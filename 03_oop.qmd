@@ -1,11 +1,97 @@
 ---
-title: "Python types, interfaces and protocols"
+title: "Object oriented design in Python"
 format: 
     revealjs:
         slide-number: true
 footer: Python package development
 logo: academy_logo.png
 ---
+
+## Composition
+
+Composition ...
+
+## Composition - Example
+
+```python
+class DataArray:
+
+    def __init__(
+        self,data,
+        *,
+        time, item, geometry
+    ):
+        self.data = data
+        self.time = time
+        self.item = item
+        self.geometry = geometry
+
+    def plot(self):
+        ...
+```
+
+## Inheritance
+
+## Inheritance - Example
+
+```{mermaid}
+classDiagram
+
+class _GeometryFM{
++ node_coordinates
++ element_table
+}
+
+class GeometryFM2D{
++ interp2d()
++ get_element_area()
++ plot()
+}
+
+class _GeometryFMLayered{
+- _n_layers
+- _n_sigma
++ to_2d_geometry()
+}
+
+class GeometryFM3D{
++ plot()
+}
+
+class GeometryFMVerticalProfile{
++ plot()
+}
+  _GeometryFM <|-- GeometryFM2D
+  _GeometryFM <|-- _GeometryFMLayered
+  _GeometryFMLayered <|-- GeometryFM3D
+  _GeometryFMLayered <|-- GeometryFMVerticalProfile
+```
+
+## Inheritance - Example (2)
+
+```python
+class _GeometryFMLayered(_GeometryFM):
+    def __init__(
+        self,
+        *,
+        node_coordinates,
+        element_table,
+        n_layers,
+        n_sigma,
+    ) -> None:
+
+        super().__init__(
+            node_coordinates=node_coordinates,
+            element_table=element_table,
+        )
+
+        self._n_layers = n_layers
+        self._n_sigma: n_sigma
+```
+
+## Composition vs inheritance
+
+Hillard, 2020, Ch. 8 "The rules (and exceptions) of inheritance"
 
 ## Types
 
