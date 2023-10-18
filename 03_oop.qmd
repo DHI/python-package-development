@@ -416,6 +416,60 @@ Hammer()
 You want your code to be feel like the built-in types.
 :::
 
+---
+
+```{.python code-line-numbers="|7-13"}
+class SparseMatrix:
+    def __init__(self, shape, fill_value=0.0, data=None):
+        self.shape = shape
+        self._data = data if data is not None else {}
+        self.fill_value = fill_value
+        
+    def __setitem__(self, key, value):
+        i,j = key
+        self._data[i,j] = float(value) 
+
+    def __getitem__(self, key) -> float:
+        i,j = key
+        return self._data.get((i,j), self.fill_value)
+    
+    def transpose(self) -> "SparseMatrix":
+        data = {(j,i) : v for (i,j),v in self._data.items()}
+        return SparseMatrix(data=data,
+                            shape=self.shape,
+                            fill_value=self.fill_value)
+    
+    def __repr__(self):
+        matrix_str = ""
+        for j in range(self.shape[1]):
+            for i in range(self.shape[0]):
+                value = self[i, j]
+                matrix_str += f"{value:<4}"
+            matrix_str += "\n"
+        return matrix_str
+```
+
+---
+
+```python
+>>> m = SparseMatrix(shape=(2,2), fill_value=0.0)
+>>> m
+0.0 0.0
+0.0 0.0
+>>> m[0,1]
+0.0
+>>> m[0,1] = 1.0
+>>> m[1,0] = 2.0
+>>> m
+0.0 2.0 
+1.0 0.0 
+>>> m.transpose()
+0.0 1.0 
+2.0 0.0
+```
+
+
+
 
 ## Duck typing
 
@@ -530,126 +584,6 @@ False
 . . .
 
 As long as the `start`, `end` and `x` are comparable, the `Interval` class is a generic class able to handle integers, floats, dates, datetimes, strings ...
-
-## Time for a discussion {.smaller}
-
-Pre-work for this Module
-
-> Read chapters
->
-> 3. Abstraction and encapsulation
->
-> 8. The rules (and exceptions) of inheritance
->
-> 
-> in Hillard, 2020
->
-> Do you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?
-> 
-
-## Time for a discussion
-
-*Discuss in learning teams (15 minutes):*
-
-**Chapter 3: Abstraction and encapsulation**
-
-What are some pros/cons of treating functions as black boxes?
-
-. . .
-
-**Chapter 8: The rules (and exceptions) of inheritance**
-
-Python allows for multiple inheritance. Why is this useful? Why could this be a bad idea?
-
-. . .
-
-*After break out session:*
-
-One person from each team briefly presents their discussion outcomes
-
-
-
-## Protocols
-
-::: {.incremental}
-
-* Protocols were introduced in Python 3.8
-* Protocols are a way to define a set of methods that a class must implement
-* Protocols are not checked at runtime
-* Protocols can be used for static type checking (mypy)
-* Protocols are a hint to the developer
-
-:::
-
-## Protocols {.smaller}
-
-
-```{.python}
-from dataclasses import dataclass
-from typing import Protocol, List
-import matplotlib.pyplot as plt
-
-
-@dataclass
-class Station:
-    name: str
-    longitude: float
-    latitude: float
-
-
-class StationRepository(Protocol):
-    def __getitem__(self, key: str) -> Station:
-        ...
-
-
-def plot_stations(station_ids: List[int], repo: StationRepository) -> None:
-    for id in station_ids:
-        station = repo[id]
-        plt.plot(station.longitude, station.latitude, "o")
-        plt.text(station.longitude, station.latitude, station.name)
-```
-
-## Protocols {.smaller}
-
-```{.python code-line-numbers="1-2|11-12|18-19"}
-class DictStationRepository:  # useful for testing (Module 4)
-    def __getitem__(self, key: int) -> Station:
-        stations = {
-            42: Station("Antwerp", 4.42, 51.22),
-            365: Station("Brussels", 4.35, 50.85),
-            182: Station("Ghent", 3.72, 51.05),
-        }
-        return stations[key]
-
-
-class FileStationRepository:
-    def __getitem__(self, key: int) -> Station:
-        df = pd.read_csv("stations.csv", index_col="id")
-        row = df.loc[key]
-        return Station(row["name"], key, row["longitude"], row["latitude"])
-
-
-class DatabaseStationRepository:
-    def __getitem__(self, key: int) -> Station:
-        # read from database
-        station = read_from_db(key)
-        return station
-```
-
-## Protocols
-
-```python
-repo = DictStationRepository()
-# repo = FileStationRepository()
-
-plot_stations([42, 365], repo=repo)
-```
-
-. . .
-
-Protocols allows to work with abstract types, without having to know the implementation details.
-
-This is useful for testing, but allows for more flexible code.
 
 
 ## Postel's law
@@ -826,7 +760,7 @@ def main():
     predictions = predict(final_data)
 ```
 
-## Composed method^[https://wiki.c2.com/?ComposedMethod]
+## Composed method
 
 * Divide your program into methods that perform one identifiable task
 * Keep all of the operations in a method at the same level of abstraction.
@@ -853,24 +787,3 @@ If you want to learn more about refactoring, I recommend the book "Refactoring: 
 
 ::::
 
-# Homework {.smaller}
-
-1. Create a new branch on your project with a new feature
-
-2. Create a class which is relevant to the domain of your project, please note that this is simply a starting point, not the final product.
-
-3. Create at least one public method
-
-4. Create at least one public property
-
-5. Make use of one or more private (helper) methods in the public method and/or property
-
-6. Commit code incrementally as you create it, the first commit should not be complete
-
-7. Create a pull request with a short description of this "feature"
-
-8. Ask for reviews from one of your peers as well as the instructor assigned to your project
-
-. . .
-
- **And don't forget to do the Quiz!**
