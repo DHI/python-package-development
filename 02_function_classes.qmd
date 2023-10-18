@@ -40,16 +40,6 @@ flowchart LR
 
 . . .
 
-```{mermaid}
-flowchart LR
-    A(height: 15.0) --> F[is_operable]
-    B(period: 3.0) -->  F
-    F --> O(False)
-    
-```
-
-. . .
-
 ```python
 def is_operable(height, period):
     return height < 2.0 and period < 6.0
