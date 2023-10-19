@@ -1,11 +1,199 @@
 ---
-title: "Python types, interfaces and protocols"
+title: "Object oriented design in Python"
 format: 
     revealjs:
         slide-number: true
 footer: Python package development
 logo: academy_logo.png
 ---
+
+## Object oriented design
+
+Benefits of object oriented design:
+
+* Encapsulation
+* Code reuse (composition, inheritance)
+* Abstraction
+
+
+## Encapsulation
+
+```{.python code-line-numbers="1-5|7-9|10-12"}
+class Location:
+    def __init__(self, name, longitude, latitude):
+        self.name = name.upper() # Names are always uppercase
+        self.longitude = longitude
+        self.latitude = latitude
+
+>>> loc = Location("Antwerp", 4.42, 51.22)
+>>> loc.name
+'ANTWERP'
+>>> loc.name = "Antwerpen"
+>>> loc.name
+"Antwerpen" 😟
+```
+
+## Encapsulation - Attributes
+
+Variables prefixed with an underscore (`self._name`) is a convention to indicate that the instance variable is private.
+
+```{.python code-line-numbers="|3,7-9|10-11"}
+class Location:
+    def __init__(self, name, longitude, latitude):
+        self._name = name.upper() # Names are always uppercase
+        ...
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value.upper()
+
+>>> loc = Location("Antwerp", 4.42, 51.22)
+>>> loc.name = "Antwerpen"
+>>> loc.name
+"ANTWERPEN" 😊
+```
+
+## Composition {.smaller}
+
+::: {.columns}
+
+::: {.column}
+
+
+Composition in object oriented design is a way to combine objects or data types into more complex objects.
+
+:::
+
+::: {.column}
+
+```{mermaid}
+classDiagram
+
+    class Grid{
+        + nx
+        + dx
+        + ny
+        + dy
+        + find_index()
+    }
+
+    class ItemInfo{
+        + name
+        + type
+        + unit
+    }
+
+    class DataArray{
+        + data
+        + time
+        + item
+        + geometry
+        + plot()
+    }
+
+    DataArray --* Grid
+    DataArray --* ItemInfo
+```
+
+:::
+
+::::
+
+## Composition - Example {.smaller}
+
+```python
+class Grid:
+    def __init__(self, nx, dx, ny, dy):
+        self.nx = nx
+        self.dx = dx
+        self.ny = ny
+        self.dy = dy
+    
+    def find_index(self, x,y):
+        ...
+
+class DataArray:
+    def __init__(self, data, time, item, geometry):
+        self.data = data
+        self.time = time
+        self.item = item
+        self.geometry = geometry
+
+    def plot(self):
+        ...
+```
+
+## Inheritance
+
+## Inheritance - Example
+
+```{mermaid}
+classDiagram
+
+class _GeometryFM{
++ node_coordinates
++ element_table
+}
+
+class GeometryFM2D{
++ interp2d()
++ get_element_area()
++ plot()
+}
+
+class _GeometryFMLayered{
+- _n_layers
+- _n_sigma
++ to_2d_geometry()
+}
+
+class GeometryFM3D{
++ plot()
+}
+
+class GeometryFMVerticalProfile{
++ plot()
+}
+  _GeometryFM <|-- GeometryFM2D
+  _GeometryFM <|-- _GeometryFMLayered
+  _GeometryFMLayered <|-- GeometryFM3D
+  _GeometryFMLayered <|-- GeometryFMVerticalProfile
+```
+
+## Inheritance - Example (2)
+
+```python
+class _GeometryFMLayered(_GeometryFM):
+    def __init__(self, nodes, elements, n_layers, n_sigma):
+        # call the parent class init method
+        super().__init__(
+            nodes=nodes,
+            elements=elements,
+        )
+        self._n_layers = n_layers
+        self._n_sigma = n_sigma
+```
+
+## Composition vs inheritance
+
+::: {.incremental}
+
+* Inheritance is often used to reuse code, but this is not the main purpose of inheritance.
+* Inheritance is used to specialize behavior.
+* In most cases, composition is a better choice than inheritance.
+* Some recent programming languages (e.g. Go & Rust) do not support this style of inheritance.
+* Use inheritance only when it makes sense.
+
+:::
+
+::: aside
+Hillard, 2020, Ch. 8 "The rules (and exceptions) of inheritance"
+:::
+
 
 ## Types
 
@@ -228,6 +416,60 @@ Hammer()
 You want your code to be feel like the built-in types.
 :::
 
+---
+
+```{.python code-line-numbers="|7-13"}
+class SparseMatrix:
+    def __init__(self, shape, fill_value=0.0, data=None):
+        self.shape = shape
+        self._data = data if data is not None else {}
+        self.fill_value = fill_value
+        
+    def __setitem__(self, key, value):
+        i,j = key
+        self._data[i,j] = float(value) 
+
+    def __getitem__(self, key) -> float:
+        i,j = key
+        return self._data.get((i,j), self.fill_value)
+    
+    def transpose(self) -> "SparseMatrix":
+        data = {(j,i) : v for (i,j),v in self._data.items()}
+        return SparseMatrix(data=data,
+                            shape=self.shape,
+                            fill_value=self.fill_value)
+    
+    def __repr__(self):
+        matrix_str = ""
+        for j in range(self.shape[1]):
+            for i in range(self.shape[0]):
+                value = self[i, j]
+                matrix_str += f"{value:<4}"
+            matrix_str += "\n"
+        return matrix_str
+```
+
+---
+
+```python
+>>> m = SparseMatrix(shape=(2,2), fill_value=0.0)
+>>> m
+0.0 0.0
+0.0 0.0
+>>> m[0,1]
+0.0
+>>> m[0,1] = 1.0
+>>> m[1,0] = 2.0
+>>> m
+0.0 2.0 
+1.0 0.0 
+>>> m.transpose()
+0.0 1.0 
+2.0 0.0
+```
+
+
+
 
 ## Duck typing
 
@@ -236,11 +478,13 @@ You want your code to be feel like the built-in types.
 * "*If it walks like a duck and quacks like a duck, it's a duck*"
 * From the perspective of the caller, it doesn't matter if it is a rubber duck or a real duck.
 * The type of the object is **not important**, as long as it has the right methods.
+* Python is different than C# or Java, where you would have to create an interface `IToolbox` and implement it for `Toolbox`.
 
 :::
 
 
----
+## Duck typing - Example
+
 
 An example is a Scikit learn transformers
 
@@ -250,43 +494,53 @@ An example is a Scikit learn transformers
 
 If you want to make a transformer compatible with sklearn, you have to implement these methods.
 
----
+## Duck typing - Example
 
 ```python
-class MyTransformer:
+class PositiveNumberTransformer:
+
     def fit(self, X, y=None):
-        # do something
+        # no need to fit (still need to have the method!)
         return self
 
     def transform(self, X):
-        # do something
-        return X
+        return np.abs(X)
 
     def fit_transform(self, X, y=None):
         return self.fit(X, y).transform(X)
 ```
 
----
+## Duck typing - Mixins {.smaller}
 
-```python
+We can inherit some behavior from `sklearn.base.TransformerMixin`
+
+```{.python code-line-numbers="|1,3,18,19"}
 from sklearn.base import TransformerMixin
 
-class MyOtherTransformer(TransformerMixin):
+class RemoveOutliersTransformer(TransformerMixin):
+
+    def __init__(self, lower_bound, upper_bound):
+        self.lower_bound = lower_bound
+        self.upper_bound = upper_bound
+        self.lower_ = None
+        self.upper_ = None
+
     def fit(self, X, y=None):
-        # do something
-        return self
+        self.lower_ = np.quantile(X, self.lower_bound)
+        self.upper_ = np.quantile(X, self.upper_bound)
 
     def transform(self, X):
-        # do something
-        return X
+        return np.clip(X, self.lower_, self.upper_)
 
     # def fit_transform(self, X, y=None):
     # we get this for free, from TransformerMixin
 ```
 
-## Let's revisit the (date) Interval^[https://martinfowler.com/eaaDev/Range.html]
+## Let's revisit the (date) Interval
 
-```{.python code-line-numbers="6-7|11-14"}
+The `Interval` class represent an interval in time.
+
+```{.python code-line-numbers="|6-7|11-14"}
 class Interval:
     def __init__(self, start, end):
         self.start = start
@@ -303,7 +557,12 @@ True
 False
 ```
 
-## Some other interval
+. . .
+
+What if we want to make another type of interval, e.g. a interval of numbers $[1.0, 2.0]$?
+
+
+## A number interval
 
 ```{.python code-line-numbers="9-14"}
 class Interval:
@@ -325,126 +584,6 @@ False
 . . .
 
 As long as the `start`, `end` and `x` are comparable, the `Interval` class is a generic class able to handle integers, floats, dates, datetimes, strings ...
-
-## Time for a discussion {.smaller}
-
-Pre-work for this Module
-
-> Read chapters
->
-> 3. Abstraction and encapsulation
->
-> 4. Designing for high performance
-> 
-> in Hillard, 2020
->
-> Do you need to understand every single line of code you use, or is it sometimes enough to treat functions as a black box?
-> 
-> Consider the implications of storing data in a list or in a dictionary.
-
-## Time for a discussion
-
-*Discuss in learning teams (15 minutes):*
-
-**Chapter 3: Abstraction and encapsulation**
-
-What are some pros/cons of treating functions as black boxes?
-
-. . .
-
-**Chapter 4: Designing for high performance**
-
-What is the performance impact of using a list instead of a dictionary?
-
-. . .
-
-*After break out session:*
-
-One person from each team briefly presents their discussion outcomes
-
-
-
-## Protocols
-
-::: {.incremental}
-
-* Protocols were introduced in Python 3.8
-* Protocols are a way to define a set of methods that a class must implement
-* Protocols are not checked at runtime
-* Protocols can be used for static type checking (mypy)
-* Protocols are a hint to the developer
-
-:::
-
-## Protocols {.smaller}
-
-
-```{.python}
-from dataclasses import dataclass
-from typing import Protocol, List
-import matplotlib.pyplot as plt
-
-
-@dataclass
-class Station:
-    name: str
-    longitude: float
-    latitude: float
-
-
-class StationRepository(Protocol):
-    def __getitem__(self, key: str) -> Station:
-        ...
-
-
-def plot_stations(station_ids: List[int], repo: StationRepository) -> None:
-    for id in station_ids:
-        station = repo[id]
-        plt.plot(station.longitude, station.latitude, "o")
-        plt.text(station.longitude, station.latitude, station.name)
-```
-
-## Protocols {.smaller}
-
-```{.python code-line-numbers="1-2|11-12|18-19"}
-class DictStationRepository:  # useful for testing (Module 4)
-    def __getitem__(self, key: int) -> Station:
-        stations = {
-            42: Station("Antwerp", 4.42, 51.22),
-            365: Station("Brussels", 4.35, 50.85),
-            182: Station("Ghent", 3.72, 51.05),
-        }
-        return stations[key]
-
-
-class FileStationRepository:
-    def __getitem__(self, key: int) -> Station:
-        df = pd.read_csv("stations.csv", index_col="id")
-        row = df.loc[key]
-        return Station(row["name"], key, row["longitude"], row["latitude"])
-
-
-class DatabaseStationRepository:
-    def __getitem__(self, key: int) -> Station:
-        # read from database
-        station = read_from_db(key)
-        return station
-```
-
-## Protocols
-
-```python
-repo = DictStationRepository()
-# repo = FileStationRepository()
-
-plot_stations([42, 365], repo=repo)
-```
-
-. . .
-
-Protocols allows to work with abstract types, without having to know the implementation details.
-
-This is useful for testing, but allows for more flexible code.
 
 
 ## Postel's law
@@ -621,7 +760,7 @@ def main():
     predictions = predict(final_data)
 ```
 
-## Composed method^[https://wiki.c2.com/?ComposedMethod]
+## Composed method
 
 * Divide your program into methods that perform one identifiable task
 * Keep all of the operations in a method at the same level of abstraction.
@@ -648,24 +787,3 @@ If you want to learn more about refactoring, I recommend the book "Refactoring: 
 
 ::::
 
-# Homework {.smaller}
-
-1. Create a new branch on your project with a new feature
-
-2. Create a class which is relevant to the domain of your project, please note that this is simply a starting point, not the final product.
-
-3. Create at least one public method
-
-4. Create at least one public property
-
-5. Make use of one or more private (helper) methods in the public method and/or property
-
-6. Commit code incrementally as you create it, the first commit should not be complete
-
-7. Create a pull request with a short description of this "feature"
-
-8. Ask for reviews from one of your peers as well as the instructor assigned to your project
-
-. . .
-
- **And don't forget to do the Quiz!**
