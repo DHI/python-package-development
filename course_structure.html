@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python package development</title>
+<title>Python package development – course_structure</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,39 +73,35 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Python package development</h1>
-</div>
 
 
+<pre class="mermaid"><code>
+graph TD
 
-<div class="quarto-title-meta">
+    M1(Git, Pull Requests, and code reviews)
+    M2(Python functions, classes, and modules)
+    M3(Object oriented design in Python)
+    M4(Testing and auto-formatting)
+    M5(Dependencies and GitHub actions)
+    M6(Documentation)
+    M7(Distributing your package)
 
-    
-  
-    
-  </div>
-  
+    B1(The bigger picture)
+    B2(Separations of concern)
+    B3(Abstraction and encapsulation)
+    B4(Designing for high performance)
+    B5(Testing your software)
+    B6(Separations of concerns in practice)
+    B7(Extensibility and flexibility)
+    B8(The rules and exceptions of inheritance)
 
-</header>
+    M1 --&gt; M2 --&gt; M3 --&gt; M4 --&gt; M5 --&gt; M6 --&gt; M7
 
-<p><a href="./00_introduction.html">Introduction</a></p>
-<section id="learning-modules" class="level2">
-<h2 class="anchored" data-anchor-id="learning-modules">Learning modules</h2>
-<ol type="1">
-<li><a href="./01_version_control.html">Git, Pull Requests, and code reviews</a></li>
-<li><a href="./02_function_classes.html">Python functions, classes, and modules</a></li>
-<li><a href="./03_oop.html">Object oriented design in Python</a></li>
-<li><a href="./04_testing.html">Testing and auto-formatting</a></li>
-<li><a href="./05_dependencies_ci.html">Dependencies and GitHub actions</a></li>
-<li><a href="./06_documentation.html">Documentation</a></li>
-<li><a href="./07_packaging.html">Distributing your package</a></li>
-</ol>
-<p>©️ DHI 2023</p>
+    B1 --&gt; M2
+    B2 --&gt; M2
+    B4 --&gt; M4</code></pre>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
