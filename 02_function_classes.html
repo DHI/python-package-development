@@ -747,23 +747,6 @@
       }</style></aside>
 </div>
 </section>
-<section id="time-for-a-discussion" class="slide level2 smaller">
-<h2>Time for a discussion</h2>
-<p>Discuss in learning teams (15 minutes):</p>
-<ul>
-<li>Introduce yourself briefly</li>
-<li>Discuss your experience with Object Oriented Programming, why are classes useful?</li>
-<li>Mention some problems with poorly designed code
-<ul>
-<li>Your own experience</li>
-<li>From the book</li>
-</ul></li>
-</ul>
-<p>After break out session:</p>
-<ul>
-<li>Selected person from each team briefly presents their discussion</li>
-</ul>
-</section>
 <section id="classes" class="slide level2">
 <h2>Classes</h2>
 <div class="sourceCode" id="cb21" data-code-line-numbers="|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">class</span> WeirdToolbox:</span>
@@ -1131,36 +1114,68 @@ analytics/
       }</style></aside>
 </div>
 </section>
-<section id="how-generic-should-your-code-be" class="slide level2">
-<h2>How generic should your code be?</h2>
+<section id="python-naming-conventions" class="slide level2">
+<h2>Python naming conventions</h2>
+<p>By adhering to the naming conventions, your code will be easier to read for other Python developers.</p>
+<ul>
+<li>variables, functions and methods: <code>lowercase_with_underscores</code></li>
+<li>classes: <code>CamelCase</code></li>
+<li>constants: <code>UPPERCASE_WITH_UNDERSCORES</code></li>
+</ul>
+</section>
+<section id="variables-function-and-method-names" class="slide level2">
+<h2>Variables, function and method names</h2>
+<ul>
+<li>Use lowercase characters</li>
+<li>Separate words with underscores</li>
+</ul>
 <div class="fragment">
-<p>A good rule of thumb is to make your code as generic as possible, but no more. 🙄</p>
-</div>
-<div class="fragment">
-<p><img data-src="https://imgs.xkcd.com/comics/the_general_problem.png"></p>
-</div>
-<div class="fragment">
-<p>Try to anticipate the future, but not too much!</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>model_name <span class="op">=</span> <span class="st">"NorthSeaModel"</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>n_epochs <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="kw">def</span> my_function():</span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="homework-until-next-week" class="slide level2 smaller">
-<h2>Homework until next week</h2>
-<div>
+<section id="constants" class="slide level2">
+<h2>Constants</h2>
 <ul>
-<li class="fragment">Create a repository on GitHub to store your code</li>
-<li class="fragment">Create a <code>README.md</code> file describing the purpose of the repository. (course project, …</li>
-<li class="fragment">Write a function to calculate the fraction of values within a given range, with the lower bound optional
-<ul>
-<li class="fragment">Name, inputs, output, types</li>
-</ul></li>
-<li class="fragment">Create a class to represent sensor data, e.g.&nbsp;water levels, temperature measured with a fixed interval
-<ul>
-<li class="fragment">Name, attributes, methods?</li>
-</ul></li>
+<li>Use all uppercase characters</li>
 </ul>
-</div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>GRAVITY <span class="op">=</span> <span class="fl">9.81</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a></span>
+<span id="cb36-3"><a href="#cb36-3"></a>AVOGADRO_CONSTANT <span class="op">=</span> <span class="fl">6.02214076e23</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a></span>
+<span id="cb36-5"><a href="#cb36-5"></a>SECONDS_IN_A_DAY <span class="op">=</span> <span class="dv">86400</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a></span>
+<span id="cb36-7"><a href="#cb36-7"></a>N_LEGS_PER_ANIMAL <span class="op">=</span> {</span>
+<span id="cb36-8"><a href="#cb36-8"></a>    <span class="st">"human"</span>: <span class="dv">2</span>,</span>
+<span id="cb36-9"><a href="#cb36-9"></a>    <span class="st">"dog"</span>: <span class="dv">4</span>,</span>
+<span id="cb36-10"><a href="#cb36-10"></a>    <span class="st">"spider"</span>: <span class="dv">8</span>,</span>
+<span id="cb36-11"><a href="#cb36-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>✨ <strong>See you next week!</strong> 🚀</p>
+<p>Python will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants.</p>
+</div>
+</section>
+<section id="classes-2" class="slide level2">
+<h2>Classes</h2>
+<ul>
+<li>Use CamelCase for the name of the class</li>
+<li>Use lowercase characters for the name of the methods</li>
+<li>Separate words with underscores</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb37" data-code-line-numbers="|1|9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">class</span> RandomClassifier: <span class="co"># CamelCase ✅</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb37-4"><a href="#cb37-4"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
+<span id="cb37-5"><a href="#cb37-5"></a></span>
+<span id="cb37-6"><a href="#cb37-6"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb37-7"><a href="#cb37-7"></a>        <span class="cf">return</span> np.random.choice(<span class="va">self</span>.classes_, size<span class="op">=</span><span class="bu">len</span>(X))</span>
+<span id="cb37-8"><a href="#cb37-8"></a></span>
+<span id="cb37-9"><a href="#cb37-9"></a>    <span class="kw">def</span> fit_predict(<span class="va">self</span>, X, y): <span class="co"># lowercase ✅</span></span>
+<span id="cb37-10"><a href="#cb37-10"></a>        <span class="va">self</span>.fit(X, y)</span>
+<span id="cb37-11"><a href="#cb37-11"></a>        <span class="cf">return</span> <span class="va">self</span>.predict(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <p><img src="academy_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">

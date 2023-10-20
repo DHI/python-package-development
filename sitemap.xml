@@ -2,46 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/DHI/python-package-development/index.html</loc>
-    <lastmod>2023-10-20T05:51:43.589Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/00_introduction.html</loc>
-    <lastmod>2023-10-20T05:51:42.949Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/01_version_control.html</loc>
-    <lastmod>2023-10-20T05:51:41.986Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/07_packaging.html</loc>
-    <lastmod>2023-10-20T05:51:40.822Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/04_testing.html</loc>
-    <lastmod>2023-10-20T05:51:39.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/06_documentation.html</loc>
-    <lastmod>2023-10-20T05:51:35.790Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/course_structure.html</loc>
-    <lastmod>2023-10-20T05:51:37.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/05_dependencies_ci.html</loc>
-    <lastmod>2023-10-20T05:51:40.090Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/DHI/python-package-development/03_oop.html</loc>
-    <lastmod>2023-10-20T05:51:41.470Z</lastmod>
+    <lastmod>2023-10-20T06:10:20.835Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/02_function_classes.html</loc>
-    <lastmod>2023-10-20T05:51:42.678Z</lastmod>
+    <lastmod>2023-10-20T06:10:20.171Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/DHI/python-package-development/02b_naming_conventions.html</loc>
-    <lastmod>2023-10-20T05:51:43.233Z</lastmod>
+    <loc>https://github.com/DHI/python-package-development/03_oop.html</loc>
+    <lastmod>2023-10-20T06:10:18.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/05_dependencies_ci.html</loc>
+    <lastmod>2023-10-20T06:10:17.483Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/course_structure.html</loc>
+    <lastmod>2023-10-20T06:10:14.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/06_documentation.html</loc>
+    <lastmod>2023-10-20T06:10:13.095Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/04_testing.html</loc>
+    <lastmod>2023-10-20T06:10:16.695Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/07_packaging.html</loc>
+    <lastmod>2023-10-20T06:10:18.243Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/01_version_control.html</loc>
+    <lastmod>2023-10-20T06:10:19.467Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/00_introduction.html</loc>
+    <lastmod>2023-10-20T06:10:20.467Z</lastmod>
   </url>
 </urlset>

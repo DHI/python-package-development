@@ -373,20 +373,6 @@ def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
 Type hints are just hints, it will make it easier for you to read the code, and use it in your IDE, but it will not enforce the type.
 :::
 
-## Time for a discussion {.smaller}
-
-Discuss in learning teams (15 minutes):
-
-* Introduce yourself briefly
-* Discuss your experience with Object Oriented Programming, why are classes useful?
-* Mention some problems with poorly designed code
-  - Your own experience
-  - From the book
-
-After break out session:
-
-* Selected person from each team briefly presents their discussion
-
 
 ## Classes
 
@@ -702,39 +688,70 @@ The imports in `__init__.py` let's you separate the implementation into multiple
 The PfsSection and PfsDocument are imported from the `pfssection.py` and `pfsdocument.py` modules. to the `mikeio.pfs` namespace.
 :::
 
+## Python naming conventions
 
-## How generic should your code be?
+By adhering to the naming conventions, your code will be easier to read for other Python developers.
 
-. . .
+* variables, functions and methods: `lowercase_with_underscores`
+* classes: `CamelCase`
+* constants: `UPPERCASE_WITH_UNDERSCORES`
 
-A good rule of thumb is to make your code as generic as possible, but no more. 🙄
 
-. . .
+## Variables, function and method names
 
-![](https://imgs.xkcd.com/comics/the_general_problem.png)
-
-. . .
-
-Try to anticipate the future, but not too much!
-
-## Homework until next week {.smaller}
-
-::: {.incremental}
-
-* Create a repository on GitHub to store your code
-* Create a `README.md` file describing the purpose of the repository. (course project, ...
-* Write a function to calculate the fraction of values within a given range, with the lower bound optional
-  - Name, inputs, output, types
-* Create a class to represent sensor data, e.g. water levels, temperature measured with a fixed interval
-    - Name, attributes, methods?
-:::
+* Use lowercase characters
+* Separate words with underscores
 
 . . .
 
-✨ **See you next week!** 🚀
+```python
+model_name = "NorthSeaModel"
+n_epochs = 100
+
+def my_function():
+    pass
+```
+
+## Constants
+
+* Use all uppercase characters
+
+```python
+GRAVITY = 9.81
+
+AVOGADRO_CONSTANT = 6.02214076e23
+
+SECONDS_IN_A_DAY = 86400
+
+N_LEGS_PER_ANIMAL = {
+    "human": 2,
+    "dog": 4,
+    "spider": 8,
+}
+```
+. . .
+
+Python will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants.
 
 
+## Classes
 
+* Use CamelCase for the name of the class
+* Use lowercase characters for the name of the methods
+* Separate words with underscores
 
+. . .
 
+```{.python code-line-numbers="|1|9"}
+class RandomClassifier: # CamelCase ✅
 
+    def fit(self, X, y):
+        self.classes_ = np.unique(y)
+
+    def predict(self, X):
+        return np.random.choice(self.classes_, size=len(X))
+
+    def fit_predict(self, X, y): # lowercase ✅
+        self.fit(X, y)
+        return self.predict(X)
+```
