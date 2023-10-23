@@ -1,6 +1,6 @@
 # Course project: Time Series Data Cleaning
 
-## Module 1:
+## Module 1: GitHub and basic functions
 - 1.1 GitHub repo
     - 1.1.1 Create a new GitHub repository "timeseriescleaner"
         - private, no template, add readme, gitignore python, no license
@@ -25,7 +25,7 @@
 - Wait for feedback, Adjust code until approval, then merge (and delete branch)
 
 
-## Module 2:
+## Module 2: Modules and classes
 
 - Create new branch "modules-classes" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 2.1 Function arguments
@@ -56,24 +56,8 @@
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
 
-## Module 3:
 
-- Create new branch "oop-dataclasses" (Make sure changes from last module have been merged, and that you start from the main branch)
-- 3.1 Add type hints to all functions and methods. Commit
-- 3.2 Make all the cleaner classes dataclasses.    
-    - remove the init method (not needed anymore)
-    - Check that the notebook still runs and that the classes indeed work as data classes
-    - Commit
-- 3.3 Make a private module function _print_stats() that prints the number of cleaned values
-    - call from each of the clean methods
-- 3.4 Consider whether it would be better to create a base class BaseCleaner - write down your considerations as a comment in the pull request, refer to specific lines of code
-- (3.5 Implement inheritance and composition where appropriate. TODO ????)
-- Create pull request in GitHub and "request review" from your reviewers
-- Get feedback, Adjust code until approval, then merge (and delete branch)
-
-
-
-## Module 4:
+## Module 3: Installable package and pytest
 
 - Create new branch "package-test" (Make sure changes from last module have been merged, and that you start from the main branch)
 - Make sure pytest and pytest-cov are installed
@@ -110,7 +94,7 @@
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
 
-## Module 5:
+## Module 4: GitHub actions and auto-formatting
 
 - Create new branch "action-formatting" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 5.1 Github Action
@@ -140,7 +124,24 @@
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
 
-## Module 6
+## Module 5: Object-oriented design
+
+- Create new branch "oop-dataclasses" (Make sure changes from last module have been merged, and that you start from the main branch)
+- 3.1 Add type hints to all functions and methods. Commit
+- 3.2 Make all the cleaner classes dataclasses.    
+    - remove the init method (not needed anymore)
+    - Check that the notebook still runs and that the classes indeed work as data classes (e.g. have a string representation and support equality testing etc)
+    - Commit
+- 3.3 Make a private module function _print_stats() that prints the number of cleaned values
+    - call from each of the clean methods
+- 3.4 Consider whether it would be better to create a base class BaseCleaner - write down your considerations as a comment in the pull request, refer to specific lines of code
+- (3.5 Implement inheritance and composition where appropriate. TODO ????)
+- Create pull request in GitHub and "request review" from your reviewers
+- Get feedback, Adjust code until approval, then merge (and delete branch)
+
+
+
+## Module 6: Documentation
 
 - Create new branch "docs" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 6.1 README
@@ -149,7 +150,7 @@
     - Write NumPy style docstrings for all functions and classes.
     - [Optional] Install the autodocstrings extension in VSCode (set the style to NumPy)
 - 6.3 mkdocs
-    - Install mkdocs, mkdocstrings and material design `mamba install mkdocs mkdocs-material mkdocstrings[python]`
+    - Install mkdocs, mkdocstrings and material design `mamba install mkdocs mkdocstrings[python] mkdocstrings-python mkdocs-material`
     - Create a `mkdocs.yml` file (copy from https://github.com/DHI/template-python-library and adapt).
     - Create a docs folder and create a markdown file `index.md` inside.
     - Create API documentation locally using `>mkdocs serve`.
@@ -158,7 +159,7 @@
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
 
-##  Module 7
+##  Module 7: Publishing
 - Add a license
 - Change version number to 0.1.0
 - Build the package with hatchling.
