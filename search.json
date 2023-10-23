@@ -214,7 +214,7 @@
     "href": "00_introduction.html#learning-modules",
     "title": "Python package development",
     "section": "Learning modules",
-    "text": "Learning modules\n{{include _modules.qmd}}"
+    "text": "Learning modules\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nObject oriented design in Python\nDistributing your package"
   },
   {
     "objectID": "00_introduction.html#learning-objectives",
@@ -1292,6 +1292,6 @@
     "href": "index.html#learning-modules",
     "title": "Python package development",
     "section": "Learning modules",
-    "text": "Learning modules\n{{include _modules.qmd}}\n©️ DHI 2023"
+    "text": "Learning modules\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nObject oriented design in Python\nDistributing your package\n\n©️ DHI 2023"
   }
 ]
