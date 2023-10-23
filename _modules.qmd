@@ -5,3 +5,10 @@
 4. [Documentation](05_documentation.qmd)
 6. [Object oriented design in Python](06_oop.qmd)
 7. [Distributing your package](07_packaging.qmd)
+
+
+## Include files
+
+Are you using the same content in many documents, presentations and reports?
+
+Have you considered to use include files?

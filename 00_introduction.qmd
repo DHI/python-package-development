@@ -8,8 +8,9 @@ logo: academy_logo.png
 
 ## Instructors
 
-* Jesper
-* Henrik
+
+* Henrik Andersson -  [@ecomodeller](https://github.com/ecomodeller)
+* Jesper Sandvig Mariegaard - [@jsmariegaard](https://github.com/jsmariegaard)
 
 ## Participants
 
