@@ -200,7 +200,7 @@
     "href": "00_introduction.html#instructors",
     "title": "Python package development",
     "section": "Instructors",
-    "text": "Instructors\n\nJesper\nHenrik"
+    "text": "Instructors\n\nHenrik Andersson - @ecomodeller\nJesper Sandvig Mariegaard - @jsmariegaard"
   },
   {
     "objectID": "00_introduction.html#participants",
@@ -215,6 +215,13 @@
     "title": "Python package development",
     "section": "Learning modules",
     "text": "Learning modules\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nObject oriented design in Python\nDistributing your package"
+  },
+  {
+    "objectID": "00_introduction.html#include-files",
+    "href": "00_introduction.html#include-files",
+    "title": "Python package development",
+    "section": "Include files",
+    "text": "Include files\nAre you using the same content in many documents, presentations and reports?\nHave you considered to use include files?"
   },
   {
     "objectID": "00_introduction.html#learning-objectives",
@@ -1292,6 +1299,13 @@
     "href": "index.html#learning-modules",
     "title": "Python package development",
     "section": "Learning modules",
-    "text": "Learning modules\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nObject oriented design in Python\nDistributing your package\n\n©️ DHI 2023"
+    "text": "Learning modules\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nObject oriented design in Python\nDistributing your package"
+  },
+  {
+    "objectID": "index.html#include-files",
+    "href": "index.html#include-files",
+    "title": "Python package development",
+    "section": "Include files",
+    "text": "Include files\nAre you using the same content in many documents, presentations and reports?\nHave you considered to use include files?\n©️ DHI 2023"
   }
 ]
