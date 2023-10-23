@@ -2,7 +2,7 @@
 
 ## Module 1:
 - 1.1 GitHub repo
-    - 1.1.1 Create a new GitHub repository "timeseriescleaner" (OR timeseriescleanerJEM)
+    - 1.1.1 Create a new GitHub repository "timeseriescleaner"
         - private, no template, add readme, gitignore python, no license
     - 1.1.2 Go to repo settings/Collaborators add your instructors and your "buddy"
     - 1.1.3 Clone repo to local machine
@@ -12,8 +12,7 @@
     - 1.1.7 Commit the changes (Check that it works on GitHub)
 - 1.2 Functions
     - 1.2.1 Create a local branch "refactor-functions"
-    - 1.2.2 Refactor the code to use functions (clean_spikes, clean_outofrange, clean_flat, plot_timeseries)
-        collapsed:: true
+    - 1.2.2 Refactor the code to use functions (`clean_spikes`, `clean_outofrange`, `clean_flat`, `plot_timeseries`)        
         - for data in [data1, data2, data3]:
             - data_original = data.copy()
             - data = clean_spikes(data, max_jump=10)
@@ -35,22 +34,20 @@
 - 2.2 Modules
     - Move cleaner functions into a separate module "cleaning.py". Commit.
     - Move the plotting function into a separate module "plotting.py". Commit.
-    - Rename the script main.py and execute the cleaning and plotting.
-        collapsed:: true
+    - Rename the script `main.py` and execute the cleaning and plotting.
         - from cleaning import ...
         - from plotting import ...
         - Check that it runs!
 - 2.3 Classes
     - Organize the cleaning functions into classes that all have the same structure (an init method and a clean method)
-        collapsed:: true
         - SpikeCleaner
             - init(max_jump)
             - clean(data)
-        - modify main.py and check that it runs
+        - modify `main.py` and check that it runs
             - cleaners = [
-            - SpikeCleaner(max_jump=10),
-            - OutOfRangeCleaner(min_val=0, max_val=50),
-            - FlatPeriodCleaner(flat_period=5),
+            -   SpikeCleaner(max_jump=10),
+            -   OutOfRangeCleaner(min_val=0, max_val=50),
+            -   FlatPeriodCleaner(flat_period=5),
             - ]
             - for cleaner in cleaners:
             - data = cleaner.clean(data)
@@ -63,13 +60,11 @@
 
 - Create new branch "oop-dataclasses" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 3.1 Add type hints to all functions and methods. Commit
-- 3.2 Make all the cleaner classes dataclasses.
-    collapsed:: true
+- 3.2 Make all the cleaner classes dataclasses.    
     - remove the init method (not needed anymore)
     - Check that the notebook still runs and that the classes indeed work as data classes
     - Commit
 - 3.3 Make a private module function _print_stats() that prints the number of cleaned values
-    collapsed:: true
     - call from each of the clean methods
 - 3.4 Consider whether it would be better to create a base class BaseCleaner - write down your considerations as a comment in the pull request, refer to specific lines of code
 - (3.5 Implement inheritance and composition where appropriate. TODO ????)
@@ -84,11 +79,10 @@
 - Make sure pytest and pytest-cov are installed
 - 4.1 Installable package
     - 4.1 Organize the files into folders and add setup.py. Call your package tscleaner.
-        collapsed:: true
         - subfolders: tscleaner, scripts, notebooks, tests
         - make init-file in tscleaner with
-            - from .cleaning import SpikeCleaner, FlatPeriodCleaner, OutOfRangeCleaner
-            - from .plotting import plot_timeseries
+            - `from .cleaning import SpikeCleaner, FlatPeriodCleaner, OutOfRangeCleaner`
+            - `from .plotting import plot_timeseries`
         - create a setup.py in the root with the following content (change with your data):
             - from setuptools import setup, find_packages
             - setup(
@@ -102,12 +96,12 @@
                 install_requires=['numpy', 'matplotlib'],  
                 )  
     - 4.2 Install the package in editable mode.
-        - pip install -e .
+        - `>pip install -e .`
     - 4.3 Modify import statements in notebook_A and script main.py and make sure they run.
     - 4.4 Modify cleaner tools by raising exceptions for invalid inputs.
-    - 4.5 Move the csv file to /tests/testdata and update notebook with relative path to the file
+    - 4.5 Move the csv file to `/tests/testdata` and update notebook with relative path to the file
 - 4.2 Pytest
-    - 4.2.1 Write unit tests with pytest in the /tests folder. Create an empty init-py file in the folder. Create a file test_cleaning.py and create at least five tests that verify that the cleaning tools work as intended
+    - 4.2.1 Write unit tests with pytest in the `/tests` folder. Create an empty init-py file in the folder. Create a file `test_cleaning.py` and create at least five tests that verify that the cleaning tools work as intended
     - [Optional] Consider to make a fixture that reads the csv file and you can read in all tests
     - 4.2.2 Run the tests from the commandline by writting `>pytest` in the project root (can you also run the tests from VSCode?)
     - 4.2.3 Assess the test coverage with `>pytest --cov=tscleaner tests`
@@ -145,6 +139,7 @@
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
+
 ## Module 6
 
 - Create new branch "docs" (Make sure changes from last module have been merged, and that you start from the main branch)
@@ -156,8 +151,8 @@
 - 6.3 mkdocs
     - Install mkdocs, mkdocstrings and material design `mamba install mkdocs mkdocs-material mkdocstrings[python]`
     - Create a `mkdocs.yml` file (copy from https://github.com/DHI/template-python-library and adapt).
-    - Create a docs folder and create a markdown file `index.md`.
-    - Create API documentation locally using mkdocs.
+    - Create a docs folder and create a markdown file `index.md` inside.
+    - Create API documentation locally using `>mkdocs serve`.
     - Check the generated HTML documentation.
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
