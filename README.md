@@ -1,4 +1,4 @@
-![](https://www.theacademybydhi.com/-/media/shared%20content/global/global%20repository/logos/the%20academy%20by%20dhi/the_academy_logo_pos_rgb_nomargin.png?h=61&la=en&w=216)
+![](https://raw.githubusercontent.com/DHI/python-package-development/main/academy_logo.png)
 
 # Improving water modelling efficiency with Python package development
 
@@ -15,8 +15,8 @@ Sign up for the course here: <https://events.dhigroup.com/improving-water-modell
 
 1. [Git, Pull Requests, and code reviews](01_version_control.qmd)
 2. [Python functions, classes, and modules](02_function_classes.qmd)
-3. [Types, abstraction, and refactoring](03_types_protocols.qmd)
-4. [Testing and auto-formatting](04_testing.qmd)
-5. [Dependencies and GitHub actions](05_dependecies_ci.qmd)
-6. [Documentation](06_documentation.qmd)
-7. [Distributing your package](07_packaging.qmd)    
+3. [Testing and auto-formatting](03_testing.qmd)
+3. [Dependencies and GitHub actions](04_dependecies_ci.qmd)
+4. [Documentation](05_documentation.qmd)
+6. [Object oriented design in Python](06_oop.qmd)
+7. [Distributing your package](07_packaging.qmd)  
