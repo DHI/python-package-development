@@ -17,7 +17,7 @@ Introduce yourselves in a break out session later today.
 
 ## Learning modules
 
-{{include _modules.qmd}}
+{{< include _modules.qmd >}}
 
 ## Learning objectives
 

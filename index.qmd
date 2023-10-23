@@ -6,6 +6,6 @@ title: "Python package development"
 
 ## Learning modules
 
-{{include _modules.qmd}}
+{{< include _modules.qmd >}}
 
 ©️ DHI 2023
