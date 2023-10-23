@@ -5,12 +5,7 @@ title: "Python package development"
 [Introduction](00_introduction.qmd)
 
 ## Learning modules
-1. [Git, Pull Requests, and code reviews](01_version_control.qmd)
-2. [Python functions, classes, and modules](02_function_classes.qmd)
-3. [Object oriented design in Python](03_oop.qmd)
-4. [Testing and auto-formatting](04_testing.qmd)
-5. [Dependencies and GitHub actions](05_dependencies_ci.qmd)
-6. [Documentation](06_documentation.qmd)
-7. [Distributing your package](07_packaging.qmd)
+
+{{include _modules.qmd}}
 
 ©️ DHI 2023
