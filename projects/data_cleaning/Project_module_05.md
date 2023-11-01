@@ -1,4 +1,4 @@
-## Module 6: Documentation
+## Module 5: Documentation
 
 - Create new branch "docs" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 6.1 README
@@ -14,3 +14,5 @@
     - Check the generated HTML documentation.
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}

@@ -1,4 +1,4 @@
-## Module 5: Object-oriented design
+## Module 6: Object-oriented design
 
 - Create new branch "oop-dataclasses" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 5.1 Type Hints
@@ -19,3 +19,5 @@
         - e.g. how would you handle e.g. common plotting functionality in the cleaner classes? 
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}

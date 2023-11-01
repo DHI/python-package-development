@@ -26,3 +26,5 @@
 - 4.5 [Optional] Enable black and ruff extensions in VSCode; set black to run on save
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}
