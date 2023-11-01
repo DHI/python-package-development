@@ -1,4 +1,4 @@
-## Module 6: Documentation
+## Module 5: Documentation
 
 - Create new branch "docs" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 6.1 README

@@ -1,4 +1,4 @@
-## Module 5: Object-oriented design
+## Module 6: Object-oriented design
 
 - Create new branch "oop-dataclasses" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 5.1 Type Hints
