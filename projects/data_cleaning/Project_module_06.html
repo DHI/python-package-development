@@ -75,26 +75,36 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="module-6-documentation" class="level2">
-<h2 class="anchored" data-anchor-id="module-6-documentation">Module 6: Documentation</h2>
+<section id="module-5-object-oriented-design" class="level2">
+<h2 class="anchored" data-anchor-id="module-5-object-oriented-design">Module 5: Object-oriented design</h2>
 <ul>
-<li>Create new branch “docs” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
-<li>6.1 README
+<li>Create new branch “oop-dataclasses” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
+<li>5.1 Type Hints
 <ul>
-<li>Write a README file with basic information about the project.</li>
+<li>Add type hints to all functions and methods. Commit</li>
 </ul></li>
-<li>6.2 Docstrings
+<li>5.2 Data class
 <ul>
-<li>Write NumPy style docstrings for all functions and classes.</li>
-<li>[Optional] Install the autodocstrings extension in VSCode (set the style to NumPy)</li>
+<li>Make all the cleaner classes dataclasses.<br>
+</li>
+<li>remove the init method (not needed anymore)</li>
+<li>Check that the notebook still runs and that the classes indeed work as data classes (e.g.&nbsp;have a string representation and support equality testing etc)</li>
+<li>Commit</li>
 </ul></li>
-<li>6.3 mkdocs
+<li>5.3 Module level function
 <ul>
-<li>Install mkdocs, mkdocstrings and material design <code>mamba/pip install mkdocstrings-python mkdocs-material</code></li>
-<li>Create a <code>mkdocs.yml</code> file (copy from https://github.com/DHI/template-python-library and adapt).</li>
-<li>Create a docs folder and create a markdown file <code>index.md</code> inside.</li>
-<li>Create API documentation locally using <code>&gt;mkdocs serve</code>.</li>
-<li>Check the generated HTML documentation.</li>
+<li>Make a private module function _print_stats() that prints the number of cleaned values</li>
+<li>call from each of the clean methods</li>
+</ul></li>
+<li>5.4 Composition or inheritance
+<ul>
+<li>Create a new cleaner class called CleanerWorkflow that takes a list of cleaners when constructed and has a clean method that run all the cleaners’ clean methods.</li>
+<li>Modify the notebook to use the CleanerWorkflow instead of looping over the cleaners</li>
+<li>Consider what type of validation you would want CleanerWorkflow</li>
+<li>Consider whether it would be better to create a base class BaseCleaner - write down your considerations as a comment in the pull request, refer to specific lines of code
+<ul>
+<li>e.g.&nbsp;how would you handle e.g.&nbsp;common plotting functionality in the cleaner classes?</li>
+</ul></li>
 </ul></li>
 <li>Create pull request in GitHub and “request review” from your reviewers</li>
 <li>Get feedback, Adjust code until approval, then merge (and delete branch)</li>
