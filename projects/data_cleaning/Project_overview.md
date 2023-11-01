@@ -43,8 +43,8 @@
 - 2.3 Classes
     - Organize the cleaning functions into classes that all have the same structure (an init method and a clean method)
         - SpikeCleaner
-            - init(max_jump)
-            - clean(data)
+            - `def __init__(max_jump)`
+            - `def clean(data)`
         - modify `main.py` and check that it runs
             - cleaners = [
             -   SpikeCleaner(max_jump=10),
@@ -52,7 +52,7 @@
             -   FlatPeriodCleaner(flat_period=5),
             - ]
             - for cleaner in cleaners:
-            - data = cleaner.clean(data)
+            -   data = cleaner.clean(data)
     - Download notebook_A and csv file and make sure it runs. (remove any remaining print statements)
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
