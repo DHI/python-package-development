@@ -47,7 +47,7 @@ def is_operable(height, period):
 
 . . .
 
-This function behaves the same to the caller, but the implementation is different.
+These two function behaves the same, but the implementation is different.
 
 ```python
 def is_operable(height, period):
@@ -56,9 +56,9 @@ def is_operable(height, period):
 ```
 
 
-## Pure functions
+## *Pure* functions
 
-A pure function returns the same output for the same input.
+A *pure* function returns the same output for the same input.
 
 ```python
 def f(x)
@@ -71,7 +71,7 @@ def f(x)
 ```
 ---
 
-A non-pure function can return different outputs for the same input.
+A *non-pure* function can return different outputs for the same input.
 
 ```python
 n = 0
@@ -88,7 +88,7 @@ def non_pure_function(x):
 
 ## Side effects
 
-A function can have side effects, like appending to a a file
+A function can have side effects (besides returning a value)
 
 ```python
 def f_with_side_effect(x):
@@ -104,7 +104,7 @@ If you run the function a second time, the file will contain two lines.
 
 ## Side effects
 
-Pure functions with no side effects are easier to reason about.
+*Pure* functions without  side effects are easier to reason about.
 
 But sometimes side effects are necessary.
 
@@ -123,8 +123,9 @@ def difficult_function(values):
 
 >>> x = [1,2,-1]
 >>> difficult_function(x)
+[0, 0, -1]
 >>> x
-[0,0,-1]
+[0, 0, -1]
 ```
 
 ::: {.notes}
@@ -138,25 +139,24 @@ Functions that doesn't modify the input arguments are easier to reason about.
 
 ```python
 def easier_function(values):
-    from copy import deepcopy
+    l2 = list(values) # copy🤔
+    for i in range(len(l2)):
+        l2[i] = min(0, l2[i])
+    return l2
 
-    lvalues = deepcopy(values) # 🤔
-    for i in range(len(lvalues)):
-        lvalues[i] = min(0, lvalues[i])
-    return lvalues
-
->>> x = [1,2,-1]
+>>> x = [1, 2, -1]
 >>> easier_function(x)
+[0, 0, -1], 
 >>> x
-[1,2,-1]
+[1, 2, -1]
 ```
 
 . . . 
 
-But being safe, can incur a performance penalty.
+Just be aware that copying large datasets can be slow.
 
 
-## Positional arguments
+## *Positional* arguments
 
 ```python
 def f(x, y):
@@ -166,7 +166,7 @@ def f(x, y):
 3
 ```
 
-## Keyword arguments
+## *Keyword* arguments
 
 ```python
 def f(x, y):
@@ -178,7 +178,7 @@ def f(x, y):
 
 ---
 
-## Positional arguments {.smaller}
+## *Positional* arguments {.smaller}
 
 ::: {.columns}
 
@@ -221,7 +221,7 @@ This breaks existing code, since the order of the arguments is changed.
 
 
 
-## Keyword only arguments
+## *Keyword-only* arguments
 
 ```python
 def f(*, x, y):
@@ -233,7 +233,7 @@ Traceback (most recent call last):
 TypeError: f() takes 0 positional arguments but 2 were given
 ```  
 
-## Optional (default) arguments
+## *Optional(=default)* arguments
 
 ```python
 def f(x, n=2):

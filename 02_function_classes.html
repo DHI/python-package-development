@@ -443,15 +443,15 @@
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<p>This function behaves the same to the caller, but the implementation is different.</p>
+<p>These two function behaves the same, but the implementation is different.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> is_operable(height, period):</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    model <span class="op">=</span> load_fancy_ml_model()</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="cf">return</span> model.predict(height, period)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pure-functions" class="slide level2">
-<h2>Pure functions</h2>
-<p>A pure function returns the same output for the same input.</p>
+<h2><em>Pure</em> functions</h2>
+<p>A <em>pure</em> function returns the same output for the same input.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> f(x)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
@@ -462,7 +462,7 @@
 </section>
 <section class="slide level2">
 
-<p>A non-pure function can return different outputs for the same input.</p>
+<p>A <em>non-pure</em> function can return different outputs for the same input.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="kw">def</span> non_pure_function(x):</span>
@@ -476,7 +476,7 @@
 </section>
 <section id="side-effects" class="slide level2">
 <h2>Side effects</h2>
-<p>A function can have side effects, like appending to a a file</p>
+<p>A function can have side effects (besides returning a value)</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> f_with_side_effect(x):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"output.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
 <span id="cb5-3"><a href="#cb5-3"></a>        f.write(<span class="bu">str</span>(x))</span>
@@ -497,7 +497,7 @@
 </section>
 <section id="side-effects-1" class="slide level2">
 <h2>Side effects</h2>
-<p>Pure functions with no side effects are easier to reason about.</p>
+<p><em>Pure</em> functions without side effects are easier to reason about.</p>
 <p>But sometimes side effects are necessary.</p>
 <ul>
 <li>Writing to a file</li>
@@ -515,8 +515,9 @@
 <span id="cb6-5"><a href="#cb6-5"></a></span>
 <span id="cb6-6"><a href="#cb6-6"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb6-7"><a href="#cb6-7"></a><span class="op">&gt;&gt;&gt;</span> difficult_function(x)</span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="op">&gt;&gt;&gt;</span> x</span>
-<span id="cb6-9"><a href="#cb6-9"></a>[<span class="dv">0</span>,<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb6-10"><a href="#cb6-10"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>This function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it.</p>
 <style type="text/css">
@@ -535,23 +536,22 @@
 
 <p>Functions that doesn’t modify the input arguments are easier to reason about.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> easier_function(values):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="im">from</span> copy <span class="im">import</span> deepcopy</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>    lvalues <span class="op">=</span> deepcopy(values) <span class="co"># 🤔</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(lvalues)):</span>
-<span id="cb7-6"><a href="#cb7-6"></a>        lvalues[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, lvalues[i])</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="cf">return</span> lvalues</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="op">&gt;&gt;&gt;</span> easier_function(x)</span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="op">&gt;&gt;&gt;</span> x</span>
-<span id="cb7-12"><a href="#cb7-12"></a>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>    l2 <span class="op">=</span> <span class="bu">list</span>(values) <span class="co"># copy🤔</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(l2)):</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        l2[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, l2[i])</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">return</span> l2</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="op">&gt;&gt;&gt;</span> easier_function(x)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb7-11"><a href="#cb7-11"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>But being safe, can incur a performance penalty.</p>
+<p>Just be aware that copying large datasets can be slow.</p>
 </div>
 </section>
 <section id="positional-arguments" class="slide level2">
-<h2>Positional arguments</h2>
+<h2><em>Positional</em> arguments</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> f(x, y):</span>
 <span id="cb8-2"><a href="#cb8-2"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -559,7 +559,7 @@
 <span id="cb8-5"><a href="#cb8-5"></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="keyword-arguments" class="slide level2">
-<h2>Keyword arguments</h2>
+<h2><em>Keyword</em> arguments</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> f(x, y):</span>
 <span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
 <span id="cb9-3"><a href="#cb9-3"></a></span>
@@ -567,7 +567,7 @@
 <span id="cb9-5"><a href="#cb9-5"></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="positional-arguments-1" class="slide level2 smaller">
-<h2>Positional arguments</h2>
+<h2><em>Positional</em> arguments</h2>
 <div class="columns">
 <div class="column">
 <p><strong>Version 1</strong></p>
@@ -602,7 +602,7 @@
       }</style></aside>
 </section>
 <section id="keyword-only-arguments" class="slide level2">
-<h2>Keyword only arguments</h2>
+<h2><em>Keyword-only</em> arguments</h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> f(<span class="op">*</span>, x, y):</span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
 <span id="cb12-3"><a href="#cb12-3"></a></span>
@@ -611,8 +611,8 @@
 <span id="cb12-6"><a href="#cb12-6"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
 <span id="cb12-7"><a href="#cb12-7"></a><span class="pp">TypeError</span>: f() takes <span class="dv">0</span> positional arguments but <span class="dv">2</span> were given</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="optional-default-arguments" class="slide level2">
-<h2>Optional (default) arguments</h2>
+<section id="optionaldefault-arguments" class="slide level2">
+<h2><em>Optional(=default)</em> arguments</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> f(x, n<span class="op">=</span><span class="dv">2</span>):</span>
 <span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">return</span> x<span class="op">**</span>n</span>
 <span id="cb13-3"><a href="#cb13-3"></a></span>
