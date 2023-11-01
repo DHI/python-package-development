@@ -33,3 +33,5 @@
     - Optional: Get coverage as html with `>pytest --cov=tscleaner --cov-report html` (check the index.html in the htmlcov subfolder afterwards)
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}

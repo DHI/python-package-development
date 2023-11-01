@@ -23,3 +23,5 @@
     - 1.2.4 Commit your code in 1 or more commits (in the end your code should be approximately 75 lines long)
 - Create a pull request in GitHub and "request review" from your reviewers
 - Wait for feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}

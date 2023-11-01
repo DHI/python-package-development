@@ -19,3 +19,5 @@
         - e.g. how would you handle e.g. common plotting functionality in the cleaner classes? 
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}

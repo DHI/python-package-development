@@ -27,3 +27,5 @@
     - Download notebook_A and csv file and make sure it runs. (remove any remaining print statements)
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
+
+{{< include _footer.md >}}
