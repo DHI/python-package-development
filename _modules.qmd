@@ -1,14 +1,14 @@
 1. [Git, Pull Requests, and code reviews](01_version_control.qmd)
+    * [Homework](projects/data_cleaning/Project_module_01.md)
 2. [Python functions, classes, and modules](02_function_classes.qmd)
+    * [Homework](projects/data_cleaning/Project_module_02.md)
 3. [Testing and auto-formatting](03_testing.qmd)
+    * [Homework](projects/data_cleaning/Project_module_03.md)
 3. [Dependencies and GitHub actions](04_dependencies_ci.qmd)
+    * [Homework](projects/data_cleaning/Project_module_04.md)
 4. [Documentation](05_documentation.qmd)
+    * [Homework](projects/data_cleaning/Project_module_05.md)
 6. [Object oriented design in Python](06_oop.qmd)
+    * [Homework](projects/data_cleaning/Project_module_06.md)
 7. [Distributing your package](07_packaging.qmd)
-
-
-## Include files
-
-Are you using the same content in many documents, presentations and reports?
-
-Have you considered to use include files?
+    * [Homework](projects/data_cleaning/Project_module_07.md)
