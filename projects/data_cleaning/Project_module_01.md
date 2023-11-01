@@ -1,0 +1,25 @@
+## Module 1: GitHub and basic functions
+
+- 1.1 GitHub repo
+    - 1.1.1 Create a new GitHub repository "timeseriescleaner"
+        - private, no template, add readme, gitignore python, no license
+    - 1.1.2 Go to repo settings/Collaborators add your instructors and your "buddy"
+    - 1.1.3 Clone repo to local machine
+    - [Optional] Create virtual environment for this course project (use venv or mamba/conda environment)
+    - 1.1.4 Download the provided Python script and add it to the repo
+    - 1.1.5 Commit the file and push the changes (Check that the file can be found on GitHub)
+    - 1.1.6 Open the project in vscode and make a single character change to the file (add a comment)
+    - 1.1.7 Commit the changes (Check that it works on GitHub)
+- 1.2 Functions
+    - 1.2.1 Create a local branch "refactor-functions"
+    - 1.2.2 Refactor the code to use functions (`clean_spikes`, `clean_outofrange`, `clean_flat`, `plot_timeseries`)        
+        - for data in [data1, data2, data3]:
+            - data_original = data.copy()
+            - data = clean_spikes(data, max_jump=10)
+            - data = clean_outofrange(data, min_val=0, max_val=50)
+            - data = clean_flat(data, flat_period=5)
+            - plot_timeseries(data_original, data)
+    - 1.2.3 Check that your code and produce the same results as before (you should not change the functionality!)
+    - 1.2.4 Commit your code in 1 or more commits (in the end your code should be approximately 75 lines long)
+- Create a pull request in GitHub and "request review" from your reviewers
+- Wait for feedback, Adjust code until approval, then merge (and delete branch)
