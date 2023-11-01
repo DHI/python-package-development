@@ -340,7 +340,7 @@ Python is a dynamically typed language -> the type of a variable is determined a
 
 . . .
 
-But we can add type hints to help the reader (and the code editor).
+But we can add type **hints** to help the reader (and the code editor).
 
 ```python
 def is_operable(height: float, period: float) -> bool:
@@ -350,7 +350,7 @@ def is_operable(height: float, period: float) -> bool:
 ---
 
 ```python
-def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
+def clip(values:list[int], *, threshold:int = 0) -> list[int]:
     return [min(threshold, v) for v in values]
 
 ```
@@ -360,13 +360,11 @@ def clip(values: Iterable[Real],*, threshold:Real=0) -> List[Real]:
 ```python
 >>> x= [-1, 0, 2]
 >>> clip(x)
-[0, 0, 2]
+[-1, 0, 0]
 >>> x
 [-1, 0, 2]
 >>> clip(x, threshold=1)
-[0, 0, 1]
->>> x
-[-1, 0, 2]
+[-1, 0, 1]
 ```
 
 ::: {.notes}
