@@ -2,20 +2,20 @@
 
 - Create new branch "action-formatting" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 4.1 Github Action
-    - 5.1.1 Copy the GitHub action "python-app.yml" from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).
-    - 5.1.2 Change all occurrences of "my_library" in the yml file to your package name "tscleaner"
-    - 5.1.3 Comment out the line with "ruff-action" with "#"
-    - 5.1.4 Commit, push and create a pull request; the tests should now run, verify that they all run before you move on
+    - 4.1.1 Copy the GitHub action "python-app.yml" from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).
+    - 4.1.2 Change all occurrences of "my_library" in the yml file to your package name "tscleaner"
+    - 4.1.3 Comment out the line with "ruff-action" with "#"
+    - 4.1.4 Commit, push and create a pull request; the tests should now run, verify that they all run before you move on
 - 4.2 Ruff
-    - 5.2.1 Enable the "ruff-action" be removing the "#" you added above
-    - 5.2.2 Commit and push, your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)
-    - 5.2.3 Install "ruff" on your local machine with mamba/conda/pip
-    - 5.2.4 Navigate to your project root folder and run ruff with "ruff ."
-    - 5.2.5 Add `__all__ = ["SpikeCleaner", "FlatPeriodCleaner", "OutOfRangeCleaner", "plot_timeseries"]` to your `__init__.py` file and fix remaining issues until ruff passes
-    - 5.2.6 Commit, push and verify that you action now succeeds
+    - 4.2.1 Enable the "ruff-action" be removing the "#" you added above
+    - 4.2.2 Commit and push, your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)
+    - 4.2.3 Install "ruff" on your local machine with mamba/conda/pip
+    - 4.2.4 Navigate to your project root folder and run ruff with "ruff ."
+    - 4.2.5 Add `__all__ = ["SpikeCleaner", "FlatPeriodCleaner", "OutOfRangeCleaner", "plot_timeseries"]` to your `__init__.py` file and fix remaining issues until ruff passes
+    - 4.2.6 Commit, push and verify that you action now succeeds
 - 4.3 Black
-    - 5.3.1 Install "black" on your local machine with mamba/conda/pip
-    - 5.3.2 Run black from your project root folder; inspect the differences; commit
+    - 4.3.1 Install "black" on your local machine with mamba/conda/pip
+    - 4.3.2 Run black from your project root folder; inspect the differences; commit
 - 4.4 pyproject.toml
     - Copy the pyproject.toml from the python template https://github.com/DHI/template-python-library (this file will replace your setup.py)
     - Modify to fit your package
