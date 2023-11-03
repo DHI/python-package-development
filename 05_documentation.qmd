@@ -290,3 +290,22 @@ User-agent: *
 Disallow: /
 ```
 
+
+## Additional resources
+
+* https://realpython.com/python-project-documentation-with-mkdocs/
+
+
+## Summary
+
+::: {.incremental}
+
+* Documentation is important
+* Use a README file
+* Use docstrings 
+* Use type hints
+* Use `mkdocs` to generate API documentation
+
+:::
+
+

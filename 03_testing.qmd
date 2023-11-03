@@ -512,3 +512,20 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     19         1        500.0    500.0      0.0      return points
 ```
 
+
+## Summary 
+
+::: {.incremental}
+
+* Testing is a way to verify that your code is working as expected.
+* **Unit** tests are small, isolated tests that verify a single logical concept in your code.
+* **Regression** tests are used to verify that your code is still working after changes.
+* **Integration** tests are used to verify that your code works with other code.
+* Exceptions are a way to handle errors in your code.
+* Warnings are a way to alert users of your code to potential issues or usage errors.
+* **Linting** is a way to check your code for common errors and style issues.
+* **Ruff** is a fast linter that checks for common errors and style issues.
+* **Black** is an automatic code formatter that enforces a consistent style.
+* Profiling is a way to measure the performance of your code.
+
+::: 

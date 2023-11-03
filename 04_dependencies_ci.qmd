@@ -394,3 +394,15 @@ jobs:
 
 
 
+
+## Summary
+
+::: {.incremental}
+
+* Application vs library
+* Prefer `pyproject.toml` over `setup.py`
+* Use a virtual environment for each project
+* Use GitHub Actions to run tests on every commit
+* Use GitHub Releases to publish software releases
+
+::: 
