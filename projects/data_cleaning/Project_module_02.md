@@ -1,5 +1,7 @@
 ## Module 2: Modules and classes
 
+After last module, your script now uses functions `clean_spikes`, `clean_outofrange`, `clean_flat`, `plot_timeseries` and has a nice home on GitHub. In this module, you will improve the functions, move them to separate modules and then refactor your code to use classes. Finally, you will check that it all works by running a notebook.  
+
 - Create new branch "modules-classes" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 2.1 Function arguments
     - Add default arguments to the functions. Commit.
@@ -24,7 +26,7 @@
             - ]
             - for cleaner in cleaners:
             -   data = cleaner.clean(data)
-    - Download notebook_A and csv file and make sure it runs. (remove any remaining print statements)
+    - Download [`notebook_A.ipynb`](notebook_A.ipynb) and csv file `example_data1.csv` and make sure it runs. (remove any remaining print statements)
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
