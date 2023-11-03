@@ -332,16 +332,25 @@
 </section>
 <section id="why-use-version-control" class="slide level2">
 <h2>Why use version control?</h2>
+
+<img data-src="images/tech-comics-version-control.jpeg" class="r-stretch"></section>
+<section id="why-use-version-control-1" class="slide level2">
+<h2>Why use version control?</h2>
+
+<img data-src="images/filenames_versions.png" class="r-stretch"></section>
+<section id="why-use-version-control-2" class="slide level2">
+<h2>Why use version control?</h2>
 <div class="columns">
 <div class="column" style="width:30%;">
 <p><img data-src="images/Vadar-VersionControl-300x300.jpg"></p>
 </div><div class="column" style="width:70%;">
 <ul>
-<li class="fragment">Manage changes to code over time</li>
-<li class="fragment">Keep track of changes and revert to previous versions if needed.</li>
-<li class="fragment">Collaborate and merge changes from different people</li>
-<li class="fragment">Ensure code stability</li>
-<li class="fragment">Best practice for software development</li>
+<li class="fragment">Keep track of changes</li>
+<li class="fragment">Backup and restore</li>
+<li class="fragment">Transparency</li>
+<li class="fragment">Easier collaboration</li>
+<li class="fragment">Improved code quality</li>
+<li class="fragment">Allow experimentation</li>
 </ul>
 </div>
 </div>
@@ -367,22 +376,20 @@
 <h2>Git</h2>
 <p>Git is a powerful tool for managing code changes and collaborating with others on a project.</p>
 <div class="fragment">
-<p>You can use Git from the <em>command line</em>, or with a graphical user interface (GUI).</p>
+<p>Use Git from the <em>command-line</em>, or a <em>graphical user interface</em>.</p>
 </div>
 <div class="fragment">
+<div class="columns">
+<div class="column smaller" style="width:55%;">
 <p><code>&gt; git add foo.py</code></p>
-</div>
-<div class="fragment">
-<p><code>&gt; git commit -m "Nailed it"</code></p>
-</div>
-<div class="fragment">
+<p><code>&gt; git commit -m "Fixed"</code></p>
 <p><code>&gt; git push</code></p>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/GitHubDesktop.png"></p>
+</div>
+</div>
 </div>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
-
-<img data-src="https://imgs.xkcd.com/comics/git.png" class="r-stretch"></section>
 <section id="basic-git-commands" class="slide level2">
 <h2>Basic Git commands</h2>
 <div>
@@ -405,13 +412,10 @@
 </ul>
 </div>
 </section>
-<section id="branching-and-merging" class="slide level2">
-<h2>Branching and Merging</h2>
-<ul>
-<li>A branch is a separate version of your code that you can work on independently from the main branch.</li>
-<li><code>git merge</code>: merges changes back into the main branch (we will do this from GitHub)</li>
-</ul>
-</section>
+<section id="section" class="slide level2" data-background-color="white">
+<h2></h2>
+
+<img data-src="images/git_staging.png" class="r-stretch"></section>
 <section id="git-hosting-platforms" class="slide level2">
 <h2>Git hosting platforms</h2>
 
@@ -429,8 +433,25 @@
 </ul>
 </div>
 </section>
-<section id="github-flow" class="slide level2 smaller incremental" data-background-color="white">
-<h2>Github flow</h2>
+<section id="demo-1" class="slide level2">
+<h2>Demo 1</h2>
+<ol type="1">
+<li>Create a new repository on GitHub</li>
+<li>Clone the repository to your local machine</li>
+<li>Add a file</li>
+<li>Commit the file</li>
+<li>Push the file to GitHub</li>
+</ol>
+</section>
+<section id="branching-and-merging" class="slide level2">
+<h2>Branching and Merging</h2>
+<ul>
+<li>A branch is a separate version of your code that you can work on independently from the main branch.</li>
+<li><code>git merge</code>: merges changes back into the main branch (we will do this from GitHub)</li>
+</ul>
+</section>
+<section id="pull-request-workflow" class="slide level2 smaller incremental" data-background-color="white">
+<h2>Pull request workflow</h2>
 
 <img data-src="images/git_workflow.png" class="r-stretch"><div>
 <ol type="1">
@@ -461,15 +482,18 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="desktop-application-github-desktop" class="slide level2">
-<h2>Desktop Application: <a href="https://desktop.github.com/">GitHub Desktop</a></h2>
-
-<img data-src="images/GitHubDesktop.png" class="r-stretch"></section>
-<section id="demo" class="slide level2">
-<h2>Demo</h2>
+<section id="demo-2" class="slide level2">
+<h2>Demo 2</h2>
+<ol type="1">
+<li>Create a new branch</li>
+<li>Make changes</li>
+<li>Commit the file</li>
+<li>Create a pull request</li>
+<li>Get feedback and merge changes</li>
+</ol>
 </section>
-<section id="github-best-practices" class="slide level2">
-<h2>Github best practices</h2>
+<section id="best-practices" class="slide level2">
+<h2>Best practices</h2>
 <div>
 <ul>
 <li class="fragment">Commit often</li>
@@ -477,15 +501,25 @@
 <li class="fragment">Keep pull requests small and focused</li>
 <li class="fragment">Use “issues” to track work</li>
 <li class="fragment">Review code regularly</li>
+<li class="fragment">Use .gitignore to exclude files</li>
+<li class="fragment">Don’t commit data (only very small test data)</li>
+<li class="fragment">Don’t commit passwords</li>
 </ul>
 </div>
+</section>
+<section id="gettings-started" class="slide level2">
+<h2>Gettings started</h2>
+<ol type="1">
+<li>Create a <a href="https://github.com">GitHub account</a></li>
+<li>Install <a href="https://desktop.github.com/">GitHub Desktop</a> (includes Git)</li>
+<li>Create a new repository on GitHub</li>
+</ol>
 </section>
 <section id="resources" class="slide level2">
 <h2>Resources</h2>
 <ul>
 <li><a href="https://docs.github.com/en/get-started/quickstart/hello-world">GitHub: quickstart</a></li>
 <li><a href="https://realpython.com/python-git-github-intro/">RealPython: git and github intro</a></li>
-<li><a href="https://app.datacamp.com/learn/courses/introduction-to-git">Datacamp: introduction to Git</a></li>
 </ul>
 </section>
 <section id="word-list" class="slide level2 smaller scrollable">
@@ -554,7 +588,7 @@ a copy of a repository that you create on your own account, which you can modify
 <div>
 <ul>
 <li class="fragment">Version control is a tool for managing changes to code</li>
-<li class="fragment">Git is a distributed version control system (<em>software</em>)</li>
+<li class="fragment">Git is a version control system (<em>software</em>)</li>
 <li class="fragment">GitHub is a <em>platform</em> for hosting and collaborating on Git repositories</li>
 <li class="fragment">GitHub Desktop is a GUI for Git (and GitHub)</li>
 <li class="fragment">Pull requests are a way to propose changes to a repository</li>

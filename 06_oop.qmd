@@ -787,3 +787,15 @@ If you want to learn more about refactoring, I recommend the book "Refactoring: 
 
 ::::
 
+
+## Summary 
+
+::: {.incremental}
+
+* OOP is a way to organize your code
+* Encapsulation, composition, inheritance, abstraction
+* Duck Typing 
+* Postel's law
+* Refactoring
+
+:::

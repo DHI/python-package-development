@@ -224,6 +224,13 @@
     "text": "Composed method\n\nDivide your program into methods that perform one identifiable task\nKeep all of the operations in a method at the same level of abstraction.\nThis will naturally result in programs with many small methods, each a few lines long.\nWhen you use Extract method a bunch of times on a method the original method becomes a Composed method."
   },
   {
+    "objectID": "06_oop.html#summary",
+    "href": "06_oop.html#summary",
+    "title": "Object oriented design in Python",
+    "section": "Summary",
+    "text": "Summary\n\n\nOOP is a way to organize your code\nEncapsulation, composition, inheritance, abstraction\nDuck Typing\nPostel’s law\nRefactoring\n\n\n\n\n\nPython package development"
+  },
+  {
     "objectID": "04_dependencies_ci.html#section",
     "href": "04_dependencies_ci.html#section",
     "title": "Dependencies and Continuous Integration",
@@ -340,7 +347,14 @@
     "href": "04_dependencies_ci.html#github-releases",
     "title": "Dependencies and Continuous Integration",
     "section": "GitHub Releases",
-    "text": "GitHub Releases\n\n\n\nGitHub releases are a way to publish software releases.\nYou can upload files, write release notes and tag the release.\nAs a minimum, the release will contain the source code at the time of the release.\nCreating a release can trigger other workflows, e.g. publishing a package to PyPI.\n\n\n\n\n\nhttps://github.com/pydata/xarray/releases/tag/v2022.12.0\n\n\n\nPython package development"
+    "text": "GitHub Releases\n\n\n\nGitHub releases are a way to publish software releases.\nYou can upload files, write release notes and tag the release.\nAs a minimum, the release will contain the source code at the time of the release.\nCreating a release can trigger other workflows, e.g. publishing a package to PyPI.\n\n\n\n\n\nhttps://github.com/pydata/xarray/releases/tag/v2022.12.0"
+  },
+  {
+    "objectID": "04_dependencies_ci.html#summary",
+    "href": "04_dependencies_ci.html#summary",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Summary",
+    "text": "Summary\n\n\nApplication vs library\nPrefer pyproject.toml over setup.py\nUse a virtual environment for each project\nUse GitHub Actions to run tests on every commit\nUse GitHub Releases to publish software releases\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "07_packaging.html#packaging",
@@ -823,7 +837,21 @@
     "href": "05_documentation.html#private-website",
     "title": "Documentation",
     "section": "“Private” website",
-    "text": "“Private” website\n\nA GitHub repository can be made private\nThe website is still publicly available\nIn order to “hide” it from search engines, add a robots.txt file to the root of the website\nThis is not a secure way to hide a website, but it is a simple way to hide it from search engines.\n\n\n\nrobots.txt\n\nUser-agent: *\nDisallow: /\n\n\n\n\nPython package development"
+    "text": "“Private” website\n\nA GitHub repository can be made private\nThe website is still publicly available\nIn order to “hide” it from search engines, add a robots.txt file to the root of the website\nThis is not a secure way to hide a website, but it is a simple way to hide it from search engines.\n\n\n\nrobots.txt\n\nUser-agent: *\nDisallow: /"
+  },
+  {
+    "objectID": "05_documentation.html#additional-resources",
+    "href": "05_documentation.html#additional-resources",
+    "title": "Documentation",
+    "section": "Additional resources",
+    "text": "Additional resources\n\nhttps://realpython.com/python-project-documentation-with-mkdocs/"
+  },
+  {
+    "objectID": "05_documentation.html#summary",
+    "href": "05_documentation.html#summary",
+    "title": "Documentation",
+    "section": "Summary",
+    "text": "Summary\n\n\nDocumentation is important\nUse a README file\nUse docstrings\nUse type hints\nUse mkdocs to generate API documentation\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "group_work/index.html",
@@ -1103,14 +1131,35 @@
     "href": "02_function_classes.html#classes-2",
     "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\n\nclass RandomClassifier: # CamelCase ✅\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y): # lowercase ✅\n        self.fit(X, y)\n        return self.predict(X)\n\n\n\nPython package development"
+    "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\n\nclass RandomClassifier: # CamelCase ✅\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y): # lowercase ✅\n        self.fit(X, y)\n        return self.predict(X)"
+  },
+  {
+    "objectID": "02_function_classes.html#summary",
+    "href": "02_function_classes.html#summary",
+    "title": "Functions, classes and modules",
+    "section": "Summary",
+    "text": "Summary\n\n\nFunctions are black boxes that takes input and produces output.\nFunction arguments can be positional or keyword arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input arguments.\nClasses are useful for grouping related functions and data.\nDataclasses are a convenient way to create classes with a few attributes.\nModules are files containing Python code (functions, classes, constants) that belong together.\nPackages are directories containing modules.\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "01_version_control.html#why-use-version-control",
     "href": "01_version_control.html#why-use-version-control",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Why use version control?",
-    "text": "Why use version control?\n\n\n\n\n\nManage changes to code over time\nKeep track of changes and revert to previous versions if needed.\nCollaborate and merge changes from different people\nEnsure code stability\nBest practice for software development"
+    "text": "Why use version control?"
+  },
+  {
+    "objectID": "01_version_control.html#why-use-version-control-1",
+    "href": "01_version_control.html#why-use-version-control-1",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Why use version control?",
+    "text": "Why use version control?"
+  },
+  {
+    "objectID": "01_version_control.html#why-use-version-control-2",
+    "href": "01_version_control.html#why-use-version-control-2",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Why use version control?",
+    "text": "Why use version control?\n\n\n\n\n\nKeep track of changes\nBackup and restore\nTransparency\nEasier collaboration\nImproved code quality\nAllow experimentation"
   },
   {
     "objectID": "01_version_control.html#centralized-version-control",
@@ -1131,7 +1180,7 @@
     "href": "01_version_control.html#git",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Git",
-    "text": "Git\nGit is a powerful tool for managing code changes and collaborating with others on a project.\n\nYou can use Git from the command line, or with a graphical user interface (GUI).\n\n\n&gt; git add foo.py\n\n\n&gt; git commit -m \"Nailed it\"\n\n\n&gt; git push"
+    "text": "Git\nGit is a powerful tool for managing code changes and collaborating with others on a project.\n\nUse Git from the command-line, or a graphical user interface.\n\n\n\n\n&gt; git add foo.py\n&gt; git commit -m \"Fixed\"\n&gt; git push"
   },
   {
     "objectID": "01_version_control.html#basic-git-commands",
@@ -1148,13 +1197,6 @@
     "text": "Working with remote repositories\n\n\ngit clone: creates a copy of the codebase on your local machine.\ngit push: pushes changes back to the remote repository.\ngit pull: pulls changes from the remote repository."
   },
   {
-    "objectID": "01_version_control.html#branching-and-merging",
-    "href": "01_version_control.html#branching-and-merging",
-    "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Branching and Merging",
-    "text": "Branching and Merging\n\nA branch is a separate version of your code that you can work on independently from the main branch.\ngit merge: merges changes back into the main branch (we will do this from GitHub)"
-  },
-  {
     "objectID": "01_version_control.html#git-hosting-platforms",
     "href": "01_version_control.html#git-hosting-platforms",
     "title": "Git, GitHub, Pull Requests, and code reviews",
@@ -1169,39 +1211,53 @@
     "text": "GitHub\n\n\nGit repository hosting service\nCollaborate with others on codebase\nFork a repository to work on your own version\nPull requests for code review and merging changes\nIssue tracking and project management tools\nGitHub Pages for hosting websites"
   },
   {
-    "objectID": "01_version_control.html#github-flow",
-    "href": "01_version_control.html#github-flow",
+    "objectID": "01_version_control.html#demo-1",
+    "href": "01_version_control.html#demo-1",
     "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Github flow",
-    "text": "Github flow\n\n\n\nCreate a branch\nMake changes\nCreate a pull request\nReview\nMerge\n\n\n\n\nClone a repository to work on a copy (optionally: fork first)\nCreate a branch for each new feature or fix\nCommit changes and push to remote repository\nOpen a pull request to propose changes and request code review\nMerge changes back into the main branch"
+    "section": "Demo 1",
+    "text": "Demo 1\n\nCreate a new repository on GitHub\nClone the repository to your local machine\nAdd a file\nCommit the file\nPush the file to GitHub"
   },
   {
-    "objectID": "01_version_control.html#desktop-application-github-desktop",
-    "href": "01_version_control.html#desktop-application-github-desktop",
+    "objectID": "01_version_control.html#branching-and-merging",
+    "href": "01_version_control.html#branching-and-merging",
     "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Desktop Application: GitHub Desktop",
-    "text": "Desktop Application: GitHub Desktop"
+    "section": "Branching and Merging",
+    "text": "Branching and Merging\n\nA branch is a separate version of your code that you can work on independently from the main branch.\ngit merge: merges changes back into the main branch (we will do this from GitHub)"
   },
   {
-    "objectID": "01_version_control.html#demo",
-    "href": "01_version_control.html#demo",
+    "objectID": "01_version_control.html#pull-request-workflow",
+    "href": "01_version_control.html#pull-request-workflow",
     "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Demo",
-    "text": "Demo"
+    "section": "Pull request workflow",
+    "text": "Pull request workflow\n\n\n\nCreate a branch\nMake changes\nCreate a pull request\nReview\nMerge\n\n\n\n\nClone a repository to work on a copy (optionally: fork first)\nCreate a branch for each new feature or fix\nCommit changes and push to remote repository\nOpen a pull request to propose changes and request code review\nMerge changes back into the main branch"
   },
   {
-    "objectID": "01_version_control.html#github-best-practices",
-    "href": "01_version_control.html#github-best-practices",
+    "objectID": "01_version_control.html#demo-2",
+    "href": "01_version_control.html#demo-2",
     "title": "Git, GitHub, Pull Requests, and code reviews",
-    "section": "Github best practices",
-    "text": "Github best practices\n\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly"
+    "section": "Demo 2",
+    "text": "Demo 2\n\nCreate a new branch\nMake changes\nCommit the file\nCreate a pull request\nGet feedback and merge changes"
+  },
+  {
+    "objectID": "01_version_control.html#best-practices",
+    "href": "01_version_control.html#best-practices",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Best practices",
+    "text": "Best practices\n\n\nCommit often\nUse descriptive commit messages\nKeep pull requests small and focused\nUse “issues” to track work\nReview code regularly\nUse .gitignore to exclude files\nDon’t commit data (only very small test data)\nDon’t commit passwords"
+  },
+  {
+    "objectID": "01_version_control.html#gettings-started",
+    "href": "01_version_control.html#gettings-started",
+    "title": "Git, GitHub, Pull Requests, and code reviews",
+    "section": "Gettings started",
+    "text": "Gettings started\n\nCreate a GitHub account\nInstall GitHub Desktop (includes Git)\nCreate a new repository on GitHub"
   },
   {
     "objectID": "01_version_control.html#resources",
     "href": "01_version_control.html#resources",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Resources",
-    "text": "Resources\n\nGitHub: quickstart\nRealPython: git and github intro\nDatacamp: introduction to Git"
+    "text": "Resources\n\nGitHub: quickstart\nRealPython: git and github intro"
   },
   {
     "objectID": "01_version_control.html#word-list",
@@ -1215,7 +1271,7 @@
     "href": "01_version_control.html#summary",
     "title": "Git, GitHub, Pull Requests, and code reviews",
     "section": "Summary",
-    "text": "Summary\n\n\nVersion control is a tool for managing changes to code\nGit is a distributed version control system (software)\nGitHub is a platform for hosting and collaborating on Git repositories\nGitHub Desktop is a GUI for Git (and GitHub)\nPull requests are a way to propose changes to a repository\n\n\n\n\n\nPython package development"
+    "text": "Summary\n\n\nVersion control is a tool for managing changes to code\nGit is a version control system (software)\nGitHub is a platform for hosting and collaborating on Git repositories\nGitHub Desktop is a GUI for Git (and GitHub)\nPull requests are a way to propose changes to a repository\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "projects/data_cleaning/Project_module_03.html",
@@ -1474,7 +1530,14 @@
     "href": "03_testing.html#profiling---output",
     "title": "Testing, linting and formatting",
     "section": "Profiling - output",
-    "text": "Profiling - output\nInvoking the jupyter magic command lprun with:\n\nfunction to profile - top_neighbors\ncode to run - main()\n\n%lprun -f top_neighbors main()\n\n\nLine #      Hits         Time  Per Hit   % Time  Line Contents\n==============================================================\n     3                                           def top_neighbors(points, radius=\"0.1\"):\n     4                                               \"\"\"Don't use this function, it's only purpose is to be profiled.\"\"\"\n     5         1       2800.0   2800.0      0.0      n = len(points)\n     6         1     353300.0 353300.0      0.0      idx = np.array([int(x) for x in str.split(\"0 \"* n)])\n     7                                           \n     8      1001     345100.0    344.8      0.0      for i in range(n):\n     9   1001000  378191701.0    377.8      2.2          for j in range(n):\n    10   1000000  328387205.0    328.4      1.9              if i != j:\n    11    999000        1e+10  14473.0     83.8                  d = np.sqrt(np.sum((points[i] - points[j])**2))\n    12    999000  933778605.0    934.7      5.4                  if d &lt; float(radius): \n    13     28952   57010001.0   1969.1      0.3                      idx[i] += 1\n    14      1001     367100.0    366.7      0.0      for i in range(n):\n    15    500500  144295203.0    288.3      0.8          for j in range(n - i - 1):\n    16    499500  302166901.0    604.9      1.8              if idx[j] &lt; idx[j + 1]:\n    17    240227  212070500.0    882.8      1.2                  idx[j], idx[j + 1] = idx[j + 1], idx[j]\n    18    240227  437538803.0   1821.4      2.5                  points[j], points[j + 1] = points[j + 1], points[j]\n    19         1        500.0    500.0      0.0      return points\n\n\n\nPython package development"
+    "text": "Profiling - output\nInvoking the jupyter magic command lprun with:\n\nfunction to profile - top_neighbors\ncode to run - main()\n\n%lprun -f top_neighbors main()\n\n\nLine #      Hits         Time  Per Hit   % Time  Line Contents\n==============================================================\n     3                                           def top_neighbors(points, radius=\"0.1\"):\n     4                                               \"\"\"Don't use this function, it's only purpose is to be profiled.\"\"\"\n     5         1       2800.0   2800.0      0.0      n = len(points)\n     6         1     353300.0 353300.0      0.0      idx = np.array([int(x) for x in str.split(\"0 \"* n)])\n     7                                           \n     8      1001     345100.0    344.8      0.0      for i in range(n):\n     9   1001000  378191701.0    377.8      2.2          for j in range(n):\n    10   1000000  328387205.0    328.4      1.9              if i != j:\n    11    999000        1e+10  14473.0     83.8                  d = np.sqrt(np.sum((points[i] - points[j])**2))\n    12    999000  933778605.0    934.7      5.4                  if d &lt; float(radius): \n    13     28952   57010001.0   1969.1      0.3                      idx[i] += 1\n    14      1001     367100.0    366.7      0.0      for i in range(n):\n    15    500500  144295203.0    288.3      0.8          for j in range(n - i - 1):\n    16    499500  302166901.0    604.9      1.8              if idx[j] &lt; idx[j + 1]:\n    17    240227  212070500.0    882.8      1.2                  idx[j], idx[j + 1] = idx[j + 1], idx[j]\n    18    240227  437538803.0   1821.4      2.5                  points[j], points[j + 1] = points[j + 1], points[j]\n    19         1        500.0    500.0      0.0      return points"
+  },
+  {
+    "objectID": "03_testing.html#summary",
+    "href": "03_testing.html#summary",
+    "title": "Testing, linting and formatting",
+    "section": "Summary",
+    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nBlack is an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "00_introduction.html#instructors",
