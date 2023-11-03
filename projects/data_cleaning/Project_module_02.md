@@ -9,7 +9,7 @@ After last module, your script now uses functions `clean_spikes`, `clean_outofra
 - 2.2 Modules
     - Move cleaner functions into a separate module `cleaning.py`. Commit.
     - Move the plotting function into a separate module `plotting.py`. Commit.
-    - Rename the script `main.py` and execute the cleaning and plotting.
+    - Rename `clean_project_data_v4_final2.py` to `main.py` and execute the cleaning and plotting.
         - `from cleaning import ...`
         - `from plotting import ...`
     - Check that it runs! Commit. 
