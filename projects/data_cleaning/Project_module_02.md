@@ -12,7 +12,7 @@ After last module, your script now uses functions `clean_spikes`, `clean_outofra
     - Rename the script `main.py` and execute the cleaning and plotting.
         - `from cleaning import ...`
         - `from plotting import ...`
-        - Check that it runs!
+    - Check that it runs! Commit. 
 - 2.3 Classes
     - Organize the cleaning functions into classes that all have the same structure (an init method and a clean method)
         - e.g. for SpikeCleaner
@@ -28,6 +28,7 @@ After last module, your script now uses functions `clean_spikes`, `clean_outofra
             for cleaner in cleaners:
               data = cleaner.clean(data)
             ```
+        - commit
     - Download [`notebook_A.ipynb`](notebook_A.ipynb) and csv file [`example_data1.csv`](example_data1.csv) and make sure it runs. (remove any remaining print statements)
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
