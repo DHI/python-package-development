@@ -1,6 +1,6 @@
 ## Module 1
 
-- Study this script `clean_project_data_v4_final2.py` for 3 minutes
+- Study this script [`clean_project_data_v4_final2.py`](../projects/data_cleaning/clean_project_data_v4_final2.qmd) for 3 minutes
 - Consider what you could do to improve it
 - Q1: Discuss in your group how to improve the script. 
 - Q2: Version control. What is your experience with version control? 

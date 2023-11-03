@@ -1,6 +1,8 @@
 1. [Git, Pull Requests, and code reviews](01_version_control.qmd)
+    * [Discussion](group_work/module_01.md)
     * [Homework](projects/data_cleaning/Project_module_01.md)
 2. [Python functions, classes, and modules](02_function_classes.qmd)
+   *  [Discussion](group_work/module_02.md)
     * [Homework](projects/data_cleaning/Project_module_02.md)
 3. [Testing and auto-formatting](03_testing.qmd)
     * [Homework](projects/data_cleaning/Project_module_03.md)
