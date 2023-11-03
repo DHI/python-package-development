@@ -3,7 +3,6 @@
 In the last module, you introduced modules, classes and a new notebook in you repo. In this module, you will add tests to your code base. But first, you will make your package installable.
 
 - Create new branch "package-test" (Make sure changes from last module have been merged, and that you start from the main branch)
-- Make sure pytest and pytest-cov are installed
 - 3.1 Installable package
     - Organize the files into folders and add `setup.py`. Call your package `tscleaner`.
         - subfolders: tscleaner, scripts, notebooks, tests
@@ -32,6 +31,7 @@ In the last module, you introduced modules, classes and a new notebook in you re
     - Modify the cleaner tools by raising exceptions for invalid inputs.
     - Move the csv file to `/tests/testdata` and update notebook with relative path to the file
 - 3.2 Pytest
+    - Make sure `pytest` and `pytest-cov` are installed
     - Write unit tests with pytest in the `/tests` folder. Create an empty `__init__.py` file in the folder. Create a file `test_cleaning.py` and create at least three tests that verify that the cleaning tools work as intended
     - If all your tests are failing, consider if you have given the right requirements in the `setup.py`... 
     - [Optional] Consider to make a fixture that reads the csv file and you can read in all tests
