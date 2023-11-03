@@ -77,50 +77,44 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="module-2-modules-and-classes" class="level2">
 <h2 class="anchored" data-anchor-id="module-2-modules-and-classes">Module 2: Modules and classes</h2>
+<p>After last module, your script now uses functions <code>clean_spikes</code>, <code>clean_outofrange</code>, <code>clean_flat</code>, <code>plot_timeseries</code> and has a nice home on GitHub. In this module, you will improve the functions, move them to separate modules and then refactor your code to use classes. Finally, you will check that it all works by running a notebook.</p>
 <ul>
 <li>Create new branch “modules-classes” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
 <li>2.1 Function arguments
 <ul>
 <li>Add default arguments to the functions. Commit.</li>
 <li>Make sure that you only use positional arguments where there is only one argument. Use keyword arguments everywhere else. Commit.</li>
+<li>Consider modifying the cleaning functions if they modify the input (remember that inputs are passed as reference, not a copy), e.g.&nbsp; <code>python       data_cleaned = data.copy()       ...       return data_cleaned</code></li>
 </ul></li>
 <li>2.2 Modules
 <ul>
-<li>Move cleaner functions into a separate module “cleaning.py”. Commit.</li>
-<li>Move the plotting function into a separate module “plotting.py”. Commit.</li>
-<li>Rename the script <code>main.py</code> and execute the cleaning and plotting.
+<li>Move cleaner functions into a separate module <code>cleaning.py</code>. Commit.</li>
+<li>Move the plotting function into a separate module <code>plotting.py</code>. Commit.</li>
+<li>Rename <code>clean_project_data_v4_final2.py</code> to <code>main.py</code> and execute the cleaning and plotting.
 <ul>
-<li>from cleaning import …</li>
-<li>from plotting import …</li>
-<li>Check that it runs!</li>
+<li><code>from cleaning import ...</code></li>
+<li><code>from plotting import ...</code></li>
 </ul></li>
+<li>Check that it runs! Commit.</li>
 </ul></li>
 <li>2.3 Classes
 <ul>
 <li>Organize the cleaning functions into classes that all have the same structure (an init method and a clean method)
 <ul>
-<li>SpikeCleaner
+<li>e.g.&nbsp;for SpikeCleaner
 <ul>
-<li><code>def __init__(max_jump)</code></li>
-<li><code>def clean(data)</code></li>
+<li>create and init method: <code>def __init__(max_jump)</code></li>
+<li>and a clean method: <code>def clean(data)</code></li>
 </ul></li>
-<li>modify <code>main.py</code> and check that it runs
-<ul>
-<li>cleaners = [</li>
-<li>SpikeCleaner(max_jump=10),</li>
-<li>OutOfRangeCleaner(min_val=0, max_val=50),</li>
-<li>FlatPeriodCleaner(flat_period=5),</li>
-<li>]</li>
-<li>for cleaner in cleaners:</li>
-<li>data = cleaner.clean(data)</li>
+<li>modify <code>main.py</code> and check that it runs <code>python       cleaners = [         SpikeCleaner(max_jump=10),         OutOfRangeCleaner(min_val=0, max_val=50),         FlatPeriodCleaner(flat_period=5),       ]       for cleaner in cleaners:         data = cleaner.clean(data)</code></li>
+<li>commit</li>
 </ul></li>
-</ul></li>
-<li>Download notebook_A and csv file and make sure it runs. (remove any remaining print statements)</li>
+<li>Download <a href="../../projects/data_cleaning/notebook_A.html"><code>notebook_A.ipynb</code></a> and csv file <a href="example_data1.csv"><code>example_data1.csv</code></a> and make sure it runs. (remove any remaining print statements)</li>
 </ul></li>
 <li>Create pull request in GitHub and “request review” from your reviewers</li>
 <li>Get feedback, Adjust code until approval, then merge (and delete branch)</li>
 </ul>
-<p><a href="../../projects/data_cleaning/index.html">Back to homework overview</a></p>
+<p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
 
 
 </section>

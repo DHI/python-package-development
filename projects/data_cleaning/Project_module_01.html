@@ -77,42 +77,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="module-1-github-and-basic-functions" class="level2">
 <h2 class="anchored" data-anchor-id="module-1-github-and-basic-functions">Module 1: GitHub and basic functions</h2>
+<p>Let’s get started on the project! You have received the script <a href="clean_project_data_v4_final2.py"><code>clean_project_data_v4_final2.py</code></a> from a colleague and in this module you will create a GitHub repository, add the script and improve the script by using functions.</p>
 <ul>
 <li>1.1 GitHub repo
 <ul>
-<li>1.1.1 Create a new GitHub repository “timeseriescleaner”
+<li>Create a new GitHub repository “timeseriescleaner” on your own GitHub profile (not on your organization’s GitHub)
 <ul>
-<li>private, no template, add readme, gitignore python, no license</li>
+<li>Make it private, no template, add readme, gitignore python, no license</li>
 </ul></li>
-<li>1.1.2 Go to repo settings/Collaborators add your instructors and your “buddy”</li>
-<li>1.1.3 Clone repo to local machine</li>
+<li>Go to repo settings/Collaborators add your instructors and your “buddy”</li>
+<li>Clone repo to local machine</li>
 <li>[Optional] Create virtual environment for this course project (use venv or mamba/conda environment)</li>
-<li>1.1.4 Download the provided Python script and add it to the repo</li>
-<li>1.1.5 Commit the file and push the changes (Check that the file can be found on GitHub)</li>
-<li>1.1.6 Open the project in vscode and make a single character change to the file (add a comment)</li>
-<li>1.1.7 Commit the changes (Check that it works on GitHub)</li>
+<li>Download the provided Python script and add it to the repo</li>
+<li>Commit the file and push the changes (Check that the file can be found on GitHub)</li>
+<li>Open the project in vscode and make a single character change to the file (add a comment)</li>
+<li>Commit and push the changes (Check that you can find it on GitHub)</li>
 </ul></li>
 <li>1.2 Functions
 <ul>
-<li>1.2.1 Create a local branch “refactor-functions”</li>
-<li>1.2.2 Refactor the code to use functions (<code>clean_spikes</code>, <code>clean_outofrange</code>, <code>clean_flat</code>, <code>plot_timeseries</code>)
-<ul>
-<li>for data in [data1, data2, data3]:
-<ul>
-<li>data_original = data.copy()</li>
-<li>data = clean_spikes(data, max_jump=10)</li>
-<li>data = clean_outofrange(data, min_val=0, max_val=50)</li>
-<li>data = clean_flat(data, flat_period=5)</li>
-<li>plot_timeseries(data_original, data)</li>
-</ul></li>
-</ul></li>
-<li>1.2.3 Check that your code and produce the same results as before (you should not change the functionality!)</li>
-<li>1.2.4 Commit your code in 1 or more commits (in the end your code should be approximately 75 lines long)</li>
+<li>Create a local branch “refactor-functions”</li>
+<li>Refactor the code to use functions (<code>clean_spikes</code>, <code>clean_outofrange</code>, <code>clean_flat</code>, <code>plot_timeseries</code>)</li>
+<li>You should be able to run the cleaning using this loop:<br>
+<code>python       for data in [data1, data2, data3]:           data_original = data.copy()           data = clean_spikes(data, max_jump=10)           data = clean_outofrange(data, min_val=0, max_val=50)           data = clean_flat(data, flat_period=5)           plot_timeseries(data_original, data)</code></li>
+<li>Check that your code runs and produce the same results as before (you should not change the functionality when refactoring!)</li>
+<li>Commit your code in one or more commits (in the end, your code should be approximately 75 lines long)</li>
 </ul></li>
 <li>Create a pull request in GitHub and “request review” from your reviewers</li>
 <li>Wait for feedback, Adjust code until approval, then merge (and delete branch)</li>
 </ul>
-<p><a href="../../projects/data_cleaning/index.html">Back to homework overview</a></p>
+<p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
 
 
 </section>
