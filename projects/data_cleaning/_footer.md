@@ -1,1 +1,1 @@
-[Back to homework overview](index.md)
+[Back to course project overview](index.md)
