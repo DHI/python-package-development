@@ -753,3 +753,18 @@ class RandomClassifier: # CamelCase ✅
         self.fit(X, y)
         return self.predict(X)
 ```
+
+## Summary 
+
+::: {.incremental}
+
+* **Functions** are black boxes that takes input and produces output.
+* Function **arguments** can be positional or keyword arguments.
+* **Pure** functions are easier to reason about.
+* Avoid mutable default arguments and modifying input arguments.
+* **Classes** are useful for grouping related functions and data.
+* **Dataclasses** are a convenient way to create classes with a few attributes.
+* **Modules** are files containing Python code (functions, classes, constants) that belong together.
+* **Packages** are directories containing modules.
+
+:::
