@@ -33,6 +33,7 @@ In the last module, you introduced modules, classes and a new notebook in you re
     - Move the csv file to `/tests/testdata` and update notebook with relative path to the file
 - 3.2 Pytest
     - Write unit tests with pytest in the `/tests` folder. Create an empty `__init__.py` file in the folder. Create a file `test_cleaning.py` and create at least three tests that verify that the cleaning tools work as intended
+    - If all your tests are failing, consider if you have given the right requirements in the `setup.py`... 
     - [Optional] Consider to make a fixture that reads the csv file and you can read in all tests
     - Run the tests from the commandline by writting `>pytest` in the project root (can you also run the tests from VSCode?)
     - Assess the test coverage with `>pytest --cov=tscleaner tests`
