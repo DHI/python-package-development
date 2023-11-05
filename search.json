@@ -1558,7 +1558,7 @@
     "href": "00_introduction.html#learning-modules",
     "title": "Python package development",
     "section": "Learning modules",
-    "text": "Learning modules\n\nGit, Pull Requests, and code reviews\n\nDiscussion\nHomework\n\nPython functions, classes, and modules\n\nDiscussion\nHomework\n\nTesting and auto-formatting\n\nHomework\n\nDependencies and GitHub actions\n\nHomework\n\nDocumentation\n\nHomework\n\nObject oriented design in Python\n\nHomework\n\nDistributing your package\n\nHomework"
+    "text": "Learning modules\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and GitHub actions\nDocumentation\nObject oriented design in Python\nDistributing your package"
   },
   {
     "objectID": "00_introduction.html#learning-objectives",
@@ -1580,6 +1580,13 @@
     "title": "Python package development",
     "section": "Course material",
     "text": "Course material\n\nHillard, 2020, Practices of the Python Pro, Manning\nSlides"
+  },
+  {
+    "objectID": "00_introduction.html#section",
+    "href": "00_introduction.html#section",
+    "title": "Python package development",
+    "section": "",
+    "text": "Book\n\nObject oriented design\nTesting\nData structures\n\n\nLectures\n\nExamples\nVersion control\nDocumentation\nAutomation\nPackaging"
   },
   {
     "objectID": "00_introduction.html#poll",
