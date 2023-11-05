@@ -18,7 +18,13 @@ Introduce yourselves in a break out session later today.
 
 ## Learning modules
 
-{{< include _modules.qmd >}}
+1. [Git, Pull Requests, and code reviews](01_version_control.qmd)
+2. [Python functions, classes, and modules](02_function_classes.qmd)
+3. [Testing and auto-formatting](03_testing.qmd)
+3. [Dependencies and GitHub actions](04_dependencies_ci.qmd)
+4. [Documentation](05_documentation.qmd)
+6. [Object oriented design in Python](06_oop.qmd)
+7. [Distributing your package](07_packaging.qmd)
 
 ## Learning objectives
 
@@ -35,8 +41,36 @@ Introduce yourselves in a break out session later today.
 
 ## Course material
 
-* Hillard, 2020, Practices of the Python Pro, Manning
+* [Hillard, 2020, Practices of the Python Pro, Manning](https://www.manning.com/books/practices-of-the-python-pro)
 * [Slides](https://dhi.github.io/python-package-development)
+
+##
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+**Book**
+
+- Object oriented design
+- Testing
+- Data structures
+
+:::
+
+::: {.column width="50%"}
+
+**Lectures**
+
+- Examples
+- Version control
+- Documentation
+- Automation
+- Packaging
+
+:::
+
+::::
 
 ## Poll
 
