@@ -1,7 +1,9 @@
 ---
 title: "Dependencies and Continuous Integration"
 format: 
+    html: default
     revealjs:
+      output-file: 04-dependencies-ci_slides.html
       slide-number: true
 footer: Python package development
 logo: academy_logo.png

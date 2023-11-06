@@ -1,7 +1,9 @@
 ---
 title: "Distributing your Python package"
 format: 
+    html: default
     revealjs:
+        output-file: 07_packaging_slides.html
         slide-number: true
 footer: Python package development
 logo: academy_logo.png
@@ -351,13 +353,13 @@ Successfully installed sampling-0.0.1
 
 ## Recap
 
-1. [Git, Pull Requests, and code reviews](01_version_control.qmd)
-2. [Python functions, classes, and modules](02_function_classes.qmd)
-3. [Types, abstraction, and refactoring](03_types_protocols.qmd)
-4. [Testing and auto-formatting](04_testing.qmd)
-5. [Dependencies and GitHub actions](05_dependencies_ci.qmd)
-6. [Documentation](06_documentation.qmd)
-7. [Distributing your package](07_packaging.qmd)
+1. [Git, Pull Requests, and code reviews](01_version_control.qmd) [🛝](01_version_control_slides.html)
+2. [Python functions, classes, and modules](02_function_classes.qmd) [🛝](02_function_classes_slides.html)
+3. [Testing and auto-formatting](03_testing.qmd) [🛝](03_testing_slides.html)
+4. [Dependencies and GitHub actions](04_dependencies_ci.qmd) [🛝](04_dependencies_ci_slides.html)
+6. [Object oriented design in Python](05_oop.qmd) [🛝](05_oop_slides.html)
+6. [Documentation](06_documentation.qmd) [🛝](06_documentation_slides.html)
+7. [Distributing your package](07_packaging.qmd) [🛝](07_packaging_slides.html)
 
 ## Git, Pull Requests, and code reviews {.smaller}
 
