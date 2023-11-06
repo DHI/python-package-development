@@ -1,7 +1,10 @@
 ---
 title: "Git, GitHub, Pull Requests, and code reviews"
 format: 
+  html: default
   revealjs:
+    output-file: 01_version_control_slides.html
+    default: true
     slide-number: true
     transition: fade
 footer: Python package development
