@@ -17,6 +17,6 @@ Sign up for the course here: <https://events.dhigroup.com/improving-water-modell
 2. [Python functions, classes, and modules](02_function_classes.qmd)
 3. [Testing and auto-formatting](03_testing.qmd)
 3. [Dependencies and GitHub actions](04_dependecies_ci.qmd)
-4. [Documentation](05_documentation.qmd)
-6. [Object oriented design in Python](06_oop.qmd)
+4. [Object oriented design in Python](05_oop.qmd)
+6. [Documentation](06_documentation.qmd)
 7. [Distributing your package](07_packaging.qmd)  
