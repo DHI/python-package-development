@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -106,7 +140,16 @@ ul.task-list li input[type="checkbox"] {
 <li>create and init method: <code>def __init__(max_jump)</code></li>
 <li>and a clean method: <code>def clean(data)</code></li>
 </ul></li>
-<li>modify <code>main.py</code> and check that it runs <code>python       cleaners = [         SpikeCleaner(max_jump=10),         OutOfRangeCleaner(min_val=0, max_val=50),         FlatPeriodCleaner(flat_period=5),       ]       for cleaner in cleaners:         data = cleaner.clean(data)</code></li>
+<li>modify <code>main.py</code> and check that it runs</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cleaners <span class="op">=</span> [</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  SpikeCleaner(max_jump<span class="op">=</span><span class="dv">10</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  OutOfRangeCleaner(min_val<span class="op">=</span><span class="dv">0</span>, max_val<span class="op">=</span><span class="dv">50</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  FlatPeriodCleaner(flat_period<span class="op">=</span><span class="dv">5</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cleaner <span class="kw">in</span> cleaners:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> cleaner.clean(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
 <li>commit</li>
 </ul></li>
 <li>Download <a href="../../projects/data_cleaning/notebook_A.html"><code>notebook_A.ipynb</code></a> and csv file <a href="example_data1.csv"><code>example_data1.csv</code></a> and make sure it runs. (remove any remaining print statements)</li>
