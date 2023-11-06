@@ -7,11 +7,11 @@ After last module, your script now uses functions `clean_spikes`, `clean_outofra
     - Add default arguments to the functions. Commit.
     - Make sure that you only use positional arguments where there is only one argument. Use keyword arguments everywhere else. Commit.
     - Consider modifying the cleaning functions if they modify the input (remember that inputs are passed as reference, not a copy), e.g. 
-        ```python
-        data_cleaned = data.copy()
-        ...
-        return data_cleaned
-        ```
+    ```python
+    data_cleaned = data.copy()
+    ...
+    return data_cleaned
+```
 - 2.2 Modules
     - Move cleaner functions into a separate module `cleaning.py`. Commit.
     - Move the plotting function into a separate module `plotting.py`. Commit.
