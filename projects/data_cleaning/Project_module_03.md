@@ -7,25 +7,25 @@ In the last module, you introduced modules, classes and a new notebook in you re
     - Organize the files into folders and add `setup.py`. Call your package `tscleaner`.
         - subfolders: tscleaner, scripts, notebooks, tests
         - make an init-file `__init__.py` in the tscleaner folder with the following content: 
-            ```python
-            from .cleaning import SpikeCleaner, FlatPeriodCleaner, OutOfRangeCleaner
-            from .plotting import plot_timeseries
-            ```
+```python
+from .cleaning import SpikeCleaner, FlatPeriodCleaner, OutOfRangeCleaner
+from .plotting import plot_timeseries
+```
         - create a `setup.py` in the root with the following content (change with your data):
-            ```python
-            from setuptools import setup, find_packages
-            setup(
-                name='MyPackageName',  
-                version='0.0.1',  
-                url='https://github.com/mypackage.git',  
-                author='Author Name',  
-                author_email='author@gmail.com',  
-                description='Description of my package',  
-                packages=find_packages(),  
-                install_requires=['numpy', 'matplotlib'],  
-            )  
-            ```
-    - Install the package in editable mode, by running the below command from the project root.
+```python
+from setuptools import setup, find_packages
+setup(
+    name='MyPackageName',  
+    version='0.0.1',  
+    url='https://github.com/mypackage.git',  
+    author='Author Name',  
+    author_email='author@gmail.com',  
+    description='Description of my package',  
+    packages=find_packages(),  
+    install_requires=['numpy', 'matplotlib'],  
+)  
+```
+- Install the package in editable mode, by running the below command from the project root.
         - `> pip install -e .`
     - Modify import statements in `notebook_A` and script `main.py` and make sure they run.
     - Modify the cleaner tools by raising exceptions for invalid inputs.

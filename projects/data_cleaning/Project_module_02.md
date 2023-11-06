@@ -25,15 +25,15 @@ After last module, your script now uses functions `clean_spikes`, `clean_outofra
             - create and init method: `def __init__(max_jump)`
             - and a clean method: `def clean(data)`
         - modify `main.py` and check that it runs
-            ```python
-            cleaners = [
-              SpikeCleaner(max_jump=10),
-              OutOfRangeCleaner(min_val=0, max_val=50),
-              FlatPeriodCleaner(flat_period=5),
-            ]
-            for cleaner in cleaners:
-              data = cleaner.clean(data)
-            ```
+```python
+cleaners = [
+    SpikeCleaner(max_jump=10),
+    OutOfRangeCleaner(min_val=0, max_val=50),
+    FlatPeriodCleaner(flat_period=5),
+]
+for cleaner in cleaners:
+    data = cleaner.clean(data)
+```
         - commit
     - Download [`notebook_A.ipynb`](notebook_A.ipynb) and csv file [`example_data1.csv`](example_data1.csv) and make sure it runs. (remove any remaining print statements)
 - Create pull request in GitHub and "request review" from your reviewers
