@@ -5,6 +5,7 @@
    *  [Discussion](group_work/module_02.md)
     * [Homework](projects/data_cleaning/Project_module_02.md)
 3. [Testing and auto-formatting](03_testing.qmd) [🛝](03_testing_slides.html)
+    * [Discussion](group_work/module_03.md)
     * [Homework](projects/data_cleaning/Project_module_03.md)
 4. [Dependencies and GitHub actions](04_dependencies_ci.qmd) [🛝](04_dependencies_ci_slides.html)
     * [Homework](projects/data_cleaning/Project_module_04.md)
