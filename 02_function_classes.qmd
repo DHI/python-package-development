@@ -3,7 +3,7 @@ title: Functions, classes and modules
 format: 
     html: default
     revealjs:
-        output-file: 02_functions_classes_slides.html
+        output-file: 02_function_classes_slides.html
         slide-number: true
 footer: Python package development
 logo: academy_logo.png

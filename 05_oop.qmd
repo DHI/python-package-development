@@ -614,6 +614,35 @@ def process(number: Union[int,str,float]) -> int:
 The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input.
 
 
+## Example - Pydantic
+
+```python
+from pydantic import BaseModel
+from datetime import date
+
+class Sensor(BaseModel):
+    name: str
+    voltage: float
+    install_date: date
+    location: tuple[float, float]
+
+s1 = Sensor(name="Sensor 1",
+            voltage=3.3,
+            install_date=date(2020, 1, 1),
+            location=(4.42, 51.22))
+
+data = {
+    "name": "Sensor 1",
+    "voltage": "3.3",
+    "install_date": "2020-01-01",
+    "location": ("4.42", "51.22")
+}
+
+s2 = Sensor(**data)
+```
+
+
+
 
 ## Refactoring
 

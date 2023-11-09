@@ -1029,225 +1029,225 @@
     "text": "Summary\n\n\nFunctions are black boxes that takes input and produces output.\nFunction arguments can be positional or keyword arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input arguments.\nClasses are useful for grouping related functions and data.\nDataclasses are a convenient way to create classes with a few attributes.\nModules are files containing Python code (functions, classes, constants) that belong together.\nPackages are directories containing modules."
   },
   {
-    "objectID": "02_functions_classes_slides.html#functions-as-black-boxes",
-    "href": "02_functions_classes_slides.html#functions-as-black-boxes",
+    "objectID": "02_function_classes_slides.html#functions-as-black-boxes",
+    "href": "02_function_classes_slides.html#functions-as-black-boxes",
     "title": "Functions, classes and modules",
     "section": "Functions as black boxes",
     "text": "Functions as black boxes\n\n\n\n\nflowchart LR\n    A(Input A) --&gt; F[\"Black box\"]\n    B(Input B) --&gt;  F\n    F --&gt; O(Output)\n\n    style F fill:#000,color:#fff,stroke:#333,stroke-width:4px\n\n\n\n\n\n\n\nA function is a black box that takes some input and produces some output.\nThe input and output can be anything, including other functions.\nAs long as the input and output are the same, the function body can be modified."
   },
   {
-    "objectID": "02_functions_classes_slides.html#pure-functions",
-    "href": "02_functions_classes_slides.html#pure-functions",
+    "objectID": "02_function_classes_slides.html#pure-functions",
+    "href": "02_function_classes_slides.html#pure-functions",
     "title": "Functions, classes and modules",
     "section": "Pure functions",
     "text": "Pure functions\nA pure function returns the same output for the same input.\ndef f(x)\n    return x**2\n\n&gt;&gt; f(2)\n4\n&gt;&gt; f(2)\n4"
   },
   {
-    "objectID": "02_functions_classes_slides.html#side-effects",
-    "href": "02_functions_classes_slides.html#side-effects",
+    "objectID": "02_function_classes_slides.html#side-effects",
+    "href": "02_function_classes_slides.html#side-effects",
     "title": "Functions, classes and modules",
     "section": "Side effects",
     "text": "Side effects\nA function can have side effects (besides returning a value)\ndef f_with_side_effect(x):\n    with open(\"output.txt\", \"a\") as f:\n        f.write(str(x))\n    return x**2\n\nThe function has x as input, returns the square of x, but also appends x to a file. If you run the function a second time, the file will contain two lines."
   },
   {
-    "objectID": "02_functions_classes_slides.html#side-effects-1",
-    "href": "02_functions_classes_slides.html#side-effects-1",
+    "objectID": "02_function_classes_slides.html#side-effects-1",
+    "href": "02_function_classes_slides.html#side-effects-1",
     "title": "Functions, classes and modules",
     "section": "Side effects",
     "text": "Side effects\nPure functions without side effects are easier to reason about.\nBut sometimes side effects are necessary.\n\nWriting to a file\nWriting to a database\nPrinting to the screen\nCreating a plot"
   },
   {
-    "objectID": "02_functions_classes_slides.html#modifying-input-arguments",
-    "href": "02_functions_classes_slides.html#modifying-input-arguments",
+    "objectID": "02_function_classes_slides.html#modifying-input-arguments",
+    "href": "02_function_classes_slides.html#modifying-input-arguments",
     "title": "Functions, classes and modules",
     "section": "Modifying input arguments",
     "text": "Modifying input arguments\ndef difficult_function(values):\n    for i in range(len(values)):\n        values[i] = min(0, values[i]) # 😟\n    return values\n\n&gt;&gt;&gt; x = [1,2,-1]\n&gt;&gt;&gt; difficult_function(x)\n[0, 0, -1]\n&gt;&gt;&gt; x\n[0, 0, -1]\n\nThis function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it."
   },
   {
-    "objectID": "02_functions_classes_slides.html#positional-arguments",
-    "href": "02_functions_classes_slides.html#positional-arguments",
+    "objectID": "02_function_classes_slides.html#positional-arguments",
+    "href": "02_function_classes_slides.html#positional-arguments",
     "title": "Functions, classes and modules",
     "section": "Positional arguments",
     "text": "Positional arguments\ndef f(x, y):\n    return x + y\n\n&gt;&gt;&gt; f(1, 2)\n3"
   },
   {
-    "objectID": "02_functions_classes_slides.html#keyword-arguments",
-    "href": "02_functions_classes_slides.html#keyword-arguments",
+    "objectID": "02_function_classes_slides.html#keyword-arguments",
+    "href": "02_function_classes_slides.html#keyword-arguments",
     "title": "Functions, classes and modules",
     "section": "Keyword arguments",
     "text": "Keyword arguments\ndef f(x, y):\n    return x + y\n\n&gt;&gt;&gt; f(x=1, y=2)\n3"
   },
   {
-    "objectID": "02_functions_classes_slides.html#positional-arguments-1",
-    "href": "02_functions_classes_slides.html#positional-arguments-1",
+    "objectID": "02_function_classes_slides.html#positional-arguments-1",
+    "href": "02_function_classes_slides.html#positional-arguments-1",
     "title": "Functions, classes and modules",
     "section": "Positional arguments",
     "text": "Positional arguments\n\n\nVersion 1\ndef is_operable(height, period):\n\n    return height &lt; 2.0 and period &lt; 6.0\n\n&gt;&gt;&gt; is_operable(1.0, 3.0)\nTrue\n\nVersion 2\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height &lt; 2.0 and period &lt; 6.0\n\n&gt;&gt;&gt; is_operable(1.0, 3.0)\nFalse 😟\n\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
   },
   {
-    "objectID": "02_functions_classes_slides.html#keyword-only-arguments",
-    "href": "02_functions_classes_slides.html#keyword-only-arguments",
+    "objectID": "02_function_classes_slides.html#keyword-only-arguments",
+    "href": "02_function_classes_slides.html#keyword-only-arguments",
     "title": "Functions, classes and modules",
     "section": "Keyword-only arguments",
     "text": "Keyword-only arguments\ndef f(*, x, y):\n    return x + y\n\n&gt;&gt;&gt; f(1,2)\nTraceback (most recent call last):\n  File \"&lt;stdin&gt;\", line 1, in &lt;module&gt;\nTypeError: f() takes 0 positional arguments but 2 were given"
   },
   {
-    "objectID": "02_functions_classes_slides.html#optionaldefault-arguments",
-    "href": "02_functions_classes_slides.html#optionaldefault-arguments",
+    "objectID": "02_function_classes_slides.html#optionaldefault-arguments",
+    "href": "02_function_classes_slides.html#optionaldefault-arguments",
     "title": "Functions, classes and modules",
     "section": "Optional(=default) arguments",
     "text": "Optional(=default) arguments\ndef f(x, n=2):\n    return x**n\n\n&gt;&gt;&gt; f(2)\n4\n&gt;&gt;&gt; f(2, n=3)\n8\n\nMakes it easy to use a function with many arguments."
   },
   {
-    "objectID": "02_functions_classes_slides.html#mutable-default-arguments",
-    "href": "02_functions_classes_slides.html#mutable-default-arguments",
+    "objectID": "02_function_classes_slides.html#mutable-default-arguments",
+    "href": "02_function_classes_slides.html#mutable-default-arguments",
     "title": "Functions, classes and modules",
     "section": "Mutable default arguments",
     "text": "Mutable default arguments\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called.\n\ndef add_to_cart(x, cart=[]): # this line is evaluated only once 😮\n    cart.append(x)\n    return cart\n\n&gt;&gt;&gt; add_to_cart(1, cart=[2])\n[2, 1]\n\n&gt;&gt;&gt; add_to_cart(1)\n[1]\n&gt;&gt;&gt; add_to_cart(2)\n[1, 2]\n\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well."
   },
   {
-    "objectID": "02_functions_classes_slides.html#how-to-use-default-mutable-arguments",
-    "href": "02_functions_classes_slides.html#how-to-use-default-mutable-arguments",
+    "objectID": "02_function_classes_slides.html#how-to-use-default-mutable-arguments",
+    "href": "02_function_classes_slides.html#how-to-use-default-mutable-arguments",
     "title": "Functions, classes and modules",
     "section": "How to use default (mutable) arguments",
     "text": "How to use default (mutable) arguments\ndef add_to_cart_safe(x, cart=None):\n    if cart is None:\n        cart = [] # this line is evaluated each time the function is called\n    cart.append(x)\n    return cart"
   },
   {
-    "objectID": "02_functions_classes_slides.html#changing-return-types",
-    "href": "02_functions_classes_slides.html#changing-return-types",
+    "objectID": "02_function_classes_slides.html#changing-return-types",
+    "href": "02_function_classes_slides.html#changing-return-types",
     "title": "Functions, classes and modules",
     "section": "Changing return types",
     "text": "Changing return types\nSince Python is a dynamic language, the type of the returned variable is allowed to vary.\ndef foo(x):\n    if x &gt;=0:\n        return x\n    else:\n        return \"x is negative\"\n\nBut it usually a bad idea, since you can not tell from reading the code, which type will be returned."
   },
   {
-    "objectID": "02_functions_classes_slides.html#changing-return-types-1",
-    "href": "02_functions_classes_slides.html#changing-return-types-1",
+    "objectID": "02_function_classes_slides.html#changing-return-types-1",
+    "href": "02_function_classes_slides.html#changing-return-types-1",
     "title": "Functions, classes and modules",
     "section": "Changing return types",
     "text": "Changing return types\ndef is_operable(height, period):\n    if height &lt; 10:\n        return height &lt; 5.0 and period &gt; 4.0\n    else:\n        return \"No way!\"\n\n&gt;&gt;&gt; if is_operable(height=12.0, period=5.0):\n...         print(\"Go ahead!\")\n...\nGo ahead!\n\n\n\n\n\n\n\nImportant\n\n\nIs this the result you expected?\n\n\n\n\n\nA non-empty string or a non-zero value is considered “truthy” in Python!"
   },
   {
-    "objectID": "02_functions_classes_slides.html#type-hints",
-    "href": "02_functions_classes_slides.html#type-hints",
+    "objectID": "02_function_classes_slides.html#type-hints",
+    "href": "02_function_classes_slides.html#type-hints",
     "title": "Functions, classes and modules",
     "section": "Type hints",
     "text": "Type hints\nPython is a dynamically typed language -&gt; the type of a variable is determined at runtime.\n\nBut we can add type hints to help the reader (and the code editor).\ndef is_operable(height: float, period: float) -&gt; bool:\n    ..."
   },
   {
-    "objectID": "02_functions_classes_slides.html#classes",
-    "href": "02_functions_classes_slides.html#classes",
+    "objectID": "02_function_classes_slides.html#classes",
+    "href": "02_function_classes_slides.html#classes",
     "title": "Functions, classes and modules",
     "section": "Classes",
     "text": "Classes\nclass WeirdToolbox:\n    tools = [] # class variable ☹️\n\n\n&gt;&gt;&gt; t1 = WeirdToolbox()\n&gt;&gt;&gt; t1.tools.append(\"hammer\")\n&gt;&gt;&gt; t1.tools\n[\"hammer\"]\n\n&gt;&gt;&gt; t2 = WeirdToolbox()\n&gt;&gt;&gt; t2.tools.append(\"screwdriver\")\n&gt;&gt;&gt; t2.tools\n[\"hammer\", \"screwdriver\"]\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
   },
   {
-    "objectID": "02_functions_classes_slides.html#classes-1",
-    "href": "02_functions_classes_slides.html#classes-1",
+    "objectID": "02_function_classes_slides.html#classes-1",
+    "href": "02_function_classes_slides.html#classes-1",
     "title": "Functions, classes and modules",
     "section": "Classes",
     "text": "Classes\nclass Toolbox:\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\n&gt;&gt;&gt; t1 = Toolbox()\n&gt;&gt;&gt; t1.tools.append(\"hammer\")\n&gt;&gt;&gt; t1.tools\n[\"hammer\"]\n\n&gt;&gt;&gt; t2 = Toolbox()\n&gt;&gt;&gt; t2.tools.append(\"screwdriver\")\n&gt;&gt;&gt; t2.tools\n[\"screwdriver\"]\n\nInstance variables are created when the instance is created, and are unique to each instance."
   },
   {
-    "objectID": "02_functions_classes_slides.html#static-methods",
-    "href": "02_functions_classes_slides.html#static-methods",
+    "objectID": "02_function_classes_slides.html#static-methods",
+    "href": "02_function_classes_slides.html#static-methods",
     "title": "Functions, classes and modules",
     "section": "Static methods",
     "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n&gt;&gt;&gt; dr = Interval(date(2020, 1, 1), date(2020, 1, 31))\n&gt;&gt;&gt; dr.start\ndatetime.date(2020, 1, 1)\n&gt;&gt;&gt; dr.end\ndatetime.date(2020, 1, 31)\n\nHere is an example of useful class, but it is a bit cumbersome to create an instance."
   },
   {
-    "objectID": "02_functions_classes_slides.html#static-methods-1",
-    "href": "02_functions_classes_slides.html#static-methods-1",
+    "objectID": "02_function_classes_slides.html#static-methods-1",
+    "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
     "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n&gt;&gt;&gt; dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n&gt;&gt;&gt; dr\n&lt;__main__.Interval at 0x7fb99efcfb90&gt;\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
-    "objectID": "02_functions_classes_slides.html#dataclasses",
-    "href": "02_functions_classes_slides.html#dataclasses",
+    "objectID": "02_function_classes_slides.html#dataclasses",
+    "href": "02_function_classes_slides.html#dataclasses",
     "title": "Functions, classes and modules",
     "section": "Dataclasses",
     "text": "Dataclasses\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n&gt;&gt;&gt; dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n&gt;&gt;&gt; dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\nDataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables."
   },
   {
-    "objectID": "02_functions_classes_slides.html#equality",
-    "href": "02_functions_classes_slides.html#equality",
+    "objectID": "02_function_classes_slides.html#equality",
+    "href": "02_function_classes_slides.html#equality",
     "title": "Functions, classes and modules",
     "section": "Equality",
     "text": "Equality\nOn a regular class, equality is based on the memory address of the object.\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nFalse\n\nThis is not very useful, since we want to compare the values of the attributes."
   },
   {
-    "objectID": "02_functions_classes_slides.html#equality-1",
-    "href": "02_functions_classes_slides.html#equality-1",
+    "objectID": "02_function_classes_slides.html#equality-1",
+    "href": "02_function_classes_slides.html#equality-1",
     "title": "Functions, classes and modules",
     "section": "Equality",
     "text": "Equality\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    def __eq__(self, other):\n        return self.start == other.start and self.end == other.end\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nTrue\n\nWe can override the __eq__ method to compare the values of the attributes."
   },
   {
-    "objectID": "02_functions_classes_slides.html#data-classes",
-    "href": "02_functions_classes_slides.html#data-classes",
+    "objectID": "02_function_classes_slides.html#data-classes",
+    "href": "02_function_classes_slides.html#data-classes",
     "title": "Functions, classes and modules",
     "section": "Data classes",
     "text": "Data classes\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Quantity:\n    unit: str = field(compare=True)\n    standard_name: field(compare=True)\n    name: str = field(compare=False, default=None)\n\n\n&gt;&gt;&gt; t1 = Quantity(name=\"temp\", unit=\"C\", standard_name=\"air_temperature\")\n&gt;&gt;&gt; t2 = Quantity(name=\"temperature\", unit=\"C\", standard_name=\"air_temperature\")\n\n&gt;&gt;&gt; t1 == t2\nTrue\n\n&gt;&gt;&gt; d1 = Quantity(unit=\"m\", standard_name=\"depth\")\n&gt;&gt;&gt; d1 == t2\nFalse"
   },
   {
-    "objectID": "02_functions_classes_slides.html#data-classes-1",
-    "href": "02_functions_classes_slides.html#data-classes-1",
+    "objectID": "02_function_classes_slides.html#data-classes-1",
+    "href": "02_function_classes_slides.html#data-classes-1",
     "title": "Functions, classes and modules",
     "section": "Data classes",
     "text": "Data classes\n\n\nCompact notation of fields with type hints\nEquality based on values of fields\nUseful string represenation by default\nIt is still a regular class"
   },
   {
-    "objectID": "02_functions_classes_slides.html#modules",
-    "href": "02_functions_classes_slides.html#modules",
+    "objectID": "02_function_classes_slides.html#modules",
+    "href": "02_function_classes_slides.html#modules",
     "title": "Functions, classes and modules",
     "section": "Modules",
     "text": "Modules\nModules are files containing Python code (functions, classes, constants) that belong together.\n$tree analytics/\nanalytics/\n├── __init__.py\n├── date.py\n└── tools.py\n\nThe analytics package contains two modules:\n\ntools module\ndate module"
   },
   {
-    "objectID": "02_functions_classes_slides.html#packages",
-    "href": "02_functions_classes_slides.html#packages",
+    "objectID": "02_function_classes_slides.html#packages",
+    "href": "02_function_classes_slides.html#packages",
     "title": "Functions, classes and modules",
     "section": "Packages",
     "text": "Packages\n\n\nA package is a directory containing modules\nEach package in Python is a directory which MUST contain a special file called __init__.py\nThe __init__.py can be empty, and it indicates that the directory it contains is a Python package\n__init__.py can also execute initialization code"
   },
   {
-    "objectID": "02_functions_classes_slides.html#init__.py",
-    "href": "02_functions_classes_slides.html#init__.py",
+    "objectID": "02_function_classes_slides.html#init__.py",
+    "href": "02_function_classes_slides.html#init__.py",
     "title": "Functions, classes and modules",
     "section": "__init__.py",
     "text": "__init__.py\nExample: mikeio/pfs/__init__.py:\nfrom .pfsdocument import Pfs, PfsDocument\nfrom .pfssection import PfsNonUniqueList, PfsSection\n\ndef read_pfs(filename, encoding=\"cp1252\", unique_keywords=False):\n     \"\"\"Read a pfs file for further analysis/manipulation\"\"\"\n    \n    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)\n\nThe imports in __init__.py let’s you separate the implementation into multiple files.\n&gt;&gt;&gt; mikeio.pfs.pfssection.PfsSection\n&lt;class 'mikeio.pfs.pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.pfs.PfsSection\n&lt;class 'mikeio.pfs.pfssection.PfsSection'&gt;\n\nThe PfsSection and PfsDocument are imported from the pfssection.py and pfsdocument.py modules. to the mikeio.pfs namespace."
   },
   {
-    "objectID": "02_functions_classes_slides.html#python-naming-conventions",
-    "href": "02_functions_classes_slides.html#python-naming-conventions",
+    "objectID": "02_function_classes_slides.html#python-naming-conventions",
+    "href": "02_function_classes_slides.html#python-naming-conventions",
     "title": "Functions, classes and modules",
     "section": "Python naming conventions",
     "text": "Python naming conventions\nBy adhering to the naming conventions, your code will be easier to read for other Python developers.\n\nvariables, functions and methods: lowercase_with_underscores\nclasses: CamelCase\nconstants: UPPERCASE_WITH_UNDERSCORES"
   },
   {
-    "objectID": "02_functions_classes_slides.html#variables-function-and-method-names",
-    "href": "02_functions_classes_slides.html#variables-function-and-method-names",
+    "objectID": "02_function_classes_slides.html#variables-function-and-method-names",
+    "href": "02_function_classes_slides.html#variables-function-and-method-names",
     "title": "Functions, classes and modules",
     "section": "Variables, function and method names",
     "text": "Variables, function and method names\n\nUse lowercase characters\nSeparate words with underscores\n\n\nmodel_name = \"NorthSeaModel\"\nn_epochs = 100\n\ndef my_function():\n    pass"
   },
   {
-    "objectID": "02_functions_classes_slides.html#constants",
-    "href": "02_functions_classes_slides.html#constants",
+    "objectID": "02_function_classes_slides.html#constants",
+    "href": "02_function_classes_slides.html#constants",
     "title": "Functions, classes and modules",
     "section": "Constants",
     "text": "Constants\n\nUse all uppercase characters\n\nGRAVITY = 9.81\n\nAVOGADRO_CONSTANT = 6.02214076e23\n\nSECONDS_IN_A_DAY = 86400\n\nN_LEGS_PER_ANIMAL = {\n    \"human\": 2,\n    \"dog\": 4,\n    \"spider\": 8,\n}\n\nPython will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants."
   },
   {
-    "objectID": "02_functions_classes_slides.html#classes-2",
-    "href": "02_functions_classes_slides.html#classes-2",
+    "objectID": "02_function_classes_slides.html#classes-2",
+    "href": "02_function_classes_slides.html#classes-2",
     "title": "Functions, classes and modules",
     "section": "Classes",
     "text": "Classes\n\nUse CamelCase for the name of the class\nUse lowercase characters for the name of the methods\nSeparate words with underscores\n\n\nclass RandomClassifier: # CamelCase ✅\n\n    def fit(self, X, y):\n        self.classes_ = np.unique(y)\n\n    def predict(self, X):\n        return np.random.choice(self.classes_, size=len(X))\n\n    def fit_predict(self, X, y): # lowercase ✅\n        self.fit(X, y)\n        return self.predict(X)"
   },
   {
-    "objectID": "02_functions_classes_slides.html#summary",
-    "href": "02_functions_classes_slides.html#summary",
+    "objectID": "02_function_classes_slides.html#summary",
+    "href": "02_function_classes_slides.html#summary",
     "title": "Functions, classes and modules",
     "section": "Summary",
     "text": "Summary\n\n\nFunctions are black boxes that takes input and produces output.\nFunction arguments can be positional or keyword arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input arguments.\nClasses are useful for grouping related functions and data.\nDataclasses are a convenient way to create classes with a few attributes.\nModules are files containing Python code (functions, classes, constants) that belong together.\nPackages are directories containing modules.\n\n\n\n\n\nPython package development"
@@ -1729,6 +1729,13 @@
     "text": "The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
   },
   {
+    "objectID": "05_oop_slides.html#example---pydantic",
+    "href": "05_oop_slides.html#example---pydantic",
+    "title": "Object oriented design in Python",
+    "section": "Example - Pydantic",
+    "text": "Example - Pydantic\nfrom pydantic import BaseModel\nfrom datetime import date\n\nclass Sensor(BaseModel):\n    name: str\n    voltage: float\n    install_date: date\n    location: tuple[float, float]\n\ns1 = Sensor(name=\"Sensor 1\",\n            voltage=3.3,\n            install_date=date(2020, 1, 1),\n            location=(4.42, 51.22))\n\ndata = {\n    \"name\": \"Sensor 1\",\n    \"voltage\": \"3.3\",\n    \"install_date\": \"2020-01-01\",\n    \"location\": (\"4.42\", \"51.22\")\n}\n\ns2 = Sensor(**data)"
+  },
+  {
     "objectID": "05_oop_slides.html#refactoring",
     "href": "05_oop_slides.html#refactoring",
     "title": "Object oriented design in Python",
@@ -1965,6 +1972,13 @@
     "title": "Object oriented design in Python",
     "section": "",
     "text": ". . .\nThe consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
+  },
+  {
+    "objectID": "05_oop.html#example---pydantic",
+    "href": "05_oop.html#example---pydantic",
+    "title": "Object oriented design in Python",
+    "section": "Example - Pydantic",
+    "text": "Example - Pydantic\nfrom pydantic import BaseModel\nfrom datetime import date\n\nclass Sensor(BaseModel):\n    name: str\n    voltage: float\n    install_date: date\n    location: tuple[float, float]\n\ns1 = Sensor(name=\"Sensor 1\",\n            voltage=3.3,\n            install_date=date(2020, 1, 1),\n            location=(4.42, 51.22))\n\ndata = {\n    \"name\": \"Sensor 1\",\n    \"voltage\": \"3.3\",\n    \"install_date\": \"2020-01-01\",\n    \"location\": (\"4.42\", \"51.22\")\n}\n\ns2 = Sensor(**data)"
   },
   {
     "objectID": "05_oop.html#refactoring",
@@ -2660,127 +2674,127 @@
     "text": "Thank you!"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#section",
-    "href": "04-dependencies-ci_slides.html#section",
+    "objectID": "04-dependencies_ci_slides.html#section",
+    "href": "04-dependencies_ci_slides.html#section",
     "title": "Dependencies and Continuous Integration",
     "section": "",
     "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#dependency-management",
-    "href": "04-dependencies-ci_slides.html#dependency-management",
+    "objectID": "04-dependencies_ci_slides.html#dependency-management",
+    "href": "04-dependencies_ci_slides.html#dependency-management",
     "title": "Dependencies and Continuous Integration",
     "section": "Dependency management",
     "text": "Dependency management\nExample of pinning versions:\n\n\nrequirements.txt\n\nnumpy==1.11.0\nscipy==0.17.0\nmatplotlib==1.5.1\n\n\nOr using a range of versions:\n\n\nrequirements.txt\n\nnumpy&gt;=1.11.0\nscipy&gt;=0.17.0\nmatplotlib&gt;=1.5.1,&lt;=2.0.0\n\n\n\nInstall dependencies:\n$ pip install -r requirements.txt\n\nA common way to declare dependencies is to use a requirements.txt file."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#creating-an-installable-package",
-    "href": "04-dependencies-ci_slides.html#creating-an-installable-package",
+    "objectID": "04-dependencies_ci_slides.html#creating-an-installable-package",
+    "href": "04-dependencies_ci_slides.html#creating-an-installable-package",
     "title": "Dependencies and Continuous Integration",
     "section": "Creating an installable package",
     "text": "Creating an installable package"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#setup.py-vs-pyproject.toml",
-    "href": "04-dependencies-ci_slides.html#setup.py-vs-pyproject.toml",
+    "objectID": "04-dependencies_ci_slides.html#setup.py-vs-pyproject.toml",
+    "href": "04-dependencies_ci_slides.html#setup.py-vs-pyproject.toml",
     "title": "Dependencies and Continuous Integration",
     "section": "setup.py vs pyproject.toml",
     "text": "setup.py vs pyproject.toml\nsetup.py\n\nTraditional approach to defining package configuration and dependencies.\nDefines metadata, dependencies, and entry points in a Python script.\nUses setuptools to generate packages and install the package.\n\n\npyproject.toml\n\nModern approach to defining package configuration and dependencies.\nDefines metadata, dependencies, build tools, and packaging config in a TOML file.\nUses poetry or hatchling to generate packages and install the package."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#install-with-optional-dependencies",
-    "href": "04-dependencies-ci_slides.html#install-with-optional-dependencies",
+    "objectID": "04-dependencies_ci_slides.html#install-with-optional-dependencies",
+    "href": "04-dependencies_ci_slides.html#install-with-optional-dependencies",
     "title": "Dependencies and Continuous Integration",
     "section": "Install with optional dependencies",
     "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"black==22.3.0\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#creating-an-installable-package-1",
-    "href": "04-dependencies-ci_slides.html#creating-an-installable-package-1",
+    "objectID": "04-dependencies_ci_slides.html#creating-an-installable-package-1",
+    "href": "04-dependencies_ci_slides.html#creating-an-installable-package-1",
     "title": "Dependencies and Continuous Integration",
     "section": "Creating an installable package",
     "text": "Creating an installable package\nInstall package in editable mode:\n$ pip install -e .\n\nStart a Python session:\n&gt;&gt;&gt; import mini\n&gt;&gt;&gt; mini.foo()\n42\n\n\nRun tests:\n$ pytest\n...\n\ntests/test_foo.py .                       [100%]\n\n=============== 1 passed in 0.01s ==============="
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#virtual-environments",
-    "href": "04-dependencies-ci_slides.html#virtual-environments",
+    "objectID": "04-dependencies_ci_slides.html#virtual-environments",
+    "href": "04-dependencies_ci_slides.html#virtual-environments",
     "title": "Dependencies and Continuous Integration",
     "section": "Virtual environments",
     "text": "Virtual environments\n\n\nCreates a clean environment for each project\nAllows different versions of a package to coexist on your machine\nCan be used to create a reproducible environment for a project\nTo achieve complete isolation, use Docker containers (not covered in this course)"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#virtual-environments-1",
-    "href": "04-dependencies-ci_slides.html#virtual-environments-1",
+    "objectID": "04-dependencies_ci_slides.html#virtual-environments-1",
+    "href": "04-dependencies_ci_slides.html#virtual-environments-1",
     "title": "Dependencies and Continuous Integration",
     "section": "Virtual environments",
     "text": "Virtual environments\n$ which python\n/usr/bin/python\n$ python -m venv venv\n$ source venv/bin/activate # for 🐧 or venv\\Scripts\\activate.bat 🪟\n(venv)$ which python\n/home/user/src/myproj/venv/bin/python\n(venv)$ pip install -r requirements.txt\n\n\nBack in the days, when disk space was limited, it was a good idea to have a separate environment for each project.\nToday, disk space is cheap, and it is a good idea to have a separate environment for each project."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#condamamba-environments",
-    "href": "04-dependencies-ci_slides.html#condamamba-environments",
+    "objectID": "04-dependencies_ci_slides.html#condamamba-environments",
+    "href": "04-dependencies_ci_slides.html#condamamba-environments",
     "title": "Dependencies and Continuous Integration",
     "section": "Conda/mamba environments",
     "text": "Conda/mamba environments\nConda/mamba is a package manager that can be used to create virtual environments.\n$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\python.exe\n$ conda create -n myproj -f requirements.txt\n$ conda activate myproj\n(myproj)$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\envs\\myproj\\python.exe"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#branch-naming-convention",
-    "href": "04-dependencies-ci_slides.html#branch-naming-convention",
+    "objectID": "04-dependencies_ci_slides.html#branch-naming-convention",
+    "href": "04-dependencies_ci_slides.html#branch-naming-convention",
     "title": "Dependencies and Continuous Integration",
     "section": "Branch naming convention",
     "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling\nFind a naming convention that works for you and your team."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#time-for-a-discussion",
-    "href": "04-dependencies-ci_slides.html#time-for-a-discussion",
+    "objectID": "04-dependencies_ci_slides.html#time-for-a-discussion",
+    "href": "04-dependencies_ci_slides.html#time-for-a-discussion",
     "title": "Dependencies and Continuous Integration",
     "section": "Time for a discussion",
     "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#continuous-integration",
-    "href": "04-dependencies-ci_slides.html#continuous-integration",
+    "objectID": "04-dependencies_ci_slides.html#continuous-integration",
+    "href": "04-dependencies_ci_slides.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
     "section": "Continuous Integration",
     "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines\n\n\nGitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#github-actions",
-    "href": "04-dependencies-ci_slides.html#github-actions",
+    "objectID": "04-dependencies_ci_slides.html#github-actions",
+    "href": "04-dependencies_ci_slides.html#github-actions",
     "title": "Dependencies and Continuous Integration",
     "section": "GitHub Actions",
     "text": "GitHub Actions\n\n\n\nWorkflow are stored in the .github/workflows folder.\nWorkflow is described in a YAML file.\nYAML is whitespace sensitive (like Python).\nYAML can contain lists, dictionaries and strings, and can be nested.\n\n\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#benefits-of-ci",
-    "href": "04-dependencies-ci_slides.html#benefits-of-ci",
+    "objectID": "04-dependencies_ci_slides.html#benefits-of-ci",
+    "href": "04-dependencies_ci_slides.html#benefits-of-ci",
     "title": "Dependencies and Continuous Integration",
     "section": "Benefits of CI",
     "text": "Benefits of CI\n\n\nRun tests on every commit\nTest on different operating systems\nTest on different Python versions\nCreate API documentation (next week)\nPublish package to PyPI or similar package repository (two weeks from now)"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#triggers",
-    "href": "04-dependencies-ci_slides.html#triggers",
+    "objectID": "04-dependencies_ci_slides.html#triggers",
+    "href": "04-dependencies_ci_slides.html#triggers",
     "title": "Dependencies and Continuous Integration",
     "section": "Triggers",
     "text": "Triggers\n\npush and pull_request are the most common triggers\nschedule can be used to run the workflow on a schedule\nworkflow_dispatch can be used to trigger the workflow manually\n\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n  schedule:\n    - cron: '0 0 * * 0'\n  workflow_dispatch:"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#jobs",
-    "href": "04-dependencies-ci_slides.html#jobs",
+    "objectID": "04-dependencies_ci_slides.html#jobs",
+    "href": "04-dependencies_ci_slides.html#jobs",
     "title": "Dependencies and Continuous Integration",
     "section": "Jobs",
     "text": "Jobs\n\nOperating system\nPython version\n…\n\n{.yaml\"} ... jobs:   build:     runs-on: ${{ matrix.os }}     strategy:       matrix:         os: [ubuntu-latest, windows-latest]         python-version: [3.8, 3.9, \"3.10\",\"3.11\"] ..."
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#github-releases",
-    "href": "04-dependencies-ci_slides.html#github-releases",
+    "objectID": "04-dependencies_ci_slides.html#github-releases",
+    "href": "04-dependencies_ci_slides.html#github-releases",
     "title": "Dependencies and Continuous Integration",
     "section": "GitHub Releases",
     "text": "GitHub Releases\n\n\n\nGitHub releases are a way to publish software releases.\nYou can upload files, write release notes and tag the release.\nAs a minimum, the release will contain the source code at the time of the release.\nCreating a release can trigger other workflows, e.g. publishing a package to PyPI.\n\n\n\n\n\nhttps://github.com/pydata/xarray/releases/tag/v2022.12.0"
   },
   {
-    "objectID": "04-dependencies-ci_slides.html#summary",
-    "href": "04-dependencies-ci_slides.html#summary",
+    "objectID": "04-dependencies_ci_slides.html#summary",
+    "href": "04-dependencies_ci_slides.html#summary",
     "title": "Dependencies and Continuous Integration",
     "section": "Summary",
     "text": "Summary\n\n\nApplication vs library\nPrefer pyproject.toml over setup.py\nUse a virtual environment for each project\nUse GitHub Actions to run tests on every commit\nUse GitHub Releases to publish software releases\n\n\n\n\n\nPython package development"

@@ -975,6 +975,31 @@ class GeometryFMVerticalProfile{
 <p>The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input.</p>
 </div>
 </section>
+<section id="example---pydantic" class="slide level2">
+<h2>Example - Pydantic</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="kw">class</span> Sensor(BaseModel):</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    name: <span class="bu">str</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    voltage: <span class="bu">float</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>    install_date: date</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    location: <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>]</span>
+<span id="cb20-9"><a href="#cb20-9"></a></span>
+<span id="cb20-10"><a href="#cb20-10"></a>s1 <span class="op">=</span> Sensor(name<span class="op">=</span><span class="st">"Sensor 1"</span>,</span>
+<span id="cb20-11"><a href="#cb20-11"></a>            voltage<span class="op">=</span><span class="fl">3.3</span>,</span>
+<span id="cb20-12"><a href="#cb20-12"></a>            install_date<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb20-13"><a href="#cb20-13"></a>            location<span class="op">=</span>(<span class="fl">4.42</span>, <span class="fl">51.22</span>))</span>
+<span id="cb20-14"><a href="#cb20-14"></a></span>
+<span id="cb20-15"><a href="#cb20-15"></a>data <span class="op">=</span> {</span>
+<span id="cb20-16"><a href="#cb20-16"></a>    <span class="st">"name"</span>: <span class="st">"Sensor 1"</span>,</span>
+<span id="cb20-17"><a href="#cb20-17"></a>    <span class="st">"voltage"</span>: <span class="st">"3.3"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18"></a>    <span class="st">"install_date"</span>: <span class="st">"2020-01-01"</span>,</span>
+<span id="cb20-19"><a href="#cb20-19"></a>    <span class="st">"location"</span>: (<span class="st">"4.42"</span>, <span class="st">"51.22"</span>)</span>
+<span id="cb20-20"><a href="#cb20-20"></a>}</span>
+<span id="cb20-21"><a href="#cb20-21"></a></span>
+<span id="cb20-22"><a href="#cb20-22"></a>s2 <span class="op">=</span> Sensor(<span class="op">**</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="refactoring" class="slide level2">
 <h2>Refactoring</h2>
 <div>
@@ -1002,56 +1027,56 @@ class GeometryFMVerticalProfile{
 <section id="rename-variable" class="slide level2">
 <h2>Rename variable</h2>
 <p><strong>Before</strong></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="cf">for</span> v <span class="kw">in</span> y:</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="cf">if</span> v <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb20-4"><a href="#cb20-4"></a>        n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="cf">for</span> v <span class="kw">in</span> y:</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="cf">if</span> v <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb21-4"><a href="#cb21-4"></a>        n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><strong>After</strong></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>FREEZING_POINT <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>n_freezing_days <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="cf">for</span> temp <span class="kw">in</span> daily_max_temperatures:</span>
-<span id="cb21-4"><a href="#cb21-4"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> FREEZING_POINT:</span>
-<span id="cb21-5"><a href="#cb21-5"></a>        n_freezing_days <span class="op">=</span> n_freezing_days <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>FREEZING_POINT <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>n_freezing_days <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="cf">for</span> temp <span class="kw">in</span> daily_max_temperatures:</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> FREEZING_POINT:</span>
+<span id="cb22-5"><a href="#cb22-5"></a>        n_freezing_days <span class="op">=</span> n_freezing_days <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="extract-variable" class="slide level2">
 <h2>Extract variable</h2>
 <p><strong>Before</strong></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">def</span> predict(x):</span>
-<span id="cb22-2"><a href="#cb22-2"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="bu">min</span>(<span class="dv">0</span>,x) <span class="op">+</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">10.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">def</span> predict(x):</span>
+<span id="cb23-2"><a href="#cb23-2"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="bu">min</span>(<span class="dv">0</span>,x) <span class="op">+</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">10.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><strong>After</strong></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">def</span> predict(x):</span>
-<span id="cb23-2"><a href="#cb23-2"></a>    scale <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>    error <span class="op">=</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>    a <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>    b <span class="op">=</span> <span class="fl">2.0</span> </span>
-<span id="cb23-6"><a href="#cb23-6"></a>    draft <span class="op">=</span> a <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> error</span>
-<span id="cb23-7"><a href="#cb23-7"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>, draft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">def</span> predict(x):</span>
+<span id="cb24-2"><a href="#cb24-2"></a>    scale <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>    error <span class="op">=</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    a <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>    b <span class="op">=</span> <span class="fl">2.0</span> </span>
+<span id="cb24-6"><a href="#cb24-6"></a>    draft <span class="op">=</span> a <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> error</span>
+<span id="cb24-7"><a href="#cb24-7"></a>    <span class="cf">return</span>  <span class="bu">min</span>(<span class="fl">0.0</span>, draft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="extract-method" class="slide level2">
 <h2>Extract method</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">def</span> error(scale):</span>
-<span id="cb24-2"><a href="#cb24-2"></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="kw">def</span> linear_model(x, <span class="op">*</span>, a<span class="op">=</span><span class="fl">0.0</span>, b<span class="op">=</span><span class="fl">1.0</span>):</span>
-<span id="cb24-5"><a href="#cb24-5"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">*</span> x</span>
-<span id="cb24-6"><a href="#cb24-6"></a></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
-<span id="cb24-8"><a href="#cb24-8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value, x)</span>
-<span id="cb24-9"><a href="#cb24-9"></a></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="kw">def</span> predict(x): </span>
-<span id="cb24-11"><a href="#cb24-11"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb24-12"><a href="#cb24-12"></a>    <span class="cf">return</span> clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">def</span> error(scale):</span>
+<span id="cb25-2"><a href="#cb25-2"></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="kw">def</span> linear_model(x, <span class="op">*</span>, a<span class="op">=</span><span class="fl">0.0</span>, b<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">*</span> x</span>
+<span id="cb25-6"><a href="#cb25-6"></a></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value, x)</span>
+<span id="cb25-9"><a href="#cb25-9"></a></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="kw">def</span> predict(x): </span>
+<span id="cb25-11"><a href="#cb25-11"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb25-12"><a href="#cb25-12"></a>    <span class="cf">return</span> clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="inline-method" class="slide level2">
 <h2>Inline method</h2>
 <p>Opposite of extract mehtod.</p>
-<div class="sourceCode" id="cb25" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">def</span> predict(x): </span>
-<span id="cb25-2"><a href="#cb25-2"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">def</span> predict(x): </span>
+<span id="cb26-2"><a href="#cb26-2"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="composed-method" class="slide level2">
 <h2>Composed method</h2>
@@ -1059,41 +1084,41 @@ class GeometryFMVerticalProfile{
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># get data</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>os.shutil.copyfile(thisfile, localfile)</span>
-<span id="cb26-3"><a href="#cb26-3"></a>df <span class="op">=</span> read_csv(localfile)</span>
-<span id="cb26-4"><a href="#cb26-4"></a></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># clean data</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>df.dropna()</span>
-<span id="cb26-7"><a href="#cb26-7"></a>df.drop_duplicates()</span>
-<span id="cb26-8"><a href="#cb26-8"></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb26-9"><a href="#cb26-9"></a></span>
-<span id="cb26-10"><a href="#cb26-10"></a><span class="co"># transform data</span></span>
-<span id="cb26-11"><a href="#cb26-11"></a>df.date <span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
-<span id="cb26-12"><a href="#cb26-12"></a></span>
-<span id="cb26-13"><a href="#cb26-13"></a><span class="co"># predict</span></span>
-<span id="cb26-14"><a href="#cb26-14"></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># get data</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>os.shutil.copyfile(thisfile, localfile)</span>
+<span id="cb27-3"><a href="#cb27-3"></a>df <span class="op">=</span> read_csv(localfile)</span>
+<span id="cb27-4"><a href="#cb27-4"></a></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="co"># clean data</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>df.dropna()</span>
+<span id="cb27-7"><a href="#cb27-7"></a>df.drop_duplicates()</span>
+<span id="cb27-8"><a href="#cb27-8"></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="co"># transform data</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>df.date <span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
+<span id="cb27-12"><a href="#cb27-12"></a></span>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="co"># predict</span></span>
+<span id="cb27-14"><a href="#cb27-14"></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="kw">def</span> get_data(filename,...):</span>
-<span id="cb27-3"><a href="#cb27-3"></a>    ...</span>
-<span id="cb27-4"><a href="#cb27-4"></a></span>
-<span id="cb27-5"><a href="#cb27-5"></a><span class="kw">def</span> clean_data(df):</span>
-<span id="cb27-6"><a href="#cb27-6"></a>    ...</span>
-<span id="cb27-7"><a href="#cb27-7"></a></span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="kw">def</span> transform_data(df):</span>
-<span id="cb27-9"><a href="#cb27-9"></a>    ...</span>
-<span id="cb27-10"><a href="#cb27-10"></a></span>
-<span id="cb27-11"><a href="#cb27-11"></a><span class="kw">def</span> predict(df):</span>
-<span id="cb27-12"><a href="#cb27-12"></a>    ...</span>
-<span id="cb27-13"><a href="#cb27-13"></a></span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="kw">def</span> main():</span>
-<span id="cb27-15"><a href="#cb27-15"></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
-<span id="cb27-16"><a href="#cb27-16"></a>    clean_data <span class="op">=</span> clean_data(df)</span>
-<span id="cb27-17"><a href="#cb27-17"></a>    final_data <span class="op">=</span> transform_data(clean_data)</span>
-<span id="cb27-18"><a href="#cb27-18"></a>    predictions <span class="op">=</span> predict(final_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="kw">def</span> get_data(filename,...):</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    ...</span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="kw">def</span> clean_data(df):</span>
+<span id="cb28-6"><a href="#cb28-6"></a>    ...</span>
+<span id="cb28-7"><a href="#cb28-7"></a></span>
+<span id="cb28-8"><a href="#cb28-8"></a><span class="kw">def</span> transform_data(df):</span>
+<span id="cb28-9"><a href="#cb28-9"></a>    ...</span>
+<span id="cb28-10"><a href="#cb28-10"></a></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="kw">def</span> predict(df):</span>
+<span id="cb28-12"><a href="#cb28-12"></a>    ...</span>
+<span id="cb28-13"><a href="#cb28-13"></a></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="kw">def</span> main():</span>
+<span id="cb28-15"><a href="#cb28-15"></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
+<span id="cb28-16"><a href="#cb28-16"></a>    clean_data <span class="op">=</span> clean_data(df)</span>
+<span id="cb28-17"><a href="#cb28-17"></a>    final_data <span class="op">=</span> transform_data(clean_data)</span>
+<span id="cb28-18"><a href="#cb28-18"></a>    predictions <span class="op">=</span> predict(final_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="composed-method-1" class="slide level2">
 <h2>Composed method</h2>
