@@ -35,7 +35,7 @@ for cleaner in cleaners:
     data = cleaner.clean(data)
 ```
         - commit
-    - Download [`notebook_A.ipynb`](notebook_A.ipynb) and csv file [`example_data1.csv`](example_data1.csv) and make sure it runs. (remove any remaining print statements)
+    - Download [`notebook_A.ipynb`](https://github.com/DHI/python-package-development/blob/main/projects/data_cleaning/notebook_A.ipynb) and csv file [`example_data1.csv`](example_data1.csv) and make sure it runs. (remove any remaining print statements)
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
