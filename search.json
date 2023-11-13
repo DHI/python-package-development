@@ -2737,25 +2737,11 @@
     "text": "Conda/mamba environments\nConda/mamba is a package manager that can be used to create virtual environments.\n$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\python.exe\n$ conda create -n myproj -f requirements.txt\n$ conda activate myproj\n(myproj)$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\envs\\myproj\\python.exe"
   },
   {
-    "objectID": "04-dependencies_ci_slides.html#branch-naming-convention",
-    "href": "04-dependencies_ci_slides.html#branch-naming-convention",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Branch naming convention",
-    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling\nFind a naming convention that works for you and your team."
-  },
-  {
-    "objectID": "04-dependencies_ci_slides.html#time-for-a-discussion",
-    "href": "04-dependencies_ci_slides.html#time-for-a-discussion",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?"
-  },
-  {
     "objectID": "04-dependencies_ci_slides.html#continuous-integration",
     "href": "04-dependencies_ci_slides.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
     "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines\n\n\nGitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nThere are many CI services available, e.g.:\n\nGitHub Actions\nAzure Pipelines\nTravis CI\nCircle CI\n\n\nGitHub Actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
   },
   {
     "objectID": "04-dependencies_ci_slides.html#github-actions",
@@ -2797,7 +2783,7 @@
     "href": "04-dependencies_ci_slides.html#summary",
     "title": "Dependencies and Continuous Integration",
     "section": "Summary",
-    "text": "Summary\n\n\nApplication vs library\nPrefer pyproject.toml over setup.py\nUse a virtual environment for each project\nUse GitHub Actions to run tests on every commit\nUse GitHub Releases to publish software releases\n\n\n\n\n\nPython package development"
+    "text": "Summary\n\n\nApplication vs library\nPrefer pyproject.toml over setup.py\nUse a separate virtual environment for each project\nUse GitHub Actions to run tests on every commit\nUse GitHub Releases to publish software releases\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "04_dependencies_ci.html",
@@ -2870,25 +2856,11 @@
     "text": "Conda/mamba environments\nConda/mamba is a package manager that can be used to create virtual environments.\n$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\python.exe\n$ conda create -n myproj -f requirements.txt\n$ conda activate myproj\n(myproj)$ where python\nC:\\Users\\JAN\\AppData\\Local\\miniforge3\\envs\\myproj\\python.exe"
   },
   {
-    "objectID": "04_dependencies_ci.html#branch-naming-convention",
-    "href": "04_dependencies_ci.html#branch-naming-convention",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Branch naming convention",
-    "text": "Branch naming convention\nThere doesn’t exist a clear naming conventions.\n\n\nmain is the main branch🙄, this was previously named master.\nFeature branches uses lowercase separated with dashes, e.g. interpolation-options\nBranches related to fixing issues, start with the id of the issue, e.g. 42-fix-missing-value-handling\nFind a naming convention that works for you and your team."
-  },
-  {
-    "objectID": "04_dependencies_ci.html#time-for-a-discussion",
-    "href": "04_dependencies_ci.html#time-for-a-discussion",
-    "title": "Dependencies and Continuous Integration",
-    "section": "Time for a discussion",
-    "text": "Time for a discussion\nDiscuss in learning teams (15 minutes):\nChapter 6: Separations of concerns in practice\nDiscuss what belongs in each layer of the application.\n\nPersistence layer\nBusiness logic layer\nPresentation layer\n\nShould your library have these three layers? If not, which layer is the focus of your library?"
-  },
-  {
     "objectID": "04_dependencies_ci.html#continuous-integration",
     "href": "04_dependencies_ci.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
     "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nTwo main approaches are:\n\nGitHub Actions\nAzure Pipelines\n\n\nGitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nThere are many CI services available, e.g.:\n\nGitHub Actions\nAzure Pipelines\nTravis CI\nCircle CI\n\n\nGitHub Actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
   },
   {
     "objectID": "04_dependencies_ci.html#github-actions",
@@ -2930,6 +2902,6 @@
     "href": "04_dependencies_ci.html#summary",
     "title": "Dependencies and Continuous Integration",
     "section": "Summary",
-    "text": "Summary\n\n\nApplication vs library\nPrefer pyproject.toml over setup.py\nUse a virtual environment for each project\nUse GitHub Actions to run tests on every commit\nUse GitHub Releases to publish software releases"
+    "text": "Summary\n\n\nApplication vs library\nPrefer pyproject.toml over setup.py\nUse a separate virtual environment for each project\nUse GitHub Actions to run tests on every commit\nUse GitHub Releases to publish software releases"
   }
 ]

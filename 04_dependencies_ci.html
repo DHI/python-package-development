@@ -274,42 +274,20 @@ $ conda activate myproj
 (myproj)$ where python
 C:\Users\JAN\AppData\Local\miniforge3\envs\myproj\python.exe</code></pre>
 </section>
-<section id="branch-naming-convention" class="level2">
-<h2 class="anchored" data-anchor-id="branch-naming-convention">Branch naming convention</h2>
-<p>There doesn’t exist a clear naming conventions.</p>
-<div class="incremental">
-<ul class="incremental">
-<li><code>main</code> is the main branch🙄, this was previously named <code>master</code>.</li>
-<li>Feature branches uses lowercase separated with dashes, e.g.&nbsp;<code>interpolation-options</code></li>
-<li>Branches related to fixing issues, start with the id of the issue, e.g.&nbsp;<code>42-fix-missing-value-handling</code></li>
-<li>Find a naming convention that works for you and your team.</li>
-</ul>
-</div>
-</section>
-<section id="time-for-a-discussion" class="level2">
-<h2 class="anchored" data-anchor-id="time-for-a-discussion">Time for a discussion</h2>
-<p><em>Discuss in learning teams (15 minutes):</em></p>
-<p><strong>Chapter 6: Separations of concerns in practice</strong></p>
-<p>Discuss what belongs in each layer of the application.</p>
-<ul>
-<li>Persistence layer</li>
-<li>Business logic layer</li>
-<li>Presentation layer</li>
-</ul>
-<p>Should your library have these three layers? If not, which layer is the focus of your library?</p>
-</section>
 <section id="continuous-integration" class="level2">
 <h2 class="anchored" data-anchor-id="continuous-integration">Continuous Integration</h2>
 <p>Running tests on every commit in a well defined environment ensures that the code is working as expected.</p>
 <p>It solves the “it works on my machine” problem.</p>
 <p>Executing code on a remote server is a good way to ensure that the code is working as expected.</p>
-<p>Two main approaches are:</p>
+<p>There are many CI services available, e.g.:</p>
 <ul>
 <li>GitHub Actions</li>
 <li>Azure Pipelines</li>
+<li>Travis CI</li>
+<li>Circle CI</li>
 </ul>
 <div class="notes">
-<p>GitHub actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies.</p>
+<p>GitHub Actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies.</p>
 </div>
 </section>
 <section id="github-actions" class="level2 smaller">
@@ -430,7 +408,7 @@ C:\Users\JAN\AppData\Local\miniforge3\envs\myproj\python.exe</code></pre>
 <ul class="incremental">
 <li>Application vs library</li>
 <li>Prefer <code>pyproject.toml</code> over <code>setup.py</code></li>
-<li>Use a virtual environment for each project</li>
+<li>Use a separate virtual environment for each project</li>
 <li>Use GitHub Actions to run tests on every commit</li>
 <li>Use GitHub Releases to publish software releases</li>
 </ul>
