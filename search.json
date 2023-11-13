@@ -1257,14 +1257,14 @@
     "href": "group_work/module_03.html",
     "title": "Python package development",
     "section": "",
-    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What is you past experience with testing code?\nQ3: Things can go wrong when executing your code, how should you handle that? Check inputs? try-catch statements? What are pros and cons between different approaches?\n\nBack to overview"
+    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What is your past experience with testing code?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
   },
   {
     "objectID": "group_work/module_03.html#module-3",
     "href": "group_work/module_03.html#module-3",
     "title": "Python package development",
     "section": "",
-    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What is you past experience with testing code?\nQ3: Things can go wrong when executing your code, how should you handle that? Check inputs? try-catch statements? What are pros and cons between different approaches?\n\nBack to overview"
+    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What is your past experience with testing code?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
   },
   {
     "objectID": "group_work/module_01.html",
@@ -2174,7 +2174,7 @@
     "href": "index.html#learning-modules",
     "title": "Python package development",
     "section": "Learning modules",
-    "text": "Learning modules\n\nGit, Pull Requests, and code reviews 🛝\n\nDiscussion\nHomework\n\nPython functions, classes, and modules 🛝\n\nDiscussion\nHomework\n\nTesting and auto-formatting 🛝\n\nHomework\n\nDependencies and GitHub actions 🛝\n\nHomework\n\nObject oriented design in Python 🛝\n\nHomework\n\nDocumentation 🛝\n\nHomework\n\nDistributing your package 🛝\n\nHomework\n\n\n©️ DHI 2023"
+    "text": "Learning modules\n\nGit, Pull Requests, and code reviews 🛝\n\nDiscussion\nHomework\n\nPython functions, classes, and modules 🛝\n\nDiscussion\nHomework\n\nTesting and auto-formatting 🛝\n\nDiscussion\nHomework\n\nDependencies and GitHub actions 🛝\n\nHomework\n\nObject oriented design in Python 🛝\n\nHomework\n\nDocumentation 🛝\n\nHomework\n\nDistributing your package 🛝\n\nHomework\n\n\n©️ DHI 2023"
   },
   {
     "objectID": "07_packaging_slides.html#packaging",
