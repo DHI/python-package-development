@@ -1257,14 +1257,14 @@
     "href": "group_work/module_03.html",
     "title": "Python package development",
     "section": "",
-    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What is your past experience with testing code?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
+    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
   },
   {
     "objectID": "group_work/module_03.html#module-3",
     "href": "group_work/module_03.html#module-3",
     "title": "Python package development",
     "section": "",
-    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What is your past experience with testing code?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
+    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
   },
   {
     "objectID": "group_work/module_01.html",
