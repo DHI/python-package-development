@@ -515,7 +515,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 ```
 
 
-## Summary 
+## Summary {.smaller}
 
 ::: {.incremental}
 
