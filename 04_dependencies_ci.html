@@ -384,7 +384,15 @@ C:\Users\JAN\AppData\Local\miniforge3\envs\myproj\python.exe</code></pre>
 <li>Python version</li>
 <li>…</li>
 </ul>
-<p><code>{.yaml"} ... jobs:   build:     runs-on: ${{ matrix.os }}     strategy:       matrix:         os: [ubuntu-latest, windows-latest]         python-version: [3.8, 3.9, "3.10","3.11"] ...</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">jobs:</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">  build:</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    runs-on: ${{ matrix.os }}</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    strategy:</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">      matrix:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">        os: [ubuntu-latest, windows-latest]</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">        python-version: [3.8, 3.9, "3.10","3.11"]</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="github-releases" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="github-releases">GitHub Releases</h2>

@@ -330,7 +330,7 @@ on:
 * Python version
 * ...
 
-```{.yaml"}
+```{.yaml}
 ...
 jobs:
   build:

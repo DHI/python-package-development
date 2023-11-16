@@ -704,7 +704,15 @@
 <li>Python version</li>
 <li>…</li>
 </ul>
-<p><code>{.yaml"} ... jobs:   build:     runs-on: ${{ matrix.os }}     strategy:       matrix:         os: [ubuntu-latest, windows-latest]         python-version: [3.8, 3.9, "3.10","3.11"] ...</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">...</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">jobs:</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">  build:</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">    runs-on: ${{ matrix.os }}</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">    strategy:</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co">      matrix:</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">        os: [ubuntu-latest, windows-latest]</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">        python-version: [3.8, 3.9, "3.10","3.11"]</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="github-releases" class="slide level2 smaller">
 <h2>GitHub Releases</h2>

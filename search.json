@@ -2769,7 +2769,7 @@
     "href": "04_dependencies_ci_slides.html#jobs",
     "title": "Dependencies and Continuous Integration",
     "section": "Jobs",
-    "text": "Jobs\n\nOperating system\nPython version\n…\n\n{.yaml\"} ... jobs:   build:     runs-on: ${{ matrix.os }}     strategy:       matrix:         os: [ubuntu-latest, windows-latest]         python-version: [3.8, 3.9, \"3.10\",\"3.11\"] ..."
+    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
   },
   {
     "objectID": "04_dependencies_ci_slides.html#github-releases",
@@ -2888,7 +2888,7 @@
     "href": "04_dependencies_ci.html#jobs",
     "title": "Dependencies and Continuous Integration",
     "section": "Jobs",
-    "text": "Jobs\n\nOperating system\nPython version\n…\n\n{.yaml\"} ... jobs:   build:     runs-on: ${{ matrix.os }}     strategy:       matrix:         os: [ubuntu-latest, windows-latest]         python-version: [3.8, 3.9, \"3.10\",\"3.11\"] ..."
+    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
   },
   {
     "objectID": "04_dependencies_ci.html#github-releases",
