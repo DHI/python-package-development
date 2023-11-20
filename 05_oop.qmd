@@ -129,7 +129,20 @@ class DataArray:
         ...
 ```
 
+. . .
+
+`DataArray` *has a* `geometry` (e.g. `Grid`) and an `item` (`ItemInfo`).
+
 ## Inheritance
+
+::: {.incremental}
+
+* Inheritance is a way to reuse code and specialize behavior.
+* A child class inherits the attributes and methods from the parent class.
+* A child class can override the methods of the parent class.
+* A child class can add new methods.
+
+:::
 
 ## Inheritance - Example
 
@@ -166,6 +179,11 @@ class GeometryFMVerticalProfile{
   _GeometryFMLayered <|-- GeometryFMVerticalProfile
 ```
 
+. . .
+
+`GeometryFM3D` inherits from `_GeometryFMLayered`, it *is a* `_GeometryFMLayered`.
+
+
 ## Inheritance - Example (2)
 
 ```python
@@ -179,6 +197,7 @@ class _GeometryFMLayered(_GeometryFM):
         self._n_layers = n_layers
         self._n_sigma = n_sigma
 ```
+
 
 ## Composition vs inheritance
 
@@ -226,13 +245,12 @@ def repeated_string(s, n):
 
 ::: {.incremental}
 * Python is a dynamically typed language
-* Types are not checked at compile time
-* Types are checked at runtime
+* Types are not checked at compile time by the interpreter
+* Types *can* be checked before runtime using a linter (e.g. `mypy`)
+* Type hints can be used by VS Code to provide auto-completion
 :::
 
 . . .
-
-**Python** with type hints
 
 ```python
 n: int = 2
@@ -379,6 +397,9 @@ Dundermethods:
 
 ```python
 class JavaLikeToolbox:
+
+    def __init__(self, tools: Collection[Tool]):
+        self.tools = tools
     
     def getToolByName(self, name: str) -> Tool:
         for tool in self.tools:
@@ -400,6 +421,9 @@ Hammer()
 
 ```python
 class Toolbox:
+
+    def __init__(self, tools: Collection[Tool]):
+        self._tools = {tool.name: tool for tool in tools}
 
     def __getitem__(self, name: str) -> Tool:
         return self._tools[name]
