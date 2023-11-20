@@ -2,11 +2,11 @@
 
 Related to the time series cleaning project. 
 
-* [Module 1](module_01.md)
-* [Module 2](module_02.md)
-* [Module 3](module_03.md)
-* Module 4
-* Module 5
+* [Module 1](01_module.md)
+* [Module 2](02_module.md)
+* [Module 3](03_module.md)
+* [Module 4](04_module.md)
+* [Module 5](05_module.md)
 * Module 6
 * Module 7
 
