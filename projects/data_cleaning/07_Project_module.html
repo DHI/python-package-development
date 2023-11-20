@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python package development – project_module_06</title>
+<title>Python package development – project_module</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,35 +75,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="module-6-documentation" class="level2">
-<h2 class="anchored" data-anchor-id="module-6-documentation">Module 6: Documentation</h2>
-<p>Before, we share our code with others we should document it. This can be done in many ways, with docstrings (visable from the IDE), README file, notebooks, tests and a proper documentation site.</p>
+<section id="module-7-publishing" class="level2">
+<h2 class="anchored" data-anchor-id="module-7-publishing">Module 7: Publishing</h2>
 <ul>
-<li>Create new branch “docs” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
-<li>6.1 README
-<ul>
-<li>Write a README file with basic information about the project.</li>
-</ul></li>
-<li>6.2 Docstrings
-<ul>
-<li>Write NumPy style docstrings for all functions and classes (google it!)</li>
-<li>[Optional] Install the autodocstrings extension in VSCode (set the style to NumPy), which helps you write docstrings fast by just writing three backticks.</li>
-</ul></li>
-<li>6.3 mkdocs
-<ul>
-<li>Install mkdocs, mkdocstrings and material design <code>mamba/pip install mkdocstrings-python mkdocs-material</code></li>
-<li>Create a <code>mkdocs.yml</code> file in the project root (copy from https://github.com/DHI/template-python-library and adapt).</li>
-<li>Create a docs folder and create a markdown file <code>index.md</code> inside.</li>
-<li>The index file can contain text in the markdown format and auto-generated documentation using the syntax:
-<ul>
-<li><code>::: tscleaner.SpikeCleaner</code></li>
-</ul></li>
-<li>Create API documentation locally using the command <code>&gt;mkdocs serve</code> (which starts a local http server).</li>
-<li>Check the generated HTML documentation.</li>
-<li>The local documentation instance will “listen” to changes, try to modify the <code>index.md</code> file and watch.</li>
-</ul></li>
-<li>Create pull request in GitHub and “request review” from your reviewers</li>
-<li>Get feedback, Adjust code until approval, then merge (and delete branch)</li>
+<li>Add a license</li>
+<li>Change version number to 0.1.0</li>
+<li>Build the package</li>
+<li>Publish the package to the PyPI Test Server.</li>
 </ul>
 <p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
 

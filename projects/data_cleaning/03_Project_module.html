@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python package development – project_module_07</title>
+<title>Python package development – project_module</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -75,13 +109,53 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="module-7-publishing" class="level2">
-<h2 class="anchored" data-anchor-id="module-7-publishing">Module 7: Publishing</h2>
+<section id="module-3-installable-package-and-pytest" class="level2">
+<h2 class="anchored" data-anchor-id="module-3-installable-package-and-pytest">Module 3: Installable package and pytest</h2>
+<p>In the last module, you introduced modules, classes and a new notebook in you repo. In this module, you will add tests to your code base. But first, you will make your package installable.</p>
 <ul>
-<li>Add a license</li>
-<li>Change version number to 0.1.0</li>
-<li>Build the package</li>
-<li>Publish the package to the PyPI Test Server.</li>
+<li>Create new branch “package-test” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
+<li>3.1 Installable package
+<ul>
+<li>Organize the files into folders and add <code>setup.py</code>. Call your package <code>tscleaner</code>.
+<ul>
+<li>subfolders: tscleaner, scripts, notebooks, tests</li>
+<li>make an init-file <code>__init__.py</code> in the tscleaner folder with the following content:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .cleaning <span class="im">import</span> SpikeCleaner, FlatPeriodCleaner, OutOfRangeCleaner</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .plotting <span class="im">import</span> plot_timeseries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>create a <code>setup.py</code> in the root with the following content (change with your data):</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> setup, find_packages</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>setup(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  name<span class="op">=</span><span class="st">'MyPackageName'</span>,  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  version<span class="op">=</span><span class="st">'0.0.1'</span>,  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  url<span class="op">=</span><span class="st">'https://github.com/mypackage.git'</span>,  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  author<span class="op">=</span><span class="st">'Author Name'</span>,  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  author_email<span class="op">=</span><span class="st">'author@gmail.com'</span>,  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  description<span class="op">=</span><span class="st">'Description of my package'</span>,  </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  packages<span class="op">=</span>find_packages(),  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  install_requires<span class="op">=</span>[<span class="st">'numpy'</span>, <span class="st">'matplotlib'</span>],  </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li>Install the package in editable mode, by running the below command from the project root. - <code>&gt; pip install -e .</code>
+<ul>
+<li>Modify import statements in <code>notebook_A</code> and script <code>main.py</code> and make sure they run.</li>
+<li>Modify the cleaner tools by raising exceptions for invalid inputs.</li>
+<li>Move the csv file to <code>/tests/testdata</code> and update notebook with relative path to the file</li>
+</ul></li>
+<li>3.2 Pytest
+<ul>
+<li>Make sure <code>pytest</code> and <code>pytest-cov</code> are installed</li>
+<li>Write unit tests with pytest in the <code>/tests</code> folder. Create an empty <code>__init__.py</code> file in the folder. Create a file <code>test_cleaning.py</code> and create at least three tests that verify that the cleaning tools work as intended</li>
+<li>If all your tests are failing, consider if you have given the right requirements in the <code>setup.py</code>…</li>
+<li>[Optional] Consider to make a fixture that reads the csv file and you can read in all tests</li>
+<li>Run the tests from the commandline by writting <code>&gt;pytest</code> in the project root (can you also run the tests from VSCode?)</li>
+<li>Assess the test coverage with <code>&gt;pytest --cov=tscleaner tests</code></li>
+<li>[Optional] Get coverage as html with <code>&gt;pytest --cov=tscleaner --cov-report html</code> (check the index.html in the htmlcov subfolder afterwards)</li>
+</ul></li>
+<li>Create pull request in GitHub and “request review” from your reviewers</li>
+<li>Get feedback, Adjust code until approval, then merge (and delete branch)</li>
 </ul>
 <p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
 

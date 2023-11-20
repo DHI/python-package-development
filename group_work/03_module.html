@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python package development – project_module_01</title>
+<title>Python package development – module</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,58 +20,24 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,45 +75,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="module-1-github-and-basic-functions" class="level2">
-<h2 class="anchored" data-anchor-id="module-1-github-and-basic-functions">Module 1: GitHub and basic functions</h2>
-<p>Let’s get started on the project! You have received the script <a href="clean_project_data_v4_final2.py"><code>clean_project_data_v4_final2.py</code></a> from a colleague and in this module you will create a GitHub repository, add the script and improve the script by using functions.</p>
+<section id="module-3" class="level2">
+<h2 class="anchored" data-anchor-id="module-3">Module 3</h2>
 <ul>
-<li>1.1 GitHub repo
-<ul>
-<li>Create a new GitHub repository “timeseriescleaner” on your own GitHub profile (not on your organization’s GitHub)
-<ul>
-<li>Make it private, no template, add readme, gitignore python, no license</li>
-</ul></li>
-<li>Go to repo settings/Collaborators add your instructors and your “buddy”</li>
-<li>Clone repo to local machine</li>
-<li>[Optional] Create virtual environment for this course project (use venv or mamba/conda environment)</li>
-<li>Download the provided Python script and add it to the repo</li>
-<li>Commit the file and push the changes (Check that the file can be found on GitHub)</li>
-<li>Open the project in vscode and make a single character change to the file (add a comment)</li>
-<li>Commit and push the changes (Check that you can find it on GitHub)</li>
-</ul></li>
-<li>1.2 Functions
-<ul>
-<li>Create a local branch “refactor-functions”</li>
-<li>Refactor the code to use functions (<code>clean_spikes</code>, <code>clean_outofrange</code>, <code>clean_flat</code>, <code>plot_timeseries</code>)</li>
-<li>You should be able to run the cleaning using this loop:<br>
+<li>Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?<br>
 </li>
+<li>Q2: What tests would you like to add to your project?</li>
+<li>Q3: What are the advantages / disadvantages of automated versus manual testing?</li>
+<li>Q4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> data <span class="kw">in</span> [data1, data2, data3]:</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  data_original <span class="op">=</span> data.copy()</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> clean_spikes(data, max_jump<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> clean_outofrange(data, min_val<span class="op">=</span><span class="dv">0</span>, max_val<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> clean_flat(data, flat_period<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  plot_timeseries(data_original, data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Check that your code runs and produce the same results as before (you should not change the functionality when refactoring!)</li>
-<li>Commit your code in one or more commits (in the end, your code should be approximately 75 lines long)</li>
-</ul></li>
-<li>Create a pull request in GitHub and “request review” from your reviewers</li>
-<li>Wait for feedback, Adjust code until approval, then merge (and delete branch)</li>
-</ul>
-<p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
+<p><a href="../group_work/index.html">Back to overview</a></p>
 
 
 </section>

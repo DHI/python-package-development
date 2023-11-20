@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python package development – project_module_04</title>
+<title>Python package development – module</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +23,21 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,48 +75,14 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="module-4-github-actions-and-auto-formatting" class="level2">
-<h2 class="anchored" data-anchor-id="module-4-github-actions-and-auto-formatting">Module 4: GitHub actions and auto-formatting</h2>
-<p>Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8.</p>
-<p>In this module, we will use some files from the python library template. When you, after this course, needs to create a new package, you can simply start from this template when creating the repo.</p>
+<section id="module-2" class="level2">
+<h2 class="anchored" data-anchor-id="module-2">Module 2</h2>
 <ul>
-<li>Create new branch “action-formatting” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
-<li>4.1 Github Action
-<ul>
-<li>Copy the GitHub action file <code>python-app.yml</code> (in the <code>.github</code> folder) from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).</li>
-<li>Change all occurrences of “my_library” in the yml file to your package name “tscleaner”</li>
-<li>Comment out the line with “ruff-action” with “#”</li>
-<li>Commit, push and create a pull request; the tests should now run, verify that they all run before you move on</li>
-</ul></li>
-<li>4.2 Ruff
-<ul>
-<li>Enable the “ruff-action” be removing the “#” you added above</li>
-<li>Commit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)</li>
-<li>Install “ruff” on your local machine with mamba/conda/pip</li>
-<li>Navigate to your project root folder and run ruff with “ruff .”</li>
-<li>Add the following line to your <code>__init__.py</code> file <code>__all__ = ["SpikeCleaner", "FlatPeriodCleaner", "OutOfRangeCleaner", "plot_timeseries"]</code></li>
-<li>fix remaining issues until ruff passes</li>
-<li>Commit, push and verify that you action now succeeds</li>
-</ul></li>
-<li>4.3 Black
-<ul>
-<li>Install “black” on your local machine with mamba/conda/pip</li>
-<li>Run black from your project root folder; inspect the differences; commit</li>
-</ul></li>
-<li>4.4 pyproject.toml
-<ul>
-<li>Copy the <code>pyproject.toml</code> from the python template https://github.com/DHI/template-python-library (this file should replace your <code>setup.py</code>)</li>
-<li>Modify the file contentes to fit your package</li>
-<li>Remove the <code>setup.py</code> file</li>
-<li>Commit, push and verify that the GitHub action runs</li>
-<li>If it fails, you probably forgot some dependencies - go back and fix</li>
-<li>[Optional] You should also re-install your local package with <code>&gt;pip install --upgrade -e .</code></li>
-</ul></li>
-<li>4.5 [Optional] Enable black and ruff extensions in VSCode; set black to run on save</li>
-<li>Create pull request in GitHub and “request review” from your reviewers</li>
-<li>Get feedback, Adjust code until approval, then merge (and delete branch)</li>
+<li>Q1: In your course project homework, you refactored the script to use functions. How did it go?</li>
+<li>Q2: Classes. If you should introduce classes to improve the code, which classes should it be and why?</li>
+<li>Q3: [Optional] What are some problems with poorly designed code (based on your own experience or from the book)?</li>
 </ul>
-<p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
+<p><a href="../group_work/index.html">Back to overview</a></p>
 
 
 </section>
