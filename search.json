@@ -1789,21 +1789,21 @@
     "href": "05_oop_slides.html#composition---example",
     "title": "Object oriented design in Python",
     "section": "Composition - Example",
-    "text": "Composition - Example\nclass Grid:\n    def __init__(self, nx, dx, ny, dy):\n        self.nx = nx\n        self.dx = dx\n        self.ny = ny\n        self.dy = dy\n    \n    def find_index(self, x,y):\n        ...\n\nclass DataArray:\n    def __init__(self, data, time, item, geometry):\n        self.data = data\n        self.time = time\n        self.item = item\n        self.geometry = geometry\n\n    def plot(self):\n        ..."
+    "text": "Composition - Example\nclass Grid:\n    def __init__(self, nx, dx, ny, dy):\n        self.nx = nx\n        self.dx = dx\n        self.ny = ny\n        self.dy = dy\n    \n    def find_index(self, x,y):\n        ...\n\nclass DataArray:\n    def __init__(self, data, time, item, geometry):\n        self.data = data\n        self.time = time\n        self.item = item\n        self.geometry = geometry\n\n    def plot(self):\n        ...\n\nDataArray has a geometry (e.g. Grid) and an item (ItemInfo)."
   },
   {
     "objectID": "05_oop_slides.html#inheritance",
     "href": "05_oop_slides.html#inheritance",
     "title": "Object oriented design in Python",
     "section": "Inheritance",
-    "text": "Inheritance"
+    "text": "Inheritance\n\n\nInheritance is a way to reuse code and specialize behavior.\nA child class inherits the attributes and methods from the parent class.\nA child class can override the methods of the parent class.\nA child class can add new methods."
   },
   {
     "objectID": "05_oop_slides.html#inheritance---example",
     "href": "05_oop_slides.html#inheritance---example",
     "title": "Object oriented design in Python",
     "section": "Inheritance - Example",
-    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n\nclass _GeometryFM{\n+ node_coordinates\n+ element_table\n}\n\nclass GeometryFM2D{\n+ interp2d()\n+ get_element_area()\n+ plot()\n}\n\nclass _GeometryFMLayered{\n- _n_layers\n- _n_sigma\n+ to_2d_geometry()\n}\n\nclass GeometryFM3D{\n+ plot()\n}\n\nclass GeometryFMVerticalProfile{\n+ plot()\n}\n  _GeometryFM &lt;|-- GeometryFM2D\n  _GeometryFM &lt;|-- _GeometryFMLayered\n  _GeometryFMLayered &lt;|-- GeometryFM3D\n  _GeometryFMLayered &lt;|-- GeometryFMVerticalProfile"
+    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n\nclass _GeometryFM{\n+ node_coordinates\n+ element_table\n}\n\nclass GeometryFM2D{\n+ interp2d()\n+ get_element_area()\n+ plot()\n}\n\nclass _GeometryFMLayered{\n- _n_layers\n- _n_sigma\n+ to_2d_geometry()\n}\n\nclass GeometryFM3D{\n+ plot()\n}\n\nclass GeometryFMVerticalProfile{\n+ plot()\n}\n  _GeometryFM &lt;|-- GeometryFM2D\n  _GeometryFM &lt;|-- _GeometryFMLayered\n  _GeometryFMLayered &lt;|-- GeometryFM3D\n  _GeometryFMLayered &lt;|-- GeometryFMVerticalProfile\n\n\n\n\n\n\nGeometryFM3D inherits from _GeometryFMLayered, it is a _GeometryFMLayered."
   },
   {
     "objectID": "05_oop_slides.html#inheritance---example-2",
@@ -1831,7 +1831,7 @@
     "href": "05_oop_slides.html#types-1",
     "title": "Object oriented design in Python",
     "section": "Types",
-    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time\nTypes are checked at runtime\n\n\n\nPython with type hints\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -&gt; str:\n    return s * n"
+    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time by the interpreter\nTypes can be checked before runtime using a linter (e.g. mypy)\nType hints can be used by VS Code to provide auto-completion\n\n\n\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -&gt; str:\n    return s * n"
   },
   {
     "objectID": "05_oop_slides.html#abstraction",
@@ -2034,21 +2034,21 @@
     "href": "05_oop.html#composition---example",
     "title": "Object oriented design in Python",
     "section": "Composition - Example",
-    "text": "Composition - Example\nclass Grid:\n    def __init__(self, nx, dx, ny, dy):\n        self.nx = nx\n        self.dx = dx\n        self.ny = ny\n        self.dy = dy\n    \n    def find_index(self, x,y):\n        ...\n\nclass DataArray:\n    def __init__(self, data, time, item, geometry):\n        self.data = data\n        self.time = time\n        self.item = item\n        self.geometry = geometry\n\n    def plot(self):\n        ..."
+    "text": "Composition - Example\nclass Grid:\n    def __init__(self, nx, dx, ny, dy):\n        self.nx = nx\n        self.dx = dx\n        self.ny = ny\n        self.dy = dy\n    \n    def find_index(self, x,y):\n        ...\n\nclass DataArray:\n    def __init__(self, data, time, item, geometry):\n        self.data = data\n        self.time = time\n        self.item = item\n        self.geometry = geometry\n\n    def plot(self):\n        ...\n. . .\nDataArray has a geometry (e.g. Grid) and an item (ItemInfo)."
   },
   {
     "objectID": "05_oop.html#inheritance",
     "href": "05_oop.html#inheritance",
     "title": "Object oriented design in Python",
     "section": "Inheritance",
-    "text": "Inheritance"
+    "text": "Inheritance\n\n\nInheritance is a way to reuse code and specialize behavior.\nA child class inherits the attributes and methods from the parent class.\nA child class can override the methods of the parent class.\nA child class can add new methods."
   },
   {
     "objectID": "05_oop.html#inheritance---example",
     "href": "05_oop.html#inheritance---example",
     "title": "Object oriented design in Python",
     "section": "Inheritance - Example",
-    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n\nclass _GeometryFM{\n+ node_coordinates\n+ element_table\n}\n\nclass GeometryFM2D{\n+ interp2d()\n+ get_element_area()\n+ plot()\n}\n\nclass _GeometryFMLayered{\n- _n_layers\n- _n_sigma\n+ to_2d_geometry()\n}\n\nclass GeometryFM3D{\n+ plot()\n}\n\nclass GeometryFMVerticalProfile{\n+ plot()\n}\n  _GeometryFM &lt;|-- GeometryFM2D\n  _GeometryFM &lt;|-- _GeometryFMLayered\n  _GeometryFMLayered &lt;|-- GeometryFM3D\n  _GeometryFMLayered &lt;|-- GeometryFMVerticalProfile"
+    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n\nclass _GeometryFM{\n+ node_coordinates\n+ element_table\n}\n\nclass GeometryFM2D{\n+ interp2d()\n+ get_element_area()\n+ plot()\n}\n\nclass _GeometryFMLayered{\n- _n_layers\n- _n_sigma\n+ to_2d_geometry()\n}\n\nclass GeometryFM3D{\n+ plot()\n}\n\nclass GeometryFMVerticalProfile{\n+ plot()\n}\n  _GeometryFM &lt;|-- GeometryFM2D\n  _GeometryFM &lt;|-- _GeometryFMLayered\n  _GeometryFMLayered &lt;|-- GeometryFM3D\n  _GeometryFMLayered &lt;|-- GeometryFMVerticalProfile\n\n\n\n\n\n. . .\nGeometryFM3D inherits from _GeometryFMLayered, it is a _GeometryFMLayered."
   },
   {
     "objectID": "05_oop.html#inheritance---example-2",
@@ -2076,7 +2076,7 @@
     "href": "05_oop.html#types-1",
     "title": "Object oriented design in Python",
     "section": "Types",
-    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time\nTypes are checked at runtime\n\n\n. . .\nPython with type hints\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -&gt; str:\n    return s * n"
+    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time by the interpreter\nTypes can be checked before runtime using a linter (e.g. mypy)\nType hints can be used by VS Code to provide auto-completion\n\n\n. . .\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -&gt; str:\n    return s * n"
   },
   {
     "objectID": "05_oop.html#abstraction",
@@ -2111,7 +2111,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\nclass JavaLikeToolbox:\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\n&gt;&gt;&gt; tb = JavaLikeToolbox([Hammer(), Screwdriver()])\n&gt;&gt;&gt; tb.getToolByName(\"hammer\")\nHammer()\n&gt;&gt;&gt; tb.numberOfTools()\n2\n\nclass Toolbox:\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self.tools)\n\n&gt;&gt;&gt; tb = Toolbox([Hammer(), Screwdriver()])\n&gt;&gt;&gt; tb[\"hammer\"]\nHammer()\n&gt;&gt;&gt; len(tb)\n2\n\nYou want your code to be feel like the built-in types.\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n&gt;&gt;&gt; m = SparseMatrix(shape=(2,2), fill_value=0.0)\n&gt;&gt;&gt; m\n0.0 0.0\n0.0 0.0\n&gt;&gt;&gt; m[0,1]\n0.0\n&gt;&gt;&gt; m[0,1] = 1.0\n&gt;&gt;&gt; m[1,0] = 2.0\n&gt;&gt;&gt; m\n0.0 2.0 \n1.0 0.0 \n&gt;&gt;&gt; m.transpose()\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\n&gt;&gt;&gt; tb = JavaLikeToolbox([Hammer(), Screwdriver()])\n&gt;&gt;&gt; tb.getToolByName(\"hammer\")\nHammer()\n&gt;&gt;&gt; tb.numberOfTools()\n2\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self.tools)\n\n&gt;&gt;&gt; tb = Toolbox([Hammer(), Screwdriver()])\n&gt;&gt;&gt; tb[\"hammer\"]\nHammer()\n&gt;&gt;&gt; len(tb)\n2\n\nYou want your code to be feel like the built-in types.\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n&gt;&gt;&gt; m = SparseMatrix(shape=(2,2), fill_value=0.0)\n&gt;&gt;&gt; m\n0.0 0.0\n0.0 0.0\n&gt;&gt;&gt; m[0,1]\n0.0\n&gt;&gt;&gt; m[0,1] = 1.0\n&gt;&gt;&gt; m[1,0] = 2.0\n&gt;&gt;&gt; m\n0.0 2.0 \n1.0 0.0 \n&gt;&gt;&gt; m.transpose()\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
