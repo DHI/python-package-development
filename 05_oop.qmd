@@ -810,8 +810,8 @@ def predict(df):
 
 def main():
     df = get_data("raw_data.csv")
-    clean_data = clean_data(df)
-    final_data = transform_data(clean_data)
+    cleaned_data = clean_data(df)
+    final_data = transform_data(cleaned_data)
     predictions = predict(final_data)
 ```
 

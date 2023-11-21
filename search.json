@@ -2223,7 +2223,7 @@
     "href": "05_oop.html#composed-method",
     "title": "Object oriented design in Python",
     "section": "Composed method",
-    "text": "Composed method\nBreak up a long method into smaller methods.\n\n# get data\nos.shutil.copyfile(thisfile, localfile)\ndf = read_csv(localfile)\n\n# clean data\ndf.dropna()\ndf.drop_duplicates()\ndf[somevar&lt;0.0] = 0.0\n\n# transform data\ndf.date = pd.to_datetime(df.date) - 86400\n\n# predict\npredictions = df.height + df.weight * df.age\n\n\ndef get_data(filename,...):\n    ...\n\ndef clean_data(df):\n    ...\n\ndef transform_data(df):\n    ...\n\ndef predict(df):\n    ...\n\ndef main():\n    df = get_data(\"raw_data.csv\")\n    clean_data = clean_data(df)\n    final_data = transform_data(clean_data)\n    predictions = predict(final_data)"
+    "text": "Composed method\nBreak up a long method into smaller methods.\n\n# get data\nos.shutil.copyfile(thisfile, localfile)\ndf = read_csv(localfile)\n\n# clean data\ndf.dropna()\ndf.drop_duplicates()\ndf[somevar&lt;0.0] = 0.0\n\n# transform data\ndf.date = pd.to_datetime(df.date) - 86400\n\n# predict\npredictions = df.height + df.weight * df.age\n\n\ndef get_data(filename,...):\n    ...\n\ndef clean_data(df):\n    ...\n\ndef transform_data(df):\n    ...\n\ndef predict(df):\n    ...\n\ndef main():\n    df = get_data(\"raw_data.csv\")\n    cleaned_data = clean_data(df)\n    final_data = transform_data(cleaned_data)\n    predictions = predict(final_data)"
   },
   {
     "objectID": "05_oop.html#composed-method-1",
