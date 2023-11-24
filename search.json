@@ -1596,18 +1596,18 @@
     "text": "Q1: Explain in your own words: what is composition? and what is inheritance in software design?\nQ2: What are some pros and cons of composition and inheritance?\nQ3: How could you use composition and/or inheritance in your Cleaner classes?\n\nBack to overview"
   },
   {
-    "objectID": "group_work/03_module.html",
-    "href": "group_work/03_module.html",
+    "objectID": "group_work/06_module.html",
+    "href": "group_work/06_module.html",
     "title": "Python package development",
     "section": "",
-    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
+    "text": "Q1: Reflect on the work your did on your project for module 5 (OOP design).\nQ2: What is good documentation for you? When you start with a new library what is most important to get you started?\nQ3: What is the most important thing you learned in this module?\n\nBack to overview"
   },
   {
-    "objectID": "group_work/03_module.html#module-3",
-    "href": "group_work/03_module.html#module-3",
+    "objectID": "group_work/06_module.html#module-06",
+    "href": "group_work/06_module.html#module-06",
     "title": "Python package development",
     "section": "",
-    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
+    "text": "Q1: Reflect on the work your did on your project for module 5 (OOP design).\nQ2: What is good documentation for you? When you start with a new library what is most important to get you started?\nQ3: What is the most important thing you learned in this module?\n\nBack to overview"
   },
   {
     "objectID": "group_work/02_module.html",
@@ -1622,6 +1622,20 @@
     "title": "Python package development",
     "section": "",
     "text": "Q1: In your course project homework, you refactored the script to use functions. How did it go?\nQ2: Classes. If you should introduce classes to improve the code, which classes should it be and why?\nQ3: [Optional] What are some problems with poorly designed code (based on your own experience or from the book)?\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/03_module.html",
+    "href": "group_work/03_module.html",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/03_module.html#module-3",
+    "href": "group_work/03_module.html#module-3",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
   },
   {
     "objectID": "group_work/index.html",
@@ -2258,7 +2272,7 @@
     "href": "index.html#learning-modules",
     "title": "Python package development",
     "section": "Learning modules",
-    "text": "Learning modules\n\nGit, Pull Requests, and code reviews 🛝\n\nDiscussion\nHomework\n\nPython functions, classes, and modules 🛝\n\nDiscussion\nHomework\n\nTesting and auto-formatting 🛝\n\nDiscussion\nHomework\n\nDependencies and GitHub actions 🛝\n\nDiscussion\nHomework\n\nObject oriented design in Python 🛝\n\nDiscussion\nHomework\n\nDocumentation 🛝\n\nHomework\n\nDistributing your package 🛝\n\nHomework\n\n\n©️ DHI 2023"
+    "text": "Learning modules\n\nGit, Pull Requests, and code reviews 🛝\n\nDiscussion\nHomework\n\nPython functions, classes, and modules 🛝\n\nDiscussion\nHomework\n\nTesting and auto-formatting 🛝\n\nDiscussion\nHomework\n\nDependencies and GitHub actions 🛝\n\nDiscussion\nHomework\n\nObject oriented design in Python 🛝\n\nDiscussion\nHomework\n\nDocumentation 🛝\n\nDiscussion\nHomework\n\nDistributing your package 🛝\n\nHomework\n\n\n©️ DHI 2023"
   },
   {
     "objectID": "06_documentation_slides.html#why-document-your-code",
@@ -2279,7 +2293,7 @@
     "href": "06_documentation_slides.html#requirements",
     "title": "Documentation",
     "section": "Requirements",
-    "text": "Requirements\n\nMention the requirements for your package\n\nOperating system\nPython version\nOther non-Python dependencies, e.g. VC++ redistributables\n\nInclude information on how to install your package\n\npip install my_package\npip install pip install https://github.com/DHI/{repo}/archive/main.zip"
+    "text": "Requirements\n\nMention the requirements for your package\n\nOperating system\nPython version\nOther non-Python dependencies, e.g. VC++ redistributables\n\nInclude information on how to install your package\n\npip install my_package\npip install https://github.com/DHI/{repo}/archive/main.zip"
   },
   {
     "objectID": "06_documentation_slides.html#notebooks",
@@ -2405,7 +2419,7 @@
     "href": "06_documentation.html#requirements",
     "title": "Documentation",
     "section": "Requirements",
-    "text": "Requirements\n\nMention the requirements for your package\n\nOperating system\nPython version\nOther non-Python dependencies, e.g. VC++ redistributables\n\nInclude information on how to install your package\n\npip install my_package\npip install pip install https://github.com/DHI/{repo}/archive/main.zip"
+    "text": "Requirements\n\nMention the requirements for your package\n\nOperating system\nPython version\nOther non-Python dependencies, e.g. VC++ redistributables\n\nInclude information on how to install your package\n\npip install my_package\npip install https://github.com/DHI/{repo}/archive/main.zip"
   },
   {
     "objectID": "06_documentation.html#notebooks",

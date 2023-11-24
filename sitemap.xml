@@ -2,134 +2,138 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/DHI/python-package-development/01_version_control.html</loc>
-    <lastmod>2023-11-21T13:42:22.716Z</lastmod>
+    <lastmod>2023-11-24T06:58:19.701Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/01_version_control_slides.html</loc>
-    <lastmod>2023-11-21T13:42:22.704Z</lastmod>
+    <lastmod>2023-11-24T06:58:19.689Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/02_function_classes.html</loc>
-    <lastmod>2023-11-21T13:42:20.772Z</lastmod>
+    <lastmod>2023-11-24T06:58:17.673Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/02_function_classes_slides.html</loc>
-    <lastmod>2023-11-21T13:42:20.716Z</lastmod>
+    <lastmod>2023-11-24T06:58:17.613Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/07_packaging.html</loc>
-    <lastmod>2023-11-21T13:42:18.480Z</lastmod>
+    <lastmod>2023-11-24T06:58:15.349Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/07_packaging_slides.html</loc>
-    <lastmod>2023-11-21T13:42:18.420Z</lastmod>
+    <lastmod>2023-11-24T06:58:15.297Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/00_introduction.html</loc>
-    <lastmod>2023-11-21T13:42:16.976Z</lastmod>
+    <lastmod>2023-11-24T06:58:13.785Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/04_dependencies_ci.html</loc>
-    <lastmod>2023-11-21T13:42:16.344Z</lastmod>
+    <lastmod>2023-11-24T06:58:13.137Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/04_dependencies_ci_slides.html</loc>
-    <lastmod>2023-11-21T13:42:16.312Z</lastmod>
+    <lastmod>2023-11-24T06:58:13.109Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/02_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:13.488Z</lastmod>
+    <lastmod>2023-11-24T06:58:10.249Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/06_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:12.932Z</lastmod>
+    <lastmod>2023-11-24T06:58:09.669Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/01_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:12.344Z</lastmod>
+    <lastmod>2023-11-24T06:58:09.089Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/05_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:11.744Z</lastmod>
+    <lastmod>2023-11-24T06:58:08.453Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/04_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:11.200Z</lastmod>
+    <lastmod>2023-11-24T06:58:07.869Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/group_work/01_module.html</loc>
-    <lastmod>2023-11-21T13:42:10.680Z</lastmod>
+    <lastmod>2023-11-24T06:58:07.317Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/group_work/05_module.html</loc>
-    <lastmod>2023-11-21T13:42:10.220Z</lastmod>
+    <lastmod>2023-11-24T06:58:06.833Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/DHI/python-package-development/group_work/03_module.html</loc>
-    <lastmod>2023-11-21T13:42:09.752Z</lastmod>
+    <loc>https://github.com/DHI/python-package-development/group_work/06_module.html</loc>
+    <lastmod>2023-11-24T06:58:06.349Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/group_work/02_module.html</loc>
-    <lastmod>2023-11-21T13:42:09.228Z</lastmod>
+    <lastmod>2023-11-24T06:58:05.573Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/DHI/python-package-development/group_work/03_module.html</loc>
+    <lastmod>2023-11-24T06:58:06.105Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/group_work/index.html</loc>
-    <lastmod>2023-11-21T13:42:09.996Z</lastmod>
+    <lastmod>2023-11-24T06:58:06.605Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/group_work/04_module.html</loc>
-    <lastmod>2023-11-21T13:42:10.444Z</lastmod>
+    <lastmod>2023-11-24T06:58:07.077Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/07_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:10.904Z</lastmod>
+    <lastmod>2023-11-24T06:58:07.553Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/index.html</loc>
-    <lastmod>2023-11-21T13:42:11.460Z</lastmod>
+    <lastmod>2023-11-24T06:58:08.141Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/notebook_A.html</loc>
-    <lastmod>2023-11-21T13:42:12.072Z</lastmod>
+    <lastmod>2023-11-24T06:58:08.805Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/03_Project_module.html</loc>
-    <lastmod>2023-11-21T13:42:12.664Z</lastmod>
+    <lastmod>2023-11-24T06:58:09.397Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/projects/data_cleaning/clean_project_data_v4_final2.html</loc>
-    <lastmod>2023-11-21T13:42:13.204Z</lastmod>
+    <lastmod>2023-11-24T06:58:09.953Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/05_oop_slides.html</loc>
-    <lastmod>2023-11-21T13:42:14.680Z</lastmod>
+    <lastmod>2023-11-24T06:58:11.513Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/05_oop.html</loc>
-    <lastmod>2023-11-21T13:42:14.764Z</lastmod>
+    <lastmod>2023-11-24T06:58:11.577Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/course_structure.html</loc>
-    <lastmod>2023-11-21T13:42:16.724Z</lastmod>
+    <lastmod>2023-11-24T06:58:13.533Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/index.html</loc>
-    <lastmod>2023-11-21T13:42:17.308Z</lastmod>
+    <lastmod>2023-11-24T06:58:14.141Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/06_documentation_slides.html</loc>
-    <lastmod>2023-11-21T13:42:19.628Z</lastmod>
+    <lastmod>2023-11-24T06:58:16.509Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/06_documentation.html</loc>
-    <lastmod>2023-11-21T13:42:19.652Z</lastmod>
+    <lastmod>2023-11-24T06:58:16.537Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/03_testing_slides.html</loc>
-    <lastmod>2023-11-21T13:42:21.824Z</lastmod>
+    <lastmod>2023-11-24T06:58:18.785Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/DHI/python-package-development/03_testing.html</loc>
-    <lastmod>2023-11-21T13:42:21.864Z</lastmod>
+    <lastmod>2023-11-24T06:58:18.829Z</lastmod>
   </url>
 </urlset>
