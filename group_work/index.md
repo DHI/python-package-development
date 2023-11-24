@@ -7,7 +7,7 @@ Related to the time series cleaning project.
 * [Module 3](03_module.md)
 * [Module 4](04_module.md)
 * [Module 5](05_module.md)
-* Module 6
+* [Module 6](06_module.md)
 * Module 7
 
 
