@@ -1596,32 +1596,11 @@
     "text": "Q1: Explain in your own words: what is composition? and what is inheritance in software design?\nQ2: What are some pros and cons of composition and inheritance?\nQ3: How could you use composition and/or inheritance in your Cleaner classes?\n\nBack to overview"
   },
   {
-    "objectID": "group_work/06_module.html",
-    "href": "group_work/06_module.html",
-    "title": "Python package development",
+    "objectID": "group_work/index.html",
+    "href": "group_work/index.html",
+    "title": "On-line Group Discussion",
     "section": "",
-    "text": "Q1: Reflect on the work your did on your project for module 5 (OOP design).\nQ2: What is good documentation for you? Have you come across a software library or application that was well documented. Why did you find the documentation useful (e.g. examples ready to copy/paste? When you start with a new library what is most important to get you started?\nQ3: What is the most important thing you learned in this module?\n\nBack to overview"
-  },
-  {
-    "objectID": "group_work/06_module.html#module-06",
-    "href": "group_work/06_module.html#module-06",
-    "title": "Python package development",
-    "section": "",
-    "text": "Q1: Reflect on the work your did on your project for module 5 (OOP design).\nQ2: What is good documentation for you? Have you come across a software library or application that was well documented. Why did you find the documentation useful (e.g. examples ready to copy/paste? When you start with a new library what is most important to get you started?\nQ3: What is the most important thing you learned in this module?\n\nBack to overview"
-  },
-  {
-    "objectID": "group_work/02_module.html",
-    "href": "group_work/02_module.html",
-    "title": "Python package development",
-    "section": "",
-    "text": "Q1: In your course project homework, you refactored the script to use functions. How did it go?\nQ2: Classes. If you should introduce classes to improve the code, which classes should it be and why?\nQ3: [Optional] What are some problems with poorly designed code (based on your own experience or from the book)?\n\nBack to overview"
-  },
-  {
-    "objectID": "group_work/02_module.html#module-2",
-    "href": "group_work/02_module.html#module-2",
-    "title": "Python package development",
-    "section": "",
-    "text": "Q1: In your course project homework, you refactored the script to use functions. How did it go?\nQ2: Classes. If you should introduce classes to improve the code, which classes should it be and why?\nQ3: [Optional] What are some problems with poorly designed code (based on your own experience or from the book)?\n\nBack to overview"
+    "text": "On-line Group Discussion\nRelated to the time series cleaning project.\n\nModule 1\nModule 2\nModule 3\nModule 4\nModule 5\nModule 6\nModule 7"
   },
   {
     "objectID": "group_work/03_module.html",
@@ -1638,11 +1617,46 @@
     "text": "Q1: In your course project homework from last module, you implemented modules and classes, how did it go? Any reflections?\n\nQ2: What tests would you like to add to your project?\nQ3: What are the advantages / disadvantages of automated versus manual testing?\nQ4: Things can go wrong when executing your code, how should you handle that? Check inputs? try-except statements? What are pros and cons between different approaches?\n\nBack to overview"
   },
   {
-    "objectID": "group_work/index.html",
-    "href": "group_work/index.html",
-    "title": "On-line Group Discussion",
+    "objectID": "group_work/02_module.html",
+    "href": "group_work/02_module.html",
+    "title": "Python package development",
     "section": "",
-    "text": "On-line Group Discussion\nRelated to the time series cleaning project.\n\nModule 1\nModule 2\nModule 3\nModule 4\nModule 5\nModule 6\nModule 7"
+    "text": "Q1: In your course project homework, you refactored the script to use functions. How did it go?\nQ2: Classes. If you should introduce classes to improve the code, which classes should it be and why?\nQ3: [Optional] What are some problems with poorly designed code (based on your own experience or from the book)?\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/02_module.html#module-2",
+    "href": "group_work/02_module.html#module-2",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: In your course project homework, you refactored the script to use functions. How did it go?\nQ2: Classes. If you should introduce classes to improve the code, which classes should it be and why?\nQ3: [Optional] What are some problems with poorly designed code (based on your own experience or from the book)?\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/06_module.html",
+    "href": "group_work/06_module.html",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: Reflect on the work your did on your project for module 5 (OOP design).\nQ2: What is good documentation for you? Have you come across a software library or application that was well documented. Why did you find the documentation useful (e.g. examples ready to copy/paste? When you start with a new library what is most important to get you started?\nQ3: What is the most important thing you learned in this module?\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/06_module.html#module-06",
+    "href": "group_work/06_module.html#module-06",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: Reflect on the work your did on your project for module 5 (OOP design).\nQ2: What is good documentation for you? Have you come across a software library or application that was well documented. Why did you find the documentation useful (e.g. examples ready to copy/paste? When you start with a new library what is most important to get you started?\nQ3: What is the most important thing you learned in this module?\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/07_module.html",
+    "href": "group_work/07_module.html",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: TBD\n\nBack to overview"
+  },
+  {
+    "objectID": "group_work/07_module.html#module-07",
+    "href": "group_work/07_module.html#module-07",
+    "title": "Python package development",
+    "section": "",
+    "text": "Q1: TBD\n\nBack to overview"
   },
   {
     "objectID": "group_work/04_module.html",
