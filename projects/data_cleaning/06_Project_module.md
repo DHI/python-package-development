@@ -7,7 +7,7 @@ Before, we share our code with others we should document it. This can be done in
     - Write a README file with basic information about the project.
 - 6.2 Docstrings
     - Write NumPy style docstrings for all functions and classes (google it!)
-    - [Optional] Install the autodocstrings extension in VSCode (set the style to NumPy), which helps you write docstrings fast by just writing three backticks.
+    - [Optional] Install the autodocstrings extension in VSCode (set the style to NumPy), which helps you write docstrings fast by just writing three double quotes.
 - 6.3 mkdocs
     - Install mkdocs, mkdocstrings and material design `mamba/pip install mkdocstrings-python mkdocs-material`
     - Create a `mkdocs.yml` file in the project root (copy from https://github.com/DHI/template-python-library and adapt).
