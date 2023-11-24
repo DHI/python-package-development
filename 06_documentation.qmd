@@ -35,7 +35,7 @@ logo: academy_logo.png
     - Other non-Python dependencies, e.g. VC++ redistributables
 * Include information on how to install your package
     - `pip install my_package`
-    - `pip install pip install https://github.com/DHI/{repo}/archive/main.zip`
+    - `pip install https://github.com/DHI/{repo}/archive/main.zip`
 
 ## Notebooks
 
@@ -309,5 +309,4 @@ Disallow: /
 * Use `mkdocs` to generate API documentation
 
 :::
-
 
