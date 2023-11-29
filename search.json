@@ -1677,14 +1677,14 @@
     "href": "projects/data_cleaning/07_Project_module.html",
     "title": "Python package development",
     "section": "",
-    "text": "Add a license\nChange version number to 0.1.0\nBuild the package\nPublish the package to the PyPI Test Server.\n\nBack to course project overview"
+    "text": "Add license to the root folder (see https://choosealicense.com/)\nChange version number to 0.1.0\nMake a release in GitHub - click “Draft a new release” and add a tag (v0.1.0) and a release title (v0.1.0)\nUpdate version number to dev version 0.2.0dev0\nOptional: Build the package with “&gt;python -m build” from the project root (install build first)\nOptional: Publish the package to the PyPI Test Server (requires setting up a PyPI account and two-factor authentication!)\n\nBack to course project overview"
   },
   {
     "objectID": "projects/data_cleaning/07_Project_module.html#module-7-publishing",
     "href": "projects/data_cleaning/07_Project_module.html#module-7-publishing",
     "title": "Python package development",
     "section": "",
-    "text": "Add a license\nChange version number to 0.1.0\nBuild the package\nPublish the package to the PyPI Test Server.\n\nBack to course project overview"
+    "text": "Add license to the root folder (see https://choosealicense.com/)\nChange version number to 0.1.0\nMake a release in GitHub - click “Draft a new release” and add a tag (v0.1.0) and a release title (v0.1.0)\nUpdate version number to dev version 0.2.0dev0\nOptional: Build the package with “&gt;python -m build” from the project root (install build first)\nOptional: Publish the package to the PyPI Test Server (requires setting up a PyPI account and two-factor authentication!)\n\nBack to course project overview"
   },
   {
     "objectID": "projects/data_cleaning/index.html",
