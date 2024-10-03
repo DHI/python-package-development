@@ -361,7 +361,7 @@ The same can be done with warnings.
 
 A way to check your code for common errors and style issues.
 
-[`ruff`](https://beta.ruff.rs/docs/) is a new tool for linting Python code.
+[`ruff`](https://docs.astral.sh/ruff/) is a new tool for linting Python code.
 
 * syntax errors
 * unused imports
@@ -384,15 +384,15 @@ def preprocess(x, y, xout):
     return scipy.interpolate.interp1d(x, y)(xout)
 ```
 
-Run `ruff`:
+Run `ruff check`:
 
 ```bash
-$ ruff process.py
+$ ruff check process.py
 process.py:1:8: F401 [*] `requests` imported but unused
 process.py:6:12: F821 Undefined name `np`
 process.py:7:5: F841 [*] Local variable `method` is assigned to but never used
 Found 3 errors.
-[*] 2 potentially fixable with the --fix option.
+[*] 1 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).
 ```
 
 ::: {.notes}
@@ -408,32 +408,38 @@ Found 3 errors.
 ::: {.incremental}
 
 * Formatting code for readability and maintainability is essential.
-* black is an opinionated automatic code formatter for Python.
-* It enforces its own rules for formatting, which are not configurable.
+* `ruff` can be used for code formatting (in addition to linting).
+* `ruff` is a faster replacement of `black`, a previously commonly used code formatter.
+* It enforces its own rules for formatting, which are only minorly configurable.
 * Having a unified style makes code changes easier to understand and collaborate on.
 
 :::
 
 
-## Running Black
+## Running ruff format
 
+Check if files need formatting (optional):
 ```bash
-$ black .
-reformatted data_utils.py
-reformatted dfsu/__init__.py
-reformatted dataarray.py
-reformatted dataset.py
-reformatted spatial/geometry.py
-reformatted pfs/pfssection.py
+$ ruff format --check
+Would reformat: data_utils.py
+Would reformat: dfsu/__init__.py
+Would reformat: dataarray.py
+Would reformat: dataset.py
+Would reformat: spatial/geometry.py
+Would reformat: pfs/pfssection.py
+6 files would be reformatted
+```
 
-All done! ✨ 🍰 ✨
-6 files reformatted, 27 files left unchanged.
+Format files:
+```bash
+$ ruff format
+6 files reformatted
 ```
 
 
-## Running Black {.smaller}
+## Ruff format in Visual Studio Code
 
-Visual Studio Code can be configured to run `black` automatically when saving a file using the `Black` extension.
+Visual Studio Code can be configured to run `ruff format` automatically when saving a file using the `Ruff` extension.
 
 ![](images/vs_code_format.png)
 
@@ -527,7 +533,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 * Warnings are a way to alert users of your code to potential issues or usage errors.
 * **Linting** is a way to check your code for common errors and style issues.
 * **Ruff** is a fast linter that checks for common errors and style issues.
-* **Black** is an automatic code formatter that enforces a consistent style.
+* **Ruff** is also an automatic code formatter that enforces a consistent style.
 * Profiling is a way to measure the performance of your code.
 
 ::: 
