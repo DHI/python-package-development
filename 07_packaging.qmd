@@ -322,6 +322,24 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
 ```
 
+## Publishing to PyPI and TestPyPI {.smaller}
+
+* PyPI is the Python Package Index, where you can publish your package.
+* TestPyPI is a test version of PyPI for trying out publish workflows.
+* Only publish to PyPI when you are ready to release a new version.
+
+. . .
+
+```{.yaml filename=.github/workflows/python_publish.yml code-line-numbers="|3-4|5-6"}
+    - name: Build package
+      run: python -m build
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+          repository-url: https://test.pypi.org/legacy/
+```
+
+
 
 ## Private PyPI server {.smaller}
 
