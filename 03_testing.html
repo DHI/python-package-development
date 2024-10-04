@@ -598,6 +598,37 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     18    240227  437538803.0   1821.4      2.5                  points[j], points[j + 1] = points[j + 1], points[j]
     19         1        500.0    500.0      0.0      return points</code></pre>
 </section>
+<section id="makefiles" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="makefiles">Makefiles</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Makefiles simplify running complex commands.</li>
+<li>They act as a single source of truth for how to run your tools.</li>
+<li>Self documenting, making it easier to onboard new team members.</li>
+<li>Run ‘make &lt;command&gt;’ to run a command from the Makefile.</li>
+<li>On Linux by default, for Windows install with <a href="https://www.msys2.org/">MSYS2</a> or <a href="https://chocolatey.org/">Chocolatey</a> (or use WSL).</li>
+</ul>
+</div>
+<p>. . .</p>
+<p>Example</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Makefile</strong></pre>
+</div>
+<div class="sourceCode" id="cb19" data-filename="Makefile"><pre class="sourceCode numberSource makefile number-lines code-with-copy"><code class="sourceCode makefile"><span id="cb19-1"><a href="#cb19-1"></a><span class="dt">LIB</span> <span class="ch">=</span><span class="st"> my_library</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="dv">check:</span><span class="dt"> lint typecheck test</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="dv">lint:</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="er">    </span>ruff check <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a></span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="dv">format:</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="er">    </span>ruff format <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a></span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="dv">test:</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a><span class="er">    </span>pytest --disable-warnings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="summary" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="summary">Summary</h2>
 <div class="incremental">
@@ -612,6 +643,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <li><strong>Ruff</strong> is a fast linter that checks for common errors and style issues.</li>
 <li><strong>Ruff</strong> is also an automatic code formatter that enforces a consistent style.</li>
 <li>Profiling is a way to measure the performance of your code.</li>
+<li><strong>Makefiles</strong> simplify project related commands for everyone.</li>
 </ul>
 </div>
 
