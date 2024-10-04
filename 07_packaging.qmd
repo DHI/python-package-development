@@ -213,7 +213,7 @@ Make the requirements loose, to avoid conflicts with other packages.
 
 ## pyproject.toml {.smaller}
 
-```{.toml code-line-numbers="8-10|26-28"}
+```{.toml code-line-numbers="8-10|27-29"}
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
