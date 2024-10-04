@@ -520,6 +520,33 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     19         1        500.0    500.0      0.0      return points
 ```
 
+## Makefiles {.smaller}
+
+::: {.incremental}
+* Makefiles simplify running complex commands.
+* They act as a single source of truth for how to run your tools.
+* Self documenting, making it easier to onboard new team members.
+* Run 'make &lt;command&gt;' to run a command from the Makefile.
+:::
+
+. . .
+
+Example
+
+```{.makefile filename="Makefile" code-line-numbers="|1|5-6|8-9|11-12|3|"}
+LIB = my_library
+
+check: lint typecheck test
+
+lint:
+	ruff check $(LIB)
+
+format:
+	ruff format $(LIB)
+
+test:
+	pytest --disable-warnings
+```
 
 ## Summary {.smaller}
 
@@ -535,5 +562,6 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 * **Ruff** is a fast linter that checks for common errors and style issues.
 * **Ruff** is also an automatic code formatter that enforces a consistent style.
 * Profiling is a way to measure the performance of your code.
+* **Makefiles** simplify project related commands for everyone.
 
 ::: 
