@@ -8,9 +8,9 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Python package development - Testing, linting and formatting</title>
+  <title>Python package development – Testing, linting and formatting</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -69,7 +69,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -83,7 +83,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -220,7 +220,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -410,9 +411,10 @@
 </section>
 <section id="testing-workflow" class="slide level2">
 <h2>Testing workflow</h2>
-<div class="cell" data-reveal="true">
+<div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
     A[Prepare inputs]
@@ -423,6 +425,7 @@
     A --&gt; B --&gt; C --&gt; D
 </pre>
 </div>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -472,13 +475,8 @@
 </ul>
 </div>
 </div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
 <p><a href="https://www.artofunittesting.com/"><img data-src="https://images.manning.com/360/480/resize/book/6/5b5ac1d-637b-4f00-9f5d-7fb583b6dac5/Osherove-UT-3ed-MEAP-HI.png"></a></p>
-</figure>
-</div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
@@ -493,44 +491,44 @@
 <ol type="1">
 <li>get a timeseries of water levels</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> test_get_water_level_includes_start_and_end():</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    wl <span class="op">=</span> get_water_level(time<span class="op">=</span><span class="st">"2019-01-01"</span>, location<span class="op">=</span><span class="st">"Aarhus"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    </span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="cf">assert</span> <span class="bu">len</span>(wl) <span class="op">==</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="kw">def</span> test_get_water_level_includes_start_and_end():</span>
+<span id="cb1-2"><a></a>    wl <span class="op">=</span> get_water_level(time<span class="op">=</span><span class="st">"2019-01-01"</span>, location<span class="op">=</span><span class="st">"Aarhus"</span>)</span>
+<span id="cb1-3"><a></a>    </span>
+<span id="cb1-4"><a></a>    <span class="cf">assert</span> <span class="bu">len</span>(wl) <span class="op">==</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <ol start="2" type="1">
 <li>find the maxiumum water level each year</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> test_get_max_water_level():</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    ts <span class="op">=</span> TimeSeries([<span class="fl">1.0</span>, .., <span class="fl">3.0</span>], start <span class="op">=</span> <span class="st">"2019-01-01"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    max_wls <span class="op">=</span> get_max_water_level(ts, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    </span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">assert</span> <span class="bu">len</span>(max_wls) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="cf">assert</span> max_wls[<span class="dv">0</span>] <span class="op">==</span> <span class="fl">3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> test_get_max_water_level():</span>
+<span id="cb2-2"><a></a>    ts <span class="op">=</span> TimeSeries([<span class="fl">1.0</span>, .., <span class="fl">3.0</span>], start <span class="op">=</span> <span class="st">"2019-01-01"</span>)</span>
+<span id="cb2-3"><a></a>    max_wls <span class="op">=</span> get_max_water_level(ts, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb2-4"><a></a>    </span>
+<span id="cb2-5"><a></a>    <span class="cf">assert</span> <span class="bu">len</span>(max_wls) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb2-6"><a></a>    <span class="cf">assert</span> max_wls[<span class="dv">0</span>] <span class="op">==</span> <span class="fl">3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <ol start="3" type="1">
 <li>create a summary report for the subset of data</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> test_summary_report():</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    max_wls <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>]</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    report <span class="op">=</span> summary_report(max_wls)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="cf">assert</span> report.title <span class="op">==</span> <span class="st">"Summary report"</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="cf">assert</span> report.text <span class="op">==</span> <span class="st">"The maximum water level in 2021 was 3.0 m"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> test_summary_report():</span>
+<span id="cb3-2"><a></a>    max_wls <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>]</span>
+<span id="cb3-3"><a></a>    report <span class="op">=</span> summary_report(max_wls)</span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a>    <span class="cf">assert</span> report.title <span class="op">==</span> <span class="st">"Summary report"</span></span>
+<span id="cb3-6"><a></a>    <span class="cf">assert</span> report.text <span class="op">==</span> <span class="st">"The maximum water level in 2021 was 3.0 m"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="integration-testing" class="slide level2">
 <h2>Integration testing</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> test_integration():</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    wl <span class="op">=</span> get_water_level(time<span class="op">=</span><span class="st">"2019-01-01"</span>, location<span class="op">=</span><span class="st">"Aarhus"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    max_wls <span class="op">=</span> get_max_water_level(wl, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    report <span class="op">=</span> summary_report(max_wls)</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="cf">assert</span> report.title <span class="op">==</span> <span class="st">"Summary report"</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">assert</span> report.text <span class="op">==</span> <span class="st">"The maximum water level in 2021 was 3.0 m"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="kw">def</span> test_integration():</span>
+<span id="cb4-2"><a></a>    wl <span class="op">=</span> get_water_level(time<span class="op">=</span><span class="st">"2019-01-01"</span>, location<span class="op">=</span><span class="st">"Aarhus"</span>)</span>
+<span id="cb4-3"><a></a>    max_wls <span class="op">=</span> get_max_water_level(wl, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb4-4"><a></a>    report <span class="op">=</span> summary_report(max_wls)</span>
+<span id="cb4-5"><a></a></span>
+<span id="cb4-6"><a></a>    <span class="cf">assert</span> report.title <span class="op">==</span> <span class="st">"Summary report"</span></span>
+<span id="cb4-7"><a></a>    <span class="cf">assert</span> report.text <span class="op">==</span> <span class="st">"The maximum water level in 2021 was 3.0 m"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="testing-in-vs-code" class="slide level2">
 <h2>Testing in VS Code</h2>
@@ -550,15 +548,15 @@
 </section>
 <section id="fixture-example" class="slide level2">
 <h2>Fixture example</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="at">@pytest.fixture</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">def</span> water_level():</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="cf">return</span> TimeSeries([<span class="fl">1.0</span>, .., <span class="fl">3.0</span>], start <span class="op">=</span> <span class="st">"2019-01-01"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="kw">def</span> test_get_max_water_level(water_level):</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    max_wls <span class="op">=</span> get_max_water_level(water_level, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    </span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="cf">assert</span> <span class="bu">len</span>(max_wls) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="cf">assert</span> max_wls[<span class="dv">0</span>] <span class="op">==</span> <span class="fl">3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="at">@pytest.fixture</span></span>
+<span id="cb5-2"><a></a><span class="kw">def</span> water_level():</span>
+<span id="cb5-3"><a></a>    <span class="cf">return</span> TimeSeries([<span class="fl">1.0</span>, .., <span class="fl">3.0</span>], start <span class="op">=</span> <span class="st">"2019-01-01"</span>)</span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a><span class="kw">def</span> test_get_max_water_level(water_level):</span>
+<span id="cb5-6"><a></a>    max_wls <span class="op">=</span> get_max_water_level(water_level, freq<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb5-7"><a></a>    </span>
+<span id="cb5-8"><a></a>    <span class="cf">assert</span> <span class="bu">len</span>(max_wls) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb5-9"><a></a>    <span class="cf">assert</span> max_wls[<span class="dv">0</span>] <span class="op">==</span> <span class="fl">3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="test-coverage" class="slide level2">
 <h2>Test coverage</h2>
@@ -577,15 +575,15 @@
 </section>
 <section id="test-coverage-report" class="slide level2">
 <h2>Test coverage report</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">pytest</span> <span class="at">--cov</span><span class="op">=</span>myproj tests/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">--------------------</span> coverage: ... <span class="at">---------------------</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">Name</span>                 Stmts   Miss  Cover</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">----------------------------------------</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="ex">myproj/__init__</span>          2      0   100%</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="ex">myproj/myproj</span>          257     13    94%</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="ex">myproj/feature4286</span>      94      7    92%</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="ex">----------------------------------------</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="ex">TOTAL</span>                  353     20    94%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">pytest</span> <span class="at">--cov</span><span class="op">=</span>myproj tests/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="ex">--------------------</span> coverage: ... <span class="at">---------------------</span></span>
+<span id="cb7-2"><a></a><span class="ex">Name</span>                 Stmts   Miss  Cover</span>
+<span id="cb7-3"><a></a><span class="ex">----------------------------------------</span></span>
+<span id="cb7-4"><a></a><span class="ex">myproj/__init__</span>          2      0   100%</span>
+<span id="cb7-5"><a></a><span class="ex">myproj/myproj</span>          257     13    94%</span>
+<span id="cb7-6"><a></a><span class="ex">myproj/feature4286</span>      94      7    92%</span>
+<span id="cb7-7"><a></a><span class="ex">----------------------------------------</span></span>
+<span id="cb7-8"><a></a><span class="ex">TOTAL</span>                  353     20    94%</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="testing-advice" class="slide level2">
 <h2>Testing advice</h2>
@@ -612,20 +610,20 @@
 </section>
 <section id="tests-act-as-specification" class="slide level2">
 <h2>Tests act as specification</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> test_operable_period_can_be_missing():</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span>np.nan)</span>
-<span id="cb8-5"><a href="#cb8-5"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    <span class="cf">assert</span> <span class="kw">not</span> is_operable(height<span class="op">=</span><span class="fl">11.0</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">def</span> test_height_can_not_be_missing():</span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>) <span class="im">as</span> excinfo:</span>
-<span id="cb8-11"><a href="#cb8-11"></a>        is_operable(height<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a>        is_operable(height<span class="op">=</span>np.nan)</span>
-<span id="cb8-13"><a href="#cb8-13"></a>        </span>
-<span id="cb8-14"><a href="#cb8-14"></a>    <span class="cf">assert</span> <span class="st">"height"</span> <span class="kw">in</span> <span class="bu">str</span>(excinfo.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> test_operable_period_can_be_missing():</span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb8-4"><a></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span>np.nan)</span>
+<span id="cb8-5"><a></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb8-6"><a></a>    <span class="cf">assert</span> <span class="kw">not</span> is_operable(height<span class="op">=</span><span class="fl">11.0</span>)</span>
+<span id="cb8-7"><a></a></span>
+<span id="cb8-8"><a></a><span class="kw">def</span> test_height_can_not_be_missing():</span>
+<span id="cb8-9"><a></a></span>
+<span id="cb8-10"><a></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>) <span class="im">as</span> excinfo:</span>
+<span id="cb8-11"><a></a>        is_operable(height<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb8-12"><a></a>        is_operable(height<span class="op">=</span>np.nan)</span>
+<span id="cb8-13"><a></a>        </span>
+<span id="cb8-14"><a></a>    <span class="cf">assert</span> <span class="st">"height"</span> <span class="kw">in</span> <span class="bu">str</span>(excinfo.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="test-driven-development" class="slide level2">
 <h2>Test driven development</h2>
@@ -687,15 +685,15 @@
 <div class="code-with-filename-file">
 <pre><strong>src/ops.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> is_operable(height:<span class="bu">float</span>, period:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="fl">0.0</span>:</span>
-<span id="cb9-3"><a href="#cb9-3"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Supplied value of </span><span class="sc">{</span>height<span class="op">=</span><span class="sc">}</span><span class="ss"> is unphysical."</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>Traceback (most recent call last):</span>
-<span id="cb9-8"><a href="#cb9-8"></a>  ...</span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="pp">ValueError</span>: Supplied value of height<span class="op">=-</span><span class="fl">1.0</span> <span class="kw">is</span> unphysical.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-filename="src/ops.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="kw">def</span> is_operable(height:<span class="bu">float</span>, period:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb9-2"><a></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="fl">0.0</span>:</span>
+<span id="cb9-3"><a></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Supplied value of </span><span class="sc">{</span>height<span class="op">=</span><span class="sc">}</span><span class="ss"> is unphysical."</span>)</span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a><span class="op">&gt;&gt;&gt;</span> is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span>
+<span id="cb9-6"><a></a></span>
+<span id="cb9-7"><a></a>Traceback (most recent call last):</span>
+<span id="cb9-8"><a></a>  ...</span>
+<span id="cb9-9"><a></a><span class="pp">ValueError</span>: Supplied value of height<span class="op">=-</span><span class="fl">1.0</span> <span class="kw">is</span> unphysical.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>It is better to raise an exception (that can terminate the program), than to propagate a bad value.</p>
@@ -708,8 +706,8 @@
 <div class="code-with-filename-file">
 <pre><strong>src/ops.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> warnings</span>
-<span id="cb10-2"><a href="#cb10-2"></a>warnings.warn(<span class="st">"This is a warning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-filename="src/ops.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">import</span> warnings</span>
+<span id="cb10-2"><a></a>warnings.warn(<span class="st">"This is a warning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="how-to-test-exceptions" class="slide level2">
@@ -718,12 +716,12 @@
 <div class="code-with-filename-file">
 <pre><strong>tests/test_ops.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> pytest</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="im">from</span> ops <span class="im">import</span> is_operable</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="kw">def</span> test_negative_heights_are_not_valid():</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
-<span id="cb11-6"><a href="#cb11-6"></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-filename="tests/test_ops.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> pytest</span>
+<span id="cb11-2"><a></a><span class="im">from</span> ops <span class="im">import</span> is_operable</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="kw">def</span> test_negative_heights_are_not_valid():</span>
+<span id="cb11-5"><a></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb11-6"><a></a>        is_operable(height<span class="op">=-</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="fl">4.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The same can be done with warnings.</p>
 </section>
@@ -745,23 +743,23 @@
 <div class="code-with-filename-file">
 <pre><strong>examples/04_testing/process.py</strong></pre>
 </div>
-<div class="sourceCode" id="cb12" data-code-line-numbers="|1|6|7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> requests</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> scipy</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">def</span> preprocess(x, y, xout):</span>
-<span id="cb12-5"><a href="#cb12-5"></a></span>
-<span id="cb12-6"><a href="#cb12-6"></a>    x <span class="op">=</span> x[<span class="op">~</span>np.isnan(x)] </span>
-<span id="cb12-7"><a href="#cb12-7"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>    <span class="co"># interpolate missing values with cubic spline</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="cf">return</span> scipy.interpolate.interp1d(x, y)(xout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-filename="examples/04_testing/process.py" data-code-line-numbers="|1|6|7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">import</span> requests</span>
+<span id="cb12-2"><a></a><span class="im">import</span> scipy</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="kw">def</span> preprocess(x, y, xout):</span>
+<span id="cb12-5"><a></a></span>
+<span id="cb12-6"><a></a>    x <span class="op">=</span> x[<span class="op">~</span>np.isnan(x)] </span>
+<span id="cb12-7"><a></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
+<span id="cb12-8"><a></a>    <span class="co"># interpolate missing values with cubic spline</span></span>
+<span id="cb12-9"><a></a>    <span class="cf">return</span> scipy.interpolate.interp1d(x, y)(xout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Run <code>ruff</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">$</span> ruff process.py</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="ex">process.py:1:8:</span> F401 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> <span class="kw">`</span><span class="ex">requests</span><span class="kw">`</span> imported but unused</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="ex">process.py:6:12:</span> F821 Undefined name <span class="kw">`</span><span class="ex">np</span><span class="kw">`</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="ex">process.py:7:5:</span> F841 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> Local variable <span class="kw">`</span><span class="ex">method</span><span class="kw">`</span> is assigned to but never used</span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="ex">Found</span> 3 errors.</span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="ex">[*]</span> 2 potentially fixable with the <span class="at">--fix</span> option.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a><span class="ex">$</span> ruff process.py</span>
+<span id="cb13-2"><a></a><span class="ex">process.py:1:8:</span> F401 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> <span class="kw">`</span><span class="ex">requests</span><span class="kw">`</span> imported but unused</span>
+<span id="cb13-3"><a></a><span class="ex">process.py:6:12:</span> F821 Undefined name <span class="kw">`</span><span class="ex">np</span><span class="kw">`</span></span>
+<span id="cb13-4"><a></a><span class="ex">process.py:7:5:</span> F841 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> Local variable <span class="kw">`</span><span class="ex">method</span><span class="kw">`</span> is assigned to but never used</span>
+<span id="cb13-5"><a></a><span class="ex">Found</span> 3 errors.</span>
+<span id="cb13-6"><a></a><span class="ex">[*]</span> 2 potentially fixable with the <span class="at">--fix</span> option.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <ul>
 <li>Linting is a fast way to find common errors.</li>
@@ -793,16 +791,16 @@
 </section>
 <section id="running-black" class="slide level2">
 <h2>Running Black</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="ex">$</span> black .</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="ex">reformatted</span> data_utils.py</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="ex">reformatted</span> dfsu/__init__.py</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="ex">reformatted</span> dataarray.py</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="ex">reformatted</span> dataset.py</span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="ex">reformatted</span> spatial/geometry.py</span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="ex">reformatted</span> pfs/pfssection.py</span>
-<span id="cb14-8"><a href="#cb14-8"></a></span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="ex">All</span> done! ✨ 🍰 ✨</span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="ex">6</span> files reformatted, 27 files left unchanged.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">$</span> black .</span>
+<span id="cb14-2"><a></a><span class="ex">reformatted</span> data_utils.py</span>
+<span id="cb14-3"><a></a><span class="ex">reformatted</span> dfsu/__init__.py</span>
+<span id="cb14-4"><a></a><span class="ex">reformatted</span> dataarray.py</span>
+<span id="cb14-5"><a></a><span class="ex">reformatted</span> dataset.py</span>
+<span id="cb14-6"><a></a><span class="ex">reformatted</span> spatial/geometry.py</span>
+<span id="cb14-7"><a></a><span class="ex">reformatted</span> pfs/pfssection.py</span>
+<span id="cb14-8"><a></a></span>
+<span id="cb14-9"><a></a><span class="ex">All</span> done! ✨ 🍰 ✨</span>
+<span id="cb14-10"><a></a><span class="ex">6</span> files reformatted, 27 files left unchanged.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="running-black-1" class="slide level2 smaller">
 <h2>Running Black</h2>
@@ -823,29 +821,29 @@
 </section>
 <section id="profiling---example-code" class="slide level2 smaller">
 <h2>Profiling - <em>example code</em></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="kw">def</span> top_neighbors(points, radius<span class="op">=</span><span class="st">"0.1"</span>):</span>
-<span id="cb15-4"><a href="#cb15-4"></a>    <span class="co">"""Don't use this function, it's only purpose is to be profiled."""</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>    n <span class="op">=</span> <span class="bu">len</span>(points)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>    idx <span class="op">=</span> np.array([<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">str</span>.split(<span class="st">"0 "</span><span class="op">*</span> n)])</span>
-<span id="cb15-7"><a href="#cb15-7"></a></span>
-<span id="cb15-8"><a href="#cb15-8"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-9"><a href="#cb15-9"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-10"><a href="#cb15-10"></a>            <span class="cf">if</span> i <span class="op">!=</span> j:</span>
-<span id="cb15-11"><a href="#cb15-11"></a>                d <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((points[i] <span class="op">-</span> points[j])<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb15-12"><a href="#cb15-12"></a>                <span class="cf">if</span> d <span class="op">&lt;</span> <span class="bu">float</span>(radius): </span>
-<span id="cb15-13"><a href="#cb15-13"></a>                    idx[i] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-15"><a href="#cb15-15"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb15-16"><a href="#cb15-16"></a>            <span class="cf">if</span> idx[j] <span class="op">&lt;</span> idx[j <span class="op">+</span> <span class="dv">1</span>]:</span>
-<span id="cb15-17"><a href="#cb15-17"></a>                idx[j], idx[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> idx[j <span class="op">+</span> <span class="dv">1</span>], idx[j]</span>
-<span id="cb15-18"><a href="#cb15-18"></a>                points[j], points[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> points[j <span class="op">+</span> <span class="dv">1</span>], points[j]</span>
-<span id="cb15-19"><a href="#cb15-19"></a>    <span class="cf">return</span> points</span>
-<span id="cb15-20"><a href="#cb15-20"></a></span>
-<span id="cb15-21"><a href="#cb15-21"></a><span class="kw">def</span> main():</span>
-<span id="cb15-22"><a href="#cb15-22"></a>    points <span class="op">=</span> np.random.rand(<span class="dv">1000</span>, <span class="dv">2</span>)</span>
-<span id="cb15-23"><a href="#cb15-23"></a>    top <span class="op">=</span> top_neighbors(points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a><span class="kw">def</span> top_neighbors(points, radius<span class="op">=</span><span class="st">"0.1"</span>):</span>
+<span id="cb15-4"><a></a>    <span class="co">"""Don't use this function, it's only purpose is to be profiled."""</span></span>
+<span id="cb15-5"><a></a>    n <span class="op">=</span> <span class="bu">len</span>(points)</span>
+<span id="cb15-6"><a></a>    idx <span class="op">=</span> np.array([<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">str</span>.split(<span class="st">"0 "</span><span class="op">*</span> n)])</span>
+<span id="cb15-7"><a></a></span>
+<span id="cb15-8"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-9"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-10"><a></a>            <span class="cf">if</span> i <span class="op">!=</span> j:</span>
+<span id="cb15-11"><a></a>                d <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((points[i] <span class="op">-</span> points[j])<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb15-12"><a></a>                <span class="cf">if</span> d <span class="op">&lt;</span> <span class="bu">float</span>(radius): </span>
+<span id="cb15-13"><a></a>                    idx[i] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-14"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-15"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb15-16"><a></a>            <span class="cf">if</span> idx[j] <span class="op">&lt;</span> idx[j <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb15-17"><a></a>                idx[j], idx[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> idx[j <span class="op">+</span> <span class="dv">1</span>], idx[j]</span>
+<span id="cb15-18"><a></a>                points[j], points[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> points[j <span class="op">+</span> <span class="dv">1</span>], points[j]</span>
+<span id="cb15-19"><a></a>    <span class="cf">return</span> points</span>
+<span id="cb15-20"><a></a></span>
+<span id="cb15-21"><a></a><span class="kw">def</span> main():</span>
+<span id="cb15-22"><a></a>    points <span class="op">=</span> np.random.rand(<span class="dv">1000</span>, <span class="dv">2</span>)</span>
+<span id="cb15-23"><a></a>    top <span class="op">=</span> top_neighbors(points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="profiling---output" class="slide level2 smaller">
 <h2>Profiling - <em>output</em></h2>
@@ -854,7 +852,7 @@
 <li>function to profile - <code>top_neighbors</code></li>
 <li>code to run - <code>main()</code></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="op">%</span>lprun <span class="op">-</span>f top_neighbors main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="op">%</span>lprun <span class="op">-</span>f top_neighbors main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <pre><code>
 Line #      Hits         Time  Per Hit   % Time  Line Contents
@@ -895,9 +893,11 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 </ul>
 </div>
 
-
-<img src="academy_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<div class="quarto-auto-generated-content">
+<p><img src="academy_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p>Python package development</p>
+</div>
 </div>
 </section>
     </div>
@@ -926,7 +926,6 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1143,18 +1142,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1186,11 +1174,50 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/DHI\.github\.io\/python-package-development\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1200,8 +1227,17 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1215,7 +1251,11 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

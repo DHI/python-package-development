@@ -1,1 +1,1 @@
-Sitemap: https://github.com/DHI/python-package-development/sitemap.xml
+Sitemap: https://DHI.github.io/python-package-development/sitemap.xml

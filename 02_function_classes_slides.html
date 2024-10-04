@@ -8,9 +8,9 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Python package development - Functions, classes and modules</title>
+  <title>Python package development – Functions, classes and modules</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -69,7 +69,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -83,7 +83,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -220,7 +220,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -400,9 +401,10 @@
 </section>
 <section id="functions-as-black-boxes" class="slide level2">
 <h2>Functions as black boxes</h2>
-<div class="cell" data-reveal="true">
+<div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
     A(Input A) --&gt; F["Black box"]
@@ -412,6 +414,7 @@
     style F fill:#000,color:#fff,stroke:#333,stroke-width:4px
 </pre>
 </div>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -425,9 +428,10 @@
 </section>
 <section class="slide level2">
 
-<div class="cell" data-reveal="true">
+<div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
     A(height: 1.0) --&gt; F[is_operable]
@@ -435,52 +439,53 @@
     F --&gt; O(True)
 </pre>
 </div>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> is_operable(height, period):</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="kw">def</span> is_operable(height, period):</span>
+<span id="cb1-2"><a></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>These two function behaves the same, but the implementation is different.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> is_operable(height, period):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    model <span class="op">=</span> load_fancy_ml_model()</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="cf">return</span> model.predict(height, period)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> is_operable(height, period):</span>
+<span id="cb2-2"><a></a>    model <span class="op">=</span> load_fancy_ml_model()</span>
+<span id="cb2-3"><a></a>    <span class="cf">return</span> model.predict(height, period)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pure-functions" class="slide level2">
 <h2><em>Pure</em> functions</h2>
 <p>A <em>pure</em> function returns the same output for the same input.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> f(x)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="op">&gt;&gt;</span> f(<span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="dv">4</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="op">&gt;&gt;</span> f(<span class="dv">2</span>)</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> f(x)</span>
+<span id="cb3-2"><a></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a><span class="op">&gt;&gt;</span> f(<span class="dv">2</span>)</span>
+<span id="cb3-5"><a></a><span class="dv">4</span></span>
+<span id="cb3-6"><a></a><span class="op">&gt;&gt;</span> f(<span class="dv">2</span>)</span>
+<span id="cb3-7"><a></a><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <p>A <em>non-pure</em> function can return different outputs for the same input.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">def</span> non_pure_function(x):</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">global</span> n<span class="op">=</span>n<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>    <span class="cf">return</span> x <span class="op">+</span> n</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="op">&gt;&gt;&gt;</span> non_pure_function(<span class="dv">2</span>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="dv">3</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="op">&gt;&gt;&gt;</span> non_pure_function(<span class="dv">2</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a><span class="kw">def</span> non_pure_function(x):</span>
+<span id="cb4-4"><a></a>    <span class="kw">global</span> n<span class="op">=</span>n<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb4-5"><a></a>    <span class="cf">return</span> x <span class="op">+</span> n</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="op">&gt;&gt;&gt;</span> non_pure_function(<span class="dv">2</span>)</span>
+<span id="cb4-8"><a></a><span class="dv">3</span></span>
+<span id="cb4-9"><a></a><span class="op">&gt;&gt;&gt;</span> non_pure_function(<span class="dv">2</span>)</span>
+<span id="cb4-10"><a></a><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="side-effects" class="slide level2">
 <h2>Side effects</h2>
 <p>A function can have side effects (besides returning a value)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> f_with_side_effect(x):</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"output.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
-<span id="cb5-3"><a href="#cb5-3"></a>        f.write(<span class="bu">str</span>(x))</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="kw">def</span> f_with_side_effect(x):</span>
+<span id="cb5-2"><a></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"output.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
+<span id="cb5-3"><a></a>        f.write(<span class="bu">str</span>(x))</span>
+<span id="cb5-4"><a></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>The function has x as input, returns the square of x, but also appends x to a file. If you run the function a second time, the file will contain two lines.</p>
 <style type="text/css">
@@ -508,16 +513,16 @@
 </section>
 <section id="modifying-input-arguments" class="slide level2">
 <h2>Modifying input arguments</h2>
-<div class="sourceCode" id="cb6" data-code-line-numbers="|3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> difficult_function(values):</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(values)):</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        values[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, values[i]) <span class="co"># 😟</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="cf">return</span> values</span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="op">&gt;&gt;&gt;</span> difficult_function(x)</span>
-<span id="cb6-8"><a href="#cb6-8"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="op">&gt;&gt;&gt;</span> x</span>
-<span id="cb6-10"><a href="#cb6-10"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-code-line-numbers="|3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="kw">def</span> difficult_function(values):</span>
+<span id="cb6-2"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(values)):</span>
+<span id="cb6-3"><a></a>        values[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, values[i]) <span class="co"># 😟</span></span>
+<span id="cb6-4"><a></a>    <span class="cf">return</span> values</span>
+<span id="cb6-5"><a></a></span>
+<span id="cb6-6"><a></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb6-7"><a></a><span class="op">&gt;&gt;&gt;</span> difficult_function(x)</span>
+<span id="cb6-8"><a></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb6-9"><a></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb6-10"><a></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>This function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it.</p>
 <style type="text/css">
@@ -535,58 +540,57 @@
 <section class="slide level2">
 
 <p>Functions that doesn’t modify the input arguments are easier to reason about.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> easier_function(values):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    l2 <span class="op">=</span> <span class="bu">list</span>(values) <span class="co"># copy🤔</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(l2)):</span>
-<span id="cb7-4"><a href="#cb7-4"></a>        l2[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, l2[i])</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">return</span> l2</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="op">&gt;&gt;&gt;</span> easier_function(x)</span>
-<span id="cb7-9"><a href="#cb7-9"></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>], </span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="op">&gt;&gt;&gt;</span> x</span>
-<span id="cb7-11"><a href="#cb7-11"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="kw">def</span> easier_function(values):</span>
+<span id="cb7-2"><a></a>    l2 <span class="op">=</span> <span class="bu">list</span>(values) <span class="co"># copy🤔</span></span>
+<span id="cb7-3"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(l2)):</span>
+<span id="cb7-4"><a></a>        l2[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, l2[i])</span>
+<span id="cb7-5"><a></a>    <span class="cf">return</span> l2</span>
+<span id="cb7-6"><a></a></span>
+<span id="cb7-7"><a></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-8"><a></a><span class="op">&gt;&gt;&gt;</span> easier_function(x)</span>
+<span id="cb7-9"><a></a>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>], </span>
+<span id="cb7-10"><a></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb7-11"><a></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Just be aware that copying large datasets can be slow.</p>
 </div>
 </section>
 <section id="positional-arguments" class="slide level2">
 <h2><em>Positional</em> arguments</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> f(x, y):</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">def</span> f(x, y):</span>
+<span id="cb8-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb8-5"><a></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="keyword-arguments" class="slide level2">
 <h2><em>Keyword</em> arguments</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> f(x, y):</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="op">&gt;&gt;&gt;</span> f(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="kw">def</span> f(x, y):</span>
+<span id="cb9-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a><span class="op">&gt;&gt;&gt;</span> f(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-5"><a></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="positional-arguments-1" class="slide level2 smaller">
 <h2><em>Positional</em> arguments</h2>
 <div class="columns">
 <div class="column">
 <p><strong>Version 1</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> is_operable(height, period):</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="kw">def</span> is_operable(height, period):</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
+<span id="cb10-4"><a></a></span>
+<span id="cb10-5"><a></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
+<span id="cb10-6"><a></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <p><strong>Version 2</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> is_operable(period, height<span class="op">=</span><span class="fl">0.0</span>):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="co"># dont forget, that arguments are swapped 👍</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="va">False</span> 😟</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="kw">def</span> is_operable(period, height<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb11-2"><a></a>    <span class="co"># dont forget, that arguments are swapped 👍</span></span>
+<span id="cb11-3"><a></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a><span class="op">&gt;&gt;&gt;</span> is_operable(<span class="fl">1.0</span>, <span class="fl">3.0</span>)</span>
+<span id="cb11-6"><a></a><span class="va">False</span> 😟</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
 <aside class="notes">
 <p>The order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed.</p>
 <style type="text/css">
@@ -603,23 +607,23 @@
 </section>
 <section id="keyword-only-arguments" class="slide level2">
 <h2><em>Keyword-only</em> arguments</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> f(<span class="op">*</span>, x, y):</span>
-<span id="cb12-2"><a href="#cb12-2"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb12-5"><a href="#cb12-5"></a>Traceback (most recent call last):</span>
-<span id="cb12-6"><a href="#cb12-6"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="pp">TypeError</span>: f() takes <span class="dv">0</span> positional arguments but <span class="dv">2</span> were given</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="kw">def</span> f(<span class="op">*</span>, x, y):</span>
+<span id="cb12-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb12-5"><a></a>Traceback (most recent call last):</span>
+<span id="cb12-6"><a></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb12-7"><a></a><span class="pp">TypeError</span>: f() takes <span class="dv">0</span> positional arguments but <span class="dv">2</span> were given</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="optionaldefault-arguments" class="slide level2">
 <h2><em>Optional(=default)</em> arguments</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> f(x, n<span class="op">=</span><span class="dv">2</span>):</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">return</span> x<span class="op">**</span>n</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">2</span>)</span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="dv">4</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">2</span>, n<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="kw">def</span> f(x, n<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb13-2"><a></a>    <span class="cf">return</span> x<span class="op">**</span>n</span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">2</span>)</span>
+<span id="cb13-5"><a></a><span class="dv">4</span></span>
+<span id="cb13-6"><a></a><span class="op">&gt;&gt;&gt;</span> f(<span class="dv">2</span>, n<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb13-7"><a></a><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Makes it easy to use a function with many arguments.</p>
 </div>
@@ -628,17 +632,17 @@
 <h2>Mutable default arguments</h2>
 <p>Python’s default arguments are evaluated once when the function is defined, not each time the function is called.</p>
 <div class="fragment">
-<div class="sourceCode" id="cb14" data-code-line-numbers="|1|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> add_to_cart(x, cart<span class="op">=</span>[]): <span class="co"># this line is evaluated only once 😮</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>    cart.append(x)</span>
-<span id="cb14-3"><a href="#cb14-3"></a>    <span class="cf">return</span> cart</span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="op">&gt;&gt;&gt;</span> add_to_cart(<span class="dv">1</span>, cart<span class="op">=</span>[<span class="dv">2</span>])</span>
-<span id="cb14-6"><a href="#cb14-6"></a>[<span class="dv">2</span>, <span class="dv">1</span>]</span>
-<span id="cb14-7"><a href="#cb14-7"></a></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="op">&gt;&gt;&gt;</span> add_to_cart(<span class="dv">1</span>)</span>
-<span id="cb14-9"><a href="#cb14-9"></a>[<span class="dv">1</span>]</span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="op">&gt;&gt;&gt;</span> add_to_cart(<span class="dv">2</span>)</span>
-<span id="cb14-11"><a href="#cb14-11"></a>[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-code-line-numbers="|1|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="kw">def</span> add_to_cart(x, cart<span class="op">=</span>[]): <span class="co"># this line is evaluated only once 😮</span></span>
+<span id="cb14-2"><a></a>    cart.append(x)</span>
+<span id="cb14-3"><a></a>    <span class="cf">return</span> cart</span>
+<span id="cb14-4"><a></a></span>
+<span id="cb14-5"><a></a><span class="op">&gt;&gt;&gt;</span> add_to_cart(<span class="dv">1</span>, cart<span class="op">=</span>[<span class="dv">2</span>])</span>
+<span id="cb14-6"><a></a>[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb14-7"><a></a></span>
+<span id="cb14-8"><a></a><span class="op">&gt;&gt;&gt;</span> add_to_cart(<span class="dv">1</span>)</span>
+<span id="cb14-9"><a></a>[<span class="dv">1</span>]</span>
+<span id="cb14-10"><a></a><span class="op">&gt;&gt;&gt;</span> add_to_cart(<span class="dv">2</span>)</span>
+<span id="cb14-11"><a></a>[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Python’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well.</p>
 <style type="text/css">
@@ -660,36 +664,36 @@
 <img data-src="images/mutable_args_meme.jpg" class="r-stretch"></section>
 <section id="how-to-use-default-mutable-arguments" class="slide level2">
 <h2>How to use default (mutable) arguments</h2>
-<div class="sourceCode" id="cb15" data-code-line-numbers="|1-3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> add_to_cart_safe(x, cart<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb15-2"><a href="#cb15-2"></a>    <span class="cf">if</span> cart <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb15-3"><a href="#cb15-3"></a>        cart <span class="op">=</span> [] <span class="co"># this line is evaluated each time the function is called</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>    cart.append(x)</span>
-<span id="cb15-5"><a href="#cb15-5"></a>    <span class="cf">return</span> cart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" data-code-line-numbers="|1-3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="kw">def</span> add_to_cart_safe(x, cart<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb15-2"><a></a>    <span class="cf">if</span> cart <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb15-3"><a></a>        cart <span class="op">=</span> [] <span class="co"># this line is evaluated each time the function is called</span></span>
+<span id="cb15-4"><a></a>    cart.append(x)</span>
+<span id="cb15-5"><a></a>    <span class="cf">return</span> cart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="changing-return-types" class="slide level2">
 <h2>Changing return types</h2>
 <p>Since Python is a dynamic language, the type of the returned variable is allowed to vary.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">def</span> foo(x):</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span><span class="dv">0</span>:</span>
-<span id="cb16-3"><a href="#cb16-3"></a>        <span class="cf">return</span> x</span>
-<span id="cb16-4"><a href="#cb16-4"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-5"><a href="#cb16-5"></a>        <span class="cf">return</span> <span class="st">"x is negative"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="kw">def</span> foo(x):</span>
+<span id="cb16-2"><a></a>    <span class="cf">if</span> x <span class="op">&gt;=</span><span class="dv">0</span>:</span>
+<span id="cb16-3"><a></a>        <span class="cf">return</span> x</span>
+<span id="cb16-4"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb16-5"><a></a>        <span class="cf">return</span> <span class="st">"x is negative"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>But it usually a bad idea, since you can not tell from reading the code, which type will be returned.</p>
 </div>
 </section>
 <section id="changing-return-types-1" class="slide level2">
 <h2>Changing return types</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">def</span> is_operable(height, period):</span>
-<span id="cb17-2"><a href="#cb17-2"></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="dv">10</span>:</span>
-<span id="cb17-3"><a href="#cb17-3"></a>        <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">5.0</span> <span class="kw">and</span> period <span class="op">&gt;</span> <span class="fl">4.0</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="cf">else</span>:</span>
-<span id="cb17-5"><a href="#cb17-5"></a>        <span class="cf">return</span> <span class="st">"No way!"</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">if</span> is_operable(height<span class="op">=</span><span class="fl">12.0</span>, period<span class="op">=</span><span class="fl">5.0</span>):</span>
-<span id="cb17-8"><a href="#cb17-8"></a>...         <span class="bu">print</span>(<span class="st">"Go ahead!"</span>)</span>
-<span id="cb17-9"><a href="#cb17-9"></a>...</span>
-<span id="cb17-10"><a href="#cb17-10"></a>Go ahead<span class="op">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="kw">def</span> is_operable(height, period):</span>
+<span id="cb17-2"><a></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb17-3"><a></a>        <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">5.0</span> <span class="kw">and</span> period <span class="op">&gt;</span> <span class="fl">4.0</span></span>
+<span id="cb17-4"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb17-5"><a></a>        <span class="cf">return</span> <span class="st">"No way!"</span></span>
+<span id="cb17-6"><a></a></span>
+<span id="cb17-7"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">if</span> is_operable(height<span class="op">=</span><span class="fl">12.0</span>, period<span class="op">=</span><span class="fl">5.0</span>):</span>
+<span id="cb17-8"><a></a>...         <span class="bu">print</span>(<span class="st">"Go ahead!"</span>)</span>
+<span id="cb17-9"><a></a>...</span>
+<span id="cb17-10"><a></a>Go ahead<span class="op">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -714,22 +718,22 @@
 <p>Python is a dynamically typed language -&gt; the type of a variable is determined at runtime.</p>
 <div class="fragment">
 <p>But we can add type <strong>hints</strong> to help the reader (and the code editor).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">def</span> is_operable(height: <span class="bu">float</span>, period: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb18-2"><a href="#cb18-2"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="kw">def</span> is_operable(height: <span class="bu">float</span>, period: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb18-2"><a></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">def</span> clip(values:<span class="bu">list</span>[<span class="bu">int</span>], <span class="op">*</span>, threshold:<span class="bu">int</span> <span class="op">=</span> <span class="dv">0</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">int</span>]:</span>
-<span id="cb19-2"><a href="#cb19-2"></a>    <span class="cf">return</span> [<span class="bu">min</span>(threshold, v) <span class="cf">for</span> v <span class="kw">in</span> values]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="kw">def</span> clip(values:<span class="bu">list</span>[<span class="bu">int</span>], <span class="op">*</span>, threshold:<span class="bu">int</span> <span class="op">=</span> <span class="dv">0</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">int</span>]:</span>
+<span id="cb19-2"><a></a>    <span class="cf">return</span> [<span class="bu">min</span>(threshold, v) <span class="cf">for</span> v <span class="kw">in</span> values]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="op">&gt;&gt;&gt;</span> x<span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="op">&gt;&gt;&gt;</span> clip(x)</span>
-<span id="cb20-3"><a href="#cb20-3"></a>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="op">&gt;&gt;&gt;</span> x</span>
-<span id="cb20-5"><a href="#cb20-5"></a>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="op">&gt;&gt;&gt;</span> clip(x, threshold<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb20-7"><a href="#cb20-7"></a>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="op">&gt;&gt;&gt;</span> x<span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb20-2"><a></a><span class="op">&gt;&gt;&gt;</span> clip(x)</span>
+<span id="cb20-3"><a></a>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb20-4"><a></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb20-5"><a></a>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb20-6"><a></a><span class="op">&gt;&gt;&gt;</span> clip(x, threshold<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-7"><a></a>[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Type hints are just hints, it will make it easier for you to read the code, and use it in your IDE, but it will not enforce the type.</p>
 <style type="text/css">
@@ -747,19 +751,19 @@
 </section>
 <section id="classes" class="slide level2">
 <h2>Classes</h2>
-<div class="sourceCode" id="cb21" data-code-line-numbers="|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">class</span> WeirdToolbox:</span>
-<span id="cb21-2"><a href="#cb21-2"></a>    tools <span class="op">=</span> [] <span class="co"># class variable ☹️</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a></span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> WeirdToolbox()</span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="op">&gt;&gt;&gt;</span> t1.tools.append(<span class="st">"hammer"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="op">&gt;&gt;&gt;</span> t1.tools</span>
-<span id="cb21-8"><a href="#cb21-8"></a>[<span class="st">"hammer"</span>]</span>
-<span id="cb21-9"><a href="#cb21-9"></a></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> WeirdToolbox()</span>
-<span id="cb21-11"><a href="#cb21-11"></a><span class="op">&gt;&gt;&gt;</span> t2.tools.append(<span class="st">"screwdriver"</span>)</span>
-<span id="cb21-12"><a href="#cb21-12"></a><span class="op">&gt;&gt;&gt;</span> t2.tools</span>
-<span id="cb21-13"><a href="#cb21-13"></a>[<span class="st">"hammer"</span>, <span class="st">"screwdriver"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21" data-code-line-numbers="|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="kw">class</span> WeirdToolbox:</span>
+<span id="cb21-2"><a></a>    tools <span class="op">=</span> [] <span class="co"># class variable ☹️</span></span>
+<span id="cb21-3"><a></a></span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> WeirdToolbox()</span>
+<span id="cb21-6"><a></a><span class="op">&gt;&gt;&gt;</span> t1.tools.append(<span class="st">"hammer"</span>)</span>
+<span id="cb21-7"><a></a><span class="op">&gt;&gt;&gt;</span> t1.tools</span>
+<span id="cb21-8"><a></a>[<span class="st">"hammer"</span>]</span>
+<span id="cb21-9"><a></a></span>
+<span id="cb21-10"><a></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> WeirdToolbox()</span>
+<span id="cb21-11"><a></a><span class="op">&gt;&gt;&gt;</span> t2.tools.append(<span class="st">"screwdriver"</span>)</span>
+<span id="cb21-12"><a></a><span class="op">&gt;&gt;&gt;</span> t2.tools</span>
+<span id="cb21-13"><a></a>[<span class="st">"hammer"</span>, <span class="st">"screwdriver"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Class variables are rarely what you want, since they are shared between all instances of the class.</p>
 <style type="text/css">
@@ -776,19 +780,19 @@
 </section>
 <section id="classes-1" class="slide level2">
 <h2>Classes</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">class</span> Toolbox:</span>
-<span id="cb22-2"><a href="#cb22-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb22-3"><a href="#cb22-3"></a>        <span class="va">self</span>.tools <span class="op">=</span> [] <span class="co"># instance variable 😃</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> Toolbox()</span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="op">&gt;&gt;&gt;</span> t1.tools.append(<span class="st">"hammer"</span>)</span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="op">&gt;&gt;&gt;</span> t1.tools</span>
-<span id="cb22-8"><a href="#cb22-8"></a>[<span class="st">"hammer"</span>]</span>
-<span id="cb22-9"><a href="#cb22-9"></a></span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> Toolbox()</span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="op">&gt;&gt;&gt;</span> t2.tools.append(<span class="st">"screwdriver"</span>)</span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="op">&gt;&gt;&gt;</span> t2.tools</span>
-<span id="cb22-13"><a href="#cb22-13"></a>[<span class="st">"screwdriver"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="kw">class</span> Toolbox:</span>
+<span id="cb22-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb22-3"><a></a>        <span class="va">self</span>.tools <span class="op">=</span> [] <span class="co"># instance variable 😃</span></span>
+<span id="cb22-4"><a></a></span>
+<span id="cb22-5"><a></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> Toolbox()</span>
+<span id="cb22-6"><a></a><span class="op">&gt;&gt;&gt;</span> t1.tools.append(<span class="st">"hammer"</span>)</span>
+<span id="cb22-7"><a></a><span class="op">&gt;&gt;&gt;</span> t1.tools</span>
+<span id="cb22-8"><a></a>[<span class="st">"hammer"</span>]</span>
+<span id="cb22-9"><a></a></span>
+<span id="cb22-10"><a></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> Toolbox()</span>
+<span id="cb22-11"><a></a><span class="op">&gt;&gt;&gt;</span> t2.tools.append(<span class="st">"screwdriver"</span>)</span>
+<span id="cb22-12"><a></a><span class="op">&gt;&gt;&gt;</span> t2.tools</span>
+<span id="cb22-13"><a></a>[<span class="st">"screwdriver"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Instance variables are created when the instance is created, and are unique to each instance.</p>
 <style type="text/css">
@@ -805,18 +809,18 @@
 </section>
 <section id="static-methods" class="slide level2">
 <h2>Static methods</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">class</span> Interval:</span>
-<span id="cb23-4"><a href="#cb23-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
-<span id="cb23-5"><a href="#cb23-5"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb23-6"><a href="#cb23-6"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb23-7"><a href="#cb23-7"></a></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="op">&gt;&gt;&gt;</span> dr.start</span>
-<span id="cb23-10"><a href="#cb23-10"></a>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="op">&gt;&gt;&gt;</span> dr.end</span>
-<span id="cb23-12"><a href="#cb23-12"></a>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb23-2"><a></a></span>
+<span id="cb23-3"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb23-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
+<span id="cb23-5"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb23-6"><a></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb23-7"><a></a></span>
+<span id="cb23-8"><a></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb23-9"><a></a><span class="op">&gt;&gt;&gt;</span> dr.start</span>
+<span id="cb23-10"><a></a>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb23-11"><a></a><span class="op">&gt;&gt;&gt;</span> dr.end</span>
+<span id="cb23-12"><a></a>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Here is an example of useful class, but it is a bit cumbersome to create an instance.</p>
 <style type="text/css">
@@ -833,23 +837,23 @@
 </section>
 <section id="static-methods-1" class="slide level2">
 <h2>Static methods</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
-<span id="cb24-2"><a href="#cb24-2"></a></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">class</span> Interval:</span>
-<span id="cb24-4"><a href="#cb24-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
-<span id="cb24-5"><a href="#cb24-5"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb24-6"><a href="#cb24-6"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb24-7"><a href="#cb24-7"></a></span>
-<span id="cb24-8"><a href="#cb24-8"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb24-9"><a href="#cb24-9"></a>    <span class="kw">def</span> from_string(date_string):</span>
-<span id="cb24-10"><a href="#cb24-10"></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
-<span id="cb24-11"><a href="#cb24-11"></a>        start <span class="op">=</span> date.fromisoformat(start_str)</span>
-<span id="cb24-12"><a href="#cb24-12"></a>        end <span class="op">=</span> date.fromisoformat(end_str)</span>
-<span id="cb24-13"><a href="#cb24-13"></a>        <span class="cf">return</span> Interval(start, end)</span>
-<span id="cb24-14"><a href="#cb24-14"></a></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>
-<span id="cb24-16"><a href="#cb24-16"></a><span class="op">&gt;&gt;&gt;</span> dr</span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="op">&lt;</span>__main__.Interval at <span class="bn">0x7fb99efcfb90</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb24-2"><a></a></span>
+<span id="cb24-3"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb24-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
+<span id="cb24-5"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb24-6"><a></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb24-7"><a></a></span>
+<span id="cb24-8"><a></a>    <span class="at">@staticmethod</span></span>
+<span id="cb24-9"><a></a>    <span class="kw">def</span> from_string(date_string):</span>
+<span id="cb24-10"><a></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
+<span id="cb24-11"><a></a>        start <span class="op">=</span> date.fromisoformat(start_str)</span>
+<span id="cb24-12"><a></a>        end <span class="op">=</span> date.fromisoformat(end_str)</span>
+<span id="cb24-13"><a></a>        <span class="cf">return</span> Interval(start, end)</span>
+<span id="cb24-14"><a></a></span>
+<span id="cb24-15"><a></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>
+<span id="cb24-16"><a></a><span class="op">&gt;&gt;&gt;</span> dr</span>
+<span id="cb24-17"><a></a><span class="op">&lt;</span>__main__.Interval at <span class="bn">0x7fb99efcfb90</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Since we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance.</p>
 <style type="text/css">
@@ -866,23 +870,23 @@
 </section>
 <section id="dataclasses" class="slide level2">
 <h2>Dataclasses</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
-<span id="cb25-2"><a href="#cb25-2"></a></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="at">@dataclass</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="kw">class</span> Interval:</span>
-<span id="cb25-5"><a href="#cb25-5"></a>    start: date</span>
-<span id="cb25-6"><a href="#cb25-6"></a>    end: date</span>
-<span id="cb25-7"><a href="#cb25-7"></a></span>
-<span id="cb25-8"><a href="#cb25-8"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a>    <span class="kw">def</span> from_string(date_string):</span>
-<span id="cb25-10"><a href="#cb25-10"></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
-<span id="cb25-11"><a href="#cb25-11"></a>        start <span class="op">=</span> date.fromisoformat(start_str)</span>
-<span id="cb25-12"><a href="#cb25-12"></a>        end <span class="op">=</span> date.fromisoformat(end_str)</span>
-<span id="cb25-13"><a href="#cb25-13"></a>        <span class="cf">return</span> Interval(start, end)</span>
-<span id="cb25-14"><a href="#cb25-14"></a></span>
-<span id="cb25-15"><a href="#cb25-15"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>
-<span id="cb25-16"><a href="#cb25-16"></a><span class="op">&gt;&gt;&gt;</span> dr</span>
-<span id="cb25-17"><a href="#cb25-17"></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb25-2"><a></a></span>
+<span id="cb25-3"><a></a><span class="at">@dataclass</span></span>
+<span id="cb25-4"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb25-5"><a></a>    start: date</span>
+<span id="cb25-6"><a></a>    end: date</span>
+<span id="cb25-7"><a></a></span>
+<span id="cb25-8"><a></a>    <span class="at">@staticmethod</span></span>
+<span id="cb25-9"><a></a>    <span class="kw">def</span> from_string(date_string):</span>
+<span id="cb25-10"><a></a>        start_str, end_str <span class="op">=</span> date_string.split(<span class="st">"|"</span>)</span>
+<span id="cb25-11"><a></a>        start <span class="op">=</span> date.fromisoformat(start_str)</span>
+<span id="cb25-12"><a></a>        end <span class="op">=</span> date.fromisoformat(end_str)</span>
+<span id="cb25-13"><a></a>        <span class="cf">return</span> Interval(start, end)</span>
+<span id="cb25-14"><a></a></span>
+<span id="cb25-15"><a></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>
+<span id="cb25-16"><a></a><span class="op">&gt;&gt;&gt;</span> dr</span>
+<span id="cb25-17"><a></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>Dataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables.</p>
 <style type="text/css">
@@ -899,19 +903,19 @@
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="at">@dataclass</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="kw">class</span> Interval:</span>
-<span id="cb26-3"><a href="#cb26-3"></a>    start: date</span>
-<span id="cb26-4"><a href="#cb26-4"></a>    end: date</span>
-<span id="cb26-5"><a href="#cb26-5"></a></span>
-<span id="cb26-6"><a href="#cb26-6"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
-<span id="cb26-7"><a href="#cb26-7"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>start<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>end<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a></span>
-<span id="cb26-9"><a href="#cb26-9"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb26-10"><a href="#cb26-10"></a><span class="op">&gt;&gt;&gt;</span> dr</span>
-<span id="cb26-11"><a href="#cb26-11"></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb26-12"><a href="#cb26-12"></a><span class="op">&gt;&gt;&gt;</span><span class="bu">print</span>(dr)</span>
-<span id="cb26-13"><a href="#cb26-13"></a><span class="dv">2020</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span> <span class="op">|</span> <span class="dv">2020</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="at">@dataclass</span></span>
+<span id="cb26-2"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb26-3"><a></a>    start: date</span>
+<span id="cb26-4"><a></a>    end: date</span>
+<span id="cb26-5"><a></a></span>
+<span id="cb26-6"><a></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb26-7"><a></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>start<span class="sc">}</span><span class="ss"> | </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>end<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb26-8"><a></a></span>
+<span id="cb26-9"><a></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb26-10"><a></a><span class="op">&gt;&gt;&gt;</span> dr</span>
+<span id="cb26-11"><a></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb26-12"><a></a><span class="op">&gt;&gt;&gt;</span><span class="bu">print</span>(dr)</span>
+<span id="cb26-13"><a></a><span class="dv">2020</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span> <span class="op">|</span> <span class="dv">2020</span><span class="op">-</span><span class="dv">0</span><span class="er">1</span><span class="op">-</span><span class="dv">31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>To override the default string representation, we can add a <code>__str__</code> method.</p>
 <style type="text/css">
@@ -929,15 +933,15 @@
 <section id="equality" class="slide level2">
 <h2>Equality</h2>
 <p>On a regular class, equality is based on the memory address of the object.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">class</span> Interval:</span>
-<span id="cb27-2"><a href="#cb27-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
-<span id="cb27-3"><a href="#cb27-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb27-4"><a href="#cb27-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb27-5"><a href="#cb27-5"></a></span>
-<span id="cb27-6"><a href="#cb27-6"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
-<span id="cb27-9"><a href="#cb27-9"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb27-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
+<span id="cb27-3"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb27-4"><a></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb27-5"><a></a></span>
+<span id="cb27-6"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb27-7"><a></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb27-8"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
+<span id="cb27-9"><a></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>This is not very useful, since we want to compare the values of the attributes.</p>
 <style type="text/css">
@@ -954,18 +958,18 @@
 </section>
 <section id="equality-1" class="slide level2">
 <h2>Equality</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">class</span> Interval:</span>
-<span id="cb28-2"><a href="#cb28-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
-<span id="cb28-3"><a href="#cb28-3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb28-4"><a href="#cb28-4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a>    <span class="kw">def</span> <span class="fu">__eq__</span>(<span class="va">self</span>, other):</span>
-<span id="cb28-7"><a href="#cb28-7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">==</span> other.start <span class="kw">and</span> <span class="va">self</span>.end <span class="op">==</span> other.end</span>
-<span id="cb28-8"><a href="#cb28-8"></a></span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb28-11"><a href="#cb28-11"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb28-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
+<span id="cb28-3"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb28-4"><a></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb28-5"><a></a></span>
+<span id="cb28-6"><a></a>    <span class="kw">def</span> <span class="fu">__eq__</span>(<span class="va">self</span>, other):</span>
+<span id="cb28-7"><a></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">==</span> other.start <span class="kw">and</span> <span class="va">self</span>.end <span class="op">==</span> other.end</span>
+<span id="cb28-8"><a></a></span>
+<span id="cb28-9"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb28-10"><a></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb28-11"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
+<span id="cb28-12"><a></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>We can override the <code>__eq__</code> method to compare the values of the attributes.</p>
 <style type="text/css">
@@ -983,17 +987,17 @@
 <section class="slide level2">
 
 <p>For a dataclass, equality is based on the values of the fields.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
-<span id="cb29-2"><a href="#cb29-2"></a></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="at">@dataclass</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="kw">class</span> Interval:</span>
-<span id="cb29-5"><a href="#cb29-5"></a>    start: date</span>
-<span id="cb29-6"><a href="#cb29-6"></a>    end: date</span>
-<span id="cb29-7"><a href="#cb29-7"></a></span>
-<span id="cb29-8"><a href="#cb29-8"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb29-9"><a href="#cb29-9"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb29-10"><a href="#cb29-10"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
-<span id="cb29-11"><a href="#cb29-11"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb29-2"><a></a></span>
+<span id="cb29-3"><a></a><span class="at">@dataclass</span></span>
+<span id="cb29-4"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb29-5"><a></a>    start: date</span>
+<span id="cb29-6"><a></a>    end: date</span>
+<span id="cb29-7"><a></a></span>
+<span id="cb29-8"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb29-9"><a></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb29-10"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
+<span id="cb29-11"><a></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>This is the default behavior for dataclasses.</p>
 <style type="text/css">
@@ -1010,24 +1014,24 @@
 </section>
 <section id="data-classes" class="slide level2 smaller">
 <h2>Data classes</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
-<span id="cb30-2"><a href="#cb30-2"></a></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="at">@dataclass</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="kw">class</span> Quantity:</span>
-<span id="cb30-5"><a href="#cb30-5"></a>    unit: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb30-6"><a href="#cb30-6"></a>    standard_name: field(compare<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb30-7"><a href="#cb30-7"></a>    name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">False</span>, default<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb30-8"><a href="#cb30-8"></a></span>
-<span id="cb30-9"><a href="#cb30-9"></a></span>
-<span id="cb30-10"><a href="#cb30-10"></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temp"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
-<span id="cb30-11"><a href="#cb30-11"></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temperature"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
-<span id="cb30-12"><a href="#cb30-12"></a></span>
-<span id="cb30-13"><a href="#cb30-13"></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">==</span> t2</span>
-<span id="cb30-14"><a href="#cb30-14"></a><span class="va">True</span></span>
-<span id="cb30-15"><a href="#cb30-15"></a></span>
-<span id="cb30-16"><a href="#cb30-16"></a><span class="op">&gt;&gt;&gt;</span> d1 <span class="op">=</span> Quantity(unit<span class="op">=</span><span class="st">"m"</span>, standard_name<span class="op">=</span><span class="st">"depth"</span>)</span>
-<span id="cb30-17"><a href="#cb30-17"></a><span class="op">&gt;&gt;&gt;</span> d1 <span class="op">==</span> t2</span>
-<span id="cb30-18"><a href="#cb30-18"></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
+<span id="cb30-2"><a></a></span>
+<span id="cb30-3"><a></a><span class="at">@dataclass</span></span>
+<span id="cb30-4"><a></a><span class="kw">class</span> Quantity:</span>
+<span id="cb30-5"><a></a>    unit: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-6"><a></a>    standard_name: field(compare<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-7"><a></a>    name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">False</span>, default<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb30-8"><a></a></span>
+<span id="cb30-9"><a></a></span>
+<span id="cb30-10"><a></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temp"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
+<span id="cb30-11"><a></a><span class="op">&gt;&gt;&gt;</span> t2 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temperature"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
+<span id="cb30-12"><a></a></span>
+<span id="cb30-13"><a></a><span class="op">&gt;&gt;&gt;</span> t1 <span class="op">==</span> t2</span>
+<span id="cb30-14"><a></a><span class="va">True</span></span>
+<span id="cb30-15"><a></a></span>
+<span id="cb30-16"><a></a><span class="op">&gt;&gt;&gt;</span> d1 <span class="op">=</span> Quantity(unit<span class="op">=</span><span class="st">"m"</span>, standard_name<span class="op">=</span><span class="st">"depth"</span>)</span>
+<span id="cb30-17"><a></a><span class="op">&gt;&gt;&gt;</span> d1 <span class="op">==</span> t2</span>
+<span id="cb30-18"><a></a><span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="data-classes-1" class="slide level2">
 <h2>Data classes</h2>
@@ -1062,13 +1066,13 @@ analytics/
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">from</span> analytics.tools <span class="im">import</span> is_operable</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="im">from</span> analytics.tools <span class="im">import</span> Toolbox, Tool</span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="im">from</span> analytics.date <span class="im">import</span> Interval</span>
-<span id="cb32-4"><a href="#cb32-4"></a></span>
-<span id="cb32-5"><a href="#cb32-5"></a>tool <span class="op">=</span> Tool(name<span class="op">=</span><span class="st">"hammer"</span>)</span>
-<span id="cb32-6"><a href="#cb32-6"></a>dr <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb32-7"><a href="#cb32-7"></a>is_operable(height<span class="op">=</span><span class="fl">1.8</span>, period<span class="op">=</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="im">from</span> analytics.tools <span class="im">import</span> is_operable</span>
+<span id="cb32-2"><a></a><span class="im">from</span> analytics.tools <span class="im">import</span> Toolbox, Tool</span>
+<span id="cb32-3"><a></a><span class="im">from</span> analytics.date <span class="im">import</span> Interval</span>
+<span id="cb32-4"><a></a></span>
+<span id="cb32-5"><a></a>tool <span class="op">=</span> Tool(name<span class="op">=</span><span class="st">"hammer"</span>)</span>
+<span id="cb32-6"><a></a>dr <span class="op">=</span> Interval(start<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb32-7"><a></a>is_operable(height<span class="op">=</span><span class="fl">1.8</span>, period<span class="op">=</span><span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="packages" class="slide level2">
 <h2>Packages</h2>
@@ -1084,19 +1088,19 @@ analytics/
 <section id="init__.py" class="slide level2 smaller">
 <h2><code>__init__.py</code></h2>
 <p>Example: <code>mikeio/pfs/__init__.py</code>:</p>
-<div class="sourceCode" id="cb33" data-code-line-numbers="|1-2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">from</span> .pfsdocument <span class="im">import</span> Pfs, PfsDocument</span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="im">from</span> .pfssection <span class="im">import</span> PfsNonUniqueList, PfsSection</span>
-<span id="cb33-3"><a href="#cb33-3"></a></span>
-<span id="cb33-4"><a href="#cb33-4"></a><span class="kw">def</span> read_pfs(filename, encoding<span class="op">=</span><span class="st">"cp1252"</span>, unique_keywords<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb33-5"><a href="#cb33-5"></a>     <span class="co">"""Read a pfs file for further analysis/manipulation"""</span></span>
-<span id="cb33-6"><a href="#cb33-6"></a>    </span>
-<span id="cb33-7"><a href="#cb33-7"></a>    <span class="cf">return</span> PfsDocument(filename, encoding<span class="op">=</span>encoding, unique_keywords<span class="op">=</span>unique_keywords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33" data-code-line-numbers="|1-2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="im">from</span> .pfsdocument <span class="im">import</span> Pfs, PfsDocument</span>
+<span id="cb33-2"><a></a><span class="im">from</span> .pfssection <span class="im">import</span> PfsNonUniqueList, PfsSection</span>
+<span id="cb33-3"><a></a></span>
+<span id="cb33-4"><a></a><span class="kw">def</span> read_pfs(filename, encoding<span class="op">=</span><span class="st">"cp1252"</span>, unique_keywords<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb33-5"><a></a>     <span class="co">"""Read a pfs file for further analysis/manipulation"""</span></span>
+<span id="cb33-6"><a></a>    </span>
+<span id="cb33-7"><a></a>    <span class="cf">return</span> PfsDocument(filename, encoding<span class="op">=</span>encoding, unique_keywords<span class="op">=</span>unique_keywords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>The imports in <code>__init__.py</code> let’s you separate the implementation into multiple files.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="op">&gt;&gt;&gt;</span> mikeio.pfs.pfssection.PfsSection</span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="op">&lt;</span><span class="kw">class</span> <span class="st">'mikeio.pfs.pfssection.PfsSection'</span><span class="op">&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="op">&gt;&gt;&gt;</span> mikeio.pfs.PfsSection</span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="op">&lt;</span><span class="kw">class</span> <span class="st">'mikeio.pfs.pfssection.PfsSection'</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a></a><span class="op">&gt;&gt;&gt;</span> mikeio.pfs.pfssection.PfsSection</span>
+<span id="cb34-2"><a></a><span class="op">&lt;</span><span class="kw">class</span> <span class="st">'mikeio.pfs.pfssection.PfsSection'</span><span class="op">&gt;</span></span>
+<span id="cb34-3"><a></a><span class="op">&gt;&gt;&gt;</span> mikeio.pfs.PfsSection</span>
+<span id="cb34-4"><a></a><span class="op">&lt;</span><span class="kw">class</span> <span class="st">'mikeio.pfs.pfssection.PfsSection'</span><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>The PfsSection and PfsDocument are imported from the <code>pfssection.py</code> and <code>pfsdocument.py</code> modules. to the <code>mikeio.pfs</code> namespace.</p>
 <style type="text/css">
@@ -1128,11 +1132,11 @@ analytics/
 <li>Separate words with underscores</li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>model_name <span class="op">=</span> <span class="st">"NorthSeaModel"</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>n_epochs <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb35-3"><a href="#cb35-3"></a></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="kw">def</span> my_function():</span>
-<span id="cb35-5"><a href="#cb35-5"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a></a>model_name <span class="op">=</span> <span class="st">"NorthSeaModel"</span></span>
+<span id="cb35-2"><a></a>n_epochs <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb35-3"><a></a></span>
+<span id="cb35-4"><a></a><span class="kw">def</span> my_function():</span>
+<span id="cb35-5"><a></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="constants" class="slide level2">
@@ -1140,17 +1144,17 @@ analytics/
 <ul>
 <li>Use all uppercase characters</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>GRAVITY <span class="op">=</span> <span class="fl">9.81</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a></span>
-<span id="cb36-3"><a href="#cb36-3"></a>AVOGADRO_CONSTANT <span class="op">=</span> <span class="fl">6.02214076e23</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a></span>
-<span id="cb36-5"><a href="#cb36-5"></a>SECONDS_IN_A_DAY <span class="op">=</span> <span class="dv">86400</span></span>
-<span id="cb36-6"><a href="#cb36-6"></a></span>
-<span id="cb36-7"><a href="#cb36-7"></a>N_LEGS_PER_ANIMAL <span class="op">=</span> {</span>
-<span id="cb36-8"><a href="#cb36-8"></a>    <span class="st">"human"</span>: <span class="dv">2</span>,</span>
-<span id="cb36-9"><a href="#cb36-9"></a>    <span class="st">"dog"</span>: <span class="dv">4</span>,</span>
-<span id="cb36-10"><a href="#cb36-10"></a>    <span class="st">"spider"</span>: <span class="dv">8</span>,</span>
-<span id="cb36-11"><a href="#cb36-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a></a>GRAVITY <span class="op">=</span> <span class="fl">9.81</span></span>
+<span id="cb36-2"><a></a></span>
+<span id="cb36-3"><a></a>AVOGADRO_CONSTANT <span class="op">=</span> <span class="fl">6.02214076e23</span></span>
+<span id="cb36-4"><a></a></span>
+<span id="cb36-5"><a></a>SECONDS_IN_A_DAY <span class="op">=</span> <span class="dv">86400</span></span>
+<span id="cb36-6"><a></a></span>
+<span id="cb36-7"><a></a>N_LEGS_PER_ANIMAL <span class="op">=</span> {</span>
+<span id="cb36-8"><a></a>    <span class="st">"human"</span>: <span class="dv">2</span>,</span>
+<span id="cb36-9"><a></a>    <span class="st">"dog"</span>: <span class="dv">4</span>,</span>
+<span id="cb36-10"><a></a>    <span class="st">"spider"</span>: <span class="dv">8</span>,</span>
+<span id="cb36-11"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Python will not prevent you from changing the value of a constant, but it is a convention to use all uppercase characters for constants.</p>
 </div>
@@ -1163,17 +1167,17 @@ analytics/
 <li>Separate words with underscores</li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb37" data-code-line-numbers="|1|9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">class</span> RandomClassifier: <span class="co"># CamelCase ✅</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a></span>
-<span id="cb37-3"><a href="#cb37-3"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
-<span id="cb37-4"><a href="#cb37-4"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
-<span id="cb37-5"><a href="#cb37-5"></a></span>
-<span id="cb37-6"><a href="#cb37-6"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
-<span id="cb37-7"><a href="#cb37-7"></a>        <span class="cf">return</span> np.random.choice(<span class="va">self</span>.classes_, size<span class="op">=</span><span class="bu">len</span>(X))</span>
-<span id="cb37-8"><a href="#cb37-8"></a></span>
-<span id="cb37-9"><a href="#cb37-9"></a>    <span class="kw">def</span> fit_predict(<span class="va">self</span>, X, y): <span class="co"># lowercase ✅</span></span>
-<span id="cb37-10"><a href="#cb37-10"></a>        <span class="va">self</span>.fit(X, y)</span>
-<span id="cb37-11"><a href="#cb37-11"></a>        <span class="cf">return</span> <span class="va">self</span>.predict(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37" data-code-line-numbers="|1|9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a></a><span class="kw">class</span> RandomClassifier: <span class="co"># CamelCase ✅</span></span>
+<span id="cb37-2"><a></a></span>
+<span id="cb37-3"><a></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb37-4"><a></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
+<span id="cb37-5"><a></a></span>
+<span id="cb37-6"><a></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb37-7"><a></a>        <span class="cf">return</span> np.random.choice(<span class="va">self</span>.classes_, size<span class="op">=</span><span class="bu">len</span>(X))</span>
+<span id="cb37-8"><a></a></span>
+<span id="cb37-9"><a></a>    <span class="kw">def</span> fit_predict(<span class="va">self</span>, X, y): <span class="co"># lowercase ✅</span></span>
+<span id="cb37-10"><a></a>        <span class="va">self</span>.fit(X, y)</span>
+<span id="cb37-11"><a></a>        <span class="cf">return</span> <span class="va">self</span>.predict(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="summary" class="slide level2">
@@ -1191,9 +1195,11 @@ analytics/
 </ul>
 </div>
 
-
-<img src="academy_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<div class="quarto-auto-generated-content">
+<p><img src="academy_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p>Python package development</p>
+</div>
 </div>
 </section>
     </div>
@@ -1222,7 +1228,6 @@ analytics/
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1439,18 +1444,7 @@ analytics/
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1482,11 +1476,50 @@ analytics/
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/DHI\.github\.io\/python-package-development\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1496,8 +1529,17 @@ analytics/
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1511,7 +1553,11 @@ analytics/
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

@@ -8,9 +8,9 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.5.57">
 
-  <title>Python package development - Distributing your Python package</title>
+  <title>Python package development – Distributing your Python package</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -69,7 +69,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -83,7 +83,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -220,7 +220,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -427,38 +428,38 @@
 </section>
 <section id="pyproject.toml" class="slide level2 scrollable">
 <h2><code>pyproject.toml</code></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">[</span><span class="dt">build-system</span><span class="kw">]</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">]</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="st">"numpy"</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="op">]</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> },</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="op">]</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="op">]</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">.</span><span class="dt">optional-dependencies</span><span class="kw">]</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">.</span><span class="dt">urls</span><span class="kw">]</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb1-1"><a></a><span class="kw">[build-system]</span></span>
+<span id="cb1-2"><a></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
+<span id="cb1-3"><a></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a><span class="kw">[project]</span></span>
+<span id="cb1-6"><a></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
+<span id="cb1-7"><a></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
+<span id="cb1-8"><a></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb1-9"><a></a>    <span class="st">"numpy"</span></span>
+<span id="cb1-10"><a></a><span class="op">]</span></span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb1-13"><a></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> },</span></span>
+<span id="cb1-14"><a></a><span class="op">]</span></span>
+<span id="cb1-15"><a></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
+<span id="cb1-16"><a></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb1-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb1-18"><a></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb1-19"><a></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
+<span id="cb1-20"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
+<span id="cb1-21"><a></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
+<span id="cb1-22"><a></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
+<span id="cb1-23"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb1-24"><a></a><span class="op">]</span></span>
+<span id="cb1-25"><a></a></span>
+<span id="cb1-26"><a></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb1-27"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
+<span id="cb1-28"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb1-29"><a></a></span>
+<span id="cb1-30"><a></a><span class="kw">[project.urls]</span></span>
+<span id="cb1-31"><a></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb1-32"><a></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="versioning" class="slide level2 smaller">
 <h2>Versioning</h2>
@@ -477,8 +478,7 @@
 </div>
 </div><div class="column" style="width:30%;">
 <p><img data-src="images/scikit.png"></p>
-</div>
-</div>
+</div></div>
 </div>
 </section>
 <section id="version-1.0" class="slide level2">
@@ -527,8 +527,7 @@
 </ul>
 </div><div class="column" style="width:30%;">
 <p><img data-src="images/prerelease.png"></p>
-</div>
-</div>
+</div></div>
 </section>
 <section id="license" class="slide level2">
 <h2>License</h2>
@@ -562,8 +561,7 @@
 <li>Low level library (C, Fortran, Rust, …)</li>
 </ul>
 <p>Make the requirements as loose as possible, e.g.&nbsp;<code>numpy&gt;=1.11.0</code></p>
-</div>
-</div>
+</div></div>
 <aside class="notes">
 <p>Make the requirements loose, to avoid conflicts with other packages.</p>
 <style type="text/css">
@@ -580,38 +578,38 @@
 </section>
 <section id="pyproject.toml-1" class="slide level2 smaller">
 <h2>pyproject.toml</h2>
-<div class="sourceCode" id="cb2" data-code-line-numbers="8-10|26-28"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">[</span><span class="dt">build-system</span><span class="kw">]</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">]</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"numpy"</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="op">]</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> },</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="op">]</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="op">]</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">.</span><span class="dt">optional-dependencies</span><span class="kw">]</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="kw">[</span><span class="dt">project</span><span class="kw">.</span><span class="dt">urls</span><span class="kw">]</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-code-line-numbers="8-10|26-28"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a></a><span class="kw">[build-system]</span></span>
+<span id="cb2-2"><a></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
+<span id="cb2-3"><a></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
+<span id="cb2-4"><a></a></span>
+<span id="cb2-5"><a></a><span class="kw">[project]</span></span>
+<span id="cb2-6"><a></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
+<span id="cb2-7"><a></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
+<span id="cb2-8"><a></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-9"><a></a>    <span class="st">"numpy"</span></span>
+<span id="cb2-10"><a></a><span class="op">]</span></span>
+<span id="cb2-11"><a></a></span>
+<span id="cb2-12"><a></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-13"><a></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> },</span></span>
+<span id="cb2-14"><a></a><span class="op">]</span></span>
+<span id="cb2-15"><a></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
+<span id="cb2-16"><a></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb2-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb2-18"><a></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-19"><a></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
+<span id="cb2-20"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
+<span id="cb2-21"><a></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
+<span id="cb2-22"><a></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
+<span id="cb2-23"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb2-24"><a></a><span class="op">]</span></span>
+<span id="cb2-25"><a></a></span>
+<span id="cb2-26"><a></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb2-27"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
+<span id="cb2-28"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb2-29"><a></a></span>
+<span id="cb2-30"><a></a><span class="kw">[project.urls]</span></span>
+<span id="cb2-31"><a></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb2-32"><a></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <ul>
 <li>Mandatory dependencies are specified in the <code>dependencies</code> section.</li>
@@ -631,13 +629,13 @@
 </section>
 <section id="classifiers" class="slide level2">
 <h2>Classifiers</h2>
-<div class="sourceCode" id="cb3" data-file="pyproject.toml"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-file="pyproject.toml"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-2"><a></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
+<span id="cb3-3"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
+<span id="cb3-4"><a></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
+<span id="cb3-5"><a></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
+<span id="cb3-6"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb3-7"><a></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Classifiers are used to categorize your package</li>
 <li>Less relevant for internal packages</li>
@@ -661,42 +659,63 @@
 <li>Add secrets in the repository settings.</li>
 </ul>
 <p>To use secrets as environment variables in GitHub Actions, add them to the <code>env</code> section of the workflow:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="at">  </span><span class="fu">TWINE_USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_USERNAME }}</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">TWINE_PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_PASSWORD }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb4-2"><a></a><span class="at">  </span><span class="fu">USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.USERNAME }}</span></span>
+<span id="cb4-3"><a></a><span class="at">  </span><span class="fu">PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PASSWORD }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="github-actions" class="slide level2 smaller">
 <h2>GitHub Actions</h2>
+<ul>
+<li>Modern publishing uses Trusted Publishers.</li>
+<li>Avoids managing secrets in the repository.</li>
+</ul>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>.github/workflows/python-package.yml</strong></pre>
+<pre><strong>.github/workflows/python_publish.yml</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-code-line-numbers="|2-4|18-19|21-26"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">created</span><span class="kw">]</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.10'</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>        python -m pip install --upgrade pip</span>
-<span id="cb5-17"><a href="#cb5-17"></a>        pip install build</span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="at">    </span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish to PyPI</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="at">      </span><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="at">        </span><span class="fu">TWINE_USERNAME</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_USERNAME }}</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="at">        </span><span class="fu">TWINE_PASSWORD</span><span class="kw">:</span><span class="at"> ${{ secrets.PYPI_PASSWORD }}</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a>        twine upload dist/* </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-filename=".github/workflows/python_publish.yml" data-code-line-numbers="|2-4|18-19|20-21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
+<span id="cb5-2"><a></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb5-3"><a></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
+<span id="cb5-4"><a></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">created</span><span class="kw">]</span></span>
+<span id="cb5-5"><a></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb5-6"><a></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb5-7"><a></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb5-8"><a></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb5-9"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb5-10"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb5-11"><a></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
+<span id="cb5-12"><a></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb5-13"><a></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.10'</span></span>
+<span id="cb5-14"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb5-15"><a></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb5-16"><a></a>        python -m pip install --upgrade pip</span>
+<span id="cb5-17"><a></a>        pip install build</span>
+<span id="cb5-18"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
+<span id="cb5-19"><a></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
+<span id="cb5-20"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
+<span id="cb5-21"><a></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="publishing-to-pypi-and-testpypi" class="slide level2 smaller">
+<h2>Publishing to PyPI and TestPyPI</h2>
+<ul>
+<li>PyPI is the Python Package Index, where you can publish your package.</li>
+<li>TestPyPI is a test version of PyPI for trying out publish workflows.</li>
+<li>Only publish to PyPI when you are ready to release a new version.</li>
+</ul>
+<div class="fragment">
+<p>Example:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>.github/workflows/python_publish.yml</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename=".github/workflows/python_publish.yml" data-code-line-numbers="|3-4|5-6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
+<span id="cb6-2"><a></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
+<span id="cb6-3"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
+<span id="cb6-4"><a></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span>
+<span id="cb6-5"><a></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-6"><a></a><span class="at">          </span><span class="fu">repository-url</span><span class="kw">:</span><span class="at"> https://test.pypi.org/legacy/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
 <section id="private-pypi-server" class="slide level2 smaller">
@@ -708,10 +727,10 @@
 </ul>
 <div class="fragment">
 <p>Example:</p>
-<div class="sourceCode" id="cb6" data-code-line-numbers="|2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">$</span> pip install <span class="at">--extra-index-url</span> https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">Looking</span> in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">...</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">Successfully</span> installed sampling-0.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-code-line-numbers="|2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="ex">$</span> pip install <span class="at">--extra-index-url</span> https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling</span>
+<span id="cb7-2"><a></a><span class="ex">Looking</span> in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/</span>
+<span id="cb7-3"><a></a><span class="ex">...</span></span>
+<span id="cb7-4"><a></a><span class="ex">Successfully</span> installed sampling-0.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="installing-a-development-version" class="slide level2">
@@ -724,13 +743,13 @@
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <ol type="1">
-<li><a href="01_version_control.qmd">Git, Pull Requests, and code reviews</a> <a href="01_version_control_slides.html">🛝</a></li>
-<li><a href="02_function_classes.qmd">Python functions, classes, and modules</a> <a href="02_function_classes_slides.html">🛝</a></li>
-<li><a href="03_testing.qmd">Testing and auto-formatting</a> <a href="03_testing_slides.html">🛝</a></li>
-<li><a href="04_dependencies_ci.qmd">Dependencies and GitHub actions</a> <a href="04_dependencies_ci_slides.html">🛝</a></li>
-<li><a href="05_oop.qmd">Object oriented design in Python</a> <a href="05_oop_slides.html">🛝</a></li>
-<li><a href="06_documentation.qmd">Documentation</a> <a href="06_documentation_slides.html">🛝</a></li>
-<li><a href="07_packaging.qmd">Distributing your package</a> <a href="07_packaging_slides.html">🛝</a></li>
+<li><a href="./01_version_control.html">Git, Pull Requests, and code reviews</a> <a href="01_version_control_slides.html">🛝</a></li>
+<li><a href="./02_function_classes.html">Python functions, classes, and modules</a> <a href="02_function_classes_slides.html">🛝</a></li>
+<li><a href="./03_testing.html">Testing and auto-formatting</a> <a href="03_testing_slides.html">🛝</a></li>
+<li><a href="./04_dependencies_ci.html">Dependencies and GitHub actions</a> <a href="04_dependencies_ci_slides.html">🛝</a></li>
+<li><a href="./05_oop.html">Object oriented design in Python</a> <a href="05_oop_slides.html">🛝</a></li>
+<li><a href="./06_documentation.html">Documentation</a> <a href="06_documentation_slides.html">🛝</a></li>
+<li><a href="./07_packaging.html">Distributing your package</a> <a href="07_packaging_slides.html">🛝</a></li>
 </ol>
 </section>
 <section id="git-pull-requests-and-code-reviews" class="slide level2 smaller">
@@ -762,9 +781,10 @@
 </section>
 <section id="functions-as-black-boxes" class="slide level2">
 <h2>Functions as black boxes</h2>
-<div class="cell" data-reveal="true">
+<div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
     A(Input A) --&gt; F["Black box"]
@@ -774,6 +794,7 @@
     style F fill:#000,color:#fff,stroke:#333,stroke-width:4px
 </pre>
 </div>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -789,28 +810,28 @@
 <li>Use lowercase characters</li>
 <li>Separate words with underscores</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>model_name <span class="op">=</span> <span class="st">"NorthSeaModel"</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>n_epochs <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">def</span> my_function():</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>model_name <span class="op">=</span> <span class="st">"NorthSeaModel"</span></span>
+<span id="cb8-2"><a></a>n_epochs <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="kw">def</span> my_function():</span>
+<span id="cb8-5"><a></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="constants" class="slide level2">
 <h2>Constants</h2>
 <ul>
 <li>Use all uppercase characters</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>GRAVITY <span class="op">=</span> <span class="fl">9.81</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>AVOGADRO_CONSTANT <span class="op">=</span> <span class="fl">6.02214076e23</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>SECONDS_IN_A_DAY <span class="op">=</span> <span class="dv">86400</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a>N_LEGS_PER_ANIMAL <span class="op">=</span> {</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="st">"human"</span>: <span class="dv">2</span>,</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="st">"dog"</span>: <span class="dv">4</span>,</span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="st">"spider"</span>: <span class="dv">8</span>,</span>
-<span id="cb8-11"><a href="#cb8-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>GRAVITY <span class="op">=</span> <span class="fl">9.81</span></span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a>AVOGADRO_CONSTANT <span class="op">=</span> <span class="fl">6.02214076e23</span></span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a>SECONDS_IN_A_DAY <span class="op">=</span> <span class="dv">86400</span></span>
+<span id="cb9-6"><a></a></span>
+<span id="cb9-7"><a></a>N_LEGS_PER_ANIMAL <span class="op">=</span> {</span>
+<span id="cb9-8"><a></a>    <span class="st">"human"</span>: <span class="dv">2</span>,</span>
+<span id="cb9-9"><a></a>    <span class="st">"dog"</span>: <span class="dv">4</span>,</span>
+<span id="cb9-10"><a></a>    <span class="st">"spider"</span>: <span class="dv">8</span>,</span>
+<span id="cb9-11"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="classes" class="slide level2">
 <h2>Classes</h2>
@@ -819,35 +840,35 @@
 <li>Use lowercase characters for the name of the methods</li>
 <li>Separate words with underscores</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span> RandomClassifier:</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
-<span id="cb9-4"><a href="#cb9-4"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
-<span id="cb9-7"><a href="#cb9-7"></a>        <span class="cf">return</span> np.random.choice(<span class="va">self</span>.classes_, size<span class="op">=</span><span class="bu">len</span>(X))</span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="kw">def</span> fit_predict(<span class="va">self</span>, X, y):</span>
-<span id="cb9-10"><a href="#cb9-10"></a>        <span class="va">self</span>.fit(X, y)</span>
-<span id="cb9-11"><a href="#cb9-11"></a>        <span class="cf">return</span> <span class="va">self</span>.predict(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="kw">class</span> RandomClassifier:</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb10-4"><a></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb10-7"><a></a>        <span class="cf">return</span> np.random.choice(<span class="va">self</span>.classes_, size<span class="op">=</span><span class="bu">len</span>(X))</span>
+<span id="cb10-8"><a></a></span>
+<span id="cb10-9"><a></a>    <span class="kw">def</span> fit_predict(<span class="va">self</span>, X, y):</span>
+<span id="cb10-10"><a></a>        <span class="va">self</span>.fit(X, y)</span>
+<span id="cb10-11"><a></a>        <span class="cf">return</span> <span class="va">self</span>.predict(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="dataclasses" class="slide level2 smaller">
 <h2>Dataclasses</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> datetime</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="at">@dataclass</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="kw">class</span> Interval:</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    start: date</span>
-<span id="cb10-8"><a href="#cb10-8"></a>    end: date</span>
-<span id="cb10-9"><a href="#cb10-9"></a></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="op">&gt;&gt;&gt;</span> dr1</span>
-<span id="cb10-12"><a href="#cb10-12"></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> datetime</span>
+<span id="cb11-2"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a><span class="at">@dataclass</span></span>
+<span id="cb11-6"><a></a><span class="kw">class</span> Interval:</span>
+<span id="cb11-7"><a></a>    start: date</span>
+<span id="cb11-8"><a></a>    end: date</span>
+<span id="cb11-9"><a></a></span>
+<span id="cb11-10"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">=</span> Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb11-11"><a></a><span class="op">&gt;&gt;&gt;</span> dr1</span>
+<span id="cb11-12"><a></a>Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb11-13"><a></a><span class="op">&gt;&gt;&gt;</span> dr2 <span class="op">=</span> Interval(start<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), end<span class="op">=</span>datetime.date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb11-14"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
+<span id="cb11-15"><a></a><span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="types-abstraction-and-refactoring" class="slide level2 smaller">
 <h2>Types, abstraction, and refactoring</h2>
@@ -866,37 +887,37 @@
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    </span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="kw">def</span> getToolByName(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
-<span id="cb11-4"><a href="#cb11-4"></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
-<span id="cb11-5"><a href="#cb11-5"></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
-<span id="cb11-6"><a href="#cb11-6"></a>                <span class="cf">return</span> tool</span>
-<span id="cb11-7"><a href="#cb11-7"></a></span>
-<span id="cb11-8"><a href="#cb11-8"></a>    <span class="kw">def</span> numberOfTools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb11-9"><a href="#cb11-9"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="op">&gt;&gt;&gt;</span> tb.getToolByName(<span class="st">"hammer"</span>)</span>
-<span id="cb11-13"><a href="#cb11-13"></a>Hammer()</span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="op">&gt;&gt;&gt;</span> tb.numberOfTools()</span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="kw">class</span> JavaLikeToolbox:</span>
+<span id="cb12-2"><a></a>    </span>
+<span id="cb12-3"><a></a>    <span class="kw">def</span> getToolByName(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb12-4"><a></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
+<span id="cb12-5"><a></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
+<span id="cb12-6"><a></a>                <span class="cf">return</span> tool</span>
+<span id="cb12-7"><a></a></span>
+<span id="cb12-8"><a></a>    <span class="kw">def</span> numberOfTools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb12-9"><a></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb12-10"><a></a></span>
+<span id="cb12-11"><a></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
+<span id="cb12-12"><a></a><span class="op">&gt;&gt;&gt;</span> tb.getToolByName(<span class="st">"hammer"</span>)</span>
+<span id="cb12-13"><a></a>Hammer()</span>
+<span id="cb12-14"><a></a><span class="op">&gt;&gt;&gt;</span> tb.numberOfTools()</span>
+<span id="cb12-15"><a></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">class</span> Toolbox:</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
-<span id="cb12-4"><a href="#cb12-4"></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    </span>
-<span id="cb12-6"><a href="#cb12-6"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb12-7"><a href="#cb12-7"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
-<span id="cb12-8"><a href="#cb12-8"></a></span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="op">&gt;&gt;&gt;</span> tb[<span class="st">"hammer"</span>]</span>
-<span id="cb12-11"><a href="#cb12-11"></a>Hammer()</span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="kw">class</span> Toolbox:</span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb13-4"><a></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
+<span id="cb13-5"><a></a>    </span>
+<span id="cb13-6"><a></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb13-7"><a></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb13-8"><a></a></span>
+<span id="cb13-9"><a></a><span class="op">&gt;&gt;&gt;</span> tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
+<span id="cb13-10"><a></a><span class="op">&gt;&gt;&gt;</span> tb[<span class="st">"hammer"</span>]</span>
+<span id="cb13-11"><a></a>Hammer()</span>
+<span id="cb13-12"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
+<span id="cb13-13"><a></a><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="duck-typing" class="slide level2">
 <h2>Duck typing</h2>
@@ -918,17 +939,17 @@
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">class</span> MyTransformer:</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb13-3"><a href="#cb13-3"></a>        <span class="co"># do something</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a></span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
-<span id="cb13-7"><a href="#cb13-7"></a>        <span class="co"># do something</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>        <span class="cf">return</span> X</span>
-<span id="cb13-9"><a href="#cb13-9"></a></span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb13-11"><a href="#cb13-11"></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="kw">class</span> MyTransformer:</span>
+<span id="cb14-2"><a></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb14-3"><a></a>        <span class="co"># do something</span></span>
+<span id="cb14-4"><a></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb14-5"><a></a></span>
+<span id="cb14-6"><a></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
+<span id="cb14-7"><a></a>        <span class="co"># do something</span></span>
+<span id="cb14-8"><a></a>        <span class="cf">return</span> X</span>
+<span id="cb14-9"><a></a></span>
+<span id="cb14-10"><a></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb14-11"><a></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="testing-and-auto-formatting" class="slide level2 smaller">
 <h2>Testing and auto-formatting</h2>
@@ -975,9 +996,11 @@
 <section id="thank-you" class="slide level2">
 <h2>Thank you!</h2>
 
-
-<img src="academy_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<div class="quarto-auto-generated-content">
+<p><img src="academy_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p>Python package development</p>
+</div>
 </div>
 </section>
     </div>
@@ -1006,7 +1029,6 @@
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1223,18 +1245,7 @@
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1266,11 +1277,50 @@
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/DHI\.github\.io\/python-package-development\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1280,8 +1330,17 @@
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1295,7 +1354,11 @@
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
