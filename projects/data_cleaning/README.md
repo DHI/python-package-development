@@ -27,8 +27,8 @@ In this project, the script removes bad data from three different time series us
 ## [Module 4: GitHub actions and auto-formatting](Project_module_04.md)
 
 - 4.1 Github Action
-- 4.2 Ruff
-- 4.3 Black
+- 4.2 Linting with ruff
+- 4.3 Formatting with ruff
 - 4.4 pyproject.toml
 
 
