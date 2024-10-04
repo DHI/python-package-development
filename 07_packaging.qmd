@@ -56,17 +56,18 @@ authors = [
 ]
 description = "Useful library"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Development Status :: 2 - Pre-Alpha",
     "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest","flake8","black","sphinx", "myst-parser","sphinx-book-theme"]
+dev = ["pytest", "ruff", "mypy", "mkdocs", "mkdocstrings[python]", "mkdocs-material"]
 test= ["pytest"]
 
 [project.urls]
@@ -229,17 +230,18 @@ authors = [
 ]
 description = "Useful library"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Development Status :: 2 - Pre-Alpha",
     "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest","flake8","black","sphinx", "myst-parser","sphinx-book-theme"]
+dev = ["pytest", "ruff", "mypy", "mkdocs", "mkdocstrings[python]", "mkdocs-material"]
 test= ["pytest"]
 
 [project.urls]
@@ -264,6 +266,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Development Status :: 2 - Pre-Alpha",
     "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering",
 ]
 ```
