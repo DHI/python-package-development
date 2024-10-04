@@ -527,6 +527,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 * They act as a single source of truth for how to run your tools.
 * Self documenting, making it easier to onboard new team members.
 * Run 'make &lt;command&gt;' to run a command from the Makefile.
+* On Linux by default, for Windows install with [MSYS2](https://www.msys2.org/) or [Chocolatey](https://chocolatey.org/) (or use WSL).
 :::
 
 . . .
