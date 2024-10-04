@@ -444,22 +444,23 @@
 <span id="cb1-14"><a></a><span class="op">]</span></span>
 <span id="cb1-15"><a></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
 <span id="cb1-16"><a></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb1-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb1-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.9"</span></span>
 <span id="cb1-18"><a></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
 <span id="cb1-19"><a></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
 <span id="cb1-20"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
 <span id="cb1-21"><a></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
 <span id="cb1-22"><a></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb1-23"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb1-24"><a></a><span class="op">]</span></span>
-<span id="cb1-25"><a></a></span>
-<span id="cb1-26"><a></a><span class="kw">[project.optional-dependencies]</span></span>
-<span id="cb1-27"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
-<span id="cb1-28"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb1-29"><a></a></span>
-<span id="cb1-30"><a></a><span class="kw">[project.urls]</span></span>
-<span id="cb1-31"><a></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb1-32"><a></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-23"><a></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb1-24"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb1-25"><a></a><span class="op">]</span></span>
+<span id="cb1-26"><a></a></span>
+<span id="cb1-27"><a></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb1-28"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
+<span id="cb1-29"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb1-30"><a></a></span>
+<span id="cb1-31"><a></a><span class="kw">[project.urls]</span></span>
+<span id="cb1-32"><a></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb1-33"><a></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="versioning" class="slide level2 smaller">
 <h2>Versioning</h2>
@@ -578,7 +579,7 @@
 </section>
 <section id="pyproject.toml-1" class="slide level2 smaller">
 <h2>pyproject.toml</h2>
-<div class="sourceCode" id="cb2" data-code-line-numbers="8-10|26-28"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a></a><span class="kw">[build-system]</span></span>
+<div class="sourceCode" id="cb2" data-code-line-numbers="8-10|27-29"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a></a><span class="kw">[build-system]</span></span>
 <span id="cb2-2"><a></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling"</span><span class="op">]</span></span>
 <span id="cb2-3"><a></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
 <span id="cb2-4"><a></a></span>
@@ -594,22 +595,23 @@
 <span id="cb2-14"><a></a><span class="op">]</span></span>
 <span id="cb2-15"><a></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
 <span id="cb2-16"><a></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb2-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb2-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.9"</span></span>
 <span id="cb2-18"><a></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
 <span id="cb2-19"><a></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
 <span id="cb2-20"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
 <span id="cb2-21"><a></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
 <span id="cb2-22"><a></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb2-23"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb2-24"><a></a><span class="op">]</span></span>
-<span id="cb2-25"><a></a></span>
-<span id="cb2-26"><a></a><span class="kw">[project.optional-dependencies]</span></span>
-<span id="cb2-27"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
-<span id="cb2-28"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb2-29"><a></a></span>
-<span id="cb2-30"><a></a><span class="kw">[project.urls]</span></span>
-<span id="cb2-31"><a></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb2-32"><a></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-23"><a></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb2-24"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb2-25"><a></a><span class="op">]</span></span>
+<span id="cb2-26"><a></a></span>
+<span id="cb2-27"><a></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb2-28"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
+<span id="cb2-29"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb2-30"><a></a></span>
+<span id="cb2-31"><a></a><span class="kw">[project.urls]</span></span>
+<span id="cb2-32"><a></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb2-33"><a></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <ul>
 <li>Mandatory dependencies are specified in the <code>dependencies</code> section.</li>
@@ -634,8 +636,9 @@
 <span id="cb3-3"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
 <span id="cb3-4"><a></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
 <span id="cb3-5"><a></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb3-6"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb3-7"><a></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb3-7"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb3-8"><a></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Classifiers are used to categorize your package</li>
 <li>Less relevant for internal packages</li>

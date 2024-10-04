@@ -728,7 +728,7 @@
 <section id="linting" class="slide level2">
 <h2>Linting</h2>
 <p>A way to check your code for common errors and style issues.</p>
-<p><a href="https://beta.ruff.rs/docs/"><code>ruff</code></a> is a new tool for linting Python code.</p>
+<p><a href="https://docs.astral.sh/ruff/"><code>ruff</code></a> is a new tool for linting Python code.</p>
 <ul>
 <li>syntax errors</li>
 <li>unused imports</li>
@@ -753,13 +753,13 @@
 <span id="cb12-8"><a></a>    <span class="co"># interpolate missing values with cubic spline</span></span>
 <span id="cb12-9"><a></a>    <span class="cf">return</span> scipy.interpolate.interp1d(x, y)(xout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Run <code>ruff</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a><span class="ex">$</span> ruff process.py</span>
+<p>Run <code>ruff check</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a><span class="ex">$</span> ruff check process.py</span>
 <span id="cb13-2"><a></a><span class="ex">process.py:1:8:</span> F401 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> <span class="kw">`</span><span class="ex">requests</span><span class="kw">`</span> imported but unused</span>
 <span id="cb13-3"><a></a><span class="ex">process.py:6:12:</span> F821 Undefined name <span class="kw">`</span><span class="ex">np</span><span class="kw">`</span></span>
 <span id="cb13-4"><a></a><span class="ex">process.py:7:5:</span> F841 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> Local variable <span class="kw">`</span><span class="ex">method</span><span class="kw">`</span> is assigned to but never used</span>
 <span id="cb13-5"><a></a><span class="ex">Found</span> 3 errors.</span>
-<span id="cb13-6"><a></a><span class="ex">[*]</span> 2 potentially fixable with the <span class="at">--fix</span> option.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-6"><a></a><span class="ex">[*]</span> 1 fixable with the <span class="kw">`</span><span class="ex">--fix</span><span class="kw">`</span> option <span class="er">(</span><span class="ex">1</span> hidden fix can be enabled with the <span class="kw">`</span><span class="ex">--unsafe-fixes</span><span class="kw">`</span> option<span class="kw">)</span><span class="bu">.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <ul>
 <li>Linting is a fast way to find common errors.</li>
@@ -783,28 +783,31 @@
 <div>
 <ul>
 <li class="fragment">Formatting code for readability and maintainability is essential.</li>
-<li class="fragment">black is an opinionated automatic code formatter for Python.</li>
-<li class="fragment">It enforces its own rules for formatting, which are not configurable.</li>
+<li class="fragment"><code>ruff</code> can be used for code formatting (in addition to linting).</li>
+<li class="fragment"><code>ruff</code> is a faster replacement of <code>black</code>, a previously commonly used code formatter.</li>
+<li class="fragment">It enforces its own rules for formatting, which are only minorly configurable.</li>
 <li class="fragment">Having a unified style makes code changes easier to understand and collaborate on.</li>
 </ul>
 </div>
 </section>
-<section id="running-black" class="slide level2">
-<h2>Running Black</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">$</span> black .</span>
-<span id="cb14-2"><a></a><span class="ex">reformatted</span> data_utils.py</span>
-<span id="cb14-3"><a></a><span class="ex">reformatted</span> dfsu/__init__.py</span>
-<span id="cb14-4"><a></a><span class="ex">reformatted</span> dataarray.py</span>
-<span id="cb14-5"><a></a><span class="ex">reformatted</span> dataset.py</span>
-<span id="cb14-6"><a></a><span class="ex">reformatted</span> spatial/geometry.py</span>
-<span id="cb14-7"><a></a><span class="ex">reformatted</span> pfs/pfssection.py</span>
-<span id="cb14-8"><a></a></span>
-<span id="cb14-9"><a></a><span class="ex">All</span> done! ✨ 🍰 ✨</span>
-<span id="cb14-10"><a></a><span class="ex">6</span> files reformatted, 27 files left unchanged.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="running-ruff-format" class="slide level2">
+<h2>Running ruff format</h2>
+<p>Check if files need formatting (optional):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="ex">$</span> ruff format <span class="at">--check</span></span>
+<span id="cb14-2"><a></a><span class="ex">Would</span> reformat: data_utils.py</span>
+<span id="cb14-3"><a></a><span class="ex">Would</span> reformat: dfsu/__init__.py</span>
+<span id="cb14-4"><a></a><span class="ex">Would</span> reformat: dataarray.py</span>
+<span id="cb14-5"><a></a><span class="ex">Would</span> reformat: dataset.py</span>
+<span id="cb14-6"><a></a><span class="ex">Would</span> reformat: spatial/geometry.py</span>
+<span id="cb14-7"><a></a><span class="ex">Would</span> reformat: pfs/pfssection.py</span>
+<span id="cb14-8"><a></a><span class="ex">6</span> files would be reformatted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Format files:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="ex">$</span> ruff format</span>
+<span id="cb15-2"><a></a><span class="ex">6</span> files reformatted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="running-black-1" class="slide level2 smaller">
-<h2>Running Black</h2>
-<p>Visual Studio Code can be configured to run <code>black</code> automatically when saving a file using the <code>Black</code> extension.</p>
+<section id="ruff-format-in-visual-studio-code" class="slide level2">
+<h2>Ruff format in Visual Studio Code</h2>
+<p>Visual Studio Code can be configured to run <code>ruff format</code> automatically when saving a file using the <code>Ruff</code> extension.</p>
 
 <img data-src="images/vs_code_format.png" class="r-stretch"></section>
 <section id="profiling" class="slide level2">
@@ -821,29 +824,29 @@
 </section>
 <section id="profiling---example-code" class="slide level2 smaller">
 <h2>Profiling - <em>example code</em></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb15-2"><a></a></span>
-<span id="cb15-3"><a></a><span class="kw">def</span> top_neighbors(points, radius<span class="op">=</span><span class="st">"0.1"</span>):</span>
-<span id="cb15-4"><a></a>    <span class="co">"""Don't use this function, it's only purpose is to be profiled."""</span></span>
-<span id="cb15-5"><a></a>    n <span class="op">=</span> <span class="bu">len</span>(points)</span>
-<span id="cb15-6"><a></a>    idx <span class="op">=</span> np.array([<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">str</span>.split(<span class="st">"0 "</span><span class="op">*</span> n)])</span>
-<span id="cb15-7"><a></a></span>
-<span id="cb15-8"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-9"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-10"><a></a>            <span class="cf">if</span> i <span class="op">!=</span> j:</span>
-<span id="cb15-11"><a></a>                d <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((points[i] <span class="op">-</span> points[j])<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb15-12"><a></a>                <span class="cf">if</span> d <span class="op">&lt;</span> <span class="bu">float</span>(radius): </span>
-<span id="cb15-13"><a></a>                    idx[i] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb15-14"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-15"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb15-16"><a></a>            <span class="cf">if</span> idx[j] <span class="op">&lt;</span> idx[j <span class="op">+</span> <span class="dv">1</span>]:</span>
-<span id="cb15-17"><a></a>                idx[j], idx[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> idx[j <span class="op">+</span> <span class="dv">1</span>], idx[j]</span>
-<span id="cb15-18"><a></a>                points[j], points[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> points[j <span class="op">+</span> <span class="dv">1</span>], points[j]</span>
-<span id="cb15-19"><a></a>    <span class="cf">return</span> points</span>
-<span id="cb15-20"><a></a></span>
-<span id="cb15-21"><a></a><span class="kw">def</span> main():</span>
-<span id="cb15-22"><a></a>    points <span class="op">=</span> np.random.rand(<span class="dv">1000</span>, <span class="dv">2</span>)</span>
-<span id="cb15-23"><a></a>    top <span class="op">=</span> top_neighbors(points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a><span class="kw">def</span> top_neighbors(points, radius<span class="op">=</span><span class="st">"0.1"</span>):</span>
+<span id="cb16-4"><a></a>    <span class="co">"""Don't use this function, it's only purpose is to be profiled."""</span></span>
+<span id="cb16-5"><a></a>    n <span class="op">=</span> <span class="bu">len</span>(points)</span>
+<span id="cb16-6"><a></a>    idx <span class="op">=</span> np.array([<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">str</span>.split(<span class="st">"0 "</span><span class="op">*</span> n)])</span>
+<span id="cb16-7"><a></a></span>
+<span id="cb16-8"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb16-9"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb16-10"><a></a>            <span class="cf">if</span> i <span class="op">!=</span> j:</span>
+<span id="cb16-11"><a></a>                d <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((points[i] <span class="op">-</span> points[j])<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb16-12"><a></a>                <span class="cf">if</span> d <span class="op">&lt;</span> <span class="bu">float</span>(radius): </span>
+<span id="cb16-13"><a></a>                    idx[i] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb16-14"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb16-15"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb16-16"><a></a>            <span class="cf">if</span> idx[j] <span class="op">&lt;</span> idx[j <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb16-17"><a></a>                idx[j], idx[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> idx[j <span class="op">+</span> <span class="dv">1</span>], idx[j]</span>
+<span id="cb16-18"><a></a>                points[j], points[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> points[j <span class="op">+</span> <span class="dv">1</span>], points[j]</span>
+<span id="cb16-19"><a></a>    <span class="cf">return</span> points</span>
+<span id="cb16-20"><a></a></span>
+<span id="cb16-21"><a></a><span class="kw">def</span> main():</span>
+<span id="cb16-22"><a></a>    points <span class="op">=</span> np.random.rand(<span class="dv">1000</span>, <span class="dv">2</span>)</span>
+<span id="cb16-23"><a></a>    top <span class="op">=</span> top_neighbors(points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="profiling---output" class="slide level2 smaller">
 <h2>Profiling - <em>output</em></h2>
@@ -852,7 +855,7 @@
 <li>function to profile - <code>top_neighbors</code></li>
 <li>code to run - <code>main()</code></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="op">%</span>lprun <span class="op">-</span>f top_neighbors main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="op">%</span>lprun <span class="op">-</span>f top_neighbors main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <pre><code>
 Line #      Hits         Time  Per Hit   % Time  Line Contents
@@ -888,7 +891,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <li class="fragment">Warnings are a way to alert users of your code to potential issues or usage errors.</li>
 <li class="fragment"><strong>Linting</strong> is a way to check your code for common errors and style issues.</li>
 <li class="fragment"><strong>Ruff</strong> is a fast linter that checks for common errors and style issues.</li>
-<li class="fragment"><strong>Black</strong> is an automatic code formatter that enforces a consistent style.</li>
+<li class="fragment"><strong>Ruff</strong> is also an automatic code formatter that enforces a consistent style.</li>
 <li class="fragment">Profiling is a way to measure the performance of your code.</li>
 </ul>
 </div>

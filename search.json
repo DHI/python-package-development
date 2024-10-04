@@ -1341,7 +1341,7 @@
     "href": "04_dependencies_ci.html#install-with-optional-dependencies",
     "title": "Dependencies and Continuous Integration",
     "section": "Install with optional dependencies",
-    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"black==22.3.0\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
+    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"ruff\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
   },
   {
     "objectID": "04_dependencies_ci.html#creating-an-installable-package-1",
@@ -1453,7 +1453,7 @@
     "href": "04_dependencies_ci_slides.html#install-with-optional-dependencies",
     "title": "Dependencies and Continuous Integration",
     "section": "Install with optional dependencies",
-    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"black==22.3.0\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
+    "text": "Install with optional dependencies\n\n\npyproject.toml\n\n[project.optional-dependencies]\ndev = [\"pytest\",\n       \"ruff\",\n       \"sphinx\",\n       \"sphinx-rtd-theme\",\n       \"myst-parser\",\n       ]\n\ntest = [\"pytest\", \"pytest-cov\"]\n\n \n$ pip install mini[test]"
   },
   {
     "objectID": "04_dependencies_ci_slides.html#creating-an-installable-package-1",
@@ -1572,7 +1572,7 @@
     "href": "07_packaging_slides.html#pyproject.toml",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.7\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\",\"flake8\",\"black\",\"sphinx\", \"myst-parser\",\"sphinx-book-theme\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
   },
   {
     "objectID": "07_packaging_slides.html#versioning",
@@ -1628,14 +1628,14 @@
     "href": "07_packaging_slides.html#pyproject.toml-1",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.7\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\",\"flake8\",\"black\",\"sphinx\", \"myst-parser\",\"sphinx-book-theme\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nOptional dependencies are specified in the optional-dependencies section."
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nOptional dependencies are specified in the optional-dependencies section."
   },
   {
     "objectID": "07_packaging_slides.html#classifiers",
     "href": "07_packaging_slides.html#classifiers",
     "title": "Distributing your Python package",
     "section": "Classifiers",
-    "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
+    "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
   },
   {
     "objectID": "07_packaging_slides.html#packaging-non-python-files",
@@ -1831,7 +1831,7 @@
     "href": "07_packaging.html#pyproject.toml",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.7\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\",\"flake8\",\"black\",\"sphinx\", \"myst-parser\",\"sphinx-book-theme\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
   },
   {
     "objectID": "07_packaging.html#versioning",
@@ -1887,14 +1887,14 @@
     "href": "07_packaging.html#pyproject.toml-1",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.7\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\",\"flake8\",\"black\",\"sphinx\", \"myst-parser\",\"sphinx-book-theme\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nOptional dependencies are specified in the optional-dependencies section."
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nOptional dependencies are specified in the optional-dependencies section."
   },
   {
     "objectID": "07_packaging.html#classifiers",
     "href": "07_packaging.html#classifiers",
     "title": "Distributing your Python package",
     "section": "Classifiers",
-    "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
+    "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
   },
   {
     "objectID": "07_packaging.html#packaging-non-python-files",
@@ -2328,28 +2328,28 @@
     "href": "03_testing_slides.html#linting-with-ruff",
     "title": "Testing, linting and formatting",
     "section": "Linting with ruff",
-    "text": "Linting with ruff\n\n\nexamples/04_testing/process.py\n\nimport requests\nimport scipy\n\ndef preprocess(x, y, xout):\n\n    x = x[~np.isnan(x)] \n    method = \"cubic\"\n    # interpolate missing values with cubic spline\n    return scipy.interpolate.interp1d(x, y)(xout)\n\nRun ruff:\n$ ruff process.py\nprocess.py:1:8: F401 [*] `requests` imported but unused\nprocess.py:6:12: F821 Undefined name `np`\nprocess.py:7:5: F841 [*] Local variable `method` is assigned to but never used\nFound 3 errors.\n[*] 2 potentially fixable with the --fix option.\n\n\nLinting is a fast way to find common errors.\nUnused imports are confusing.\nUnused and undefined variables are usually a typo or a mistake. Fixing them can prevent bugs."
+    "text": "Linting with ruff\n\n\nexamples/04_testing/process.py\n\nimport requests\nimport scipy\n\ndef preprocess(x, y, xout):\n\n    x = x[~np.isnan(x)] \n    method = \"cubic\"\n    # interpolate missing values with cubic spline\n    return scipy.interpolate.interp1d(x, y)(xout)\n\nRun ruff check:\n$ ruff check process.py\nprocess.py:1:8: F401 [*] `requests` imported but unused\nprocess.py:6:12: F821 Undefined name `np`\nprocess.py:7:5: F841 [*] Local variable `method` is assigned to but never used\nFound 3 errors.\n[*] 1 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n\n\nLinting is a fast way to find common errors.\nUnused imports are confusing.\nUnused and undefined variables are usually a typo or a mistake. Fixing them can prevent bugs."
   },
   {
     "objectID": "03_testing_slides.html#formatting",
     "href": "03_testing_slides.html#formatting",
     "title": "Testing, linting and formatting",
     "section": "Formatting",
-    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nblack is an opinionated automatic code formatter for Python.\nIt enforces its own rules for formatting, which are not configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
+    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nruff can be used for code formatting (in addition to linting).\nruff is a faster replacement of black, a previously commonly used code formatter.\nIt enforces its own rules for formatting, which are only minorly configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
   },
   {
-    "objectID": "03_testing_slides.html#running-black",
-    "href": "03_testing_slides.html#running-black",
+    "objectID": "03_testing_slides.html#running-ruff-format",
+    "href": "03_testing_slides.html#running-ruff-format",
     "title": "Testing, linting and formatting",
-    "section": "Running Black",
-    "text": "Running Black\n$ black .\nreformatted data_utils.py\nreformatted dfsu/__init__.py\nreformatted dataarray.py\nreformatted dataset.py\nreformatted spatial/geometry.py\nreformatted pfs/pfssection.py\n\nAll done! ✨ 🍰 ✨\n6 files reformatted, 27 files left unchanged."
+    "section": "Running ruff format",
+    "text": "Running ruff format\nCheck if files need formatting (optional):\n$ ruff format --check\nWould reformat: data_utils.py\nWould reformat: dfsu/__init__.py\nWould reformat: dataarray.py\nWould reformat: dataset.py\nWould reformat: spatial/geometry.py\nWould reformat: pfs/pfssection.py\n6 files would be reformatted\nFormat files:\n$ ruff format\n6 files reformatted"
   },
   {
-    "objectID": "03_testing_slides.html#running-black-1",
-    "href": "03_testing_slides.html#running-black-1",
+    "objectID": "03_testing_slides.html#ruff-format-in-visual-studio-code",
+    "href": "03_testing_slides.html#ruff-format-in-visual-studio-code",
     "title": "Testing, linting and formatting",
-    "section": "Running Black",
-    "text": "Running Black\nVisual Studio Code can be configured to run black automatically when saving a file using the Black extension."
+    "section": "Ruff format in Visual Studio Code",
+    "text": "Ruff format in Visual Studio Code\nVisual Studio Code can be configured to run ruff format automatically when saving a file using the Ruff extension."
   },
   {
     "objectID": "03_testing_slides.html#profiling",
@@ -2377,7 +2377,7 @@
     "href": "03_testing_slides.html#summary",
     "title": "Testing, linting and formatting",
     "section": "Summary",
-    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nBlack is an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\n\n\n\n\n\n\nPython package development"
+    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nRuff is also an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\n\n\n\n\n\n\nPython package development"
   },
   {
     "objectID": "03_testing.html",
@@ -2538,28 +2538,28 @@
     "href": "03_testing.html#linting-with-ruff",
     "title": "Testing, linting and formatting",
     "section": "Linting with ruff",
-    "text": "Linting with ruff\n\n\nexamples/04_testing/process.py\n\nimport requests\nimport scipy\n\ndef preprocess(x, y, xout):\n\n    x = x[~np.isnan(x)] \n    method = \"cubic\"\n    # interpolate missing values with cubic spline\n    return scipy.interpolate.interp1d(x, y)(xout)\n\nRun ruff:\n$ ruff process.py\nprocess.py:1:8: F401 [*] `requests` imported but unused\nprocess.py:6:12: F821 Undefined name `np`\nprocess.py:7:5: F841 [*] Local variable `method` is assigned to but never used\nFound 3 errors.\n[*] 2 potentially fixable with the --fix option.\n\n\nLinting is a fast way to find common errors.\nUnused imports are confusing.\nUnused and undefined variables are usually a typo or a mistake. Fixing them can prevent bugs."
+    "text": "Linting with ruff\n\n\nexamples/04_testing/process.py\n\nimport requests\nimport scipy\n\ndef preprocess(x, y, xout):\n\n    x = x[~np.isnan(x)] \n    method = \"cubic\"\n    # interpolate missing values with cubic spline\n    return scipy.interpolate.interp1d(x, y)(xout)\n\nRun ruff check:\n$ ruff check process.py\nprocess.py:1:8: F401 [*] `requests` imported but unused\nprocess.py:6:12: F821 Undefined name `np`\nprocess.py:7:5: F841 [*] Local variable `method` is assigned to but never used\nFound 3 errors.\n[*] 1 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).\n\n\nLinting is a fast way to find common errors.\nUnused imports are confusing.\nUnused and undefined variables are usually a typo or a mistake. Fixing them can prevent bugs."
   },
   {
     "objectID": "03_testing.html#formatting",
     "href": "03_testing.html#formatting",
     "title": "Testing, linting and formatting",
     "section": "Formatting",
-    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nblack is an opinionated automatic code formatter for Python.\nIt enforces its own rules for formatting, which are not configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
+    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nruff can be used for code formatting (in addition to linting).\nruff is a faster replacement of black, a previously commonly used code formatter.\nIt enforces its own rules for formatting, which are only minorly configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
   },
   {
-    "objectID": "03_testing.html#running-black",
-    "href": "03_testing.html#running-black",
+    "objectID": "03_testing.html#running-ruff-format",
+    "href": "03_testing.html#running-ruff-format",
     "title": "Testing, linting and formatting",
-    "section": "Running Black",
-    "text": "Running Black\n$ black .\nreformatted data_utils.py\nreformatted dfsu/__init__.py\nreformatted dataarray.py\nreformatted dataset.py\nreformatted spatial/geometry.py\nreformatted pfs/pfssection.py\n\nAll done! ✨ 🍰 ✨\n6 files reformatted, 27 files left unchanged."
+    "section": "Running ruff format",
+    "text": "Running ruff format\nCheck if files need formatting (optional):\n$ ruff format --check\nWould reformat: data_utils.py\nWould reformat: dfsu/__init__.py\nWould reformat: dataarray.py\nWould reformat: dataset.py\nWould reformat: spatial/geometry.py\nWould reformat: pfs/pfssection.py\n6 files would be reformatted\nFormat files:\n$ ruff format\n6 files reformatted"
   },
   {
-    "objectID": "03_testing.html#running-black-1",
-    "href": "03_testing.html#running-black-1",
+    "objectID": "03_testing.html#ruff-format-in-visual-studio-code",
+    "href": "03_testing.html#ruff-format-in-visual-studio-code",
     "title": "Testing, linting and formatting",
-    "section": "Running Black",
-    "text": "Running Black\nVisual Studio Code can be configured to run black automatically when saving a file using the Black extension."
+    "section": "Ruff format in Visual Studio Code",
+    "text": "Ruff format in Visual Studio Code\nVisual Studio Code can be configured to run ruff format automatically when saving a file using the Ruff extension."
   },
   {
     "objectID": "03_testing.html#profiling",
@@ -2587,7 +2587,7 @@
     "href": "03_testing.html#summary",
     "title": "Testing, linting and formatting",
     "section": "Summary",
-    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nBlack is an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code."
+    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nRuff is also an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code."
   },
   {
     "objectID": "01_version_control_slides.html#why-use-version-control",
@@ -2867,7 +2867,7 @@
     "href": "projects/data_cleaning/index.html",
     "title": "Course project: Time Series Data Cleaning",
     "section": "",
-    "text": "Imagine this: you’re given a script by a colleague and your task is to make usable for others in your organization; to make a proper package with a good structure, tests and documentation. And with a design that will make it easy to extend and maintain in the future.\nIn this project, the script removes bad data from three different time series using three different algorithms: out-of-range, spikes, and flat-periods. Your colleague is not the best Python coder, so you will start by cleaning up the code, using functions and gradually from there improve the quality.\n\n\n\n1.1 GitHub repo\n1.2 Functions\n\n\n\n\n\n2.1 Function arguments\n2.2 Modules\n2.3 Classes\n\n\n\n\n\n3.1 Installable package\n3.2 Pytest\n\n\n\n\n\n4.1 Github Action\n4.2 Ruff\n4.3 Black\n4.4 pyproject.toml\n\n\n\n\n\n5.1 Type Hints\n5.2 Data class\n5.3 Module level function\n5.4 Composition or inheritance\n\n\n\n\n\n6.1 README\n6.2 Docstrings\n6.3 mkdocs\n\n\n\n\n\n7.1 License\n7.2 Publishing"
+    "text": "Imagine this: you’re given a script by a colleague and your task is to make usable for others in your organization; to make a proper package with a good structure, tests and documentation. And with a design that will make it easy to extend and maintain in the future.\nIn this project, the script removes bad data from three different time series using three different algorithms: out-of-range, spikes, and flat-periods. Your colleague is not the best Python coder, so you will start by cleaning up the code, using functions and gradually from there improve the quality.\n\n\n\n1.1 GitHub repo\n1.2 Functions\n\n\n\n\n\n2.1 Function arguments\n2.2 Modules\n2.3 Classes\n\n\n\n\n\n3.1 Installable package\n3.2 Pytest\n\n\n\n\n\n4.1 Github Action\n4.2 Linting with ruff\n4.3 Formatting with ruff\n4.4 pyproject.toml\n\n\n\n\n\n5.1 Type Hints\n5.2 Data class\n5.3 Module level function\n5.4 Composition or inheritance\n\n\n\n\n\n6.1 README\n6.2 Docstrings\n6.3 mkdocs\n\n\n\n\n\n7.1 License\n7.2 Publishing"
   },
   {
     "objectID": "projects/data_cleaning/index.html#module-1-github-and-basic-functions",
@@ -2895,7 +2895,7 @@
     "href": "projects/data_cleaning/index.html#module-4-github-actions-and-auto-formatting",
     "title": "Course project: Time Series Data Cleaning",
     "section": "",
-    "text": "4.1 Github Action\n4.2 Ruff\n4.3 Black\n4.4 pyproject.toml"
+    "text": "4.1 Github Action\n4.2 Linting with ruff\n4.3 Formatting with ruff\n4.4 pyproject.toml"
   },
   {
     "objectID": "projects/data_cleaning/index.html#module-5-object-oriented-design",
@@ -2951,13 +2951,13 @@
     "href": "projects/data_cleaning/04_Project_module.html",
     "title": "Python package development",
     "section": "",
-    "text": "Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8.\nIn this module, we will use some files from the python library template. When you, after this course, needs to create a new package, you can simply start from this template when creating the repo.\n\nCreate new branch “action-formatting” (Make sure changes from last module have been merged, and that you start from the main branch)\n4.1 Github Action\n\nCopy the GitHub action file python-app.yml (in the .github folder) from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).\nChange all occurrences of “my_library” in the yml file to your package name “tscleaner”\nComment out the line with “ruff-action” with “#”\nCommit, push and create a pull request; the tests should now run, verify that they all run before you move on\n\n4.2 Ruff\n\nEnable the “ruff-action” be removing the “#” you added above\nCommit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)\nInstall “ruff” on your local machine with mamba/conda/pip\nNavigate to your project root folder and run ruff with “ruff .”\nAdd the following line to your __init__.py file __all__ = [\"SpikeCleaner\", \"FlatPeriodCleaner\", \"OutOfRangeCleaner\", \"plot_timeseries\"]\nfix remaining issues until ruff passes\nCommit, push and verify that you action now succeeds\n\n4.3 Black\n\nInstall “black” on your local machine with mamba/conda/pip\nRun black from your project root folder; inspect the differences; commit\n\n4.4 pyproject.toml\n\nCopy the pyproject.toml from the python template https://github.com/DHI/template-python-library (this file should replace your setup.py)\nModify the file contentes to fit your package\nRemove the setup.py file\nCommit, push and verify that the GitHub action runs\nIf it fails, you probably forgot some dependencies - go back and fix\n[Optional] You should also re-install your local package with &gt;pip install --upgrade -e .\n\n4.5 [Optional] Enable black and ruff extensions in VSCode; set black to run on save\nCreate pull request in GitHub and “request review” from your reviewers\nGet feedback, Adjust code until approval, then merge (and delete branch)\n\nBack to course project overview"
+    "text": "Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8.\nIn this module, we will use some files from the python library template. When you, after this course, need to create a new package, you can simply start from this template when creating the repo.\n\nCreate new branch “action-formatting” (Make sure changes from last module have been merged, and that you start from the main branch)\n4.1 Github Action\n\nCopy the GitHub action file full_test.yml (in the .github/workflows folder) from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).\nChange all occurrences of “my_library” in the yml file to your package name “tscleaner”\nComment out the line with “ruff-action” with “#”\nCommit, push and create a pull request; the tests should now run, verify that they all run before you move on\n\n4.2 Linting with ruff\n\nEnable the “ruff-action” be removing the “#” you added above\nCommit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)\nInstall “ruff” on your local machine with mamba/conda/pip\nNavigate to your project root folder and run ruff with “ruff check”\nAdd the following line to your __init__.py file __all__ = [\"SpikeCleaner\", \"FlatPeriodCleaner\", \"OutOfRangeCleaner\", \"plot_timeseries\"]\nfix remaining issues until ruff passes\nCommit, push and verify that you action now succeeds\n\n4.3 Formatting with ruff\n\nRun “ruff format” from your project root folder; inspect the differences; commit\n\n4.4 pyproject.toml\n\nCopy the pyproject.toml from the python template https://github.com/DHI/template-python-library (this file should replace your setup.py)\nModify the file contentes to fit your package\nRemove the setup.py file\nCommit, push and verify that the GitHub action runs\nIf it fails, you probably forgot some dependencies - go back and fix\n[Optional] You should also re-install your local package with &gt;pip install --upgrade -e .\n\n4.5 [Optional] Enable ruff extensions in VSCode; set ruff format to run on save\nCreate pull request in GitHub and “request review” from your reviewers\nGet feedback, Adjust code until approval, then merge (and delete branch)\n\nBack to course project overview"
   },
   {
     "objectID": "projects/data_cleaning/04_Project_module.html#module-4-github-actions-and-auto-formatting",
     "href": "projects/data_cleaning/04_Project_module.html#module-4-github-actions-and-auto-formatting",
     "title": "Python package development",
     "section": "",
-    "text": "Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8.\nIn this module, we will use some files from the python library template. When you, after this course, needs to create a new package, you can simply start from this template when creating the repo.\n\nCreate new branch “action-formatting” (Make sure changes from last module have been merged, and that you start from the main branch)\n4.1 Github Action\n\nCopy the GitHub action file python-app.yml (in the .github folder) from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).\nChange all occurrences of “my_library” in the yml file to your package name “tscleaner”\nComment out the line with “ruff-action” with “#”\nCommit, push and create a pull request; the tests should now run, verify that they all run before you move on\n\n4.2 Ruff\n\nEnable the “ruff-action” be removing the “#” you added above\nCommit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)\nInstall “ruff” on your local machine with mamba/conda/pip\nNavigate to your project root folder and run ruff with “ruff .”\nAdd the following line to your __init__.py file __all__ = [\"SpikeCleaner\", \"FlatPeriodCleaner\", \"OutOfRangeCleaner\", \"plot_timeseries\"]\nfix remaining issues until ruff passes\nCommit, push and verify that you action now succeeds\n\n4.3 Black\n\nInstall “black” on your local machine with mamba/conda/pip\nRun black from your project root folder; inspect the differences; commit\n\n4.4 pyproject.toml\n\nCopy the pyproject.toml from the python template https://github.com/DHI/template-python-library (this file should replace your setup.py)\nModify the file contentes to fit your package\nRemove the setup.py file\nCommit, push and verify that the GitHub action runs\nIf it fails, you probably forgot some dependencies - go back and fix\n[Optional] You should also re-install your local package with &gt;pip install --upgrade -e .\n\n4.5 [Optional] Enable black and ruff extensions in VSCode; set black to run on save\nCreate pull request in GitHub and “request review” from your reviewers\nGet feedback, Adjust code until approval, then merge (and delete branch)\n\nBack to course project overview"
+    "text": "Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8.\nIn this module, we will use some files from the python library template. When you, after this course, need to create a new package, you can simply start from this template when creating the repo.\n\nCreate new branch “action-formatting” (Make sure changes from last module have been merged, and that you start from the main branch)\n4.1 Github Action\n\nCopy the GitHub action file full_test.yml (in the .github/workflows folder) from the python template https://github.com/DHI/template-python-library to your own library (make sure it sits in the same folder).\nChange all occurrences of “my_library” in the yml file to your package name “tscleaner”\nComment out the line with “ruff-action” with “#”\nCommit, push and create a pull request; the tests should now run, verify that they all run before you move on\n\n4.2 Linting with ruff\n\nEnable the “ruff-action” be removing the “#” you added above\nCommit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)\nInstall “ruff” on your local machine with mamba/conda/pip\nNavigate to your project root folder and run ruff with “ruff check”\nAdd the following line to your __init__.py file __all__ = [\"SpikeCleaner\", \"FlatPeriodCleaner\", \"OutOfRangeCleaner\", \"plot_timeseries\"]\nfix remaining issues until ruff passes\nCommit, push and verify that you action now succeeds\n\n4.3 Formatting with ruff\n\nRun “ruff format” from your project root folder; inspect the differences; commit\n\n4.4 pyproject.toml\n\nCopy the pyproject.toml from the python template https://github.com/DHI/template-python-library (this file should replace your setup.py)\nModify the file contentes to fit your package\nRemove the setup.py file\nCommit, push and verify that the GitHub action runs\nIf it fails, you probably forgot some dependencies - go back and fix\n[Optional] You should also re-install your local package with &gt;pip install --upgrade -e .\n\n4.5 [Optional] Enable ruff extensions in VSCode; set ruff format to run on save\nCreate pull request in GitHub and “request review” from your reviewers\nGet feedback, Adjust code until approval, then merge (and delete branch)\n\nBack to course project overview"
   }
 ]

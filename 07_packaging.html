@@ -183,22 +183,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.9"</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.optional-dependencies]</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.urls]</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.urls]</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="versioning" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="versioning">Versioning</h2>
@@ -324,22 +325,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14"></a><span class="op">]</span></span>
 <span id="cb2-15"><a href="#cb2-15"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.7"</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.9"</span></span>
 <span id="cb2-18"><a href="#cb2-18"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
 <span id="cb2-20"><a href="#cb2-20"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
 <span id="cb2-21"><a href="#cb2-21"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
 <span id="cb2-22"><a href="#cb2-22"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="op">]</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">[project.optional-dependencies]</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span><span class="st">"flake8"</span><span class="op">,</span><span class="st">"black"</span><span class="op">,</span><span class="st">"sphinx"</span><span class="op">,</span> <span class="st">"myst-parser"</span><span class="op">,</span><span class="st">"sphinx-book-theme"</span><span class="op">]</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="kw">[project.urls]</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="op">]</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="kw">[project.urls]</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="notes">
 <ul>
 <li>Mandatory dependencies are specified in the <code>dependencies</code> section.</li>
@@ -354,8 +356,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Classifiers are used to categorize your package</li>
 <li>Less relevant for internal packages</li>
