@@ -172,8 +172,23 @@ Try to avoid breaking changes, if possible, but if you do, increase the major ve
 * The license is specified in the `pyproject.toml` file
 * Read more about licenses on <https://choosealicense.com/>
 * Check if your package is compatible with the license of the dependencies
+* The [MIT license](https://mit-license.org/) is a popular choice, because it is permissive
+* The [GNU GPL family of licenses](https://www.gnu.org/licenses/licenses.html) will require others to open source their code
+* Many python packages use the [BSD-3 license](https://opensource.org/license/BSD-3-clause), e.g. [`scikit-learn`](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING)
 
 :::
+
+## Open source licenses
+
+::: {.incremental}
+
+* The [MIT license](https://mit-license.org/) is a popular choice, because it is permissive
+* A similar licenses found in python packages is the [BSD-3 license](https://opensource.org/license/BSD-3-clause), e.g. [`scikit-learn`](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING)
+* The [GNU GPL family of licenses](https://www.gnu.org/licenses/licenses.html) will require others to open source their code
+
+:::
+
+
 
 ## Dependencies
 
