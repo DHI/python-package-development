@@ -163,30 +163,49 @@ Try to avoid breaking changes, if possible, but if you do, increase the major ve
 ::::
 
 
-## License
+## Understanding Software Licenses
 
-::: {.incremental}
+- A software license is a legal agreement that grants users certain rights and imposes restrictions on the use, modification, and distribution of a software package.
+- Specifying a license for your Python package is crucial, as it determines how others can legally use and interact with your code.
+- If you don't specify a license, your package is effectively "all rights reserved," making it legally unusable by others.
+ - Check that your dependencies have a license! 
 
-* A license is a legal agreement between you and others who use your package
-* If you do not specify a license, others cannot use your package legally
-* The license is specified in the `pyproject.toml` file
-* Read more about licenses on <https://choosealicense.com/>
-* Check if your package is compatible with the license of the dependencies
-* The [MIT license](https://mit-license.org/) is a popular choice, because it is permissive
-* The [GNU GPL family of licenses](https://www.gnu.org/licenses/licenses.html) will require others to open source their code
-* Many python packages use the [BSD-3 license](https://opensource.org/license/BSD-3-clause), e.g. [`scikit-learn`](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING)
 
-:::
+## Common Open-Source License Types
 
-## Open source licenses
+- **MIT License**: Highly permissive, allows commercial use, modification, and distribution with minimal restrictions.
+- **BSD-3 Clause License**: Similar to MIT, but includes a clause prohibiting use of the name for endorsement.
+- **Apache License 2.0**: Includes a patent grant and is compatible with the GPL family of licenses.
+- **GNU GPL Family (GPL, LGPL, AGPL)**: Copyleft licenses that require derivative works to be open-source and distributed under the same terms.
 
-::: {.incremental}
+Many popular Python packages, such as scikit-learn, use licenses like BSD-3 or Apache 2.0.
 
-* The [MIT license](https://mit-license.org/) is a popular choice, because it is permissive
-* A similar licenses found in python packages is the [BSD-3 license](https://opensource.org/license/BSD-3-clause), e.g. [`scikit-learn`](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING)
-* The [GNU GPL family of licenses](https://www.gnu.org/licenses/licenses.html) will require others to open source their code
 
-:::
+## Licenses for internal packages
+
+- For internal packages that will not be distributed outside your organization:
+- You can use a simple copyright notice instead of a full license
+- Example copyright notice:
+```
+# Copyright (c) [COMPANY NAME]
+# All rights reserved.
+```
+- The copyright notice can be placed in the header of each Python file
+- Avoids the need to maintain a separate license file
+
+
+## Choosing and Implementing a License
+
+- When using open-source dependencies in internal packages:
+ - Check the licenses of your dependencies and ensure compatibility
+ - Document the licenses of all third-party components in your project
+- Resources for learning more about licenses:
+ - [choosealicense.com](https://choosealicense.com/)
+ - [Open Source Initiative](https://opensource.org/licenses)
+ - [Software Licenses on wikipedia](https://en.wikipedia.org/wiki/Software_license)
+
+By following these practices, you can effectively manage the licensing for both your internal and publicly distributed Python packages.
+
 
 
 
