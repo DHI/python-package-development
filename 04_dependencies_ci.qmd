@@ -48,92 +48,58 @@ Make the requirements loose, to avoid conflicts with other packages.
 
 ## Dependency management
 
+`uv` is the recommended tool for managing a Python project including dependencies.
+
 Example of pinning versions:
 
-```{.txt filename="requirements.txt"}
-numpy==1.11.0
-scipy==0.17.0
-matplotlib==1.5.1
+```{.toml filename="pyproject.toml"}
+dependencies = [
+  "numpy==1.11.0",
+  "scipy==0.17.0",
+  "matplotlib==1.5.1",
+]
 ```
 . . .
 
 Or using a range of versions:
 
-```{.txt filename="requirements.txt"}
-numpy>=1.11.0
-scipy>=0.17.0
-matplotlib>=1.5.1,<=2.0.0
+```{.toml filename="pyproject.toml"}
+dependencies = [
+  "numpy>=1.11.0",
+  "scipy>=0.17.0",
+  "matplotlib>=1.5.1,<=2.0.0"
+]
 ```
 . . .
 
 Install dependencies:
 
 ```{.bash}
-$ pip install -r requirements.txt
+$ uv sync
 ```
 
-::: {.notes}
-
-A common way to declare dependencies is to use a `requirements.txt` file.
-
-:::
-
-## Creating an installable package
-
-
-![](images/project.png)
-
-
-## `setup.py` vs `pyproject.toml` {.smaller}
-
-`setup.py`
-
-* Traditional approach to defining package configuration and dependencies.
-* Defines metadata, dependencies, and entry points in a Python script.
-* Uses `setuptools` to generate packages and install the package.
-
-. . . 
-
-`pyproject.toml`
-
-* Modern approach to defining package configuration and dependencies.
-* Defines metadata, dependencies, build tools, and packaging config in a TOML file.
-* Uses `poetry` or `hatchling` to generate packages and install the package.
-
-
-## Install with optional dependencies
+## Development dependencies
 
 ```{.toml filename="pyproject.toml"}
-[project.optional-dependencies]
-dev = ["pytest",
-       "ruff",
-       "sphinx",
-       "sphinx-rtd-theme",
-       "myst-parser",
-       ]
-
-test = ["pytest", "pytest-cov"]
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
 ```
-
-&nbsp;
-
-```{.bash}
-$ pip install mini[test]
-```
-
-
-
 
 ## Creating an installable package
 
-Install package in editable mode:
+With `uv` the the package will be installed in editable mode when you create it with:
+
 ```{.bash}
-$ pip install -e .
+$ uv init --lib
 ```
 
-. . .
-
 Start a Python session:
+```{.bash}
+$ uv run python
+```
+
 ```{.python}
 >>> import mini
 >>> mini.foo()
@@ -144,15 +110,13 @@ Start a Python session:
 
 Run tests:
 ```{.bash}
-$ pytest
+$ uv run pytest
 ...
 
 tests/test_foo.py .                       [100%]
 
 =============== 1 passed in 0.01s ===============
 ```
-
-
 
 
 ## Virtual environments
@@ -162,39 +126,9 @@ tests/test_foo.py .                       [100%]
 * Creates a clean environment for each project
 * Allows different versions of a package to coexist on your machine
 * Can be used to create a reproducible environment for a project
-* To achieve complete isolation, use Docker containers (not covered in this course)
+* Virtual environments are managed by `uv`
 
 :::
-
-## Virtual environments
-
-```{.bash code-line-numbers="|3-4|5-6|7"}
-$ which python
-/usr/bin/python
-$ python -m venv venv
-$ source venv/bin/activate # for 🐧 or venv\Scripts\activate.bat 🪟
-(venv)$ which python
-/home/user/src/myproj/venv/bin/python
-(venv)$ pip install -r requirements.txt
-```
-
-::: {.notes}
-* Back in the days, when disk space was limited, it was a good idea to have a separate environment for each project.
-* Today, disk space is cheap, and it is a good idea to have a separate environment for each project.
-:::
-
-## Conda/mamba environments
-
-Conda/mamba is a package manager that can be used to create virtual environments.
-
-```{.console}
-$ where python
-C:\Users\JAN\AppData\Local\miniforge3\python.exe
-$ conda create -n myproj -f requirements.txt
-$ conda activate myproj
-(myproj)$ where python
-C:\Users\JAN\AppData\Local\miniforge3\envs\myproj\python.exe
-```
 
 
 ## Continuous Integration
@@ -273,14 +207,11 @@ jobs: # what to run
         python-version: 3.9
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        uv sync
 
-    - name: Install mikeio
-      run: |
-        pip install .[test]
     - name: Test with pytest
       run: |
-        pytest
+        uv run pytest
 ```
 
 ---
@@ -376,7 +307,6 @@ jobs:
 ::: {.incremental}
 
 * Application vs library
-* Prefer `pyproject.toml` over `setup.py`
 * Use a separate virtual environment for each project
 * Use GitHub Actions to run tests on every commit
 * Use GitHub Releases to publish software releases

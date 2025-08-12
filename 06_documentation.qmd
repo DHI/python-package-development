@@ -241,13 +241,13 @@ plugins:
 
 1. install mkdocstrings
     
-    `$ pip install mkdocstrings[python]`
+    `$ uv add --dev "mkdocstrings[python]"`
 2. Install theme, e.g. material
     
-    `$ pip install mkdocs-material`
+    `$ uv add --dev mkdocs-material`
 3. Add plugin to mkdocs.yml (see above)
 4. Create `index.md` in docs folder
-5. Run `mkdocs serve` to view locally
+5. Run `uv run mkdocs serve` to view locally
 :::
 
 . . . 
