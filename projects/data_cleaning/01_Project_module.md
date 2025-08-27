@@ -7,7 +7,7 @@ Let's get started on the project! You have received the script [`clean_project_d
         - Make it private, no template, add readme, gitignore python, no license
     - Go to repo settings/Collaborators add your instructors and your "buddy"
     - Clone repo to local machine
-    - [Optional] Create virtual environment for this course project (use venv or mamba/conda environment)
+    - Create a virtual environment for this course project (use `uv venv`)
     - Download the provided Python script and add it to the repo
     - Commit the file and push the changes (Check that the file can be found on GitHub)
     - Open the project in vscode and make a single character change to the file (add a comment)
