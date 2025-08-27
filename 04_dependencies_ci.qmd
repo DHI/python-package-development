@@ -6,7 +6,6 @@ format:
       output-file: 04_dependencies_ci_slides.html
       slide-number: true
 footer: Python package development
-logo: academy_logo.png
 ---
 
 

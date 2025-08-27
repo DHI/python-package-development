@@ -6,7 +6,6 @@ format:
         output-file: 03_testing_slides.html
         slide-number: true
 footer: Python package development
-logo: academy_logo.png
 ---
 
 ## Testing

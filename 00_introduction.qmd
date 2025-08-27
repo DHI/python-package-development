@@ -2,7 +2,6 @@
 title: Python package development
 format: revealjs
 footer: Python package development
-logo: academy_logo.png
 ---
 
 
@@ -34,7 +33,7 @@ Introduce yourselves in a break out session later today.
 
 ## Format
 
-* Online session (Zoom) Tuesday and Friday
+* Online session Tuesday and Friday
 * Homework assignments
 * Quiz (learning platform)
 
