@@ -387,7 +387,7 @@
 <span id="cb2-14"><a></a><span class="op">]</span></span>
 <span id="cb2-15"><a></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
 <span id="cb2-16"><a></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb2-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.9"</span></span>
+<span id="cb2-17"><a></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
 <span id="cb2-18"><a></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
 <span id="cb2-19"><a></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
 <span id="cb2-20"><a></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
@@ -397,7 +397,7 @@
 <span id="cb2-24"><a></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
 <span id="cb2-25"><a></a><span class="op">]</span></span>
 <span id="cb2-26"><a></a></span>
-<span id="cb2-27"><a></a><span class="kw">[project.optional-dependencies]</span></span>
+<span id="cb2-27"><a></a><span class="kw">[dependency-groups]</span></span>
 <span id="cb2-28"><a></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
 <span id="cb2-29"><a></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
 <span id="cb2-30"><a></a></span>
@@ -407,7 +407,7 @@
 <aside class="notes">
 <ul>
 <li>Mandatory dependencies are specified in the <code>dependencies</code> section.</li>
-<li>Optional dependencies are specified in the <code>optional-dependencies</code> section.</li>
+<li>Development dependencies are specified in the relevant <code>dependency-groups</code> sections.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -480,15 +480,14 @@
 <span id="cb5-10"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
 <span id="cb5-11"><a></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
 <span id="cb5-12"><a></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb5-13"><a></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.10'</span></span>
+<span id="cb5-13"><a></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.13'</span></span>
 <span id="cb5-14"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
 <span id="cb5-15"><a></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb5-16"><a></a>        python -m pip install --upgrade pip</span>
-<span id="cb5-17"><a></a>        pip install build</span>
-<span id="cb5-18"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
-<span id="cb5-19"><a></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
-<span id="cb5-20"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
-<span id="cb5-21"><a></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-16"><a></a>        uv sync</span>
+<span id="cb5-17"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
+<span id="cb5-18"><a></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> uv build</span></span>
+<span id="cb5-19"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
+<span id="cb5-20"><a></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="publishing-to-pypi-and-testpypi" class="slide level2 smaller">

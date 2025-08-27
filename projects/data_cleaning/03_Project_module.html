@@ -123,49 +123,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="module-3-installable-package-and-pytest">Module 3: Installable package and pytest</h2>
 <p>In the last module, you introduced modules, classes and a new notebook in you repo. In this module, you will add tests to your code base. But first, you will make your package installable.</p>
 <ul>
-<li>Create new branch “package-test” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
-<li>3.1 Installable package
+<li><p>Create new branch “package-test” (Make sure changes from last module have been merged, and that you start from the main branch)</p></li>
+<li><p>3.1 Installable package</p>
 <ul>
-<li>Organize the files into folders and add <code>setup.py</code>. Call your package <code>tscleaner</code>.
+<li>Organize the files into folders and add an empty <code>pyproject.toml</code>. Call your package <code>tscleaner</code>.
 <ul>
-<li>subfolders: tscleaner, scripts, notebooks, tests</li>
-<li>make an init-file <code>__init__.py</code> in the tscleaner folder with the following content:</li>
+<li>subfolders: src/tscleaner, scripts, notebooks, tests</li>
+<li>make an init-file <code>__init__.py</code> in the src/tscleaner folder with the following content:</li>
+</ul></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .cleaning <span class="im">import</span> SpikeCleaner, FlatPeriodCleaner, OutOfRangeCleaner</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .plotting <span class="im">import</span> plot_timeseries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Project structure</em>:</p>
+<pre><code>├── notebooks/
+├── scrips/
+├── src/
+│   └── tscleaner/
+│       └── __init__.py
+├── tests/
+└── pyproject.toml</code></pre>
 <ul>
-<li>create a <code>setup.py</code> in the root with the following content (change with your data):</li>
+<li>edit the <code>pyproject.toml</code> in the root with the following content (change with your data):</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> setuptools <span class="im">import</span> setup, find_packages</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>setup(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  name<span class="op">=</span><span class="st">'MyPackageName'</span>,  </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  version<span class="op">=</span><span class="st">'0.0.1'</span>,  </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  url<span class="op">=</span><span class="st">'https://github.com/mypackage.git'</span>,  </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  author<span class="op">=</span><span class="st">'Author Name'</span>,  </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  author_email<span class="op">=</span><span class="st">'author@gmail.com'</span>,  </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  description<span class="op">=</span><span class="st">'Description of my package'</span>,  </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  packages<span class="op">=</span>find_packages(),  </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  install_requires<span class="op">=</span>[<span class="st">'numpy'</span>, <span class="st">'matplotlib'</span>],  </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul></li>
-<li>Install the package in editable mode, by running the below command from the project root. - <code>&gt; pip install -e .</code>
+<div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"tscleaner"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{ </span><span class="dt">name</span><span class="op"> =</span> <span class="st">"Mike Water"</span><span class="op">, </span><span class="dt">email</span><span class="op"> =</span> <span class="st">"xyz@dhigroup.com"</span><span class="op"> }</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.13"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"matplotlib"</span><span class="op">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numpy"</span><span class="op">,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">[dependency-groups]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"pytest-cov"</span><span class="op">]</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.pytest.ini_options]</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="dt">pythonpath</span> <span class="op">=</span> <span class="op">[</span><span class="st">"src"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Modify import statements in <code>notebook_A</code> and script <code>main.py</code> and make sure they run.</li>
 <li>Modify the cleaner tools by raising exceptions for invalid inputs.</li>
 <li>Move the csv file to <code>/tests/testdata</code> and update notebook with relative path to the file</li>
 </ul></li>
-<li>3.2 Pytest
+<li><p>3.2 Pytest</p>
 <ul>
-<li>Make sure <code>pytest</code> and <code>pytest-cov</code> are installed</li>
 <li>Write unit tests with pytest in the <code>/tests</code> folder. Create an empty <code>__init__.py</code> file in the folder. Create a file <code>test_cleaning.py</code> and create at least three tests that verify that the cleaning tools work as intended</li>
-<li>If all your tests are failing, consider if you have given the right requirements in the <code>setup.py</code>…</li>
+<li>If all your tests are failing, consider if you have given the right requirements in the <code>pyproject.toml</code>…</li>
 <li>[Optional] Consider to make a fixture that reads the csv file and you can read in all tests</li>
-<li>Run the tests from the commandline by writting <code>&gt;pytest</code> in the project root (can you also run the tests from VSCode?)</li>
-<li>Assess the test coverage with <code>&gt;pytest --cov=tscleaner tests</code></li>
-<li>[Optional] Get coverage as html with <code>&gt;pytest --cov=tscleaner --cov-report html</code> (check the index.html in the htmlcov subfolder afterwards)</li>
+<li>Run the tests from the commandline by writting <code>&gt; uv run pytest</code> in the project root (can you also run the tests from VSCode?)</li>
+<li>Assess the test coverage with <code>&gt; uv run pytest --cov=tscleaner tests</code></li>
+<li>[Optional] Get coverage as html with <code>&gt; uv run pytest --cov=tscleaner --cov-report html</code> (check the index.html in the htmlcov subfolder afterwards)</li>
 </ul></li>
-<li>Create pull request in GitHub and “request review” from your reviewers</li>
-<li>Get feedback, Adjust code until approval, then merge (and delete branch)</li>
+<li><p>Create pull request in GitHub and “request review” from your reviewers</p></li>
+<li><p>Get feedback, Adjust code until approval, then merge (and delete branch)</p></li>
 </ul>
 <p><a href="../../projects/data_cleaning/index.html">Back to course project overview</a></p>
 
