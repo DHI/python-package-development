@@ -1,4 +1,6 @@
-## Module 3: Installable package and pytest
+---
+title: "Module 3: Installable package and pytest"
+---
 
 In the last module, you introduced modules, classes and a new notebook in you repo. In this module, you will add tests to your code base. But first, you will make your package installable.
 

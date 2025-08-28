@@ -1,4 +1,6 @@
-## Module 6: Documentation
+---
+title: "Module 6: Documentation"
+---
 
 Before, we share our code with others we should document it. This can be done in many ways, with docstrings (visable from the IDE), README file, notebooks, tests and a proper documentation site. 
 

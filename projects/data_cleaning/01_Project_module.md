@@ -1,4 +1,6 @@
-## Module 1: GitHub and basic functions
+---
+title: "Module 1: GitHub and basic functions"
+---
 
 Let's get started on the project! You have received the script [`clean_project_data_v4_final2.py`](clean_project_data_v4_final2.py) from a colleague and in this module you will create a GitHub repository, add the script and improve the script by using functions. 
 

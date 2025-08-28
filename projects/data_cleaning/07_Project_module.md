@@ -1,4 +1,7 @@
-##  Module 7: Publishing
+---
+title: "Module 7: Publishing"
+---
+
 - Add license to the root folder (see https://choosealicense.com/)
 - Change version number to 0.1.0
 - Make a release in GitHub - click "Draft a new release" and add a tag (v0.1.0) and a release title (v0.1.0)

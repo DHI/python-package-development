@@ -1,4 +1,6 @@
-## Module 4: GitHub actions and auto-formatting
+---
+title: "Module 4: GitHub actions and auto-formatting"
+---
 
 Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8. 
 

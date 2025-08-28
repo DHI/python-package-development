@@ -1,4 +1,6 @@
-## Module 5: Object-oriented design
+---
+title: "Module 5: Object-oriented design"
+---
 
 In this module you will benefit from the automatic testing that you have added in the last module. Let's explore some other object-oriented designs for our code base... 
 

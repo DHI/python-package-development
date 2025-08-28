@@ -21,12 +21,12 @@ In this project, the script removes bad data from three different time series us
 ## [Module 3: Installable package and pytest](03_Project_module.md)
 
 - 3.1 Installable package
-- 3.2 Pytest
+- 3.2 pytest
 
 
 ## [Module 4: GitHub actions and auto-formatting](04_Project_module.md)
 
-- 4.1 Github Action
+- 4.1 GitHub Action
 - 4.2 Linting with ruff
 - 4.3 Formatting with ruff
 - 4.4 pyproject.toml
@@ -44,7 +44,7 @@ In this project, the script removes bad data from three different time series us
 
 - 6.1 README
 - 6.2 Docstrings
-- 6.3 mkdocs
+- 6.3 Documentation site
 
 
 ##  [Module 7: Publishing](07_Project_module.md)
