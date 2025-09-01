@@ -40,7 +40,10 @@ Introduce yourselves in a break out session later today.
 
 ## Course material
 
-* [Hillard, 2020, Practices of the Python Pro, Manning](https://www.manning.com/books/practices-of-the-python-pro)
+* [Hillard, 2019, Practices of the Python Pro, Manning](https://www.manning.com/books/practices-of-the-python-pro)
+![](images/hillard_2019.png)
+
+
 * [Slides](https://dhi.github.io/python-package-development)
 
 ##
@@ -54,6 +57,7 @@ Introduce yourselves in a break out session later today.
 - Object oriented design
 - Testing
 - Data structures
+
 
 :::
 
@@ -70,6 +74,4 @@ Introduce yourselves in a break out session later today.
 :::
 
 ::::
-
-## Poll
 
