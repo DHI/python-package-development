@@ -394,10 +394,24 @@ Dundermethods:
 ---
 
 
-```python
+```{python}
+from collections.abc import Collection
+
+class Tool:
+    ...
+
+class Hammer(Tool):
+    name="hammer"
+
+class Screwdriver(Tool):
+    name="screwdriver"
+```
+
+```{python}
+#| echo: true
 class JavaLikeToolbox:
 
-    def __init__(self, tools: Collection[Tool]):
+    def __init__(self, tools: Collection[Tool]) -> None:
         self.tools = tools
     
     def getToolByName(self, name: str) -> Tool:
@@ -408,17 +422,20 @@ class JavaLikeToolbox:
     def numberOfTools(self) -> int:
         return len(self.tools)
 
->>> tb = JavaLikeToolbox([Hammer(), Screwdriver()])
->>> tb.getToolByName("hammer")
-Hammer()
->>> tb.numberOfTools()
-2
+tb = JavaLikeToolbox([Hammer(), Screwdriver()])
+tb.getToolByName("hammer")
+```
+
+```{python}
+#| echo: true
+tb.numberOfTools()
 ```
 
 
 ---
 
-```python
+```{python}
+#| echo: true
 class Toolbox:
 
     def __init__(self, tools: Collection[Tool]):
@@ -428,22 +445,25 @@ class Toolbox:
         return self._tools[name]
     
     def __len__(self) -> int:
-        return len(self.tools)
+        return len(self._tools)
 
->>> tb = Toolbox([Hammer(), Screwdriver()])
->>> tb["hammer"]
-Hammer()
->>> len(tb)
-2
+tb = Toolbox([Hammer(), Screwdriver()])
+tb["hammer"]
+```
+
+```{python}
+#| echo: true
+len(tb)
 ```
 
 ::: {.notes}
-You want your code to be feel like the built-in types.
+You want your code to feel like the built-in types.
 :::
 
 ---
 
-```{.python code-line-numbers="|7-13"}
+```{python}
+#| echo: true
 class SparseMatrix:
     def __init__(self, shape, fill_value=0.0, data=None):
         self.shape = shape
@@ -476,24 +496,29 @@ class SparseMatrix:
 
 ---
 
-```python
->>> m = SparseMatrix(shape=(2,2), fill_value=0.0)
->>> m
-0.0 0.0
-0.0 0.0
->>> m[0,1]
-0.0
->>> m[0,1] = 1.0
->>> m[1,0] = 2.0
->>> m
-0.0 2.0 
-1.0 0.0 
->>> m.transpose()
-0.0 1.0 
-2.0 0.0
+```{python}
+#| echo: true
+m = SparseMatrix(shape=(2,2), fill_value=0.0)
+m
+```
+. . .
+```{python}
+#| echo: true
+m[0,1]
 ```
 
-
+. . .
+```{python}
+#| echo: true
+m[0,1] = 1.0
+m[1,0] = 2.0
+m
+```
+. . .
+```{python}
+#| echo: true
+m.transpose()
+```
 
 
 ## Duck typing
@@ -639,7 +664,8 @@ The consumers of your package (future self), will be grateful if you are not ove
 
 ## Example - Pydantic
 
-```python
+```{python}
+#| echo: true
 from pydantic import BaseModel
 from datetime import date
 
@@ -653,7 +679,11 @@ s1 = Sensor(name="Sensor 1",
             voltage=3.3,
             install_date=date(2020, 1, 1),
             location=(4.42, 51.22))
+s1
+```
 
+```{python}
+#| echo: true
 data = {
     "name": "Sensor 1",
     "voltage": "3.3",
@@ -662,6 +692,7 @@ data = {
 }
 
 s2 = Sensor(**data)
+s2
 ```
 
 
