@@ -1579,7 +1579,7 @@
     "href": "02_function_classes_slides.html#pure-functions",
     "title": "Functions, classes and modules",
     "section": "Pure functions",
-    "text": "Pure functions\nA pure function returns the same output for the same input.\ndef f(x)\n    return x**2\n\n&gt;&gt; f(2)\n4\n&gt;&gt; f(2)\n4"
+    "text": "Pure functions\nA pure function returns the same output for the same input.\n\ndef f(x):\n    return x**2\n\n\n\nf(2)\n\n4\n\n\n\n\n\nf(2)\n\n4"
   },
   {
     "objectID": "02_function_classes_slides.html#side-effects",
@@ -1600,133 +1600,133 @@
     "href": "02_function_classes_slides.html#modifying-input-arguments",
     "title": "Functions, classes and modules",
     "section": "Modifying input arguments",
-    "text": "Modifying input arguments\ndef difficult_function(values):\n    for i in range(len(values)):\n        values[i] = min(0, values[i]) # 😟\n    return values\n\n&gt;&gt;&gt; x = [1,2,-1]\n&gt;&gt;&gt; difficult_function(x)\n[0, 0, -1]\n&gt;&gt;&gt; x\n[0, 0, -1]\n\nThis function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it."
+    "text": "Modifying input arguments\n\ndef difficult_function(values):\n    for i in range(len(values)):\n        values[i] = min(0, values[i]) # 😟\n    return values\n\n\n\nx = [1,2,-1]\ndifficult_function(x)\n\n[0, 0, -1]\n\n\n\n\n\nx\n\n[0, 0, -1]\n\n\n\nThis function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it."
   },
   {
     "objectID": "02_function_classes_slides.html#positional-arguments",
     "href": "02_function_classes_slides.html#positional-arguments",
     "title": "Functions, classes and modules",
     "section": "Positional arguments",
-    "text": "Positional arguments\ndef f(x, y):\n    return x + y\n\n&gt;&gt;&gt; f(1, 2)\n3"
+    "text": "Positional arguments\n\ndef f(x, y):\n    return x + y\n\nf(1, 2)\n\n3"
   },
   {
     "objectID": "02_function_classes_slides.html#keyword-arguments",
     "href": "02_function_classes_slides.html#keyword-arguments",
     "title": "Functions, classes and modules",
     "section": "Keyword arguments",
-    "text": "Keyword arguments\ndef f(x, y):\n    return x + y\n\n&gt;&gt;&gt; f(x=1, y=2)\n3"
+    "text": "Keyword arguments\n\ndef f(x, y):\n    return x + y\n\nf(x=1, y=2)\n\n3"
   },
   {
     "objectID": "02_function_classes_slides.html#positional-arguments-1",
     "href": "02_function_classes_slides.html#positional-arguments-1",
     "title": "Functions, classes and modules",
     "section": "Positional arguments",
-    "text": "Positional arguments\n\n\nVersion 1\ndef is_operable(height, period):\n\n    return height &lt; 2.0 and period &lt; 6.0\n\n&gt;&gt;&gt; is_operable(1.0, 3.0)\nTrue\n\nVersion 2\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height &lt; 2.0 and period &lt; 6.0\n\n&gt;&gt;&gt; is_operable(1.0, 3.0)\nFalse 😟\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
+    "text": "Positional arguments\n\n\nVersion 1\n\ndef is_operable(height, period):\n\n    return height &lt; 2.0 and period &lt; 6.0\n\nis_operable(1.0, 3.0)\n\nTrue\n\n\n\nVersion 2\n\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height &lt; 2.0 and period &lt; 6.0\n\nis_operable(1.0, 3.0)\n\nFalse\n\n\n😟\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
   },
   {
     "objectID": "02_function_classes_slides.html#keyword-only-arguments",
     "href": "02_function_classes_slides.html#keyword-only-arguments",
     "title": "Functions, classes and modules",
     "section": "Keyword-only arguments",
-    "text": "Keyword-only arguments\ndef f(*, x, y):\n    return x + y\n\n&gt;&gt;&gt; f(1,2)\nTraceback (most recent call last):\n  File \"&lt;stdin&gt;\", line 1, in &lt;module&gt;\nTypeError: f() takes 0 positional arguments but 2 were given"
+    "text": "Keyword-only arguments\n\ndef f(*, x, y):\n    return x + y\n\nf(1,2)\n\n\n---------------------------------------------------------------------------\nTypeError                                 Traceback (most recent call last)\nCell In[20], line 4\n      1 def f(*, x, y):\n      2     return x + y\n----&gt; 4 f(1,2)\n\nTypeError: f() takes 0 positional arguments but 2 were given"
   },
   {
     "objectID": "02_function_classes_slides.html#optionaldefault-arguments",
     "href": "02_function_classes_slides.html#optionaldefault-arguments",
     "title": "Functions, classes and modules",
     "section": "Optional(=default) arguments",
-    "text": "Optional(=default) arguments\ndef f(x, n=2):\n    return x**n\n\n&gt;&gt;&gt; f(2)\n4\n&gt;&gt;&gt; f(2, n=3)\n8\n\nMakes it easy to use a function with many arguments."
+    "text": "Optional(=default) arguments\ndef f(x, n=2):\n    return x**n\n\nf(2)\nf(2, n=3)\n\nMakes it easy to use a function with many arguments."
   },
   {
     "objectID": "02_function_classes_slides.html#mutable-default-arguments",
     "href": "02_function_classes_slides.html#mutable-default-arguments",
     "title": "Functions, classes and modules",
     "section": "Mutable default arguments",
-    "text": "Mutable default arguments\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called.\n\ndef add_to_cart(x, cart=[]): # this line is evaluated only once 😮\n    cart.append(x)\n    return cart\n\n&gt;&gt;&gt; add_to_cart(1, cart=[2])\n[2, 1]\n\n&gt;&gt;&gt; add_to_cart(1)\n[1]\n&gt;&gt;&gt; add_to_cart(2)\n[1, 2]\n\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well."
+    "text": "Mutable default arguments\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called.\n\ndef add_to_cart(x, cart=[]): # this line is evaluated only once 😮\n    cart.append(x)\n    return cart\n\n\n\nmy_cart = [2]\nadd_to_cart(1, cart=my_cart)\n\n[2, 1]\n\n\n\n\n\nadd_to_cart(1)\n\n[1]\n\n\n\n\n\nadd_to_cart(2)\n\n[1, 2]\n\n\n\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called (unlike Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well."
   },
   {
     "objectID": "02_function_classes_slides.html#how-to-use-default-mutable-arguments",
     "href": "02_function_classes_slides.html#how-to-use-default-mutable-arguments",
     "title": "Functions, classes and modules",
     "section": "How to use default (mutable) arguments",
-    "text": "How to use default (mutable) arguments\ndef add_to_cart_safe(x, cart=None):\n    if cart is None:\n        cart = [] # this line is evaluated each time the function is called\n    cart.append(x)\n    return cart"
+    "text": "How to use default (mutable) arguments\n\ndef add_to_cart_sane(x, cart=None):\n    if cart is None:\n        cart = [] # this line is evaluated each time the function is called\n    cart.append(x)\n    return cart\n\n\nadd_to_cart_sane(1)\n\n[1]\n\n\n\nadd_to_cart_sane(2)\n\n[2]"
   },
   {
     "objectID": "02_function_classes_slides.html#changing-return-types",
     "href": "02_function_classes_slides.html#changing-return-types",
     "title": "Functions, classes and modules",
     "section": "Changing return types",
-    "text": "Changing return types\nSince Python is a dynamic language, the type of the returned variable is allowed to vary.\ndef foo(x):\n    if x &gt;=0:\n        return x\n    else:\n        return \"x is negative\"\n\nBut it usually a bad idea, since you can not tell from reading the code, which type will be returned."
+    "text": "Changing return types\nSince Python is a dynamic language, the type of the returned variable is allowed to vary.\ndef foo(x):\n    if x &gt;=0:\n        return x\n    else:\n        return \"x is negative\"\n\nGeneral advice: Avoid multiple return types!"
   },
   {
-    "objectID": "02_function_classes_slides.html#changing-return-types-1",
-    "href": "02_function_classes_slides.html#changing-return-types-1",
+    "objectID": "02_function_classes_slides.html#changing-return-types---truthy",
+    "href": "02_function_classes_slides.html#changing-return-types---truthy",
     "title": "Functions, classes and modules",
-    "section": "Changing return types",
-    "text": "Changing return types\ndef is_operable(height, period):\n    if height &lt; 10:\n        return height &lt; 5.0 and period &gt; 4.0\n    else:\n        return \"No way!\"\n\n&gt;&gt;&gt; if is_operable(height=12.0, period=5.0):\n...         print(\"Go ahead!\")\n...\nGo ahead!\n\n\n\n\n\n\n\nImportant\n\n\nIs this the result you expected?\n\n\n\n\n\nA non-empty string or a non-zero value is considered “truthy” in Python!"
+    "section": "Changing return types - truthy",
+    "text": "Changing return types - truthy\n\ndef is_operable(height, period):\n    if height &lt; 10:\n        return height &lt; 5.0 and period &gt; 4.0\n    else:\n        return \"No way!\"\n\n\n\nif is_operable(height=12.0, period=5.0):\n    print(\"Go ahead!\")\n\nGo ahead!\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\nIs this the result you expected?\n\n\n\n\n\nA non-empty string or a non-zero value is considered “truthy” in Python!"
   },
   {
     "objectID": "02_function_classes_slides.html#type-hints",
     "href": "02_function_classes_slides.html#type-hints",
     "title": "Functions, classes and modules",
     "section": "Type hints",
-    "text": "Type hints\nPython is a dynamically typed language -&gt; the type of a variable is determined at runtime.\n\nBut we can add type hints to help the reader (and the code editor).\ndef is_operable(height: float, period: float) -&gt; bool:\n    ..."
+    "text": "Type hints\nPython is a dynamically typed language, the type of a variable is determined at runtime.\n\nBut we can add type hints to help the reader (and the code editor).\ndef is_operable(height: float, period: float) -&gt; bool:\n    ..."
   },
   {
     "objectID": "02_function_classes_slides.html#classes",
     "href": "02_function_classes_slides.html#classes",
     "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\nclass WeirdToolbox:\n    tools = [] # class variable ☹️\n\n\n&gt;&gt;&gt; t1 = WeirdToolbox()\n&gt;&gt;&gt; t1.tools.append(\"hammer\")\n&gt;&gt;&gt; t1.tools\n[\"hammer\"]\n\n&gt;&gt;&gt; t2 = WeirdToolbox()\n&gt;&gt;&gt; t2.tools.append(\"screwdriver\")\n&gt;&gt;&gt; t2.tools\n[\"hammer\", \"screwdriver\"]\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
+    "text": "Classes\n\nclass WeirdToolbox:\n    tools = [] # class variable ☹️\n\nt1 = WeirdToolbox()\nt1.tools.append(\"hammer\")\nt1.tools\n\n['hammer']\n\n\n\n\nt2 = WeirdToolbox()\nt2.tools.append(\"screwdriver\")\nt2.tools\n\n['hammer', 'screwdriver']\n\n\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
   },
   {
     "objectID": "02_function_classes_slides.html#classes-1",
     "href": "02_function_classes_slides.html#classes-1",
     "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\nclass Toolbox:\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\n&gt;&gt;&gt; t1 = Toolbox()\n&gt;&gt;&gt; t1.tools.append(\"hammer\")\n&gt;&gt;&gt; t1.tools\n[\"hammer\"]\n\n&gt;&gt;&gt; t2 = Toolbox()\n&gt;&gt;&gt; t2.tools.append(\"screwdriver\")\n&gt;&gt;&gt; t2.tools\n[\"screwdriver\"]\n\nInstance variables are created when the instance is created, and are unique to each instance."
+    "text": "Classes\n\nclass Toolbox:\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\nt1 = Toolbox()\nt1.tools.append(\"hammer\")\nt1.tools\n\n['hammer']\n\n\n\n\nt2 = Toolbox()\nt2.tools.append(\"screwdriver\")\nt2.tools\n\n['screwdriver']\n\n\n\nInstance variables are created when the instance is created, and are unique to each instance."
   },
   {
     "objectID": "02_function_classes_slides.html#static-methods",
     "href": "02_function_classes_slides.html#static-methods",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n&gt;&gt;&gt; dr = Interval(date(2020, 1, 1), date(2020, 1, 31))\n&gt;&gt;&gt; dr.start\ndatetime.date(2020, 1, 1)\n&gt;&gt;&gt; dr.end\ndatetime.date(2020, 1, 31)\n\nHere is an example of useful class, but it is a bit cumbersome to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\ndr = Interval(date(2020, 1, 1), date(2020, 1, 31))\ndr.start\n\ndatetime.date(2020, 1, 1)\n\n\n\nHere is an example of useful class, but it is a bit cumbersome to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#static-methods-1",
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n&gt;&gt;&gt; dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n&gt;&gt;&gt; dr\n&lt;__main__.Interval at 0x7fb99efcfb90&gt;\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f5cc07e0940&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
     "href": "02_function_classes_slides.html#dataclasses",
     "title": "Functions, classes and modules",
     "section": "Dataclasses",
-    "text": "Dataclasses\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n&gt;&gt;&gt; dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n&gt;&gt;&gt; dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\nDataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables."
+    "text": "Dataclasses\n\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\n\n\nDataclasses were introduced in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables."
   },
   {
     "objectID": "02_function_classes_slides.html#equality",
     "href": "02_function_classes_slides.html#equality",
     "title": "Functions, classes and modules",
     "section": "Equality",
-    "text": "Equality\nOn a regular class, equality is based on the memory address of the object.\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nFalse\n\nThis is not very useful, since we want to compare the values of the attributes."
+    "text": "Equality\nOn a regular class, equality is based on the memory address of the object.\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\ndr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr1 == dr2\n\nFalse\n\n\n\nThis is not very useful, since we want to compare the values of the attributes."
   },
   {
     "objectID": "02_function_classes_slides.html#equality-1",
     "href": "02_function_classes_slides.html#equality-1",
     "title": "Functions, classes and modules",
     "section": "Equality",
-    "text": "Equality\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    def __eq__(self, other):\n        return self.start == other.start and self.end == other.end\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nTrue\n\nWe can override the __eq__ method to compare the values of the attributes."
+    "text": "Equality\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    def __eq__(self, other):\n        return self.start == other.start and self.end == other.end\n\ndr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr1 == dr2\n\nTrue\n\n\n\nWe can override the __eq__ method to compare the values of the attributes."
   },
   {
     "objectID": "02_function_classes_slides.html#data-classes",
     "href": "02_function_classes_slides.html#data-classes",
     "title": "Functions, classes and modules",
     "section": "Data classes",
-    "text": "Data classes\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Quantity:\n    unit: str = field(compare=True)\n    standard_name: field(compare=True)\n    name: str = field(compare=False, default=None)\n\n\n&gt;&gt;&gt; t1 = Quantity(name=\"temp\", unit=\"C\", standard_name=\"air_temperature\")\n&gt;&gt;&gt; t2 = Quantity(name=\"temperature\", unit=\"C\", standard_name=\"air_temperature\")\n\n&gt;&gt;&gt; t1 == t2\nTrue\n\n&gt;&gt;&gt; d1 = Quantity(unit=\"m\", standard_name=\"depth\")\n&gt;&gt;&gt; d1 == t2\nFalse"
+    "text": "Data classes\n\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Quantity:\n    unit: str = field(compare=True)\n    standard_name: str = field(compare=True)\n    name: str = field(compare=False, default=None)\n\n\nt1 = Quantity(name=\"temp\", unit=\"C\", standard_name=\"air_temperature\")\nt2 = Quantity(name=\"temperature\", unit=\"C\", standard_name=\"air_temperature\")\n\nt1 == t2\n\nTrue\n\n\n\nd1 = Quantity(unit=\"m\", standard_name=\"depth\")\nd1 == t2\n\nFalse"
   },
   {
     "objectID": "02_function_classes_slides.html#data-classes-1",
@@ -1747,14 +1747,14 @@
     "href": "02_function_classes_slides.html#packages",
     "title": "Functions, classes and modules",
     "section": "Packages",
-    "text": "Packages\n\nA package is a directory containing modules\nEach package in Python is a directory which MUST contain a special file called __init__.py\nThe __init__.py can be empty, and it indicates that the directory it contains is a Python package\n__init__.py can also execute initialization code"
+    "text": "Packages\n\nA package is a directory containing modules\nEach package in Python is a directory which usually contains a special file called __init__.py\nThe __init__.py can be empty, and it indicates that the directory it contains is a Python package\n__init__.py can also execute initialization code"
   },
   {
     "objectID": "02_function_classes_slides.html#init__.py",
     "href": "02_function_classes_slides.html#init__.py",
     "title": "Functions, classes and modules",
     "section": "__init__.py",
-    "text": "__init__.py\nExample: mikeio/pfs/__init__.py:\nfrom .pfsdocument import Pfs, PfsDocument\nfrom .pfssection import PfsNonUniqueList, PfsSection\n\ndef read_pfs(filename, encoding=\"cp1252\", unique_keywords=False):\n     \"\"\"Read a pfs file for further analysis/manipulation\"\"\"\n    \n    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)\n\nThe imports in __init__.py let’s you separate the implementation into multiple files.\n&gt;&gt;&gt; mikeio.pfs.pfssection.PfsSection\n&lt;class 'mikeio.pfs.pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.pfs.PfsSection\n&lt;class 'mikeio.pfs.pfssection.PfsSection'&gt;\n\nThe PfsSection and PfsDocument are imported from the pfssection.py and pfsdocument.py modules. to the mikeio.pfs namespace."
+    "text": "__init__.py\nExample: mikeio/pfs/__init__.py:\nfrom ._pfsdocument import PfsDocument\nfrom ._pfssection import PfsNonUniqueList, PfsSection\n\ndef read_pfs(filename:str, encoding:str=\"cp1252\", unique_keywords:bool=False) -&gt; PfsDocument:\n     \"\"\"Read a pfs file for further analysis/manipulation\"\"\"\n    \n    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)\n\nThe imports in __init__.py let’s you create aliases.\n&gt;&gt;&gt; mikeio.pfs._pfssection.PfsSection\n&lt;class 'mikeio.pfs._pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.pfs.PfsSection\n&lt;class 'mikeio.pfs._pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.PfsSection\n&lt;class 'mikeio.pfs._pfssection.PfsSection'&gt;\n\nThe PfsSection and PfsDocument are imported from the _pfssection and _pfsdocument modules. to the mikeio namespace."
   },
   {
     "objectID": "02_function_classes_slides.html#python-naming-conventions",
@@ -1789,7 +1789,7 @@
     "href": "02_function_classes_slides.html#summary",
     "title": "Functions, classes and modules",
     "section": "Summary",
-    "text": "Summary\n\nFunctions are black boxes that takes input and produces output.\nFunction arguments can be positional or keyword arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input arguments.\nClasses are useful for grouping related functions and data.\nDataclasses are a convenient way to create classes with a few attributes.\nModules are files containing Python code (functions, classes, constants) that belong together.\nPackages are directories containing modules."
+    "text": "Summary\n\nFunctions as black boxes that take input and produces output.\nPositional vs keyword arguments arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input.\nClasses are useful for grouping related functions and data.\nDataclasses can be very convenient.\nModule single Python file\nPackage collection of modules"
   },
   {
     "objectID": "02_function_classes.html",
@@ -1810,7 +1810,7 @@
     "href": "02_function_classes.html#pure-functions",
     "title": "Functions, classes and modules",
     "section": "Pure functions",
-    "text": "Pure functions\nA pure function returns the same output for the same input.\ndef f(x)\n    return x**2\n\n&gt;&gt; f(2)\n4\n&gt;&gt; f(2)\n4\n\nA non-pure function can return different outputs for the same input.\nn = 0\n\ndef non_pure_function(x):\n    global n=n+1\n    return x + n\n\n&gt;&gt;&gt; non_pure_function(2)\n3\n&gt;&gt;&gt; non_pure_function(2)\n4"
+    "text": "Pure functions\nA pure function returns the same output for the same input.\n\ndef f(x):\n    return x**2\n\n. . .\n\nf(2)\n\n4\n\n\n. . .\n\nf(2)\n\n4\n\n\n\nA non-pure function can return different outputs for the same input.\n\nn = 0\n\ndef non_pure_function(x):\n    global n\n    n = n + 1\n    return x + n\n\n. . .\n\nnon_pure_function(2)\n\n3\n\n\n. . .\n\nnon_pure_function(2)\n\n4"
   },
   {
     "objectID": "02_function_classes.html#side-effects",
@@ -1831,133 +1831,133 @@
     "href": "02_function_classes.html#modifying-input-arguments",
     "title": "Functions, classes and modules",
     "section": "Modifying input arguments",
-    "text": "Modifying input arguments\ndef difficult_function(values):\n    for i in range(len(values)):\n        values[i] = min(0, values[i]) # 😟\n    return values\n\n&gt;&gt;&gt; x = [1,2,-1]\n&gt;&gt;&gt; difficult_function(x)\n[0, 0, -1]\n&gt;&gt;&gt; x\n[0, 0, -1]\n\nThis function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it.\n\n\nFunctions that doesn’t modify the input arguments are easier to reason about.\ndef easier_function(values):\n    l2 = list(values) # copy🤔\n    for i in range(len(l2)):\n        l2[i] = min(0, l2[i])\n    return l2\n\n&gt;&gt;&gt; x = [1, 2, -1]\n&gt;&gt;&gt; easier_function(x)\n[0, 0, -1], \n&gt;&gt;&gt; x\n[1, 2, -1]\n. . .\nJust be aware that copying large datasets can be slow."
+    "text": "Modifying input arguments\n\ndef difficult_function(values):\n    for i in range(len(values)):\n        values[i] = min(0, values[i]) # 😟\n    return values\n\n. . .\n\nx = [1,2,-1]\ndifficult_function(x)\n\n[0, 0, -1]\n\n\n. . .\n\nx\n\n[0, 0, -1]\n\n\n\nThis function modifies the input array, which might come as a surprise. The array is passed by reference, so the function can modify it.\n\n\nFunctions that doesn’t modify the input arguments are easier to use.\n\ndef easier_function(values):\n    l2 = list(values) # copy🤔\n    for i in range(len(l2)):\n        l2[i] = min(0, l2[i])\n    return l2\n\n. . .\n\nx = [1, 2, -1]\neasier_function(x)\n\n[0, 0, -1]\n\n\n. . .\n\nx\n\n[1, 2, -1]\n\n\n. . .\nJust be aware that copying large datasets can be slow.\n\nSwapping out the internals of the black box…\n\ndef easier_function(values):\n    return [min(0, v) for v in values]\n\n. . .\n\nx = [1, 2, -1]\neasier_function(x)\n\n[0, 0, -1]\n\n\n\nx\n\n[1, 2, -1]"
   },
   {
     "objectID": "02_function_classes.html#positional-arguments",
     "href": "02_function_classes.html#positional-arguments",
     "title": "Functions, classes and modules",
     "section": "Positional arguments",
-    "text": "Positional arguments\ndef f(x, y):\n    return x + y\n\n&gt;&gt;&gt; f(1, 2)\n3"
+    "text": "Positional arguments\n\ndef f(x, y):\n    return x + y\n\nf(1, 2)\n\n3"
   },
   {
     "objectID": "02_function_classes.html#keyword-arguments",
     "href": "02_function_classes.html#keyword-arguments",
     "title": "Functions, classes and modules",
     "section": "Keyword arguments",
-    "text": "Keyword arguments\ndef f(x, y):\n    return x + y\n\n&gt;&gt;&gt; f(x=1, y=2)\n3"
+    "text": "Keyword arguments\n\ndef f(x, y):\n    return x + y\n\nf(x=1, y=2)\n\n3"
   },
   {
     "objectID": "02_function_classes.html#positional-arguments-1",
     "href": "02_function_classes.html#positional-arguments-1",
     "title": "Functions, classes and modules",
     "section": "Positional arguments",
-    "text": "Positional arguments\n\n\nVersion 1\ndef is_operable(height, period):\n\n    return height &lt; 2.0 and period &lt; 6.0\n\n&gt;&gt;&gt; is_operable(1.0, 3.0)\nTrue\n\nVersion 2\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height &lt; 2.0 and period &lt; 6.0\n\n&gt;&gt;&gt; is_operable(1.0, 3.0)\nFalse 😟\n\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
+    "text": "Positional arguments\n\n\nVersion 1\n\ndef is_operable(height, period):\n\n    return height &lt; 2.0 and period &lt; 6.0\n\nis_operable(1.0, 3.0)\n\nTrue\n\n\n\nVersion 2\n\ndef is_operable(period, height=0.0):\n    # dont forget, that arguments are swapped 👍\n    return height &lt; 2.0 and period &lt; 6.0\n\nis_operable(1.0, 3.0)\n\nFalse\n\n\n😟\n\n\n\nThe order of the arguments is swapped, since we want to make height an optional argument (more on that later). This breaks existing code, since the order of the arguments is changed."
   },
   {
     "objectID": "02_function_classes.html#keyword-only-arguments",
     "href": "02_function_classes.html#keyword-only-arguments",
     "title": "Functions, classes and modules",
     "section": "Keyword-only arguments",
-    "text": "Keyword-only arguments\ndef f(*, x, y):\n    return x + y\n\n&gt;&gt;&gt; f(1,2)\nTraceback (most recent call last):\n  File \"&lt;stdin&gt;\", line 1, in &lt;module&gt;\nTypeError: f() takes 0 positional arguments but 2 were given"
+    "text": "Keyword-only arguments\n\ndef f(*, x, y):\n    return x + y\n\nf(1,2)\n\n\n---------------------------------------------------------------------------\nTypeError                                 Traceback (most recent call last)\nCell In[20], line 4\n      1 def f(*, x, y):\n      2     return x + y\n----&gt; 4 f(1,2)\n\nTypeError: f() takes 0 positional arguments but 2 were given"
   },
   {
     "objectID": "02_function_classes.html#optionaldefault-arguments",
     "href": "02_function_classes.html#optionaldefault-arguments",
     "title": "Functions, classes and modules",
     "section": "Optional(=default) arguments",
-    "text": "Optional(=default) arguments\ndef f(x, n=2):\n    return x**n\n\n&gt;&gt;&gt; f(2)\n4\n&gt;&gt;&gt; f(2, n=3)\n8\n. . .\nMakes it easy to use a function with many arguments."
+    "text": "Optional(=default) arguments\ndef f(x, n=2):\n    return x**n\n\nf(2)\nf(2, n=3)\n. . .\nMakes it easy to use a function with many arguments."
   },
   {
     "objectID": "02_function_classes.html#mutable-default-arguments",
     "href": "02_function_classes.html#mutable-default-arguments",
     "title": "Functions, classes and modules",
     "section": "Mutable default arguments",
-    "text": "Mutable default arguments\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called.\n. . .\ndef add_to_cart(x, cart=[]): # this line is evaluated only once 😮\n    cart.append(x)\n    return cart\n\n&gt;&gt;&gt; add_to_cart(1, cart=[2])\n[2, 1]\n\n&gt;&gt;&gt; add_to_cart(1)\n[1]\n&gt;&gt;&gt; add_to_cart(2)\n[1, 2]\n\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well."
+    "text": "Mutable default arguments\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called.\n\ndef add_to_cart(x, cart=[]): # this line is evaluated only once 😮\n    cart.append(x)\n    return cart\n\n. . .\n\nmy_cart = [2]\nadd_to_cart(1, cart=my_cart)\n\n[2, 1]\n\n\n. . .\n\nadd_to_cart(1)\n\n[1]\n\n\n. . .\n\nadd_to_cart(2)\n\n[1, 2]\n\n\n\nPython’s default arguments are evaluated once when the function is defined, not each time the function is called (unlike Ruby). This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well."
   },
   {
     "objectID": "02_function_classes.html#how-to-use-default-mutable-arguments",
     "href": "02_function_classes.html#how-to-use-default-mutable-arguments",
     "title": "Functions, classes and modules",
     "section": "How to use default (mutable) arguments",
-    "text": "How to use default (mutable) arguments\ndef add_to_cart_safe(x, cart=None):\n    if cart is None:\n        cart = [] # this line is evaluated each time the function is called\n    cart.append(x)\n    return cart"
+    "text": "How to use default (mutable) arguments\n\ndef add_to_cart_sane(x, cart=None):\n    if cart is None:\n        cart = [] # this line is evaluated each time the function is called\n    cart.append(x)\n    return cart\n\n\nadd_to_cart_sane(1)\n\n[1]\n\n\n\nadd_to_cart_sane(2)\n\n[2]"
   },
   {
     "objectID": "02_function_classes.html#changing-return-types",
     "href": "02_function_classes.html#changing-return-types",
     "title": "Functions, classes and modules",
     "section": "Changing return types",
-    "text": "Changing return types\nSince Python is a dynamic language, the type of the returned variable is allowed to vary.\ndef foo(x):\n    if x &gt;=0:\n        return x\n    else:\n        return \"x is negative\"\n. . .\nBut it usually a bad idea, since you can not tell from reading the code, which type will be returned."
+    "text": "Changing return types\nSince Python is a dynamic language, the type of the returned variable is allowed to vary.\ndef foo(x):\n    if x &gt;=0:\n        return x\n    else:\n        return \"x is negative\"\n. . .\nGeneral advice: Avoid multiple return types!"
   },
   {
-    "objectID": "02_function_classes.html#changing-return-types-1",
-    "href": "02_function_classes.html#changing-return-types-1",
+    "objectID": "02_function_classes.html#changing-return-types---truthy",
+    "href": "02_function_classes.html#changing-return-types---truthy",
     "title": "Functions, classes and modules",
-    "section": "Changing return types",
-    "text": "Changing return types\ndef is_operable(height, period):\n    if height &lt; 10:\n        return height &lt; 5.0 and period &gt; 4.0\n    else:\n        return \"No way!\"\n\n&gt;&gt;&gt; if is_operable(height=12.0, period=5.0):\n...         print(\"Go ahead!\")\n...\nGo ahead!\n. . .\n\n\n\n\n\n\nImportant\n\n\n\nIs this the result you expected?\n\n\n. . .\nA non-empty string or a non-zero value is considered “truthy” in Python!"
+    "section": "Changing return types - truthy",
+    "text": "Changing return types - truthy\n\ndef is_operable(height, period):\n    if height &lt; 10:\n        return height &lt; 5.0 and period &gt; 4.0\n    else:\n        return \"No way!\"\n\n. . .\n\nif is_operable(height=12.0, period=5.0):\n    print(\"Go ahead!\")\n\nGo ahead!\n\n\n. . .\n\n\n\n\n\n\nImportant\n\n\n\nIs this the result you expected?\n\n\n. . .\nA non-empty string or a non-zero value is considered “truthy” in Python!"
   },
   {
     "objectID": "02_function_classes.html#type-hints",
     "href": "02_function_classes.html#type-hints",
     "title": "Functions, classes and modules",
     "section": "Type hints",
-    "text": "Type hints\nPython is a dynamically typed language -&gt; the type of a variable is determined at runtime.\n. . .\nBut we can add type hints to help the reader (and the code editor).\ndef is_operable(height: float, period: float) -&gt; bool:\n    ...\n\ndef clip(values:list[int], *, threshold:int = 0) -&gt; list[int]:\n    return [min(threshold, v) for v in values]\n. . .\n&gt;&gt;&gt; x= [-1, 0, 2]\n&gt;&gt;&gt; clip(x)\n[-1, 0, 0]\n&gt;&gt;&gt; x\n[-1, 0, 2]\n&gt;&gt;&gt; clip(x, threshold=1)\n[-1, 0, 1]\n\nType hints are just hints, it will make it easier for you to read the code, and use it in your IDE, but it will not enforce the type."
+    "text": "Type hints\nPython is a dynamically typed language, the type of a variable is determined at runtime.\n. . .\nBut we can add type hints to help the reader (and the code editor).\ndef is_operable(height: float, period: float) -&gt; bool:\n    ...\n\ndef clip(values:list[int], *, threshold:int = 0) -&gt; list[int]:\n    return [min(threshold, v) for v in values]\n. . .\n&gt;&gt;&gt; x= [-1, 0, 2]\n&gt;&gt;&gt; clip(x)\n[-1, 0, 0]\n&gt;&gt;&gt; x\n[-1, 0, 2]\n&gt;&gt;&gt; clip(x, threshold=1)\n[-1, 0, 1]\n\nType hints are just hints, it will make it easier for you to read the code, and use it in your IDE, but it will not enforce the type."
   },
   {
     "objectID": "02_function_classes.html#classes",
     "href": "02_function_classes.html#classes",
     "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\nclass WeirdToolbox:\n    tools = [] # class variable ☹️\n\n\n&gt;&gt;&gt; t1 = WeirdToolbox()\n&gt;&gt;&gt; t1.tools.append(\"hammer\")\n&gt;&gt;&gt; t1.tools\n[\"hammer\"]\n\n&gt;&gt;&gt; t2 = WeirdToolbox()\n&gt;&gt;&gt; t2.tools.append(\"screwdriver\")\n&gt;&gt;&gt; t2.tools\n[\"hammer\", \"screwdriver\"]\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
+    "text": "Classes\n\nclass WeirdToolbox:\n    tools = [] # class variable ☹️\n\nt1 = WeirdToolbox()\nt1.tools.append(\"hammer\")\nt1.tools\n\n['hammer']\n\n\n. . .\n\nt2 = WeirdToolbox()\nt2.tools.append(\"screwdriver\")\nt2.tools\n\n['hammer', 'screwdriver']\n\n\n\nClass variables are rarely what you want, since they are shared between all instances of the class."
   },
   {
     "objectID": "02_function_classes.html#classes-1",
     "href": "02_function_classes.html#classes-1",
     "title": "Functions, classes and modules",
     "section": "Classes",
-    "text": "Classes\nclass Toolbox:\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\n&gt;&gt;&gt; t1 = Toolbox()\n&gt;&gt;&gt; t1.tools.append(\"hammer\")\n&gt;&gt;&gt; t1.tools\n[\"hammer\"]\n\n&gt;&gt;&gt; t2 = Toolbox()\n&gt;&gt;&gt; t2.tools.append(\"screwdriver\")\n&gt;&gt;&gt; t2.tools\n[\"screwdriver\"]\n\nInstance variables are created when the instance is created, and are unique to each instance."
+    "text": "Classes\n\nclass Toolbox:\n    def __init__(self):\n        self.tools = [] # instance variable 😃\n\nt1 = Toolbox()\nt1.tools.append(\"hammer\")\nt1.tools\n\n['hammer']\n\n\n. . .\n\nt2 = Toolbox()\nt2.tools.append(\"screwdriver\")\nt2.tools\n\n['screwdriver']\n\n\n\nInstance variables are created when the instance is created, and are unique to each instance."
   },
   {
     "objectID": "02_function_classes.html#static-methods",
     "href": "02_function_classes.html#static-methods",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n&gt;&gt;&gt; dr = Interval(date(2020, 1, 1), date(2020, 1, 31))\n&gt;&gt;&gt; dr.start\ndatetime.date(2020, 1, 1)\n&gt;&gt;&gt; dr.end\ndatetime.date(2020, 1, 31)\n\nHere is an example of useful class, but it is a bit cumbersome to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\ndr = Interval(date(2020, 1, 1), date(2020, 1, 31))\ndr.start\n\ndatetime.date(2020, 1, 1)\n\n\n\nHere is an example of useful class, but it is a bit cumbersome to create an instance."
   },
   {
     "objectID": "02_function_classes.html#static-methods-1",
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n&gt;&gt;&gt; dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n&gt;&gt;&gt; dr\n&lt;__main__.Interval at 0x7fb99efcfb90&gt;\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7ffbd4230400&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
     "href": "02_function_classes.html#dataclasses",
     "title": "Functions, classes and modules",
     "section": "Dataclasses",
-    "text": "Dataclasses\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\n&gt;&gt;&gt; dr = Interval.from_string(\"2020-01-01|2020-01-31\")\n&gt;&gt;&gt; dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\nDataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables.\n\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    def __str__(self):\n        return f\"{self.start} | {self.end}\"\n\n&gt;&gt;&gt; dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt;print(dr)\n2020-01-01 | 2020-01-31\n\nTo override the default string representation, we can add a __str__ method."
+    "text": "Dataclasses\n\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    @staticmethod\n    def from_string(date_string):\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\n\n\nDataclasses were introduced in Python 3.7, they are a convenient way to create classes with a few attributes. The variables are instance variables, and the class has a constructor that takes the same arguments as the variables.\n\n\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n    def __str__(self) -&gt; str:\n        return f\"{self.start} | {self.end}\"\n\ndr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr # uses __repr__\n\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n\n\n. . .\n\nprint(dr) # uses __str__\n\n2020-01-01 | 2020-01-31\n\n\n\nTo override the default string representation, we can add a __str__ method."
   },
   {
     "objectID": "02_function_classes.html#equality",
     "href": "02_function_classes.html#equality",
     "title": "Functions, classes and modules",
     "section": "Equality",
-    "text": "Equality\nOn a regular class, equality is based on the memory address of the object.\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nFalse\n\nThis is not very useful, since we want to compare the values of the attributes."
+    "text": "Equality\nOn a regular class, equality is based on the memory address of the object.\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\ndr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr1 == dr2\n\nFalse\n\n\n\nThis is not very useful, since we want to compare the values of the attributes."
   },
   {
     "objectID": "02_function_classes.html#equality-1",
     "href": "02_function_classes.html#equality-1",
     "title": "Functions, classes and modules",
     "section": "Equality",
-    "text": "Equality\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    def __eq__(self, other):\n        return self.start == other.start and self.end == other.end\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nTrue\n\nWe can override the __eq__ method to compare the values of the attributes.\n\n\nFor a dataclass, equality is based on the values of the fields.\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n&gt;&gt;&gt; dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nTrue\n\nThis is the default behavior for dataclasses."
+    "text": "Equality\n\nclass Interval:\n    def __init__(self, start:date, end:date):\n        self.start = start\n        self.end = end\n\n    def __eq__(self, other):\n        return self.start == other.start and self.end == other.end\n\ndr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr1 == dr2\n\nTrue\n\n\n\nWe can override the __eq__ method to compare the values of the attributes.\n\n\nFor a dataclass, equality is based on the values of the fields.\n\nfrom dataclasses import dataclass\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\ndr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))\ndr1 == dr2\n\nTrue\n\n\n\nThis is the default behavior for dataclasses."
   },
   {
     "objectID": "02_function_classes.html#data-classes",
     "href": "02_function_classes.html#data-classes",
     "title": "Functions, classes and modules",
     "section": "Data classes",
-    "text": "Data classes\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Quantity:\n    unit: str = field(compare=True)\n    standard_name: field(compare=True)\n    name: str = field(compare=False, default=None)\n\n\n&gt;&gt;&gt; t1 = Quantity(name=\"temp\", unit=\"C\", standard_name=\"air_temperature\")\n&gt;&gt;&gt; t2 = Quantity(name=\"temperature\", unit=\"C\", standard_name=\"air_temperature\")\n\n&gt;&gt;&gt; t1 == t2\nTrue\n\n&gt;&gt;&gt; d1 = Quantity(unit=\"m\", standard_name=\"depth\")\n&gt;&gt;&gt; d1 == t2\nFalse"
+    "text": "Data classes\n\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Quantity:\n    unit: str = field(compare=True)\n    standard_name: str = field(compare=True)\n    name: str = field(compare=False, default=None)\n\n\nt1 = Quantity(name=\"temp\", unit=\"C\", standard_name=\"air_temperature\")\nt2 = Quantity(name=\"temperature\", unit=\"C\", standard_name=\"air_temperature\")\n\nt1 == t2\n\nTrue\n\n\n\nd1 = Quantity(unit=\"m\", standard_name=\"depth\")\nd1 == t2\n\nFalse"
   },
   {
     "objectID": "02_function_classes.html#data-classes-1",
@@ -1978,14 +1978,14 @@
     "href": "02_function_classes.html#packages",
     "title": "Functions, classes and modules",
     "section": "Packages",
-    "text": "Packages\n\n\nA package is a directory containing modules\nEach package in Python is a directory which MUST contain a special file called __init__.py\nThe __init__.py can be empty, and it indicates that the directory it contains is a Python package\n__init__.py can also execute initialization code"
+    "text": "Packages\n\n\nA package is a directory containing modules\nEach package in Python is a directory which usually contains a special file called __init__.py\nThe __init__.py can be empty, and it indicates that the directory it contains is a Python package\n__init__.py can also execute initialization code"
   },
   {
     "objectID": "02_function_classes.html#init__.py",
     "href": "02_function_classes.html#init__.py",
     "title": "Functions, classes and modules",
     "section": "__init__.py",
-    "text": "__init__.py\nExample: mikeio/pfs/__init__.py:\nfrom .pfsdocument import Pfs, PfsDocument\nfrom .pfssection import PfsNonUniqueList, PfsSection\n\ndef read_pfs(filename, encoding=\"cp1252\", unique_keywords=False):\n     \"\"\"Read a pfs file for further analysis/manipulation\"\"\"\n    \n    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)\n. . .\nThe imports in __init__.py let’s you separate the implementation into multiple files.\n&gt;&gt;&gt; mikeio.pfs.pfssection.PfsSection\n&lt;class 'mikeio.pfs.pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.pfs.PfsSection\n&lt;class 'mikeio.pfs.pfssection.PfsSection'&gt;\n\nThe PfsSection and PfsDocument are imported from the pfssection.py and pfsdocument.py modules. to the mikeio.pfs namespace."
+    "text": "__init__.py\nExample: mikeio/pfs/__init__.py:\nfrom ._pfsdocument import PfsDocument\nfrom ._pfssection import PfsNonUniqueList, PfsSection\n\ndef read_pfs(filename:str, encoding:str=\"cp1252\", unique_keywords:bool=False) -&gt; PfsDocument:\n     \"\"\"Read a pfs file for further analysis/manipulation\"\"\"\n    \n    return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)\n. . .\nThe imports in __init__.py let’s you create aliases.\n&gt;&gt;&gt; mikeio.pfs._pfssection.PfsSection\n&lt;class 'mikeio.pfs._pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.pfs.PfsSection\n&lt;class 'mikeio.pfs._pfssection.PfsSection'&gt;\n&gt;&gt;&gt; mikeio.PfsSection\n&lt;class 'mikeio.pfs._pfssection.PfsSection'&gt;\n\nThe PfsSection and PfsDocument are imported from the _pfssection and _pfsdocument modules. to the mikeio namespace."
   },
   {
     "objectID": "02_function_classes.html#python-naming-conventions",
@@ -2020,7 +2020,7 @@
     "href": "02_function_classes.html#summary",
     "title": "Functions, classes and modules",
     "section": "Summary",
-    "text": "Summary\n\n\nFunctions are black boxes that takes input and produces output.\nFunction arguments can be positional or keyword arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input arguments.\nClasses are useful for grouping related functions and data.\nDataclasses are a convenient way to create classes with a few attributes.\nModules are files containing Python code (functions, classes, constants) that belong together.\nPackages are directories containing modules."
+    "text": "Summary\n\n\nFunctions as black boxes that take input and produces output.\nPositional vs keyword arguments arguments.\nPure functions are easier to reason about.\nAvoid mutable default arguments and modifying input.\nClasses are useful for grouping related functions and data.\nDataclasses can be very convenient.\nModule single Python file\nPackage collection of modules"
   },
   {
     "objectID": "projects/data_cleaning/04_Project_module.html",
