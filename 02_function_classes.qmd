@@ -61,30 +61,55 @@ def is_operable(height, period):
 
 A *pure* function returns the same output for the same input.
 
-```python
-def f(x)
+```{python}
+#| echo: true
+def f(x):
     return x**2
+```
 
->> f(2)
-4
->> f(2)
-4
+. . .
+
+
+
+```{python}
+#| echo: true
+f(2)
+```
+
+. . .
+
+
+
+```{python}
+#| echo: true
+f(2)
 ```
 ---
 
 A *non-pure* function can return different outputs for the same input.
 
-```python
+```{python}
+#| echo: true
 n = 0
 
 def non_pure_function(x):
-    global n=n+1
+    global n
+    n = n + 1
     return x + n
+```
 
->>> non_pure_function(2)
-3
->>> non_pure_function(2)
-4
+. . .
+
+```{python}
+#| echo: true
+non_pure_function(2)
+```
+
+. . .
+
+```{python}
+#| echo: true
+non_pure_function(2)
 ```
 
 ## Side effects
@@ -116,17 +141,27 @@ But sometimes side effects are necessary.
 
 ## Modifying input arguments
 
-```{.python code-line-numbers="|3"}
+```{python}
+#| echo: true
 def difficult_function(values):
     for i in range(len(values)):
         values[i] = min(0, values[i]) # 😟
     return values
+```
 
->>> x = [1,2,-1]
->>> difficult_function(x)
-[0, 0, -1]
->>> x
-[0, 0, -1]
+. . .
+
+```{python}
+#| echo: true
+x = [1,2,-1]
+difficult_function(x)
+```
+
+. . .
+
+```{python}
+#| echo: true
+x
 ```
 
 ::: {.notes}
@@ -136,20 +171,29 @@ The array is passed by reference, so the function can modify it.
 
 ---
 
-Functions that doesn't modify the input arguments are easier to reason about.
+Functions that doesn't modify the input arguments are easier to use.
 
-```python
+```{python}
+#| echo: true
 def easier_function(values):
     l2 = list(values) # copy🤔
     for i in range(len(l2)):
         l2[i] = min(0, l2[i])
     return l2
+```
 
->>> x = [1, 2, -1]
->>> easier_function(x)
-[0, 0, -1], 
->>> x
-[1, 2, -1]
+. . .
+```{python}
+#| echo: true
+x = [1, 2, -1]
+easier_function(x)
+```
+
+. . .
+
+```{python}
+#| echo: true
+x
 ```
 
 . . . 
@@ -157,24 +201,48 @@ def easier_function(values):
 Just be aware that copying large datasets can be slow.
 
 
+---
+
+Swapping out the internals of the black box...
+
+```{python}
+#| echo: true
+def easier_function(values):
+    return [min(0, v) for v in values]
+```
+
+. . .
+```{python}
+#| echo: true
+x = [1, 2, -1]
+easier_function(x)
+```
+
+```{python}
+#| echo: true
+x
+```
+
+
+
 ## *Positional* arguments
 
-```python
+```{python}
+#| echo: true
 def f(x, y):
     return x + y
 
->>> f(1, 2)
-3
+f(1, 2)
 ```
 
 ## *Keyword* arguments
 
-```python
+```{python}
+#| echo: true
 def f(x, y):
     return x + y
 
->>> f(x=1, y=2)
-3
+f(x=1, y=2)
 ```
 
 ---
@@ -187,13 +255,13 @@ def f(x, y):
 
 **Version 1**
 
-```python
+```{python}
+#| echo: true
 def is_operable(height, period):
 
     return height < 2.0 and period < 6.0
 
->>> is_operable(1.0, 3.0)
-True
+is_operable(1.0, 3.0)
 ```
 
 :::
@@ -203,14 +271,15 @@ True
 **Version 2**
 
 
-```python
+```{python}
+#| echo: true
 def is_operable(period, height=0.0):
     # dont forget, that arguments are swapped 👍
     return height < 2.0 and period < 6.0
 
->>> is_operable(1.0, 3.0)
-False 😟
+is_operable(1.0, 3.0)
 ```
+ 😟
 :::
 
 ::::
@@ -224,14 +293,13 @@ This breaks existing code, since the order of the arguments is changed.
 
 ## *Keyword-only* arguments
 
-```python
+```{python}
+#| echo: true
+#| error: true
 def f(*, x, y):
     return x + y
 
->>> f(1,2)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: f() takes 0 positional arguments but 2 were given
+f(1,2)
 ```  
 
 ## *Optional(=default)* arguments
@@ -240,10 +308,8 @@ TypeError: f() takes 0 positional arguments but 2 were given
 def f(x, n=2):
     return x**n
 
->>> f(2)
-4
->>> f(2, n=3)
-8
+f(2)
+f(2, n=3)
 ```
 
 . . . 
@@ -256,25 +322,39 @@ Makes it easy to use a function with many arguments.
 
 Python’s default arguments are evaluated once when the function is defined, not each time the function is called.
 
-. . .
-
-```{.python code-line-numbers="|1|"}
+```{python}
+#| echo: true
 def add_to_cart(x, cart=[]): # this line is evaluated only once 😮
     cart.append(x)
     return cart
+```
 
->>> add_to_cart(1, cart=[2])
-[2, 1]
+. . .
 
->>> add_to_cart(1)
-[1]
->>> add_to_cart(2)
-[1, 2]
+
+```{python}
+#| echo: true
+my_cart = [2]
+add_to_cart(1, cart=my_cart)
+```
+
+. . .
+
+```{python}
+#| echo: true
+add_to_cart(1)
+```
+
+. . .
+
+```{python}
+#| echo: true
+add_to_cart(2)
 ```
 
 ::: {.notes}
 
-Python’s default arguments are evaluated once when the function is defined, not each time the function is called (like it is in say, Ruby).
+Python’s default arguments are evaluated once when the function is defined, not each time the function is called (unlike Ruby).
 This means that if you use a mutable default argument and mutate it, you will and have mutated that object for all future calls to the function as well.
 :::
 
@@ -284,12 +364,24 @@ This means that if you use a mutable default argument and mutate it, you will an
 
 ## How to use default (mutable) arguments
 
-```{.python code-line-numbers="|1-3"}
-def add_to_cart_safe(x, cart=None):
+```{python}
+#| echo: true
+def add_to_cart_sane(x, cart=None):
     if cart is None:
         cart = [] # this line is evaluated each time the function is called
     cart.append(x)
     return cart
+```
+
+```{python}
+#| echo: true
+add_to_cart_sane(1)
+```
+
+
+```{python}
+#| echo: true
+add_to_cart_sane(2)
 ```
 
 ## Changing return types
@@ -306,21 +398,24 @@ def foo(x):
 
 . . .
 
-But it usually a bad idea, since you can not tell from reading the code, which type will be returned.
+General advice: Avoid multiple return types!
 
-## Changing return types
+## Changing return types - *truthy*
 
-```python
+```{python}
+#| echo: true
 def is_operable(height, period):
     if height < 10:
         return height < 5.0 and period > 4.0
     else:
         return "No way!"
+```
+. . .
 
->>> if is_operable(height=12.0, period=5.0):
-...         print("Go ahead!")
-...
-Go ahead!
+```{python}
+#| echo: true
+if is_operable(height=12.0, period=5.0):
+    print("Go ahead!")
 ```
 
 
@@ -337,7 +432,7 @@ A non-empty string or a non-zero value is considered *"truthy"* in Python!
 
 ## Type hints
 
-Python is a dynamically typed language -> the type of a variable is determined at runtime.
+Python is a dynamically typed language, the type of a variable is determined at runtime.
 
 . . .
 
@@ -375,20 +470,23 @@ Type hints are just hints, it will make it easier for you to read the code, and 
 
 ## Classes
 
-```{.python code-line-numbers="|2|"}
+```{python}
+#| echo: true
 class WeirdToolbox:
     tools = [] # class variable ☹️
 
+t1 = WeirdToolbox()
+t1.tools.append("hammer")
+t1.tools
+```
 
->>> t1 = WeirdToolbox()
->>> t1.tools.append("hammer")
->>> t1.tools
-["hammer"]
+. . .
 
->>> t2 = WeirdToolbox()
->>> t2.tools.append("screwdriver")
->>> t2.tools
-["hammer", "screwdriver"]
+```{python}
+#| echo: true
+t2 = WeirdToolbox()
+t2.tools.append("screwdriver")
+t2.tools
 ```
 
 ::: {.notes}
@@ -397,20 +495,24 @@ Class variables are rarely what you want, since they are shared between all inst
 
 ## Classes
 
-```python
+```{python}
+#| echo: true
 class Toolbox:
     def __init__(self):
         self.tools = [] # instance variable 😃
 
->>> t1 = Toolbox()
->>> t1.tools.append("hammer")
->>> t1.tools
-["hammer"]
+t1 = Toolbox()
+t1.tools.append("hammer")
+t1.tools
+```
 
->>> t2 = Toolbox()
->>> t2.tools.append("screwdriver")
->>> t2.tools
-["screwdriver"]
+. . .
+
+```{python}
+#| echo: true
+t2 = Toolbox()
+t2.tools.append("screwdriver")
+t2.tools
 ```
 
 ::: {.notes}
@@ -420,7 +522,8 @@ Instance variables are created when the instance is created, and are unique to e
 
 ## Static methods
 
-```python
+```{python}
+#| echo: true
 from datetime import date
 
 class Interval:
@@ -428,11 +531,8 @@ class Interval:
         self.start = start
         self.end = end
 
->>> dr = Interval(date(2020, 1, 1), date(2020, 1, 31))
->>> dr.start
-datetime.date(2020, 1, 1)
->>> dr.end
-datetime.date(2020, 1, 31)
+dr = Interval(date(2020, 1, 1), date(2020, 1, 31))
+dr.start
 ```
 
 ::: {.notes}
@@ -441,24 +541,24 @@ Here is an example of useful class, but it is a bit cumbersome to create an inst
 
 ## Static methods
 
-```python
+```{python}
+#| echo: true
 from datetime import date
 
 class Interval:
-    def __init__(self, start:date, end:date):
+    def __init__(self, start:date, end:date) -> None:
         self.start = start
         self.end = end
 
     @staticmethod
-    def from_string(date_string):
+    def from_string(date_string: str) -> Interval:
         start_str, end_str = date_string.split("|")
         start = date.fromisoformat(start_str)
         end = date.fromisoformat(end_str)
         return Interval(start, end)
 
->>> dr = Interval.from_string("2020-01-01|2020-01-31")
->>> dr
-<__main__.Interval at 0x7fb99efcfb90>
+dr = Interval.from_string("2020-01-01|2020-01-31")
+dr
 ```
 
 ::: {.notes}
@@ -468,7 +568,8 @@ This makes it easier to create an instance.
 
 ## Dataclasses
 
-```python
+```{python}
+#| echo: true
 from dataclasses import dataclass
 
 @dataclass
@@ -483,32 +584,36 @@ class Interval:
         end = date.fromisoformat(end_str)
         return Interval(start, end)
 
->>> dr = Interval.from_string("2020-01-01|2020-01-31")
->>> dr
-Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
+dr = Interval.from_string("2020-01-01|2020-01-31")
+dr
 ```
 
 ::: {.notes}
-Dataclasses are a new feature in Python 3.7, they are a convenient way to create classes with a few attributes.
+Dataclasses were introduced in Python 3.7, they are a convenient way to create classes with a few attributes.
 The variables are instance variables, and the class has a constructor that takes the same arguments as the variables.
 :::
 
 ---
 
-```python
+```{python}
+#| echo: true
 @dataclass
 class Interval:
     start: date
     end: date
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.start} | {self.end}"
 
->>> dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr
-Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))
->>>print(dr)
-2020-01-01 | 2020-01-31
+dr = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr # uses __repr__
+```
+
+. . .
+
+```{python}
+#| echo: true
+print(dr) # uses __str__
 ```
 ::: {.notes}
 To override the default string representation, we can add a `__str__` method.
@@ -519,16 +624,16 @@ To override the default string representation, we can add a `__str__` method.
 
 On a regular class, equality is based on the memory address of the object.
 
-```python
+```{python}
+#| echo: true
 class Interval:
-    def __init__(self, start:date, end:date):
+    def __init__(self, start:date, end:date) -> None:
         self.start = start
         self.end = end
 
->>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr1 == dr2
-False
+dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr1 == dr2
 ```
 
 ::: {.notes}
@@ -538,7 +643,8 @@ This is not very useful, since we want to compare the values of the attributes.
 ## Equality
 
 
-```python
+```{python}
+#| echo: true
 class Interval:
     def __init__(self, start:date, end:date):
         self.start = start
@@ -547,10 +653,9 @@ class Interval:
     def __eq__(self, other):
         return self.start == other.start and self.end == other.end
 
->>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr1 == dr2
-True
+dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr1 == dr2
 ```
 ::: {.notes}
 We can override the `__eq__` method to compare the values of the attributes.
@@ -560,7 +665,8 @@ We can override the `__eq__` method to compare the values of the attributes.
 
 For a dataclass, equality is based on the values of the fields.
 
-```python
+```{python}
+#| echo: true
 from dataclasses import dataclass
 
 @dataclass
@@ -568,10 +674,9 @@ class Interval:
     start: date
     end: date
 
->>> dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
->>> dr1 == dr2
-True
+dr1 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr2 = Interval(start=date(2020, 1, 1), end=date(2020, 1, 31))
+dr1 == dr2
 ```
 
 ::: {.notes}
@@ -580,25 +685,30 @@ This is the default behavior for dataclasses.
 
 ## Data classes {.smaller}
 
-```python
+```{python}
+#| echo: true
 from dataclasses import dataclass, field
 
 @dataclass
 class Quantity:
     unit: str = field(compare=True)
-    standard_name: field(compare=True)
+    standard_name: str = field(compare=True)
     name: str = field(compare=False, default=None)
 
+```
 
->>> t1 = Quantity(name="temp", unit="C", standard_name="air_temperature")
->>> t2 = Quantity(name="temperature", unit="C", standard_name="air_temperature")
+```{python}
+#| echo: true
+t1 = Quantity(name="temp", unit="C", standard_name="air_temperature")
+t2 = Quantity(name="temperature", unit="C", standard_name="air_temperature")
 
->>> t1 == t2
-True
+t1 == t2
+```
 
->>> d1 = Quantity(unit="m", standard_name="depth")
->>> d1 == t2
-False
+```{python}
+#| echo: true
+d1 = Quantity(unit="m", standard_name="depth")
+d1 == t2
 ```
 
 ## Data classes
@@ -652,7 +762,7 @@ is_operable(height=1.8, period=1.0)
 
 ::: {.incremental}
 * A package is a directory containing modules
-* Each package in Python is a directory which MUST contain a special file called `__init__.py`
+* Each package in Python is a directory which usually contains a special file called `__init__.py`
 * The `__init__.py` can be empty, and it indicates that the directory it contains is a Python package
 * `__init__.py` can also execute initialization code
 
@@ -664,27 +774,29 @@ is_operable(height=1.8, period=1.0)
 Example: `mikeio/pfs/__init__.py`:
 
 ```{.python code-line-numbers="|1-2"}
-from .pfsdocument import Pfs, PfsDocument
-from .pfssection import PfsNonUniqueList, PfsSection
+from ._pfsdocument import PfsDocument
+from ._pfssection import PfsNonUniqueList, PfsSection
 
-def read_pfs(filename, encoding="cp1252", unique_keywords=False):
+def read_pfs(filename:str, encoding:str="cp1252", unique_keywords:bool=False) -> PfsDocument:
      """Read a pfs file for further analysis/manipulation"""
     
     return PfsDocument(filename, encoding=encoding, unique_keywords=unique_keywords)
 ```
 . . .
 
-The imports in `__init__.py` let's you separate the implementation into multiple files.
+The imports in `__init__.py` let's you create aliases.
 
 ```python
->>> mikeio.pfs.pfssection.PfsSection
-<class 'mikeio.pfs.pfssection.PfsSection'>
+>>> mikeio.pfs._pfssection.PfsSection
+<class 'mikeio.pfs._pfssection.PfsSection'>
 >>> mikeio.pfs.PfsSection
-<class 'mikeio.pfs.pfssection.PfsSection'>
+<class 'mikeio.pfs._pfssection.PfsSection'>
+>>> mikeio.PfsSection
+<class 'mikeio.pfs._pfssection.PfsSection'>
 ```
 
 ::: {.notes}
-The PfsSection and PfsDocument are imported from the `pfssection.py` and `pfsdocument.py` modules. to the `mikeio.pfs` namespace.
+The PfsSection and PfsDocument are imported from the `_pfssection` and `_pfsdocument` modules. to the `mikeio` namespace.
 :::
 
 ## Python naming conventions
@@ -759,13 +871,13 @@ class RandomClassifier: # CamelCase ✅
 
 ::: {.incremental}
 
-* **Functions** are black boxes that takes input and produces output.
-* Function **arguments** can be positional or keyword arguments.
+* **Functions** as black boxes that take input and produces output.
+* Positional vs keyword arguments **arguments**.
 * **Pure** functions are easier to reason about.
-* Avoid mutable default arguments and modifying input arguments.
+* **Avoid** mutable default arguments and modifying input.
 * **Classes** are useful for grouping related functions and data.
-* **Dataclasses** are a convenient way to create classes with a few attributes.
-* **Modules** are files containing Python code (functions, classes, constants) that belong together.
-* **Packages** are directories containing modules.
+* **Dataclasses** can be very convenient.
+* **Module** single Python file
+* **Package** collection of modules
 
 :::
