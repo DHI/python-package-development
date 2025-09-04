@@ -257,12 +257,12 @@
 <section id="pure-functions" class="slide level2">
 <h2><em>Pure</em> functions</h2>
 <p>A <em>pure</em> function returns the same output for the same input.</p>
-<div id="b8e4c4d4" class="cell" data-execution_count="1">
+<div id="aa22ba19" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> f(x):</span>
 <span id="cb3-2"><a></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="1c3cfa7c" class="cell" data-execution_count="2">
+<div id="4e138a47" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>f(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>4</code></pre>
@@ -270,7 +270,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="1f3bec95" class="cell" data-execution_count="3">
+<div id="82c7e5e7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>f(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>4</code></pre>
@@ -281,7 +281,7 @@
 <section class="slide level2">
 
 <p>A <em>non-pure</em> function can return different outputs for the same input.</p>
-<div id="86c4f050" class="cell" data-execution_count="4">
+<div id="e6b5ae32" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>n <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb8-2"><a></a></span>
 <span id="cb8-3"><a></a><span class="kw">def</span> non_pure_function(x):</span>
@@ -290,7 +290,7 @@
 <span id="cb8-6"><a></a>    <span class="cf">return</span> x <span class="op">+</span> n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="0bfa4557" class="cell" data-execution_count="5">
+<div id="956ea9a6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>non_pure_function(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>3</code></pre>
@@ -298,7 +298,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="63594abb" class="cell" data-execution_count="6">
+<div id="7659c2e5" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>non_pure_function(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>4</code></pre>
@@ -340,14 +340,14 @@
 </section>
 <section id="modifying-input-arguments" class="slide level2">
 <h2>Modifying input arguments</h2>
-<div id="15bf2103" class="cell" data-execution_count="7">
+<div id="95c76d8b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="kw">def</span> difficult_function(values):</span>
 <span id="cb14-2"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(values)):</span>
 <span id="cb14-3"><a></a>        values[i] <span class="op">=</span> <span class="bu">min</span>(<span class="dv">0</span>, values[i]) <span class="co"># 😟</span></span>
 <span id="cb14-4"><a></a>    <span class="cf">return</span> values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="20b0b9ca" class="cell" data-execution_count="8">
+<div id="2e0664d3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb15-2"><a></a>difficult_function(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -356,7 +356,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="89131e91" class="cell" data-execution_count="9">
+<div id="55a0d360" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>[0, 0, -1]</code></pre>
@@ -380,7 +380,7 @@
 <section class="slide level2">
 
 <p>Functions that doesn’t modify the input arguments are easier to use.</p>
-<div id="97bda137" class="cell" data-execution_count="10">
+<div id="047f02ea" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="kw">def</span> easier_function(values):</span>
 <span id="cb19-2"><a></a>    l2 <span class="op">=</span> <span class="bu">list</span>(values) <span class="co"># copy🤔</span></span>
 <span id="cb19-3"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(l2)):</span>
@@ -388,7 +388,7 @@
 <span id="cb19-5"><a></a>    <span class="cf">return</span> l2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="a16dcfa3" class="cell" data-execution_count="11">
+<div id="f3b61561" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb20-2"><a></a>easier_function(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -397,7 +397,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="6b5c96f9" class="cell" data-execution_count="12">
+<div id="fbd3c1a8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>[1, 2, -1]</code></pre>
@@ -411,19 +411,19 @@
 <section class="slide level2">
 
 <p>Swapping out the internals of the black box…</p>
-<div id="50aa02b0" class="cell" data-execution_count="13">
+<div id="380254b4" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="kw">def</span> easier_function(values):</span>
 <span id="cb24-2"><a></a>    <span class="cf">return</span> [<span class="bu">min</span>(<span class="dv">0</span>, v) <span class="cf">for</span> v <span class="kw">in</span> values]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="b9c89784" class="cell" data-execution_count="14">
+<div id="6855b199" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb25-2"><a></a>easier_function(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>[0, 0, -1]</code></pre>
 </div>
 </div>
-<div id="2b33d36f" class="cell" data-execution_count="15">
+<div id="16324204" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>[1, 2, -1]</code></pre>
@@ -433,7 +433,7 @@
 </section>
 <section id="positional-arguments" class="slide level2">
 <h2><em>Positional</em> arguments</h2>
-<div id="2fe38bf1" class="cell" data-execution_count="16">
+<div id="3d57e1c7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="kw">def</span> f(x, y):</span>
 <span id="cb29-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
 <span id="cb29-3"><a></a></span>
@@ -445,7 +445,7 @@
 </section>
 <section id="keyword-arguments" class="slide level2">
 <h2><em>Keyword</em> arguments</h2>
-<div id="5098d125" class="cell" data-execution_count="17">
+<div id="aecfed87" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> f(x, y):</span>
 <span id="cb31-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
 <span id="cb31-3"><a></a></span>
@@ -460,7 +460,7 @@
 <div class="columns">
 <div class="column">
 <p><strong>Version 1</strong></p>
-<div id="661f2dd7" class="cell" data-execution_count="18">
+<div id="92ca893e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="kw">def</span> is_operable(height, period):</span>
 <span id="cb33-2"><a></a></span>
 <span id="cb33-3"><a></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
@@ -472,7 +472,7 @@
 </div>
 </div><div class="column">
 <p><strong>Version 2</strong></p>
-<div id="f31107b7" class="cell" data-execution_count="19">
+<div id="2e4624a3" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a></a><span class="kw">def</span> is_operable(period, height<span class="op">=</span><span class="fl">0.0</span>):</span>
 <span id="cb35-2"><a></a>    <span class="co"># dont forget, that arguments are swapped 👍</span></span>
 <span id="cb35-3"><a></a>    <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="kw">and</span> period <span class="op">&lt;</span> <span class="fl">6.0</span></span>
@@ -500,7 +500,7 @@
 </section>
 <section id="keyword-only-arguments" class="slide level2">
 <h2><em>Keyword-only</em> arguments</h2>
-<div id="deed919f" class="cell" data-execution_count="20">
+<div id="097b156d" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a></a><span class="kw">def</span> f(<span class="op">*</span>, x, y):</span>
 <span id="cb37-2"><a></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
 <span id="cb37-3"><a></a></span>
@@ -533,13 +533,13 @@
 <section id="mutable-default-arguments" class="slide level2">
 <h2>Mutable default arguments</h2>
 <p>Python’s default arguments are evaluated once when the function is defined, not each time the function is called.</p>
-<div id="f7b3605a" class="cell" data-execution_count="21">
+<div id="9af8750c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a></a><span class="kw">def</span> add_to_cart(x, cart<span class="op">=</span>[]): <span class="co"># this line is evaluated only once 😮</span></span>
 <span id="cb39-2"><a></a>    cart.append(x)</span>
 <span id="cb39-3"><a></a>    <span class="cf">return</span> cart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="1fc60bfb" class="cell" data-execution_count="22">
+<div id="990e9f1f" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a></a>my_cart <span class="op">=</span> [<span class="dv">2</span>]</span>
 <span id="cb40-2"><a></a>add_to_cart(<span class="dv">1</span>, cart<span class="op">=</span>my_cart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -548,7 +548,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="f9ebc49a" class="cell" data-execution_count="23">
+<div id="bdaf1ba7" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a></a>add_to_cart(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>[1]</code></pre>
@@ -556,7 +556,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="199d0f47" class="cell" data-execution_count="24">
+<div id="2ea3ca14" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a></a>add_to_cart(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>[1, 2]</code></pre>
@@ -583,20 +583,20 @@
 <img data-src="images/mutable_args_meme.jpg" class="r-stretch"></section>
 <section id="how-to-use-default-mutable-arguments" class="slide level2">
 <h2>How to use default (mutable) arguments</h2>
-<div id="85b55661" class="cell" data-execution_count="25">
+<div id="23f2e516" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a></a><span class="kw">def</span> add_to_cart_sane(x, cart<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb46-2"><a></a>    <span class="cf">if</span> cart <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb46-3"><a></a>        cart <span class="op">=</span> [] <span class="co"># this line is evaluated each time the function is called</span></span>
 <span id="cb46-4"><a></a>    cart.append(x)</span>
 <span id="cb46-5"><a></a>    <span class="cf">return</span> cart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cb6bafbb" class="cell" data-execution_count="26">
+<div id="90d993b1" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a></a>add_to_cart_sane(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>[1]</code></pre>
 </div>
 </div>
-<div id="c5c132db" class="cell" data-execution_count="27">
+<div id="e95cea8f" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a></a>add_to_cart_sane(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>[2]</code></pre>
@@ -617,7 +617,7 @@
 </section>
 <section id="changing-return-types---truthy" class="slide level2">
 <h2>Changing return types - <em>truthy</em></h2>
-<div id="7c51d6e2" class="cell" data-execution_count="28">
+<div id="cd981f5f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a></a><span class="kw">def</span> is_operable(height, period):</span>
 <span id="cb52-2"><a></a>    <span class="cf">if</span> height <span class="op">&lt;</span> <span class="dv">10</span>:</span>
 <span id="cb52-3"><a></a>        <span class="cf">return</span> height <span class="op">&lt;</span> <span class="fl">5.0</span> <span class="kw">and</span> period <span class="op">&gt;</span> <span class="fl">4.0</span></span>
@@ -625,7 +625,7 @@
 <span id="cb52-5"><a></a>        <span class="cf">return</span> <span class="st">"No way!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="ef14447c" class="cell" data-execution_count="29">
+<div id="6a2e66ea" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a></a><span class="cf">if</span> is_operable(height<span class="op">=</span><span class="fl">12.0</span>, period<span class="op">=</span><span class="fl">5.0</span>):</span>
 <span id="cb53-2"><a></a>    <span class="bu">print</span>(<span class="st">"Go ahead!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -690,7 +690,7 @@
 </section>
 <section id="classes" class="slide level2">
 <h2>Classes</h2>
-<div id="cbf81eea" class="cell" data-execution_count="30">
+<div id="e53b7720" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a></a><span class="kw">class</span> WeirdToolbox:</span>
 <span id="cb58-2"><a></a>    tools <span class="op">=</span> [] <span class="co"># class variable ☹️</span></span>
 <span id="cb58-3"><a></a></span>
@@ -702,7 +702,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="33f53900" class="cell" data-execution_count="31">
+<div id="7bd9cd52" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a></a>t2 <span class="op">=</span> WeirdToolbox()</span>
 <span id="cb60-2"><a></a>t2.tools.append(<span class="st">"screwdriver"</span>)</span>
 <span id="cb60-3"><a></a>t2.tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -727,7 +727,7 @@
 </section>
 <section id="classes-1" class="slide level2">
 <h2>Classes</h2>
-<div id="ca27c1ab" class="cell" data-execution_count="32">
+<div id="b07b03d8" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a></a><span class="kw">class</span> Toolbox:</span>
 <span id="cb62-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb62-3"><a></a>        <span class="va">self</span>.tools <span class="op">=</span> [] <span class="co"># instance variable 😃</span></span>
@@ -740,7 +740,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="be83d2a8" class="cell" data-execution_count="33">
+<div id="b7874ffc" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a></a>t2 <span class="op">=</span> Toolbox()</span>
 <span id="cb64-2"><a></a>t2.tools.append(<span class="st">"screwdriver"</span>)</span>
 <span id="cb64-3"><a></a>t2.tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -765,7 +765,7 @@
 </section>
 <section id="static-methods" class="slide level2">
 <h2>Static methods</h2>
-<div id="f6fc8cc7" class="cell" data-execution_count="34">
+<div id="2fefefeb" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
 <span id="cb66-2"><a></a></span>
 <span id="cb66-3"><a></a><span class="kw">class</span> Interval:</span>
@@ -795,7 +795,7 @@
 </section>
 <section id="static-methods-1" class="slide level2">
 <h2>Static methods</h2>
-<div id="bcbe5341" class="cell" data-execution_count="35">
+<div id="4f2515b0" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
 <span id="cb68-2"><a></a></span>
 <span id="cb68-3"><a></a><span class="kw">class</span> Interval:</span>
@@ -813,7 +813,7 @@
 <span id="cb68-15"><a></a>dr <span class="op">=</span> Interval.from_string(<span class="st">"2020-01-01|2020-01-31"</span>)</span>
 <span id="cb68-16"><a></a>dr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>&lt;__main__.Interval at 0x7fc9f0d8b8c0&gt;</code></pre>
+<pre><code>&lt;__main__.Interval at 0x7f1708d8b8c0&gt;</code></pre>
 </div>
 </div>
 <aside class="notes">
@@ -832,7 +832,7 @@
 </section>
 <section id="dataclasses" class="slide level2">
 <h2>Dataclasses</h2>
-<div id="840817fe" class="cell" data-execution_count="36">
+<div id="14d2ba1a" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb70-2"><a></a></span>
 <span id="cb70-3"><a></a><span class="at">@dataclass</span></span>
@@ -869,7 +869,7 @@
 </section>
 <section class="slide level2">
 
-<div id="d6cb7a15" class="cell" data-execution_count="37">
+<div id="140c9864" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a></a><span class="at">@dataclass</span></span>
 <span id="cb72-2"><a></a><span class="kw">class</span> Interval:</span>
 <span id="cb72-3"><a></a>    start: date</span>
@@ -885,7 +885,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="67b092b0" class="cell" data-execution_count="38">
+<div id="fbce3ecc" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a></a><span class="bu">print</span>(dr) <span class="co"># uses __str__</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2020-01-01 | 2020-01-31</code></pre>
@@ -909,7 +909,7 @@
 <section id="equality" class="slide level2">
 <h2>Equality</h2>
 <p>On a regular class, equality is based on the memory address of the object.</p>
-<div id="c97eac60" class="cell" data-execution_count="39">
+<div id="f100e823" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a></a><span class="kw">class</span> Interval:</span>
 <span id="cb76-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
 <span id="cb76-3"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
@@ -938,7 +938,7 @@
 </section>
 <section id="equality-1" class="slide level2">
 <h2>Equality</h2>
-<div id="5cb768fe" class="cell" data-execution_count="40">
+<div id="be71208a" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a></a><span class="kw">class</span> Interval:</span>
 <span id="cb78-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start:date, end:date):</span>
 <span id="cb78-3"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
@@ -971,7 +971,7 @@
 <section class="slide level2">
 
 <p>For a dataclass, equality is based on the values of the fields.</p>
-<div id="1fcded14" class="cell" data-execution_count="41">
+<div id="205d93ed" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
 <span id="cb80-2"><a></a></span>
 <span id="cb80-3"><a></a><span class="at">@dataclass</span></span>
@@ -1002,7 +1002,7 @@
 </section>
 <section id="data-classes" class="slide level2 smaller">
 <h2>Data classes</h2>
-<div id="db8bad23" class="cell" data-execution_count="42">
+<div id="859879bb" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
 <span id="cb82-2"><a></a></span>
 <span id="cb82-3"><a></a><span class="at">@dataclass</span></span>
@@ -1011,7 +1011,7 @@
 <span id="cb82-6"><a></a>    standard_name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb82-7"><a></a>    name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">False</span>, default<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="af90fc60" class="cell" data-execution_count="43">
+<div id="c6690cec" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a></a>t1 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temp"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
 <span id="cb83-2"><a></a>t2 <span class="op">=</span> Quantity(name<span class="op">=</span><span class="st">"temperature"</span>, unit<span class="op">=</span><span class="st">"C"</span>, standard_name<span class="op">=</span><span class="st">"air_temperature"</span>)</span>
 <span id="cb83-3"><a></a></span>
@@ -1020,7 +1020,7 @@
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="1ec11067" class="cell" data-execution_count="44">
+<div id="7c3f23bb" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a></a>d1 <span class="op">=</span> Quantity(unit<span class="op">=</span><span class="st">"m"</span>, standard_name<span class="op">=</span><span class="st">"depth"</span>)</span>
 <span id="cb85-2"><a></a>d1 <span class="op">==</span> t2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
