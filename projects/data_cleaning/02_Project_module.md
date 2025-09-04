@@ -25,8 +25,8 @@ After last module, your script now uses functions `clean_spikes`, `clean_outofra
 - 2.3 Classes
     - Organize the cleaning functions into classes that all have the same structure (an init method and a clean method)
         - e.g. for SpikeCleaner
-            - create and init method: `def __init__(max_jump)`
-            - and a clean method: `def clean(data)`
+            - create and init method: `def __init__(self, max_jump):`
+            - and a clean method: `def clean(self, data):`
         - modify `main.py` and check that it runs
 ```python
 cleaners = [
