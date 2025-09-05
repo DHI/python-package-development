@@ -116,7 +116,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7fbaa4a9d6a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7fbaa4ab07d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f0d7c0b96a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f0d7c0d07d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -1698,7 +1698,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f1708d8b8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f796cb6f8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1929,7 +1929,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f7834afbb60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fe370123b60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
@@ -2181,7 +2181,7 @@
     "href": "03_testing_slides.html#testing-workflow",
     "title": "Testing, linting and formatting",
     "section": "Testing workflow",
-    "text": "Testing workflow\n\n\n\n\n\nflowchart TD\n    A[Prepare inputs]\n    B[Describe expected output]\n    C[Obtain actual output]\n    D[Compare actual and\\n expected output]\n\n    A --&gt; B --&gt; C --&gt; D"
+    "text": "Testing workflow\n\nPrepare inputs\nDescribe expected output\nObtain actual output\nCompare actual and expected output"
   },
   {
     "objectID": "03_testing_slides.html#unit-testing",
@@ -2202,7 +2202,7 @@
     "href": "03_testing_slides.html#example",
     "title": "Testing, linting and formatting",
     "section": "Example",
-    "text": "Example\n\nget a timeseries of water levels\nfind the maxiumum water level each year\ncreate a summary report for the subset of data"
+    "text": "Example\n\nfind the maximum water level each year\ncreate a summary report for the subset of data"
   },
   {
     "objectID": "03_testing_slides.html#integration-testing",
@@ -2210,6 +2210,13 @@
     "title": "Testing, linting and formatting",
     "section": "Integration testing",
     "text": "Integration testing\ndef test_integration():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    max_wls = get_max_water_level(wl, freq=\"Y\")\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
+  },
+  {
+    "objectID": "03_testing_slides.html#regression-testing",
+    "href": "03_testing_slides.html#regression-testing",
+    "title": "Testing, linting and formatting",
+    "section": "Regression testing",
+    "text": "Regression testing\n\nNot a distinct test type, but a process\nA regression = when code changes break previously working behavior\nRegression testing = rerunning your existing test suite after each change\nTest suite grows over time:\n\nUnit/integration tests\nTests added for fixed bugs\n\nGoal: ensure new changes don’t reintroduce old bugs or unexpected behavior"
   },
   {
     "objectID": "03_testing_slides.html#testing-in-vs-code",
@@ -2230,14 +2237,14 @@
     "href": "03_testing_slides.html#fixture-example",
     "title": "Testing, linting and formatting",
     "section": "Fixture example",
-    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, .., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
+    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, ..., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
   },
   {
     "objectID": "03_testing_slides.html#test-coverage",
     "href": "03_testing_slides.html#test-coverage",
     "title": "Testing, linting and formatting",
     "section": "Test coverage",
-    "text": "Test coverage\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
+    "text": "Test coverage\n\nA measure of how much of your code is tested\nAim for high coverage, but focus on meaningful tests\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
   },
   {
     "objectID": "03_testing_slides.html#test-coverage-report",
@@ -2254,11 +2261,11 @@
     "text": "Testing advice\n\n\n\n\n\n\nTest edge cases\n\n\n\nempty lists\nlists with a single element\nempty strings\nempty dictionaries\nNone\nnp.nan"
   },
   {
-    "objectID": "03_testing_slides.html#tests-act-as-specification",
-    "href": "03_testing_slides.html#tests-act-as-specification",
+    "objectID": "03_testing_slides.html#tests-document-expected-behavior",
+    "href": "03_testing_slides.html#tests-document-expected-behavior",
     "title": "Testing, linting and formatting",
-    "section": "Tests act as specification",
-    "text": "Tests act as specification\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
+    "section": "Tests document expected behavior",
+    "text": "Tests document expected behavior\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
   },
   {
     "objectID": "03_testing_slides.html#test-driven-development",
@@ -2286,7 +2293,7 @@
     "href": "03_testing_slides.html#exceptions",
     "title": "Testing, linting and formatting",
     "section": "Exceptions",
-    "text": "Exceptions\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nExceptions are communication between the programmer and the user.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitialistionError, MissingLicenseError?"
+    "text": "Exceptions\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nExceptions are communication between the programmer and the user.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitError, MissingLicenseError?"
   },
   {
     "objectID": "03_testing_slides.html#example-1",
@@ -2314,7 +2321,7 @@
     "href": "03_testing_slides.html#linting",
     "title": "Testing, linting and formatting",
     "section": "Linting",
-    "text": "Linting\nA way to check your code for common errors and style issues.\nruff is a new tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
+    "text": "Linting\nA quick way to check your code for common errors and style issues.\nruff is a recent tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
   },
   {
     "objectID": "03_testing_slides.html#linting-with-ruff",
@@ -2328,7 +2335,7 @@
     "href": "03_testing_slides.html#formatting",
     "title": "Testing, linting and formatting",
     "section": "Formatting",
-    "text": "Formatting\n\nFormatting code for readability and maintainability is essential.\nruff can be used for code formatting (in addition to linting).\nruff is a faster replacement of black, a previously commonly used code formatter.\nIt enforces its own rules for formatting, which are only minorly configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
+    "text": "Formatting\n\nFormatting code for readability and maintainability is essential.\nruff can be used for code formatting (in addition to linting).\nruff is a faster replacement of black, a previously commonly used code formatter.\nIt enforces its own rules for formatting, with limited configurability.\nHaving a unified style makes code changes easier to understand and collaborate on."
   },
   {
     "objectID": "03_testing_slides.html#running-ruff-format",
@@ -2356,7 +2363,7 @@
     "href": "03_testing_slides.html#profiling---example-code",
     "title": "Testing, linting and formatting",
     "section": "Profiling - example code",
-    "text": "Profiling - example code\nimport numpy as np\n\ndef top_neighbors(points, radius=\"0.1\"):\n    \"\"\"Don't use this function, it's only purpose is to be profiled.\"\"\"\n    n = len(points)\n    idx = np.array([int(x) for x in str.split(\"0 \"* n)])\n\n    for i in range(n):\n        for j in range(n):\n            if i != j:\n                d = np.sqrt(np.sum((points[i] - points[j])**2))\n                if d &lt; float(radius): \n                    idx[i] += 1\n    for i in range(n):\n        for j in range(n - i - 1):\n            if idx[j] &lt; idx[j + 1]:\n                idx[j], idx[j + 1] = idx[j + 1], idx[j]\n                points[j], points[j + 1] = points[j + 1], points[j]\n    return points\n\ndef main():\n    points = np.random.rand(1000, 2)\n    top = top_neighbors(points)"
+    "text": "Profiling - example code\nimport numpy as np\n\ndef top_neighbors(points, radius=0.1):\n    \"\"\"Don't use this function, it's only purpose is to be profiled.\"\"\"\n    n = len(points)\n    idx = np.array([int(x) for x in str.split(\"0 \"* n)])\n\n    for i in range(n):\n        for j in range(n):\n            if i != j:\n                d = np.sqrt(np.sum((points[i] - points[j])**2))\n                if d &lt; float(radius): \n                    idx[i] += 1\n    for i in range(n):\n        for j in range(n - i - 1):\n            if idx[j] &lt; idx[j + 1]:\n                idx[j], idx[j + 1] = idx[j + 1], idx[j]\n                points[j], points[j + 1] = points[j + 1], points[j]\n    return points\n\ndef main():\n    points = np.random.rand(1000, 2)\n    top = top_neighbors(points)"
   },
   {
     "objectID": "03_testing_slides.html#profiling---output",
@@ -2398,7 +2405,7 @@
     "href": "03_testing.html#testing-workflow",
     "title": "Testing, linting and formatting",
     "section": "Testing workflow",
-    "text": "Testing workflow\n\n\n\n\n\nflowchart TD\n    A[Prepare inputs]\n    B[Describe expected output]\n    C[Obtain actual output]\n    D[Compare actual and\\n expected output]\n\n    A --&gt; B --&gt; C --&gt; D"
+    "text": "Testing workflow\n\nPrepare inputs\nDescribe expected output\nObtain actual output\nCompare actual and expected output"
   },
   {
     "objectID": "03_testing.html#unit-testing",
@@ -2419,7 +2426,7 @@
     "href": "03_testing.html#example",
     "title": "Testing, linting and formatting",
     "section": "Example",
-    "text": "Example\n\nget a timeseries of water levels\nfind the maxiumum water level each year\ncreate a summary report for the subset of data\n\n\n\nget a timeseries of water levels\n\ndef test_get_water_level_includes_start_and_end():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    \n    assert len(wl) == 25\n\n\nfind the maxiumum water level each year\n\ndef test_get_max_water_level():\n    ts = TimeSeries([1.0, .., 3.0], start = \"2019-01-01\")\n    max_wls = get_max_water_level(ts, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0\n\n\ncreate a summary report for the subset of data\n\ndef test_summary_report():\n    max_wls = [1.0, 2.0, 3.0]\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
+    "text": "Example\n\nfind the maximum water level each year\ncreate a summary report for the subset of data\n\n\n\nfind the maximum water level each year\n\ndef test_get_max_water_level():\n    ts = TimeSeries([1.0, 2.0, ..., 3.0], start = \"2019-01-01\")\n    max_wls = get_max_water_level(ts, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0\n\n\ncreate a summary report for the subset of data\n\ndef test_summary_report():\n    max_wls = [1.0, 2.0, 3.0]\n    report = summary_report(max_wls, station=\"Station A\")\n\n    assert report.title == \"Summary report - Station A\"\n    assert report.text == \"The maximum water level during the year was 3.0 m\""
   },
   {
     "objectID": "03_testing.html#integration-testing",
@@ -2427,6 +2434,13 @@
     "title": "Testing, linting and formatting",
     "section": "Integration testing",
     "text": "Integration testing\ndef test_integration():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    max_wls = get_max_water_level(wl, freq=\"Y\")\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
+  },
+  {
+    "objectID": "03_testing.html#regression-testing",
+    "href": "03_testing.html#regression-testing",
+    "title": "Testing, linting and formatting",
+    "section": "Regression testing",
+    "text": "Regression testing\n\n\nNot a distinct test type, but a process\nA regression = when code changes break previously working behavior\nRegression testing = rerunning your existing test suite after each change\nTest suite grows over time:\n\nUnit/integration tests\nTests added for fixed bugs\n\nGoal: ensure new changes don’t reintroduce old bugs or unexpected behavior"
   },
   {
     "objectID": "03_testing.html#testing-in-vs-code",
@@ -2447,14 +2461,14 @@
     "href": "03_testing.html#fixture-example",
     "title": "Testing, linting and formatting",
     "section": "Fixture example",
-    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, .., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
+    "text": "Fixture example\n@pytest.fixture\ndef water_level():\n    return TimeSeries([1.0, ..., 3.0], start = \"2019-01-01\")\n\ndef test_get_max_water_level(water_level):\n    max_wls = get_max_water_level(water_level, freq=\"Y\")\n    \n    assert len(max_wls) == 1\n    assert max_wls[0] == 3.0"
   },
   {
     "objectID": "03_testing.html#test-coverage",
     "href": "03_testing.html#test-coverage",
     "title": "Testing, linting and formatting",
     "section": "Test coverage",
-    "text": "Test coverage\n\n\nA measure of how much of your code is tested\nA good test suite should cover all the code\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
+    "text": "Test coverage\n\n\nA measure of how much of your code is tested\nAim for high coverage, but focus on meaningful tests\nInstall pytest-cov\nRun tests with coverage report\n\npytest --cov=myproj\n\nUse coverage report to identify untested code"
   },
   {
     "objectID": "03_testing.html#test-coverage-report",
@@ -2471,11 +2485,11 @@
     "text": "Testing advice\n\n\n\n\n\n\nTest edge cases\n\n\n\n\nempty lists\nlists with a single element\nempty strings\nempty dictionaries\nNone\nnp.nan"
   },
   {
-    "objectID": "03_testing.html#tests-act-as-specification",
-    "href": "03_testing.html#tests-act-as-specification",
+    "objectID": "03_testing.html#tests-document-expected-behavior",
+    "href": "03_testing.html#tests-document-expected-behavior",
     "title": "Testing, linting and formatting",
-    "section": "Tests act as specification",
-    "text": "Tests act as specification\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
+    "section": "Tests document expected behavior",
+    "text": "Tests document expected behavior\ndef test_operable_period_can_be_missing():\n\n    assert is_operable(height=1.0, period=None)\n    assert is_operable(height=1.0, period=np.nan)\n    assert is_operable(height=1.0)\n    assert not is_operable(height=11.0)\n\ndef test_height_can_not_be_missing():\n\n    with pytest.raises(ValueError) as excinfo:\n        is_operable(height=None)\n        is_operable(height=np.nan)\n        \n    assert \"height\" in str(excinfo.value)"
   },
   {
     "objectID": "03_testing.html#test-driven-development",
@@ -2503,7 +2517,7 @@
     "href": "03_testing.html#exceptions",
     "title": "Testing, linting and formatting",
     "section": "Exceptions",
-    "text": "Exceptions\n\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nExceptions are communication between the programmer and the user.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitialistionError, MissingLicenseError?"
+    "text": "Exceptions\n\n\nExceptions are a way to handle errors in your code.\nRaising an exception can prevent propagating bad values.\nExceptions are communication between the programmer and the user.\nThere are many built-in exceptions in Python\n\nIndexError\nKeyError\nValueError\nFileNotFoundError\n\nYou can also create your own custom exceptions, e.g. ModelInitError, MissingLicenseError?"
   },
   {
     "objectID": "03_testing.html#example-1",
@@ -2531,7 +2545,7 @@
     "href": "03_testing.html#linting",
     "title": "Testing, linting and formatting",
     "section": "Linting",
-    "text": "Linting\nA way to check your code for common errors and style issues.\nruff is a new tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
+    "text": "Linting\nA quick way to check your code for common errors and style issues.\nruff is a recent tool for linting Python code.\n\nsyntax errors\nunused imports\nunused variables\nundefined names\ncode style (e.g. line length, indentation, whitespace, etc.)"
   },
   {
     "objectID": "03_testing.html#linting-with-ruff",
@@ -2545,7 +2559,7 @@
     "href": "03_testing.html#formatting",
     "title": "Testing, linting and formatting",
     "section": "Formatting",
-    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nruff can be used for code formatting (in addition to linting).\nruff is a faster replacement of black, a previously commonly used code formatter.\nIt enforces its own rules for formatting, which are only minorly configurable.\nHaving a unified style makes code changes easier to understand and collaborate on."
+    "text": "Formatting\n\n\nFormatting code for readability and maintainability is essential.\nruff can be used for code formatting (in addition to linting).\nruff is a faster replacement of black, a previously commonly used code formatter.\nIt enforces its own rules for formatting, with limited configurability.\nHaving a unified style makes code changes easier to understand and collaborate on."
   },
   {
     "objectID": "03_testing.html#running-ruff-format",
@@ -2573,7 +2587,7 @@
     "href": "03_testing.html#profiling---example-code",
     "title": "Testing, linting and formatting",
     "section": "Profiling - example code",
-    "text": "Profiling - example code\nimport numpy as np\n\ndef top_neighbors(points, radius=\"0.1\"):\n    \"\"\"Don't use this function, it's only purpose is to be profiled.\"\"\"\n    n = len(points)\n    idx = np.array([int(x) for x in str.split(\"0 \"* n)])\n\n    for i in range(n):\n        for j in range(n):\n            if i != j:\n                d = np.sqrt(np.sum((points[i] - points[j])**2))\n                if d &lt; float(radius): \n                    idx[i] += 1\n    for i in range(n):\n        for j in range(n - i - 1):\n            if idx[j] &lt; idx[j + 1]:\n                idx[j], idx[j + 1] = idx[j + 1], idx[j]\n                points[j], points[j + 1] = points[j + 1], points[j]\n    return points\n\ndef main():\n    points = np.random.rand(1000, 2)\n    top = top_neighbors(points)"
+    "text": "Profiling - example code\nimport numpy as np\n\ndef top_neighbors(points, radius=0.1):\n    \"\"\"Don't use this function, it's only purpose is to be profiled.\"\"\"\n    n = len(points)\n    idx = np.array([int(x) for x in str.split(\"0 \"* n)])\n\n    for i in range(n):\n        for j in range(n):\n            if i != j:\n                d = np.sqrt(np.sum((points[i] - points[j])**2))\n                if d &lt; float(radius): \n                    idx[i] += 1\n    for i in range(n):\n        for j in range(n - i - 1):\n            if idx[j] &lt; idx[j + 1]:\n                idx[j], idx[j + 1] = idx[j + 1], idx[j]\n                points[j], points[j + 1] = points[j + 1], points[j]\n    return points\n\ndef main():\n    points = np.random.rand(1000, 2)\n    top = top_neighbors(points)"
   },
   {
     "objectID": "03_testing.html#profiling---output",
