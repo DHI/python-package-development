@@ -533,7 +533,7 @@ class GeometryFMVerticalProfile{
 <li>…</li>
 </ul>
 <hr>
-<div id="bce38dc3" class="cell" data-execution_count="1">
+<div id="17f7536c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Collection</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
@@ -545,7 +545,7 @@ class GeometryFMVerticalProfile{
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Screwdriver(Tool):</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"screwdriver"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a72c9928" class="cell" data-execution_count="2">
+<div id="d6009aff" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
@@ -562,17 +562,17 @@ class GeometryFMVerticalProfile{
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>tb.getToolByName(<span class="st">"hammer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;__main__.Hammer at 0x7f0d7c0b96a0&gt;</code></pre>
+<pre><code>&lt;__main__.Hammer at 0x7fc90c7296a0&gt;</code></pre>
 </div>
 </div>
-<div id="41fe4dbf" class="cell" data-execution_count="3">
+<div id="7b895762" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tb.numberOfTools()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>2</code></pre>
 </div>
 </div>
 <hr>
-<div id="388000a9" class="cell" data-execution_count="4">
+<div id="76f8d881" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Toolbox:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]):</span>
@@ -587,10 +587,10 @@ class GeometryFMVerticalProfile{
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>tb[<span class="st">"hammer"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;__main__.Hammer at 0x7f0d7c0d07d0&gt;</code></pre>
+<pre><code>&lt;__main__.Hammer at 0x7fc90c7407d0&gt;</code></pre>
 </div>
 </div>
-<div id="7bf7e887" class="cell" data-execution_count="5">
+<div id="c8adef91" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>2</code></pre>
@@ -600,7 +600,7 @@ class GeometryFMVerticalProfile{
 <p>You want your code to feel like the built-in types.</p>
 </div>
 <hr>
-<div id="c322eb5c" class="cell" data-execution_count="6">
+<div id="c54298d8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SparseMatrix:</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, shape, fill_value<span class="op">=</span><span class="fl">0.0</span>, data<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.shape <span class="op">=</span> shape</span>
@@ -631,7 +631,7 @@ class GeometryFMVerticalProfile{
 <span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> matrix_str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<div id="9b410ba3" class="cell" data-execution_count="7">
+<div id="d8f7b6d7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> SparseMatrix(shape<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>), fill_value<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -640,14 +640,14 @@ class GeometryFMVerticalProfile{
 </div>
 </div>
 <p>. . .</p>
-<div id="1f4c9750" class="cell" data-execution_count="8">
+<div id="e1917974" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">0</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>0.0</code></pre>
 </div>
 </div>
 <p>. . .</p>
-<div id="c224b526" class="cell" data-execution_count="9">
+<div id="0c8cdb0a" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">=</span> <span class="fl">2.0</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -657,7 +657,7 @@ class GeometryFMVerticalProfile{
 </div>
 </div>
 <p>. . .</p>
-<div id="795d75ad" class="cell" data-execution_count="10">
+<div id="c4c3b522" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m.transpose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>0.0 1.0 
@@ -785,7 +785,7 @@ class GeometryFMVerticalProfile{
 </section>
 <section id="example---pydantic" class="level2">
 <h2 class="anchored" data-anchor-id="example---pydantic">Example - Pydantic</h2>
-<div id="299e3b47" class="cell" data-execution_count="11">
+<div id="7efba1ba" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -804,7 +804,7 @@ class GeometryFMVerticalProfile{
 <pre><code>Sensor(name='Sensor 1', voltage=3.3, install_date=datetime.date(2020, 1, 1), location=(4.42, 51.22))</code></pre>
 </div>
 </div>
-<div id="61be7e50" class="cell" data-execution_count="12">
+<div id="4a86e6ca" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Sensor 1"</span>,</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"voltage"</span>: <span class="st">"3.3"</span>,</span>

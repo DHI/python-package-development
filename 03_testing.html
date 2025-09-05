@@ -241,22 +241,6 @@ Definition “Unit”
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> report.title <span class="op">==</span> <span class="st">"Summary report"</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> report.text <span class="op">==</span> <span class="st">"The maximum water level in 2021 was 3.0 m"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="regression-testing" class="level2">
-<h2 class="anchored" data-anchor-id="regression-testing">Regression testing</h2>
-<div class="incremental">
-<ul class="incremental">
-<li><p>Not a distinct test type, but a process</p></li>
-<li><p>A regression = when code changes break previously working behavior</p></li>
-<li><p>Regression testing = rerunning your existing test suite after each change</p></li>
-<li><p>Test suite grows over time:</p>
-<ul class="incremental">
-<li><p>Unit/integration tests</p></li>
-<li><p>Tests added for fixed bugs</p></li>
-</ul></li>
-<li><p>Goal: ensure new changes don’t reintroduce old bugs or unexpected behavior</p></li>
-</ul>
-</div>
-</section>
 <section id="testing-in-vs-code" class="level2">
 <h2 class="anchored" data-anchor-id="testing-in-vs-code">Testing in VS Code</h2>
 <p><img src="images/vs_code_test.png" class="img-fluid"></p>
@@ -629,7 +613,6 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <ul class="incremental">
 <li>Testing is a way to verify that your code is working as expected.</li>
 <li><strong>Unit</strong> tests are small, isolated tests that verify a single logical concept in your code.</li>
-<li><strong>Regression</strong> tests are used to verify that your code is still working after changes.</li>
 <li><strong>Integration</strong> tests are used to verify that your code works with other code.</li>
 <li>Exceptions are a way to handle errors in your code.</li>
 <li>Warnings are a way to alert users of your code to potential issues or usage errors.</li>

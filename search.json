@@ -116,7 +116,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f0d7c0b96a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f0d7c0d07d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7fc90c7296a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7fc90c7407d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -1698,7 +1698,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f796cb6f8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fb0e8c0f8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1929,7 +1929,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fe370123b60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f5bb09abb60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
@@ -2212,13 +2212,6 @@
     "text": "Integration testing\ndef test_integration():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    max_wls = get_max_water_level(wl, freq=\"Y\")\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
   },
   {
-    "objectID": "03_testing_slides.html#regression-testing",
-    "href": "03_testing_slides.html#regression-testing",
-    "title": "Testing, linting and formatting",
-    "section": "Regression testing",
-    "text": "Regression testing\n\nNot a distinct test type, but a process\nA regression = when code changes break previously working behavior\nRegression testing = rerunning your existing test suite after each change\nTest suite grows over time:\n\nUnit/integration tests\nTests added for fixed bugs\n\nGoal: ensure new changes don’t reintroduce old bugs or unexpected behavior"
-  },
-  {
     "objectID": "03_testing_slides.html#testing-in-vs-code",
     "href": "03_testing_slides.html#testing-in-vs-code",
     "title": "Testing, linting and formatting",
@@ -2384,7 +2377,7 @@
     "href": "03_testing_slides.html#summary",
     "title": "Testing, linting and formatting",
     "section": "Summary",
-    "text": "Summary\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nRuff is also an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\nMakefiles simplify project related commands for everyone."
+    "text": "Summary\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nRuff is also an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\nMakefiles simplify project related commands for everyone."
   },
   {
     "objectID": "03_testing.html",
@@ -2434,13 +2427,6 @@
     "title": "Testing, linting and formatting",
     "section": "Integration testing",
     "text": "Integration testing\ndef test_integration():\n    wl = get_water_level(time=\"2019-01-01\", location=\"Aarhus\")\n    max_wls = get_max_water_level(wl, freq=\"Y\")\n    report = summary_report(max_wls)\n\n    assert report.title == \"Summary report\"\n    assert report.text == \"The maximum water level in 2021 was 3.0 m\""
-  },
-  {
-    "objectID": "03_testing.html#regression-testing",
-    "href": "03_testing.html#regression-testing",
-    "title": "Testing, linting and formatting",
-    "section": "Regression testing",
-    "text": "Regression testing\n\n\nNot a distinct test type, but a process\nA regression = when code changes break previously working behavior\nRegression testing = rerunning your existing test suite after each change\nTest suite grows over time:\n\nUnit/integration tests\nTests added for fixed bugs\n\nGoal: ensure new changes don’t reintroduce old bugs or unexpected behavior"
   },
   {
     "objectID": "03_testing.html#testing-in-vs-code",
@@ -2608,7 +2594,7 @@
     "href": "03_testing.html#summary",
     "title": "Testing, linting and formatting",
     "section": "Summary",
-    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nRegression tests are used to verify that your code is still working after changes.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nRuff is also an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\nMakefiles simplify project related commands for everyone."
+    "text": "Summary\n\n\nTesting is a way to verify that your code is working as expected.\nUnit tests are small, isolated tests that verify a single logical concept in your code.\nIntegration tests are used to verify that your code works with other code.\nExceptions are a way to handle errors in your code.\nWarnings are a way to alert users of your code to potential issues or usage errors.\nLinting is a way to check your code for common errors and style issues.\nRuff is a fast linter that checks for common errors and style issues.\nRuff is also an automatic code formatter that enforces a consistent style.\nProfiling is a way to measure the performance of your code.\nMakefiles simplify project related commands for everyone."
   },
   {
     "objectID": "index.html",
