@@ -125,25 +125,6 @@ def test_integration():
 ```
 
 
-## Regression testing
-
-::: {.incremental}
-
-* Not a distinct test type, but a process
-
-* A regression = when code changes break previously working behavior
-
-* Regression testing = rerunning your existing test suite after each change
-
-* Test suite grows over time:
-
-    - Unit/integration tests
-
-    - Tests added for fixed bugs
-
-* Goal: ensure new changes don’t reintroduce old bugs or unexpected behavior
-:::
-
 ## Testing in VS Code
 
 ![](images/vs_code_test.png)
@@ -556,7 +537,6 @@ test:
 
 * Testing is a way to verify that your code is working as expected.
 * **Unit** tests are small, isolated tests that verify a single logical concept in your code.
-* **Regression** tests are used to verify that your code is still working after changes.
 * **Integration** tests are used to verify that your code works with other code.
 * Exceptions are a way to handle errors in your code.
 * Warnings are a way to alert users of your code to potential issues or usage errors.
