@@ -45,6 +45,23 @@ Make the requirements loose, to avoid conflicts with other packages.
 
 :::
 
+## Dependency tree
+
+![](images/dependency_tree.png)
+
+## uv {.smaller}
+
+* 🚀 A single tool to replace pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv, and more.
+* ⚡️ 10-100x faster than pip.
+* 🗂️ Provides comprehensive project management, with a universal lockfile.
+* ❇️ Runs scripts, with support for inline dependency metadata.
+* 🐍 Installs and manages Python versions.
+* 🛠️ Runs and installs tools published as Python packages.
+* 🔩 Includes a pip-compatible interface for a performance boost with a familiar CLI.
+* 💾 Disk-space efficient, with a global cache for dependency deduplication.
+* ⏬ Installable without Rust or Python via curl or pip.
+* 🖥️ Supports macOS, Linux, and Windows.
+
 ## Dependency management
 
 `uv` is the recommended tool for managing a Python project including dependencies.
@@ -85,6 +102,23 @@ dev = [
     "pytest>=8.4.1",
 ]
 ```
+
+## Dependency management using uv CLI
+
+* Add a dependency:
+```{.bash}
+$ uv add matplotlib
+
+* Remove a dependency:
+```{.bash}
+$ uv remove seaborn
+```
+
+* Add development dependency:
+```{.bash}
+$ uv add --dev pytest
+```
+
 
 ## Creating an installable package
 
@@ -146,12 +180,6 @@ There are many CI services available, e.g.:
 * Circle CI
 
 
-::: {.notes}
-
-GitHub Actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies.
-
-:::
-
 ## GitHub Actions {.smaller}
 
 :::: {.columns}
@@ -194,16 +222,16 @@ on: # when to run the workflow
   pull_request:
     branches: [ main ]
 
-jobs: # what to run
-  build:
+jobs: # which jobs to run
+  build: # descriptive name 🙄
     runs-on: ubuntu-latest # on what operating system
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v6
       with:
-        python-version: 3.9
+        python-version: "3.13"
     - name: Install dependencies
       run: |
         uv sync
@@ -268,7 +296,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python-version: [3.8, 3.9, "3.10","3.11"]
+        python-version: ["3.10","3.13"]
 ...
 ```
 
