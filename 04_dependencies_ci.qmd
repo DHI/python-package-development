@@ -96,6 +96,8 @@ $ uv sync
 
 ## Development dependencies
 
+I.e. dependencies needed for testing, building documentation, linting, etc. not needed to run the package. 
+
 ```{.toml filename="pyproject.toml"}
 [dependency-groups]
 dev = [
@@ -103,11 +105,12 @@ dev = [
 ]
 ```
 
-## Dependency management using uv CLI
+## Dependency management using uv
 
 * Add a dependency:
 ```{.bash}
 $ uv add matplotlib
+```
 
 * Remove a dependency:
 ```{.bash}
@@ -122,7 +125,7 @@ $ uv add --dev pytest
 
 ## Creating an installable package
 
-With `uv` the the package will be installed in editable mode when you create it with:
+Create a new library project:
 
 ```{.bash}
 $ uv init --lib
@@ -166,18 +169,16 @@ tests/test_foo.py .                       [100%]
 
 ## Continuous Integration
 
-Running tests on every commit in a well defined environment ensures that the code is working as expected.
+* Running tests on every commit in a well defined environment ensures that the code is working as expected.
 
-It solves the "it works on my machine" problem.
+* It solves the "it works on my machine" problem.
 
-Executing code on a remote server is a good way to ensure that the code is working as expected.
+* Executing code on a remote server is a good way to ensure that the code is working as expected.
 
-There are many CI services available, e.g.:
-
-* GitHub Actions
-* Azure Pipelines
-* Travis CI
-* Circle CI
+* Example of CI services:
+  - **GitHub Actions**
+  - Azure Pipelines
+  - Travis CI
 
 
 ## GitHub Actions {.smaller}
@@ -212,6 +213,8 @@ mikeio/.github/
 ::::
 
 ---
+
+## Workflow example {.smaller}
 
 ```yaml
 name: Quick test
