@@ -7,7 +7,7 @@ In the last module, you introduced modules, classes and a new notebook in you re
 - Create new branch "package-test" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 3.1 Installable package
     - Organize the files into folders and add an empty `pyproject.toml`. Call your package `tscleaner`.
-        - subfolders: src/tscleaner, scripts, notebooks, tests
+        - subfolders: `src/tscleaner`, `scripts`, `notebooks`, `tests`
         - make an init-file `__init__.py` in the src/tscleaner folder with the following content: 
 
     ```python
@@ -19,7 +19,7 @@ In the last module, you introduced modules, classes and a new notebook in you re
 
     ```
     ├── notebooks/
-    ├── scrips/
+    ├── scripts/
     ├── src/
     │   └── tscleaner/
     │       └── __init__.py
