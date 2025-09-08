@@ -116,7 +116,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7fc90c7296a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7fc90c7407d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7ffbb00b96a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7ffbb00d07d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -763,6 +763,20 @@
     "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
   },
   {
+    "objectID": "04_dependencies_ci.html#dependency-tree",
+    "href": "04_dependencies_ci.html#dependency-tree",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency tree",
+    "text": "Dependency tree"
+  },
+  {
+    "objectID": "04_dependencies_ci.html#uv",
+    "href": "04_dependencies_ci.html#uv",
+    "title": "Dependencies and Continuous Integration",
+    "section": "uv",
+    "text": "uv\n\n🚀 A single tool to replace pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv, and more.\n⚡️ 10-100x faster than pip.\n🗂️ Provides comprehensive project management, with a universal lockfile.\n❇️ Runs scripts, with support for inline dependency metadata.\n🐍 Installs and manages Python versions.\n🛠️ Runs and installs tools published as Python packages.\n🔩 Includes a pip-compatible interface for a performance boost with a familiar CLI.\n💾 Disk-space efficient, with a global cache for dependency deduplication.\n⏬ Installable without Rust or Python via curl or pip.\n🖥️ Supports macOS, Linux, and Windows."
+  },
+  {
     "objectID": "04_dependencies_ci.html#dependency-management",
     "href": "04_dependencies_ci.html#dependency-management",
     "title": "Dependencies and Continuous Integration",
@@ -775,6 +789,13 @@
     "title": "Dependencies and Continuous Integration",
     "section": "Development dependencies",
     "text": "Development dependencies\n\n\npyproject.toml\n\n[dependency-groups]\ndev = [\n    \"pytest&gt;=8.4.1\",\n]"
+  },
+  {
+    "objectID": "04_dependencies_ci.html#dependency-management-using-uv-cli",
+    "href": "04_dependencies_ci.html#dependency-management-using-uv-cli",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency management using uv CLI",
+    "text": "Dependency management using uv CLI\n\nAdd a dependency:\n\n$ uv add matplotlib\n\n* Remove a dependency:\n```{.bash}\n$ uv remove seaborn\n\nAdd development dependency:\n\n$ uv add --dev pytest"
   },
   {
     "objectID": "04_dependencies_ci.html#creating-an-installable-package",
@@ -795,14 +816,14 @@
     "href": "04_dependencies_ci.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
     "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nThere are many CI services available, e.g.:\n\nGitHub Actions\nAzure Pipelines\nTravis CI\nCircle CI\n\n\nGitHub Actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nThere are many CI services available, e.g.:\n\nGitHub Actions\nAzure Pipelines\nTravis CI\nCircle CI"
   },
   {
     "objectID": "04_dependencies_ci.html#github-actions",
     "href": "04_dependencies_ci.html#github-actions",
     "title": "Dependencies and Continuous Integration",
     "section": "GitHub Actions",
-    "text": "GitHub Actions\n\n\n\nWorkflow are stored in the .github/workflows folder.\nWorkflow is described in a YAML file.\nYAML is whitespace sensitive (like Python).\nYAML can contain lists, dictionaries and strings, and can be nested.\n\n\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml\n\n\n\nname: Quick test\n\non: # when to run the workflow\n  push:\n    branches: [ main]\n  pull_request:\n    branches: [ main ]\n\njobs: # what to run\n  build:\n    runs-on: ubuntu-latest # on what operating system\n\n    steps:\n    - uses: actions/checkout@v3\n    - name: Set up Python\n      uses: actions/setup-python@v4\n      with:\n        python-version: 3.9\n    - name: Install dependencies\n      run: |\n        uv sync\n\n    - name: Test with pytest\n      run: |\n        uv run pytest\n\n🙂🚀\n\n\n☹️"
+    "text": "GitHub Actions\n\n\n\nWorkflow are stored in the .github/workflows folder.\nWorkflow is described in a YAML file.\nYAML is whitespace sensitive (like Python).\nYAML can contain lists, dictionaries and strings, and can be nested.\n\n\n$ tree mikeio/.github/\nmikeio/.github/\n└── workflows\n    ├── docs.yml\n    ├── downstream_test.yml\n    ├── full_test.yml\n    ├── notebooks_test.yml\n    ├── perf_test.yml\n    ├── python-publish.yml\n    └── quick_test.yml\n\n\n\nname: Quick test\n\non: # when to run the workflow\n  push:\n    branches: [ main]\n  pull_request:\n    branches: [ main ]\n\njobs: # which jobs to run\n  build: # descriptive name 🙄\n    runs-on: ubuntu-latest # on what operating system\n\n    steps:\n    - uses: actions/checkout@v3\n    - name: Set up uv\n      uses: astral-sh/setup-uv@v6\n      with:\n        python-version: \"3.13\"\n    - name: Install dependencies\n      run: |\n        uv sync\n\n    - name: Test with pytest\n      run: |\n        uv run pytest\n\n🙂🚀\n\n\n☹️"
   },
   {
     "objectID": "04_dependencies_ci.html#benefits-of-ci",
@@ -823,7 +844,7 @@
     "href": "04_dependencies_ci.html#jobs",
     "title": "Dependencies and Continuous Integration",
     "section": "Jobs",
-    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
+    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [\"3.10\",\"3.13\"]\n..."
   },
   {
     "objectID": "04_dependencies_ci.html#github-releases",
@@ -847,6 +868,20 @@
     "text": "Application\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0\n\n\nMake the requirements loose, to avoid conflicts with other packages."
   },
   {
+    "objectID": "04_dependencies_ci_slides.html#dependency-tree",
+    "href": "04_dependencies_ci_slides.html#dependency-tree",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency tree",
+    "text": "Dependency tree"
+  },
+  {
+    "objectID": "04_dependencies_ci_slides.html#uv",
+    "href": "04_dependencies_ci_slides.html#uv",
+    "title": "Dependencies and Continuous Integration",
+    "section": "uv",
+    "text": "uv\n\n🚀 A single tool to replace pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv, and more.\n⚡️ 10-100x faster than pip.\n🗂️ Provides comprehensive project management, with a universal lockfile.\n❇️ Runs scripts, with support for inline dependency metadata.\n🐍 Installs and manages Python versions.\n🛠️ Runs and installs tools published as Python packages.\n🔩 Includes a pip-compatible interface for a performance boost with a familiar CLI.\n💾 Disk-space efficient, with a global cache for dependency deduplication.\n⏬ Installable without Rust or Python via curl or pip.\n🖥️ Supports macOS, Linux, and Windows."
+  },
+  {
     "objectID": "04_dependencies_ci_slides.html#dependency-management",
     "href": "04_dependencies_ci_slides.html#dependency-management",
     "title": "Dependencies and Continuous Integration",
@@ -859,6 +894,13 @@
     "title": "Dependencies and Continuous Integration",
     "section": "Development dependencies",
     "text": "Development dependencies\n\n\npyproject.toml\n\n[dependency-groups]\ndev = [\n    \"pytest&gt;=8.4.1\",\n]"
+  },
+  {
+    "objectID": "04_dependencies_ci_slides.html#dependency-management-using-uv-cli",
+    "href": "04_dependencies_ci_slides.html#dependency-management-using-uv-cli",
+    "title": "Dependencies and Continuous Integration",
+    "section": "Dependency management using uv CLI",
+    "text": "Dependency management using uv CLI\n\nAdd a dependency:\n\n$ uv add matplotlib\n\n* Remove a dependency:\n```{.bash}\n$ uv remove seaborn\n\nAdd development dependency:\n\n$ uv add --dev pytest"
   },
   {
     "objectID": "04_dependencies_ci_slides.html#creating-an-installable-package",
@@ -879,7 +921,7 @@
     "href": "04_dependencies_ci_slides.html#continuous-integration",
     "title": "Dependencies and Continuous Integration",
     "section": "Continuous Integration",
-    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nThere are many CI services available, e.g.:\n\nGitHub Actions\nAzure Pipelines\nTravis CI\nCircle CI\n\n\nGitHub Actions was forked from Azure Pipelines and runs on the same type of infrastructure, thus are very similar technologies."
+    "text": "Continuous Integration\nRunning tests on every commit in a well defined environment ensures that the code is working as expected.\nIt solves the “it works on my machine” problem.\nExecuting code on a remote server is a good way to ensure that the code is working as expected.\nThere are many CI services available, e.g.:\n\nGitHub Actions\nAzure Pipelines\nTravis CI\nCircle CI"
   },
   {
     "objectID": "04_dependencies_ci_slides.html#github-actions",
@@ -907,7 +949,7 @@
     "href": "04_dependencies_ci_slides.html#jobs",
     "title": "Dependencies and Continuous Integration",
     "section": "Jobs",
-    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [3.8, 3.9, \"3.10\",\"3.11\"]\n..."
+    "text": "Jobs\n\nOperating system\nPython version\n…\n\n...\njobs:\n  build:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, windows-latest]\n        python-version: [\"3.10\",\"3.13\"]\n..."
   },
   {
     "objectID": "04_dependencies_ci_slides.html#github-releases",
@@ -1698,7 +1740,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fb0e8c0f8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f766026f8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1929,7 +1971,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f5bb09abb60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fbe0821bb60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
