@@ -7,7 +7,7 @@
 3. [Testing and auto-formatting](03_testing.qmd) [🛝](03_testing_slides.html)
     * [Discussion](group_work/03_module.md)
     * [Homework](projects/data_cleaning/03_Project_module.md)
-4. [Dependencies and GitHub actions](04_dependencies_ci.qmd) [🛝](04_dependencies_ci_slides.html)
+4. [Dependencies and Continous Integration](04_dependencies_ci.qmd) [🛝](04_dependencies_ci_slides.html)
     * [Discussion](group_work/04_module.md)
     * [Homework](projects/data_cleaning/04_Project_module.md)
 6. [Object oriented design in Python](05_oop.qmd) [🛝](05_oop_slides.html)

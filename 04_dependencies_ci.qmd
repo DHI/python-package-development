@@ -8,6 +8,15 @@ format:
 footer: Python package development
 ---
 
+## Dependencies
+
+⏩ Dependencies are other pieces of software your project needs to work. 
+
+🤔 They save time by reusing existing solutions, but can make your project harder to maintain if they change or are no longer available.
+
+![](images/dependency_tree.png)
+
+
 
 ##
 
@@ -32,8 +41,8 @@ Pin versions to ensure reproducibility, e.g. `numpy==1.11.0`
 
 *A program that is used by another program*
 
-* Python package
-* Low level library (C, Fortran, Rust, ...)
+* *numpy*
+* *scikit-learn*
 
 Make the requirements as loose as possible, e.g. `numpy>=1.11.0`
 :::
@@ -45,9 +54,20 @@ Make the requirements loose, to avoid conflicts with other packages.
 
 :::
 
-## Dependency tree
+## Dependency resolution
 
-![](images/dependency_tree.png)
+::: {.incremental}
+
+- Python projects often depend on many packages, which may depend on others ("dependency tree").
+- Different packages may require conflicting versions of the same dependency.
+- Historically, Python tools did not always resolve these conflicts well, leading to "dependency hell." 😈
+- Ensuring everyone gets the same working set of packages has been difficult, especially for larger projects. 🤪
+
+:::
+
+. . .
+
+Modern tools like `uv` aim to solve these problems with faster and more reliable 😎
 
 ## uv {.smaller}
 
@@ -167,7 +187,7 @@ tests/test_foo.py .                       [100%]
 :::
 
 
-## Continuous Integration
+## Continuous Integration (CI)
 
 * Running tests on every commit in a well defined environment ensures that the code is working as expected.
 
@@ -201,12 +221,10 @@ $ tree mikeio/.github/
 mikeio/.github/
 └── workflows
     ├── docs.yml
-    ├── downstream_test.yml
     ├── full_test.yml
     ├── notebooks_test.yml
     ├── perf_test.yml
-    ├── python-publish.yml
-    └── quick_test.yml
+    └── python-publish.yml
 ```
 
 :::
@@ -263,8 +281,8 @@ jobs: # which jobs to run
 * Run tests on every commit
 * Test on different operating systems
 * Test on different Python versions
-* Create API documentation (next week)
-* Publish package to PyPI or similar package repository (two weeks from now)
+* Create API documentation
+* Publish package to PyPI or similar package repository
 
 :::
 
@@ -341,4 +359,4 @@ jobs:
 * Use GitHub Actions to run tests on every commit
 * Use GitHub Releases to publish software releases
 
-::: 
+:::
