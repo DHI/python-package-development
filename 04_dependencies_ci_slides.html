@@ -198,6 +198,12 @@
 </div>
 
 </section>
+<section id="dependencies" class="slide level2">
+<h2>Dependencies</h2>
+<p>⏩ Dependencies are other pieces of software your project needs to work.</p>
+<p>🤔 They save time by reusing existing solutions, but can make your project harder to maintain if they change or are no longer available.</p>
+
+<img data-src="images/dependency_tree.png" class="r-stretch"></section>
 <section id="section" class="slide level2">
 <h2></h2>
 <div class="columns">
@@ -214,8 +220,8 @@
 <p><strong>Library</strong></p>
 <p><em>A program that is used by another program</em></p>
 <ul>
-<li>Python package</li>
-<li>Low level library (C, Fortran, Rust, …)</li>
+<li><em>numpy</em></li>
+<li><em>scikit-learn</em></li>
 </ul>
 <p>Make the requirements as loose as possible, e.g.&nbsp;<code>numpy&gt;=1.11.0</code></p>
 </div></div>
@@ -233,10 +239,18 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="dependency-tree" class="slide level2">
-<h2>Dependency tree</h2>
-
-<img data-src="images/dependency_tree.png" class="r-stretch"></section>
+<section id="dependency-resolution" class="slide level2">
+<h2>Dependency resolution</h2>
+<ul>
+<li class="fragment">Python projects often depend on many packages, which may depend on others (“dependency tree”).</li>
+<li class="fragment">Different packages may require conflicting versions of the same dependency.</li>
+<li class="fragment">Historically, Python tools did not always resolve these conflicts well, leading to “dependency hell.” 😈</li>
+<li class="fragment">Ensuring everyone gets the same working set of packages has been difficult, especially for larger projects. 🤪</li>
+</ul>
+<div class="fragment">
+<p>Modern tools like <code>uv</code> aim to solve these problems with faster and more reliable 😎</p>
+</div>
+</section>
 <section id="uv" class="slide level2 smaller">
 <h2>uv</h2>
 <ul>
@@ -340,8 +354,8 @@
 <li class="fragment">Virtual environments are managed by <code>uv</code></li>
 </ul>
 </section>
-<section id="continuous-integration" class="slide level2">
-<h2>Continuous Integration</h2>
+<section id="continuous-integration-ci" class="slide level2">
+<h2>Continuous Integration (CI)</h2>
 <ul>
 <li><p>Running tests on every commit in a well defined environment ensures that the code is working as expected.</p></li>
 <li><p>It solves the “it works on my machine” problem.</p></li>
@@ -369,12 +383,10 @@
 <span id="cb12-2"><a></a><span class="ex">mikeio/.github/</span></span>
 <span id="cb12-3"><a></a><span class="ex">└──</span> workflows</span>
 <span id="cb12-4"><a></a>    <span class="ex">├──</span> docs.yml</span>
-<span id="cb12-5"><a></a>    <span class="ex">├──</span> downstream_test.yml</span>
-<span id="cb12-6"><a></a>    <span class="ex">├──</span> full_test.yml</span>
-<span id="cb12-7"><a></a>    <span class="ex">├──</span> notebooks_test.yml</span>
-<span id="cb12-8"><a></a>    <span class="ex">├──</span> perf_test.yml</span>
-<span id="cb12-9"><a></a>    <span class="ex">├──</span> python-publish.yml</span>
-<span id="cb12-10"><a></a>    <span class="ex">└──</span> quick_test.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a></a>    <span class="ex">├──</span> full_test.yml</span>
+<span id="cb12-6"><a></a>    <span class="ex">├──</span> notebooks_test.yml</span>
+<span id="cb12-7"><a></a>    <span class="ex">├──</span> perf_test.yml</span>
+<span id="cb12-8"><a></a>    <span class="ex">└──</span> python-publish.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="workflow-example" class="slide level2 smaller">
@@ -421,8 +433,8 @@
 <li class="fragment">Run tests on every commit</li>
 <li class="fragment">Test on different operating systems</li>
 <li class="fragment">Test on different Python versions</li>
-<li class="fragment">Create API documentation (next week)</li>
-<li class="fragment">Publish package to PyPI or similar package repository (two weeks from now)</li>
+<li class="fragment">Create API documentation</li>
+<li class="fragment">Publish package to PyPI or similar package repository</li>
 </ul>
 </section>
 <section id="triggers" class="slide level2">
