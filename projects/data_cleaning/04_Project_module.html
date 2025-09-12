@@ -103,27 +103,27 @@ ul.task-list li input[type="checkbox"] {
 <p>Your package is now installable and testable. In this module, you will make the tests automatic in GitHub and make sure that your code style adhere to the standards in PEP-8.</p>
 <p>In this module, we will use some files from the python library template. When you, after this course, need to create a new package, you can simply start from this template when creating the repo.</p>
 <ul>
-<li>Create new branch “action-formatting” (Make sure changes from last module have been merged, and that you start from the main branch)</li>
+<li>Create new branch <code>action-formatting</code> (Make sure changes from last module have been merged, and that you start from the main branch)</li>
 <li>4.1 Github Action
 <ul>
 <li>Copy the GitHub action file <code>full_test.yml</code> (in the <code>.github/workflows</code> folder) from the python template <a href="https://github.com/DHI/template-python-library" class="uri">https://github.com/DHI/template-python-library</a> to your own library (make sure it sits in the same folder).</li>
 <li>Change all occurrences of “my_library” in the yml file to your package name “tscleaner”</li>
-<li>Comment out the line with “ruff-action” with “#”</li>
+<li>Comment out the line with <code>ruff-action</code> with “#”</li>
 <li>Commit, push and create a pull request; the tests should now run, verify that they all run before you move on</li>
 </ul></li>
 <li>4.2 Linting with ruff
 <ul>
-<li>Enable the “ruff-action” be removing the “#” you added above</li>
+<li>Enable the <code>ruff-action</code> by removing the “#” you added above</li>
 <li>Commit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)</li>
-<li>Install “ruff” on your local machine with uv</li>
-<li>Navigate to your project root folder and run ruff with “ruff check”</li>
+<li>Install <code>ruff</code> on your local machine with uv</li>
+<li>Navigate to your project root folder and run ruff with <code>ruff check</code></li>
 <li>Add the following line to your <code>__init__.py</code> file <code>__all__ = ["SpikeCleaner", "FlatPeriodCleaner", "OutOfRangeCleaner", "plot_timeseries"]</code></li>
 <li>fix remaining issues until ruff passes</li>
 <li>Commit, push and verify that you action now succeeds</li>
 </ul></li>
 <li>4.3 Formatting with ruff
 <ul>
-<li>Run “ruff format” from your project root folder; inspect the differences; commit</li>
+<li>Run <code>ruff format</code> from your project root folder; inspect the differences; commit</li>
 </ul></li>
 <li>4.4 pyproject.toml
 <ul>
