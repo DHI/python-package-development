@@ -8,13 +8,25 @@ format:
 footer: Python package development
 ---
 
-## Object oriented design
+## Object oriented programming (OOP)
 
 Benefits of object oriented design:
 
 * Encapsulation
 * Code reuse (composition, inheritance)
 * Abstraction
+
+## OOP terminology {.smaller}
+
+| Term               | Meaning                                        | Example |
+|-------------------|-------------------------------------------------|---------|
+| Class             | Blueprint for objects                           | `class Location: ...` |
+| Instance          | Concrete object created from a class            | `loc = Location("Antwerp")` |
+| Instance variable | Data stored per object                          | `self.name = name` |
+| Attribute         | Anything accessed with dot notation             | `loc.name`, `loc.plot()` |
+| Method            | Function defined inside a class                 | `def plot(self): ...` |
+| Property          | Managed attribute using `@property`             | `@property def name(self): ...` |
+| Encapsulation     | Hide internal details; provide safe interface   | Use `_var` + property |
 
 
 ## Encapsulation
@@ -34,9 +46,8 @@ class Location:
 "Antwerpen" 😟
 ```
 
-## Encapsulation - Attributes
+## Encapsulation - Managed attributes
 
-Variables prefixed with an underscore (`self._name`) is a convention to indicate that the instance variable is private.
 
 ```{.python code-line-numbers="|3,7-9|10-11"}
 class Location:
@@ -200,20 +211,20 @@ class _GeometryFMLayered(_GeometryFM):
 
 ## Composition vs inheritance
 
-::: {.incremental}
+* *Composition*: a car **has a** wheel.
 
-* Inheritance is often used to reuse code, but this is not the main purpose of inheritance.
+* *Inheritance*: a sports car **is a** car.
+
+. . .
+
+::: {.incremental .smaller}
+
 * Inheritance is used to specialize behavior.
 * In most cases, composition is a better choice than inheritance.
 * Some recent programming languages (e.g. Go & Rust) do not support this style of inheritance.
-* Use inheritance only when it makes sense.
+* Use inheritance *only* when it makes sense.
 
 :::
-
-::: aside
-Hillard, 2020, Ch. 8 "The rules (and exceptions) of inheritance"
-:::
-
 
 
 ## Abstraction
@@ -717,18 +728,18 @@ def predict(x):
 ```python
 def predict(x):
     scale = 10.0
-    error = (random.random() - 0.5) / scale)
+    error = (random.random() - 0.5) / scale
     a = 0.5
     b = 2.0 
     draft = a + b * x + error
-    return  min(0.0, draft)
+    return min(0.0, draft)
 ```
 
 ## Extract method
 
 ```python
 def error(scale):
-    return (random.random() - 0.5) / scale)
+    return (random.random() - 0.5) / scale
 
 def linear_model(x, *, a=0.0, b=1.0):
     return a + b * x
@@ -833,10 +844,10 @@ If you want to learn more about refactoring, I recommend the book "Refactoring: 
 
 ::: {.incremental}
 
-* OOP is a way to organize your code
-* Encapsulation, composition, inheritance, abstraction
-* Duck Typing 
-* Postel's law
-* Refactoring
+* OOP helps organize code into classes and objects
+* Key principles: **encapsulation**, **composition**, **inheritance**, **abstraction**
+* **Duck typing** – focus on behavior, not type
+* **Postel's Law** – be liberal in what you accept, strict in what you return
+* **Refactoring** – improve design without changing behavior
 
 :::
