@@ -158,54 +158,75 @@ class DataArray:
 
 ```{mermaid}
 classDiagram
+    class Shape {
+        +color
+        +describe()
+        +area()*
+    }
 
-class _GeometryFM{
-+ node_coordinates
-+ element_table
-}
+    class Circle {
+        +radius
+        +area()
+    }
 
-class GeometryFM2D{
-+ interp2d()
-+ get_element_area()
-+ plot()
-}
+    class Rectangle {
+        +width
+        +height
+        +area()
+    }
 
-class _GeometryFMLayered{
-- _n_layers
-- _n_sigma
-+ to_2d_geometry()
-}
+    Shape <|-- Circle
+    Shape <|-- Rectangle
+```
 
-class GeometryFM3D{
-+ plot()
-}
 
-class GeometryFMVerticalProfile{
-+ plot()
-}
-  _GeometryFM <|-- GeometryFM2D
-  _GeometryFM <|-- _GeometryFMLayered
-  _GeometryFMLayered <|-- GeometryFM3D
-  _GeometryFMLayered <|-- GeometryFMVerticalProfile
+
+
+
+## {.smaller}
+
+```{python}
+#| echo: true
+import math
+
+class Shape:
+    def __init__(self, color="black"):
+        self.color = color
+
+    def describe(self):
+        return f"A {self.color} shape with area = {self.area():.2f}"
+
+    def area(self):
+        raise NotImplementedError
+
+class Circle(Shape):
+    def __init__(self, radius, color="black"):
+        super().__init__(color)
+        self.radius = radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height, color="black"):
+        super().__init__(color)
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
 ```
 
 . . .
 
-`GeometryFM3D` inherits from `_GeometryFMLayered`, it *is a* `_GeometryFMLayered`.
-
-
-## Inheritance - Example (2)
-
-```python
-class _GeometryFMLayered(_GeometryFM):
-    def __init__(self, nodes, elements, n_layers, n_sigma):
-        # call the parent class init method
-        super().__init__(
-            nodes=nodes,
-            elements=elements,
-        )
-        self._n_layers = n_layers
-        self._n_sigma = n_sigma
+```{python}
+#| echo: true
+shapes = [
+    Circle(1.0, color="red"),
+    Rectangle(2.0, 3.0, color="blue")
+]
+for shape in shapes:
+    print(shape.describe())
 ```
 
 
