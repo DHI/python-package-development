@@ -7,11 +7,18 @@
     "text": "Benefits of object oriented design:\n\nEncapsulation\nCode reuse (composition, inheritance)\nAbstraction"
   },
   {
-    "objectID": "05_oop.html#object-oriented-design",
-    "href": "05_oop.html#object-oriented-design",
+    "objectID": "05_oop.html#object-oriented-programming-oop",
+    "href": "05_oop.html#object-oriented-programming-oop",
     "title": "Object oriented design in Python",
     "section": "",
     "text": "Benefits of object oriented design:\n\nEncapsulation\nCode reuse (composition, inheritance)\nAbstraction"
+  },
+  {
+    "objectID": "05_oop.html#oop-terminology",
+    "href": "05_oop.html#oop-terminology",
+    "title": "Object oriented design in Python",
+    "section": "OOP terminology",
+    "text": "OOP terminology\n\n\n\n\n\n\n\n\nTerm\nMeaning\nExample\n\n\n\n\nClass\nBlueprint for objects\nclass Location: ...\n\n\nInstance\nConcrete object created from a class\nloc = Location(\"Antwerp\")\n\n\nInstance variable\nData stored per object\nself.name = name\n\n\nAttribute\nAnything accessed with dot notation\nloc.name, loc.plot()\n\n\nMethod\nFunction defined inside a class\ndef plot(self): ...\n\n\nProperty\nManaged attribute using @property\n@property def name(self): ...\n\n\nEncapsulation\nHide internal details; provide safe interface\nUse _var + property"
   },
   {
     "objectID": "05_oop.html#encapsulation",
@@ -21,11 +28,11 @@
     "text": "Encapsulation\nclass Location:\n    def __init__(self, name, longitude, latitude):\n        self.name = name.upper() # Names are always uppercase\n        self.longitude = longitude\n        self.latitude = latitude\n\n&gt;&gt;&gt; loc = Location(\"Antwerp\", 4.42, 51.22)\n&gt;&gt;&gt; loc.name\n'ANTWERP'\n&gt;&gt;&gt; loc.name = \"Antwerpen\"\n&gt;&gt;&gt; loc.name\n\"Antwerpen\" 😟"
   },
   {
-    "objectID": "05_oop.html#encapsulation---attributes",
-    "href": "05_oop.html#encapsulation---attributes",
+    "objectID": "05_oop.html#encapsulation---managed-attributes",
+    "href": "05_oop.html#encapsulation---managed-attributes",
     "title": "Object oriented design in Python",
-    "section": "Encapsulation - Attributes",
-    "text": "Encapsulation - Attributes\nVariables prefixed with an underscore (self._name) is a convention to indicate that the instance variable is private.\nclass Location:\n    def __init__(self, name, longitude, latitude):\n        self._name = name.upper() # Names are always uppercase\n        ...\n\n    @property\n    def name(self):\n        return self._name\n\n    @name.setter\n    def name(self, value):\n        self._name = value.upper()\n\n&gt;&gt;&gt; loc = Location(\"Antwerp\", 4.42, 51.22)\n&gt;&gt;&gt; loc.name = \"Antwerpen\"\n&gt;&gt;&gt; loc.name\n\"ANTWERPEN\" 😊"
+    "section": "Encapsulation - Managed attributes",
+    "text": "Encapsulation - Managed attributes\nclass Location:\n    def __init__(self, name, longitude, latitude):\n        self._name = name.upper() # Names are always uppercase\n        ...\n\n    @property\n    def name(self):\n        return self._name\n\n    @name.setter\n    def name(self, value):\n        self._name = value.upper()\n\n&gt;&gt;&gt; loc = Location(\"Antwerp\", 4.42, 51.22)\n&gt;&gt;&gt; loc.name = \"Antwerpen\"\n&gt;&gt;&gt; loc.name\n\"ANTWERPEN\" 😊"
   },
   {
     "objectID": "05_oop.html#composition",
@@ -67,21 +74,7 @@
     "href": "05_oop.html#composition-vs-inheritance",
     "title": "Object oriented design in Python",
     "section": "Composition vs inheritance",
-    "text": "Composition vs inheritance\n\n\nInheritance is often used to reuse code, but this is not the main purpose of inheritance.\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense.\n\n\n\n\nHillard, 2020, Ch. 8 “The rules (and exceptions) of inheritance”"
-  },
-  {
-    "objectID": "05_oop.html#types",
-    "href": "05_oop.html#types",
-    "title": "Object oriented design in Python",
-    "section": "Types",
-    "text": "Types\nC#\nint n = 2;\nString s = \"Hello\";\n\npublic String RepeatedString(String s, int n) {\n    return Enumerable.Repeat(s, n).Aggregate((a, b) =&gt; a + b);\n}\n. . .\nPython\nn = 2\ns = \"Hello\"\n\ndef repeated_string(s, n):\n    return s * n"
-  },
-  {
-    "objectID": "05_oop.html#types-1",
-    "href": "05_oop.html#types-1",
-    "title": "Object oriented design in Python",
-    "section": "Types",
-    "text": "Types\n\n\nPython is a dynamically typed language\nTypes are not checked at compile time by the interpreter\nTypes can be checked before runtime using a linter (e.g. mypy)\nType hints can be used by VS Code to provide auto-completion\n\n\n. . .\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -&gt; str:\n    return s * n"
+    "text": "Composition vs inheritance\n\nComposition: a car has a wheel.\nInheritance: a sports car is a car.\n\n. . .\n\n\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense."
   },
   {
     "objectID": "05_oop.html#abstraction",
@@ -116,7 +109,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7faee0dad6a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7faee0dc47d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f995493d6a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f99549547d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -207,14 +200,14 @@
     "href": "05_oop.html#extract-variable",
     "title": "Object oriented design in Python",
     "section": "Extract variable",
-    "text": "Extract variable\nBefore\ndef predict(x):\n    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)\n. . .\nAfter\ndef predict(x):\n    scale = 10.0\n    error = (random.random() - 0.5) / scale)\n    a = 0.5\n    b = 2.0 \n    draft = a + b * x + error\n    return  min(0.0, draft)"
+    "text": "Extract variable\nBefore\ndef predict(x):\n    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)\n. . .\nAfter\ndef predict(x):\n    scale = 10.0\n    error = (random.random() - 0.5) / scale\n    a = 0.5\n    b = 2.0 \n    draft = a + b * x + error\n    return min(0.0, draft)"
   },
   {
     "objectID": "05_oop.html#extract-method",
     "href": "05_oop.html#extract-method",
     "title": "Object oriented design in Python",
     "section": "Extract method",
-    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale)\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
+    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
   },
   {
     "objectID": "05_oop.html#inline-method",
@@ -242,14 +235,21 @@
     "href": "05_oop.html#summary",
     "title": "Object oriented design in Python",
     "section": "Summary",
-    "text": "Summary\n\n\nOOP is a way to organize your code\nEncapsulation, composition, inheritance, abstraction\nDuck Typing\nPostel’s law\nRefactoring"
+    "text": "Summary\n\n\nOOP helps organize code into classes and objects\nKey principles: encapsulation, composition, inheritance, abstraction\nDuck typing – focus on behavior, not type\nPostel’s Law – be liberal in what you accept, strict in what you return\nRefactoring – improve design without changing behavior"
   },
   {
-    "objectID": "05_oop_slides.html#object-oriented-design",
-    "href": "05_oop_slides.html#object-oriented-design",
+    "objectID": "05_oop_slides.html#object-oriented-programming-oop",
+    "href": "05_oop_slides.html#object-oriented-programming-oop",
     "title": "Object oriented design in Python",
-    "section": "Object oriented design",
-    "text": "Object oriented design\nBenefits of object oriented design:\n\nEncapsulation\nCode reuse (composition, inheritance)\nAbstraction"
+    "section": "Object oriented programming (OOP)",
+    "text": "Object oriented programming (OOP)\nBenefits of object oriented design:\n\nEncapsulation\nCode reuse (composition, inheritance)\nAbstraction"
+  },
+  {
+    "objectID": "05_oop_slides.html#oop-terminology",
+    "href": "05_oop_slides.html#oop-terminology",
+    "title": "Object oriented design in Python",
+    "section": "OOP terminology",
+    "text": "OOP terminology\n\n\n\n\n\n\n\n\nTerm\nMeaning\nExample\n\n\n\n\nClass\nBlueprint for objects\nclass Location: ...\n\n\nInstance\nConcrete object created from a class\nloc = Location(\"Antwerp\")\n\n\nInstance variable\nData stored per object\nself.name = name\n\n\nAttribute\nAnything accessed with dot notation\nloc.name, loc.plot()\n\n\nMethod\nFunction defined inside a class\ndef plot(self): ...\n\n\nProperty\nManaged attribute using @property\n@property def name(self): ...\n\n\nEncapsulation\nHide internal details; provide safe interface\nUse _var + property"
   },
   {
     "objectID": "05_oop_slides.html#encapsulation",
@@ -259,11 +259,11 @@
     "text": "Encapsulation\nclass Location:\n    def __init__(self, name, longitude, latitude):\n        self.name = name.upper() # Names are always uppercase\n        self.longitude = longitude\n        self.latitude = latitude\n\n&gt;&gt;&gt; loc = Location(\"Antwerp\", 4.42, 51.22)\n&gt;&gt;&gt; loc.name\n'ANTWERP'\n&gt;&gt;&gt; loc.name = \"Antwerpen\"\n&gt;&gt;&gt; loc.name\n\"Antwerpen\" 😟"
   },
   {
-    "objectID": "05_oop_slides.html#encapsulation---attributes",
-    "href": "05_oop_slides.html#encapsulation---attributes",
+    "objectID": "05_oop_slides.html#encapsulation---managed-attributes",
+    "href": "05_oop_slides.html#encapsulation---managed-attributes",
     "title": "Object oriented design in Python",
-    "section": "Encapsulation - Attributes",
-    "text": "Encapsulation - Attributes\nVariables prefixed with an underscore (self._name) is a convention to indicate that the instance variable is private.\nclass Location:\n    def __init__(self, name, longitude, latitude):\n        self._name = name.upper() # Names are always uppercase\n        ...\n\n    @property\n    def name(self):\n        return self._name\n\n    @name.setter\n    def name(self, value):\n        self._name = value.upper()\n\n&gt;&gt;&gt; loc = Location(\"Antwerp\", 4.42, 51.22)\n&gt;&gt;&gt; loc.name = \"Antwerpen\"\n&gt;&gt;&gt; loc.name\n\"ANTWERPEN\" 😊"
+    "section": "Encapsulation - Managed attributes",
+    "text": "Encapsulation - Managed attributes\nclass Location:\n    def __init__(self, name, longitude, latitude):\n        self._name = name.upper() # Names are always uppercase\n        ...\n\n    @property\n    def name(self):\n        return self._name\n\n    @name.setter\n    def name(self, value):\n        self._name = value.upper()\n\n&gt;&gt;&gt; loc = Location(\"Antwerp\", 4.42, 51.22)\n&gt;&gt;&gt; loc.name = \"Antwerpen\"\n&gt;&gt;&gt; loc.name\n\"ANTWERPEN\" 😊"
   },
   {
     "objectID": "05_oop_slides.html#composition",
@@ -305,21 +305,7 @@
     "href": "05_oop_slides.html#composition-vs-inheritance",
     "title": "Object oriented design in Python",
     "section": "Composition vs inheritance",
-    "text": "Composition vs inheritance\n\nInheritance is often used to reuse code, but this is not the main purpose of inheritance.\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense.\n\n\n\nHillard, 2020, Ch. 8 “The rules (and exceptions) of inheritance”"
-  },
-  {
-    "objectID": "05_oop_slides.html#types",
-    "href": "05_oop_slides.html#types",
-    "title": "Object oriented design in Python",
-    "section": "Types",
-    "text": "Types\nC#\nint n = 2;\nString s = \"Hello\";\n\npublic String RepeatedString(String s, int n) {\n    return Enumerable.Repeat(s, n).Aggregate((a, b) =&gt; a + b);\n}\n\nPython\nn = 2\ns = \"Hello\"\n\ndef repeated_string(s, n):\n    return s * n"
-  },
-  {
-    "objectID": "05_oop_slides.html#types-1",
-    "href": "05_oop_slides.html#types-1",
-    "title": "Object oriented design in Python",
-    "section": "Types",
-    "text": "Types\n\nPython is a dynamically typed language\nTypes are not checked at compile time by the interpreter\nTypes can be checked before runtime using a linter (e.g. mypy)\nType hints can be used by VS Code to provide auto-completion\n\n\nn: int = 2\ns: str = \"Hello\"\n\ndef repeated_string(s:str, n:int) -&gt; str:\n    return s * n"
+    "text": "Composition vs inheritance\n\nComposition: a car has a wheel.\nInheritance: a sports car is a car.\n\n\n\n\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense."
   },
   {
     "objectID": "05_oop_slides.html#abstraction",
@@ -445,14 +431,14 @@
     "href": "05_oop_slides.html#extract-variable",
     "title": "Object oriented design in Python",
     "section": "Extract variable",
-    "text": "Extract variable\nBefore\ndef predict(x):\n    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)\n\nAfter\ndef predict(x):\n    scale = 10.0\n    error = (random.random() - 0.5) / scale)\n    a = 0.5\n    b = 2.0 \n    draft = a + b * x + error\n    return  min(0.0, draft)"
+    "text": "Extract variable\nBefore\ndef predict(x):\n    return min(0.0, 0.5 + 2.0 * min(0,x) + (random.random() - 0.5) / 10.0)\n\nAfter\ndef predict(x):\n    scale = 10.0\n    error = (random.random() - 0.5) / scale\n    a = 0.5\n    b = 2.0 \n    draft = a + b * x + error\n    return min(0.0, draft)"
   },
   {
     "objectID": "05_oop_slides.html#extract-method",
     "href": "05_oop_slides.html#extract-method",
     "title": "Object oriented design in Python",
     "section": "Extract method",
-    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale)\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
+    "text": "Extract method\ndef error(scale):\n    return (random.random() - 0.5) / scale\n\ndef linear_model(x, *, a=0.0, b=1.0):\n    return a + b * x\n\ndef clip(x, *, min_value=0.0):\n    return min(min_value, x)\n\ndef predict(x): \n    draft = linear_model(x, a=0.5, b=2.0) + error(scale=10.0)\n    return clip(draft, min_value=0.)"
   },
   {
     "objectID": "05_oop_slides.html#inline-method",
@@ -480,7 +466,7 @@
     "href": "05_oop_slides.html#summary",
     "title": "Object oriented design in Python",
     "section": "Summary",
-    "text": "Summary\n\nOOP is a way to organize your code\nEncapsulation, composition, inheritance, abstraction\nDuck Typing\nPostel’s law\nRefactoring"
+    "text": "Summary\n\nOOP helps organize code into classes and objects\nKey principles: encapsulation, composition, inheritance, abstraction\nDuck typing – focus on behavior, not type\nPostel’s Law – be liberal in what you accept, strict in what you return\nRefactoring – improve design without changing behavior"
   },
   {
     "objectID": "01_version_control.html#why-use-version-control-1",
@@ -1313,7 +1299,7 @@
     "href": "07_packaging.html#unit-testing",
     "title": "Distributing your Python package",
     "section": "Unit testing",
-    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
+    "text": "Unit testing\n\n\n\n\n\n\nNoteDefinition “Unit”\n\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
   },
   {
     "objectID": "07_packaging.html#a-good-unit-test",
@@ -1768,7 +1754,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f012082b8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f8ad83538c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1999,7 +1985,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7ff4d41c7b60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f0cbc29bb60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
@@ -2475,7 +2461,7 @@
     "href": "03_testing.html#unit-testing",
     "title": "Testing, linting and formatting",
     "section": "Unit testing",
-    "text": "Unit testing\n\n\n\n\n\n\nDefinition “Unit”\n\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
+    "text": "Unit testing\n\n\n\n\n\n\nNoteDefinition “Unit”\n\n\n\n\nA small, fundamental piece of code.\nExecuted in isolation with appropriate inputs.\n\n\n\n\n\nA function is typically considered a “unit”\nLines of code within functions are smaller (can’t be isolated)\nClasses are considered bigger (but can be treated as units)"
   },
   {
     "objectID": "03_testing.html#a-good-unit-test",
@@ -2538,7 +2524,7 @@
     "href": "03_testing.html#testing-advice",
     "title": "Testing, linting and formatting",
     "section": "Testing advice",
-    "text": "Testing advice\n\n\n\n\n\n\nTest edge cases\n\n\n\n\nempty lists\nlists with a single element\nempty strings\nempty dictionaries\nNone\nnp.nan"
+    "text": "Testing advice\n\n\n\n\n\n\nTipTest edge cases\n\n\n\n\nempty lists\nlists with a single element\nempty strings\nempty dictionaries\nNone\nnp.nan"
   },
   {
     "objectID": "03_testing.html#tests-document-expected-behavior",
