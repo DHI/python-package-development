@@ -229,14 +229,11 @@ for shape in shapes:
     print(shape.describe())
 ```
 
-
 ## Composition vs inheritance
 
 * *Composition*: a car **has a** wheel.
 
 * *Inheritance*: a sports car **is a** car.
-
-. . .
 
 ::: {.incremental .smaller}
 
@@ -270,8 +267,6 @@ total = sum(values)
 ```
 :::
 ::::
-
-. . . 
 
 ::: {.incremental}
 
@@ -309,8 +304,6 @@ classDiagram
         __iter__(self)
     }
 ```
-
-. . .
 
 ::: {.incremental}
 
@@ -519,6 +512,48 @@ m.transpose()
 * Python is different than C# or Java, where you would have to create an interface `IToolbox` and implement it for `Toolbox`.
 
 :::
+
+## {.smaller}
+
+```{python}
+#| echo: true
+import math
+
+class Circle: # no base class
+    def __init__(self, radius, color="black"):
+        self.radius = radius
+        self.color = color
+    
+    def area(self):
+        return math.pi * self.radius**2
+    
+    def describe(self):
+        return f"A {self.color} circle with area = {self.area():.2f}"
+
+class Rectangle: # no base class
+    def __init__(self, width, height, color="black"):
+        self.width = width
+        self.height = height
+        self.color = color
+    
+    def area(self):
+        return self.width * self.height
+    
+    def describe(self):
+        return f"A {self.color} rectangle with area = {self.area():.2f}"
+```
+
+. . .
+
+```{python}
+#| echo: true
+shapes = [
+    Circle(1.0, color="red"),
+    Rectangle(2.0, 3.0, color="blue")
+]
+for shape in shapes:
+    print(shape.describe())
+```
 
 
 ## Duck typing - Example
