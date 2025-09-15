@@ -215,50 +215,6 @@ Hillard, 2020, Ch. 8 "The rules (and exceptions) of inheritance"
 :::
 
 
-## Types
-
-**C#**
-
-```{.csharp code-line-numbers="1-4"}
-int n = 2;
-String s = "Hello";
-
-public String RepeatedString(String s, int n) {
-    return Enumerable.Repeat(s, n).Aggregate((a, b) => a + b);
-}
-```
-
-. . . 
-
-**Python**
-
-```{.python code-line-numbers="1-4"}
-n = 2
-s = "Hello"
-
-def repeated_string(s, n):
-    return s * n
-```
-
-## Types
-
-::: {.incremental}
-* Python is a dynamically typed language
-* Types are not checked at compile time by the interpreter
-* Types *can* be checked before runtime using a linter (e.g. `mypy`)
-* Type hints can be used by VS Code to provide auto-completion
-:::
-
-. . .
-
-```python
-n: int = 2
-s: str = "Hello"
-
-def repeated_string(s:str, n:int) -> str:
-    return s * n
-```
-
 
 ## Abstraction
 
