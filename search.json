@@ -60,14 +60,14 @@
     "href": "05_oop.html#inheritance---example",
     "title": "Object oriented design in Python",
     "section": "Inheritance - Example",
-    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n\nclass _GeometryFM{\n+ node_coordinates\n+ element_table\n}\n\nclass GeometryFM2D{\n+ interp2d()\n+ get_element_area()\n+ plot()\n}\n\nclass _GeometryFMLayered{\n- _n_layers\n- _n_sigma\n+ to_2d_geometry()\n}\n\nclass GeometryFM3D{\n+ plot()\n}\n\nclass GeometryFMVerticalProfile{\n+ plot()\n}\n  _GeometryFM &lt;|-- GeometryFM2D\n  _GeometryFM &lt;|-- _GeometryFMLayered\n  _GeometryFMLayered &lt;|-- GeometryFM3D\n  _GeometryFMLayered &lt;|-- GeometryFMVerticalProfile\n\n\n\n\n\n\n. . .\nGeometryFM3D inherits from _GeometryFMLayered, it is a _GeometryFMLayered."
+    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n    class Shape {\n        +color\n        +describe()\n        +area()*\n    }\n\n    class Circle {\n        +radius\n        +area()\n    }\n\n    class Rectangle {\n        +width\n        +height\n        +area()\n    }\n\n    Shape &lt;|-- Circle\n    Shape &lt;|-- Rectangle"
   },
   {
-    "objectID": "05_oop.html#inheritance---example-2",
-    "href": "05_oop.html#inheritance---example-2",
+    "objectID": "05_oop.html#section",
+    "href": "05_oop.html#section",
     "title": "Object oriented design in Python",
-    "section": "Inheritance - Example (2)",
-    "text": "Inheritance - Example (2)\nclass _GeometryFMLayered(_GeometryFM):\n    def __init__(self, nodes, elements, n_layers, n_sigma):\n        # call the parent class init method\n        super().__init__(\n            nodes=nodes,\n            elements=elements,\n        )\n        self._n_layers = n_layers\n        self._n_sigma = n_sigma"
+    "section": "",
+    "text": "import math\n\nclass Shape:\n    def __init__(self, color=\"black\"):\n        self.color = color\n\n    def describe(self):\n        return f\"A {self.color} shape with area = {self.area():.2f}\"\n\n    def area(self):\n        raise NotImplementedError\n\nclass Circle(Shape):\n    def __init__(self, radius, color=\"black\"):\n        super().__init__(color)\n        self.radius = radius\n\n    def area(self):\n        return math.pi * self.radius ** 2\n\nclass Rectangle(Shape):\n    def __init__(self, width, height, color=\"black\"):\n        super().__init__(color)\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\n. . .\n\nshapes = [\n    Circle(1.0, color=\"red\"),\n    Rectangle(2.0, 3.0, color=\"blue\")\n]\nfor shape in shapes:\n    print(shape.describe())\n\nA red shape with area = 3.14\nA blue shape with area = 6.00"
   },
   {
     "objectID": "05_oop.html#composition-vs-inheritance",
@@ -109,7 +109,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f995493d6a0&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f99549547d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f09907eda90&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f09908047d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -161,8 +161,8 @@
     "text": "Postel’s law\na.k.a. the Robustness principle of software design\n\nBe liberal in what you accept\nBe conservative in what you send\n\n. . .\ndef process(number: Union[int,str,float]) -&gt; int:\n    # make sure number is an int from now on\n    number = int(number)\n\n    result = number * 2\n    return result"
   },
   {
-    "objectID": "05_oop.html#section",
-    "href": "05_oop.html#section",
+    "objectID": "05_oop.html#section-1",
+    "href": "05_oop.html#section-1",
     "title": "Object oriented design in Python",
     "section": "",
     "text": ". . .\nThe consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
@@ -291,14 +291,14 @@
     "href": "05_oop_slides.html#inheritance---example",
     "title": "Object oriented design in Python",
     "section": "Inheritance - Example",
-    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n\nclass _GeometryFM{\n+ node_coordinates\n+ element_table\n}\n\nclass GeometryFM2D{\n+ interp2d()\n+ get_element_area()\n+ plot()\n}\n\nclass _GeometryFMLayered{\n- _n_layers\n- _n_sigma\n+ to_2d_geometry()\n}\n\nclass GeometryFM3D{\n+ plot()\n}\n\nclass GeometryFMVerticalProfile{\n+ plot()\n}\n  _GeometryFM &lt;|-- GeometryFM2D\n  _GeometryFM &lt;|-- _GeometryFMLayered\n  _GeometryFMLayered &lt;|-- GeometryFM3D\n  _GeometryFMLayered &lt;|-- GeometryFMVerticalProfile\n\n\n\n\n\n\n\nGeometryFM3D inherits from _GeometryFMLayered, it is a _GeometryFMLayered."
+    "text": "Inheritance - Example\n\n\n\n\n\nclassDiagram\n    class Shape {\n        +color\n        +describe()\n        +area()*\n    }\n\n    class Circle {\n        +radius\n        +area()\n    }\n\n    class Rectangle {\n        +width\n        +height\n        +area()\n    }\n\n    Shape &lt;|-- Circle\n    Shape &lt;|-- Rectangle"
   },
   {
-    "objectID": "05_oop_slides.html#inheritance---example-2",
-    "href": "05_oop_slides.html#inheritance---example-2",
+    "objectID": "05_oop_slides.html#section",
+    "href": "05_oop_slides.html#section",
     "title": "Object oriented design in Python",
-    "section": "Inheritance - Example (2)",
-    "text": "Inheritance - Example (2)\nclass _GeometryFMLayered(_GeometryFM):\n    def __init__(self, nodes, elements, n_layers, n_sigma):\n        # call the parent class init method\n        super().__init__(\n            nodes=nodes,\n            elements=elements,\n        )\n        self._n_layers = n_layers\n        self._n_sigma = n_sigma"
+    "section": "",
+    "text": "import math\n\nclass Shape:\n    def __init__(self, color=\"black\"):\n        self.color = color\n\n    def describe(self):\n        return f\"A {self.color} shape with area = {self.area():.2f}\"\n\n    def area(self):\n        raise NotImplementedError\n\nclass Circle(Shape):\n    def __init__(self, radius, color=\"black\"):\n        super().__init__(color)\n        self.radius = radius\n\n    def area(self):\n        return math.pi * self.radius ** 2\n\nclass Rectangle(Shape):\n    def __init__(self, width, height, color=\"black\"):\n        super().__init__(color)\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\n\n\nshapes = [\n    Circle(1.0, color=\"red\"),\n    Rectangle(2.0, 3.0, color=\"blue\")\n]\nfor shape in shapes:\n    print(shape.describe())\n\nA red shape with area = 3.14\nA blue shape with area = 6.00"
   },
   {
     "objectID": "05_oop_slides.html#composition-vs-inheritance",
@@ -392,8 +392,8 @@
     "text": "Postel’s law\na.k.a. the Robustness principle of software design\n\nBe liberal in what you accept\nBe conservative in what you send\n\n\ndef process(number: Union[int,str,float]) -&gt; int:\n    # make sure number is an int from now on\n    number = int(number)\n\n    result = number * 2\n    return result"
   },
   {
-    "objectID": "05_oop_slides.html#section",
-    "href": "05_oop_slides.html#section",
+    "objectID": "05_oop_slides.html#section-1",
+    "href": "05_oop_slides.html#section-1",
     "title": "Object oriented design in Python",
     "section": "",
     "text": "The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
@@ -1754,7 +1754,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f8ad83538c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fbabc6178c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1985,7 +1985,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f0cbc29bb60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f7df8c37b60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
