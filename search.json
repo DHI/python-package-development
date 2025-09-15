@@ -74,21 +74,21 @@
     "href": "05_oop.html#composition-vs-inheritance",
     "title": "Object oriented design in Python",
     "section": "Composition vs inheritance",
-    "text": "Composition vs inheritance\n\nComposition: a car has a wheel.\nInheritance: a sports car is a car.\n\n. . .\n\n\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense."
+    "text": "Composition vs inheritance\n\nComposition: a car has a wheel.\nInheritance: a sports car is a car.\n\n\n\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense."
   },
   {
     "objectID": "05_oop.html#abstraction",
     "href": "05_oop.html#abstraction",
     "title": "Object oriented design in Python",
     "section": "Abstraction",
-    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\n. . .\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
+    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
   },
   {
     "objectID": "05_oop.html#collections-abstract-base-classes",
     "href": "05_oop.html#collections-abstract-base-classes",
     "title": "Object oriented design in Python",
     "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container &lt;|-- Collection\n    Sized &lt;|-- Collection\n    Iterable &lt;|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\n\n\n\n. . .\n\n\nIf a class implements __len__ it is a Sized object.\nIf a class implements __contains__ it is a Container object.\nIf a class implements __iter__ it is a Iterable object."
+    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container &lt;|-- Collection\n    Sized &lt;|-- Collection\n    Iterable &lt;|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\n\n\n\n\n\nIf a class implements __len__ it is a Sized object.\nIf a class implements __contains__ it is a Container object.\nIf a class implements __iter__ it is a Iterable object."
   },
   {
     "objectID": "05_oop.html#collections-abstract-base-classes-1",
@@ -109,7 +109,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f09907eda90&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f09908047d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f73106c9a90&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f73106e07d0&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -117,6 +117,13 @@
     "title": "Object oriented design in Python",
     "section": "Duck typing",
     "text": "Duck typing\n\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods.\nPython is different than C# or Java, where you would have to create an interface IToolbox and implement it for Toolbox."
+  },
+  {
+    "objectID": "05_oop.html#section-1",
+    "href": "05_oop.html#section-1",
+    "title": "Object oriented design in Python",
+    "section": "",
+    "text": "import math\n\nclass Circle: # no base class\n    def __init__(self, radius, color=\"black\"):\n        self.radius = radius\n        self.color = color\n    \n    def area(self):\n        return math.pi * self.radius**2\n    \n    def describe(self):\n        return f\"A {self.color} circle with area = {self.area():.2f}\"\n\nclass Rectangle: # no base class\n    def __init__(self, width, height, color=\"black\"):\n        self.width = width\n        self.height = height\n        self.color = color\n    \n    def area(self):\n        return self.width * self.height\n    \n    def describe(self):\n        return f\"A {self.color} rectangle with area = {self.area():.2f}\"\n\n. . .\n\nshapes = [\n    Circle(1.0, color=\"red\"),\n    Rectangle(2.0, 3.0, color=\"blue\")\n]\nfor shape in shapes:\n    print(shape.describe())\n\nA red circle with area = 3.14\nA blue rectangle with area = 6.00"
   },
   {
     "objectID": "05_oop.html#duck-typing---example",
@@ -161,8 +168,8 @@
     "text": "Postel’s law\na.k.a. the Robustness principle of software design\n\nBe liberal in what you accept\nBe conservative in what you send\n\n. . .\ndef process(number: Union[int,str,float]) -&gt; int:\n    # make sure number is an int from now on\n    number = int(number)\n\n    result = number * 2\n    return result"
   },
   {
-    "objectID": "05_oop.html#section-1",
-    "href": "05_oop.html#section-1",
+    "objectID": "05_oop.html#section-2",
+    "href": "05_oop.html#section-2",
     "title": "Object oriented design in Python",
     "section": "",
     "text": ". . .\nThe consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
@@ -305,21 +312,21 @@
     "href": "05_oop_slides.html#composition-vs-inheritance",
     "title": "Object oriented design in Python",
     "section": "Composition vs inheritance",
-    "text": "Composition vs inheritance\n\nComposition: a car has a wheel.\nInheritance: a sports car is a car.\n\n\n\n\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense."
+    "text": "Composition vs inheritance\n\nComposition: a car has a wheel.\nInheritance: a sports car is a car.\n\n\n\nInheritance is used to specialize behavior.\nIn most cases, composition is a better choice than inheritance.\nSome recent programming languages (e.g. Go & Rust) do not support this style of inheritance.\nUse inheritance only when it makes sense."
   },
   {
     "objectID": "05_oop_slides.html#abstraction",
     "href": "05_oop_slides.html#abstraction",
     "title": "Object oriented design in Python",
     "section": "Abstraction",
-    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
+    "text": "Abstraction\n\n\nVersion A\ntotal = 0.0\nfor x in values:\n    total = total +x\n\nVersion B\ntotal = sum(values)\n\n\nUsing functions, e.g. sum() allows us to operate on a higher level of abstraction.\nToo little abstraction will force you to write many lines of boiler-plate code\nToo much abstraction limits the flexibility\n✨Find the right level of abstraction!✨\n\n\n\nWhich version is easiest to understand?\nWhich version is easiest to change?"
   },
   {
     "objectID": "05_oop_slides.html#collections-abstract-base-classes",
     "href": "05_oop_slides.html#collections-abstract-base-classes",
     "title": "Object oriented design in Python",
     "section": "Collections Abstract Base Classes",
-    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container &lt;|-- Collection\n    Sized &lt;|-- Collection\n    Iterable &lt;|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\n\n\n\n\n\nIf a class implements __len__ it is a Sized object.\nIf a class implements __contains__ it is a Container object.\nIf a class implements __iter__ it is a Iterable object."
+    "text": "Collections Abstract Base Classes\n\n\n\n\n\nclassDiagram\n    Container &lt;|-- Collection\n    Sized &lt;|-- Collection\n    Iterable &lt;|-- Collection\n   \n    class Container{\n        __contains__(self, x)\n    }\n\n    class Sized{\n        __len__(self)\n    }\n\n    class Iterable{\n        __iter__(self)\n    }\n\n\n\n\n\n\n\nIf a class implements __len__ it is a Sized object.\nIf a class implements __contains__ it is a Container object.\nIf a class implements __iter__ it is a Iterable object."
   },
   {
     "objectID": "05_oop_slides.html#collections-abstract-base-classes-1",
@@ -348,6 +355,13 @@
     "title": "Object oriented design in Python",
     "section": "Duck typing",
     "text": "Duck typing\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods.\nPython is different than C# or Java, where you would have to create an interface IToolbox and implement it for Toolbox."
+  },
+  {
+    "objectID": "05_oop_slides.html#section-1",
+    "href": "05_oop_slides.html#section-1",
+    "title": "Object oriented design in Python",
+    "section": "",
+    "text": "import math\n\nclass Circle: # no base class\n    def __init__(self, radius, color=\"black\"):\n        self.radius = radius\n        self.color = color\n    \n    def area(self):\n        return math.pi * self.radius**2\n    \n    def describe(self):\n        return f\"A {self.color} circle with area = {self.area():.2f}\"\n\nclass Rectangle: # no base class\n    def __init__(self, width, height, color=\"black\"):\n        self.width = width\n        self.height = height\n        self.color = color\n    \n    def area(self):\n        return self.width * self.height\n    \n    def describe(self):\n        return f\"A {self.color} rectangle with area = {self.area():.2f}\"\n\n\n\nshapes = [\n    Circle(1.0, color=\"red\"),\n    Rectangle(2.0, 3.0, color=\"blue\")\n]\nfor shape in shapes:\n    print(shape.describe())\n\nA red circle with area = 3.14\nA blue rectangle with area = 6.00"
   },
   {
     "objectID": "05_oop_slides.html#duck-typing---example",
@@ -392,8 +406,8 @@
     "text": "Postel’s law\na.k.a. the Robustness principle of software design\n\nBe liberal in what you accept\nBe conservative in what you send\n\n\ndef process(number: Union[int,str,float]) -&gt; int:\n    # make sure number is an int from now on\n    number = int(number)\n\n    result = number * 2\n    return result"
   },
   {
-    "objectID": "05_oop_slides.html#section-1",
-    "href": "05_oop_slides.html#section-1",
+    "objectID": "05_oop_slides.html#section-2",
+    "href": "05_oop_slides.html#section-2",
     "title": "Object oriented design in Python",
     "section": "",
     "text": "The consumers of your package (future self), will be grateful if you are not overly restricitive in what types you accept as input."
@@ -1754,7 +1768,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fbabc6178c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f789cfaf8c0&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1985,7 +1999,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f7df8c37b60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f295ce97b60&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
