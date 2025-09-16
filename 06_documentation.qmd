@@ -20,7 +20,7 @@ footer: Python package development
 
 :::
 
-## Readme.md
+## README.md
 
 * A readme file is a text file that introduces and explains a project.
 * Always include a readme file in your project.
@@ -127,7 +127,7 @@ There are several docstring formats. The most common is the numpy format, used b
 
 ## Type hints {.smaller}
 
-From Python 3.6, type hints can be used in addition to the type in the docstring.
+Type hints can be used in addition to the type in the docstring.
 
 ```{.python code-line-numbers="|1"}
 def remove_outlier(data:pd.DataFrame, column:str, threshold:float=3) -> pd.DataFrame:
@@ -201,14 +201,7 @@ Doctest can pick up anything that looks like a Python session and run it as a te
 
 * Sphinx
 * mkdocs
-
-::: {.notes}
-Sphinx has been around for a long time, has lot's of functionality but is based on reStructuredText. mkdocs is a new kid on the block, based on markdown and has a lot of functionality.
-:::
-
-## {background-iframe="https://www.sphinx-doc.org/en/master/"}
-
-## {background-iframe="https://www.mkdocs.org/"}
+* Quarto
 
 ## mkdocs
 
