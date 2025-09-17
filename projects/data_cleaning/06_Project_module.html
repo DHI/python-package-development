@@ -115,14 +115,14 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>6.3 mkdocs
 <ul>
-<li>Install mkdocs, mkdocstrings and material design <code>mamba/pip install mkdocstrings-python mkdocs-material</code></li>
-<li>Create a <code>mkdocs.yml</code> file in the project root (copy from https://github.com/DHI/template-python-library and adapt).</li>
+<li>Install mkdocs, mkdocstrings and material design <code>uv add --dev mkdocstrings-python mkdocs-material</code></li>
+<li>Create a <code>mkdocs.yml</code> file in the project root (copy <a href="https://github.com/DHI/template-python-library/blob/main/mkdocs.yml" class="uri">https://github.com/DHI/template-python-library/blob/main/mkdocs.yml</a> and adapt).</li>
 <li>Create a docs folder and create a markdown file <code>index.md</code> inside.</li>
 <li>The index file can contain text in the markdown format and auto-generated documentation using the syntax:
 <ul>
 <li><code>::: tscleaner.SpikeCleaner</code></li>
 </ul></li>
-<li>Create API documentation locally using the command <code>&gt;mkdocs serve</code> (which starts a local http server).</li>
+<li>Create API documentation locally using the command <code>&gt; uv run mkdocs serve</code> (which starts a local http server).</li>
 <li>Check the generated HTML documentation.</li>
 <li>The local documentation instance will “listen” to changes, try to modify the <code>index.md</code> file and watch.</li>
 </ul></li>
