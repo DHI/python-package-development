@@ -203,6 +203,10 @@ Doctest can pick up anything that looks like a Python session and run it as a te
 * mkdocs
 * Quarto
 
+## 
+
+![](images/mkdocs_vs_quarto.png)
+
 ## mkdocs
 
 * Text is written in markdown
