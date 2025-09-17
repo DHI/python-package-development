@@ -11,12 +11,12 @@ Before, we share our code with others we should document it. This can be done in
     - Write NumPy style docstrings for all functions and classes (google it!)
     - [Optional] Install the autodocstrings extension in VSCode (set the style to NumPy), which helps you write docstrings fast by just writing three double quotes.
 - 6.3 mkdocs
-    - Install mkdocs, mkdocstrings and material design `mamba/pip install mkdocstrings-python mkdocs-material`
-    - Create a `mkdocs.yml` file in the project root (copy from https://github.com/DHI/template-python-library and adapt).
+    - Install mkdocs, mkdocstrings and material design `uv add --dev mkdocstrings-python mkdocs-material`
+    - Create a `mkdocs.yml` file in the project root (copy <https://github.com/DHI/template-python-library/blob/main/mkdocs.yml> and adapt).
     - Create a docs folder and create a markdown file `index.md` inside.
     - The index file can contain text in the markdown format and auto-generated documentation using the syntax: 
         - `::: tscleaner.SpikeCleaner`
-    - Create API documentation locally using the command `>mkdocs serve` (which starts a local http server).
+    - Create API documentation locally using the command `> uv run mkdocs serve` (which starts a local http server).
     - Check the generated HTML documentation.
     - The local documentation instance will "listen" to changes, try to modify the `index.md` file and watch.
 - Create pull request in GitHub and "request review" from your reviewers
