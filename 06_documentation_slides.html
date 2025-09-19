@@ -422,9 +422,70 @@
 <ul>
 <li>Text is written in markdown</li>
 <li>Easy to use</li>
-<li>API documentation can be generated with mkdocstrings</li>
+<li>API documentation can be generated with <code>mkdocstrings</code></li>
 <li>The end result is a static website that can be hosted on e.g.&nbsp;GitHub pages</li>
 </ul>
+</section>
+<section id="markdown" class="slide level2 smaller">
+<h2>Markdown</h2>
+<pre><code>**bold**
+
+*italic*
+
+[Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+* Foo
+* Bar
+* Baz
+
+| Term              | Example                     |
+|-------------------|-----------------------------|
+| Class             | `class Location: ...`       |
+| Instance          | `loc = Location("Antwerp")` |
+| Instance variable | `self.name = name`          |
+
+```python
+class Location:
+    def __init__(self):
+        ...
+```
+</code></pre>
+</section>
+<section id="section-1" class="slide level2 smaller">
+<h2></h2>
+<p><strong>bold</strong></p>
+<p><em>italic</em></p>
+<p><a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Markdown syntax</a></p>
+<ul>
+<li>Foo</li>
+<li>Bar</li>
+<li>Baz</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Class</td>
+<td><code>class Location: ...</code></td>
+</tr>
+<tr class="even">
+<td>Instance</td>
+<td><code>loc = Location("Antwerp")</code></td>
+</tr>
+<tr class="odd">
+<td>Instance variable</td>
+<td><code>self.name = name</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">class</span> Location:</span>
+<span id="cb8-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb8-3"><a></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="configuration" class="slide level2">
 <h2>Configuration</h2>
@@ -432,18 +493,18 @@
 <div class="code-with-filename-file">
 <pre><strong>mkdocs.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="mkdocs.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a><span class="fu">plugins</span><span class="kw">:</span></span>
-<span id="cb7-6"><a></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
-<span id="cb7-7"><a></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
-<span id="cb7-8"><a></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
-<span id="cb7-9"><a></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
-<span id="cb7-10"><a></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
-<span id="cb7-11"><a></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb7-12"><a></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="mkdocs.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a><span class="fu">plugins</span><span class="kw">:</span></span>
+<span id="cb9-6"><a></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
+<span id="cb9-7"><a></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
+<span id="cb9-8"><a></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
+<span id="cb9-9"><a></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb9-10"><a></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
+<span id="cb9-11"><a></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb9-12"><a></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="api-docs" class="slide level2 smaller">
@@ -459,12 +520,12 @@
 </ol>
 <div class="fragment">
 <p><code>docs/index.md</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="fu"># Reference</span></span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>::: my_library.simulation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="fu"># Reference</span></span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>::: my_library.simulation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 
 <img data-src="images/mkdocs_api.png" class="r-stretch"></section>
@@ -473,7 +534,7 @@
 <ul>
 <li class="fragment">Once you have a static website, you need to share it with the world</li>
 <li class="fragment">GitHub pages allows you to easily host a static website on GitHub</li>
-<li class="fragment">The website is available at <code>https://dhi.github.io/&lt;repository&gt;/</code></li>
+<li class="fragment">The website is available at <code>https://&lt;user&gt;.github.io/&lt;repository&gt;/</code></li>
 <li class="fragment">The website can be created locally by manually editing html pages.</li>
 <li class="fragment">For use as documentation, it is easier to use a documentation generator like mkdocs.</li>
 </ul>
@@ -494,8 +555,8 @@
 <div class="code-with-filename-file">
 <pre><strong>robots.txt</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="robots.txt"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a></a>User-agent: *</span>
-<span id="cb9-2"><a></a>Disallow: /</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="robots.txt"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a></a>User-agent: *</span>
+<span id="cb11-2"><a></a>Disallow: /</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="additional-resources" class="slide level2">
