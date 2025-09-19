@@ -211,8 +211,58 @@ Doctest can pick up anything that looks like a Python session and run it as a te
 
 * Text is written in markdown
 * Easy to use
-* API documentation can be generated with mkdocstrings
+* API documentation can be generated with `mkdocstrings`
 * The end result is a static website that can be hosted on e.g. GitHub pages
+
+## Markdown {.smaller}
+
+````
+**bold**
+
+*italic*
+
+[Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+* Foo
+* Bar
+* Baz
+
+| Term              | Example                     |
+|-------------------|-----------------------------|
+| Class             | `class Location: ...`       |
+| Instance          | `loc = Location("Antwerp")` |
+| Instance variable | `self.name = name`          |
+
+```python
+class Location:
+    def __init__(self):
+        ...
+```
+
+````
+## {.smaller}
+
+**bold**
+
+*italic*
+
+[Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+* Foo
+* Bar
+* Baz
+
+| Term              | Example                     |
+|-------------------|-----------------------------|
+| Class             | `class Location: ...`       |
+| Instance          | `loc = Location("Antwerp")` |
+| Instance variable | `self.name = name`          |
+
+```python
+class Location:
+    def __init__(self):
+        ...
+```
 
 ## Configuration
 
@@ -266,7 +316,7 @@ plugins:
 
 * Once you have a static website, you need to share it with the world
 * GitHub pages allows you to easily host a static website on GitHub
-* The website is available at `https://dhi.github.io/<repository>/`
+* The website is available at `https://<user>.github.io/<repository>/`
 * The website can be created locally by manually editing html pages.
 * For use as documentation, it is easier to use a documentation generator like mkdocs.
 
