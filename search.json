@@ -109,7 +109,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7fb72077d940&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7fb720804910&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7fb61c5bd940&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7fb61c640910&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -1054,14 +1054,14 @@
     "href": "07_packaging.html",
     "title": "Distributing your Python package",
     "section": "",
-    "text": "Packaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using hatchling, and how to distribute it on GitHub, PyPI and a private PyPI server."
+    "text": "Packaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using uv, and how to distribute it on GitHub, PyPI and a private PyPI server."
   },
   {
     "objectID": "07_packaging.html#packaging",
     "href": "07_packaging.html#packaging",
     "title": "Distributing your Python package",
     "section": "",
-    "text": "Packaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using hatchling, and how to distribute it on GitHub, PyPI and a private PyPI server."
+    "text": "Packaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using uv, and how to distribute it on GitHub, PyPI and a private PyPI server."
   },
   {
     "objectID": "07_packaging.html#benefits-of-packaging",
@@ -1082,7 +1082,7 @@
     "href": "07_packaging.html#pyproject.toml",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"uv_build&gt;=0.8.9,&lt;0.9.0\"]\nbuild-backend = \"uv_build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
   },
   {
     "objectID": "07_packaging.html#versioning",
@@ -1138,14 +1138,14 @@
     "href": "07_packaging.html#licenses-for-internal-packages",
     "title": "Distributing your Python package",
     "section": "Licenses for internal packages",
-    "text": "Licenses for internal packages\n\nFor internal packages that will not be distributed outside your organization:\nYou can use a simple copyright notice instead of a full license\nExample copyright notice:\n\n# Copyright (c) [COMPANY NAME]\n# All rights reserved.\n\nThe copyright notice can be placed in the header of each Python file\nAvoids the need to maintain a separate license file"
+    "text": "Licenses for internal packages\n\nFor internal packages that will not be distributed outside your organization:\nYou can use a simple copyright notice instead of a full license\nExample copyright notice:\n\n# Copyright (c) [COMPANY NAME]\n# All rights reserved."
   },
   {
     "objectID": "07_packaging.html#choosing-and-implementing-a-license",
     "href": "07_packaging.html#choosing-and-implementing-a-license",
     "title": "Distributing your Python package",
     "section": "Choosing and Implementing a License",
-    "text": "Choosing and Implementing a License\n\nWhen using open-source dependencies in internal packages:\nCheck the licenses of your dependencies and ensure compatibility\nDocument the licenses of all third-party components in your project\nResources for learning more about licenses:\nchoosealicense.com\nOpen Source Initiative\nSoftware Licenses on wikipedia\n\nBy following these practices, you can effectively manage the licensing for both your internal and publicly distributed Python packages."
+    "text": "Choosing and Implementing a License\n\nWhen using open-source dependencies in internal packages:\nCheck the licenses of your dependencies and ensure compatibility\nDocument the licenses of all third-party components in your project\nResources for learning more about licenses:\nchoosealicense.com\nOpen Source Initiative\nSoftware Licenses on wikipedia"
   },
   {
     "objectID": "07_packaging.html#dependencies",
@@ -1159,7 +1159,7 @@
     "href": "07_packaging.html#pyproject.toml-1",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.12\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[dependency-groups]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nDevelopment dependencies are specified in the relevant dependency-groups sections."
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"uv_build&gt;=0.8.9,&lt;0.9.0\"]\nbuild-backend = \"uv_build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.12\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[dependency-groups]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nDevelopment dependencies are specified in the relevant dependency-groups sections."
   },
   {
     "objectID": "07_packaging.html#classifiers",
@@ -1169,18 +1169,11 @@
     "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
   },
   {
-    "objectID": "07_packaging.html#packaging-non-python-files",
-    "href": "07_packaging.html#packaging-non-python-files",
-    "title": "Distributing your Python package",
-    "section": "Packaging non-Python files",
-    "text": "Packaging non-Python files\n\nIncluding non-Python files can be useful for e.g. machine learning models.\nIf you use hatchling, you can include non-Python files in your package.\nhatchling uses .gitignore to determine which files to include."
-  },
-  {
     "objectID": "07_packaging.html#github-secrets",
     "href": "07_packaging.html#github-secrets",
     "title": "Distributing your Python package",
     "section": "GitHub secrets",
-    "text": "GitHub secrets\n\nStore sensitive information, e.g. passwords, in your repository.\nSecrets are encrypted, and only visible to you and GitHub Actions.\nAdd secrets in the repository settings.\n\nTo use secrets as environment variables in GitHub Actions, add them to the env section of the workflow:\nenv:\n  USERNAME: ${{ secrets.USERNAME }}\n  PASSWORD: ${{ secrets.PASSWORD }}"
+    "text": "GitHub secrets\n\nStore sensitive information, e.g. passwords, in GitHub (not in your repository).\nSecrets are encrypted, and only visible to you and GitHub Actions.\nAdd secrets in the repository settings.\n\nTo use secrets as environment variables in GitHub Actions, add them to the env section of the workflow:\nenv:\n  USERNAME: ${{ secrets.USERNAME }}\n  PASSWORD: ${{ secrets.PASSWORD }}"
   },
   {
     "objectID": "07_packaging.html#github-actions",
@@ -1201,7 +1194,7 @@
     "href": "07_packaging.html#private-pypi-server",
     "title": "Distributing your Python package",
     "section": "Private PyPI server",
-    "text": "Private PyPI server\n\nPrivate packages can be be hosted on e.g. Azure Arfifacts or Posit Package Manager.\nThese servers behaves like PyPI, and can be used with pip\nAccess policies can be used to control who can install packages.\n\n. . .\nExample:\n$ pip install --extra-index-url https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling\nLooking in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/\n...\nSuccessfully installed sampling-0.0.1"
+    "text": "Private PyPI server\n\nPrivate packages can be hosted on e.g. Azure Artifacts or Posit Package Manager.\nThese servers behaves like PyPI, and can be used with pip\nAccess policies can be used to control who can install packages.\n\n. . .\nExample:\n$ pip install --extra-index-url https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling\nLooking in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/\n...\nSuccessfully installed sampling-0.0.1"
   },
   {
     "objectID": "07_packaging.html#installing-a-development-version",
@@ -1334,7 +1327,7 @@
     "href": "07_packaging_slides.html#packaging",
     "title": "Distributing your Python package",
     "section": "Packaging",
-    "text": "Packaging\nPackaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using hatchling, and how to distribute it on GitHub, PyPI and a private PyPI server."
+    "text": "Packaging\nPackaging means creating a package that can be installed by pip.\nThere are many ways to create an installable package, and many ways to distribute it.\nWe will show how to create a package using uv, and how to distribute it on GitHub, PyPI and a private PyPI server."
   },
   {
     "objectID": "07_packaging_slides.html#benefits-of-packaging",
@@ -1355,7 +1348,7 @@
     "href": "07_packaging_slides.html#pyproject.toml",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"uv_build&gt;=0.8.9,&lt;0.9.0\"]\nbuild-backend = \"uv_build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.9\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\""
   },
   {
     "objectID": "07_packaging_slides.html#versioning",
@@ -1411,14 +1404,14 @@
     "href": "07_packaging_slides.html#licenses-for-internal-packages",
     "title": "Distributing your Python package",
     "section": "Licenses for internal packages",
-    "text": "Licenses for internal packages\n\nFor internal packages that will not be distributed outside your organization:\nYou can use a simple copyright notice instead of a full license\nExample copyright notice:\n\n# Copyright (c) [COMPANY NAME]\n# All rights reserved.\n\nThe copyright notice can be placed in the header of each Python file\nAvoids the need to maintain a separate license file"
+    "text": "Licenses for internal packages\n\nFor internal packages that will not be distributed outside your organization:\nYou can use a simple copyright notice instead of a full license\nExample copyright notice:\n\n# Copyright (c) [COMPANY NAME]\n# All rights reserved."
   },
   {
     "objectID": "07_packaging_slides.html#choosing-and-implementing-a-license",
     "href": "07_packaging_slides.html#choosing-and-implementing-a-license",
     "title": "Distributing your Python package",
     "section": "Choosing and Implementing a License",
-    "text": "Choosing and Implementing a License\n\nWhen using open-source dependencies in internal packages:\nCheck the licenses of your dependencies and ensure compatibility\nDocument the licenses of all third-party components in your project\nResources for learning more about licenses:\nchoosealicense.com\nOpen Source Initiative\nSoftware Licenses on wikipedia\n\nBy following these practices, you can effectively manage the licensing for both your internal and publicly distributed Python packages."
+    "text": "Choosing and Implementing a License\n\nWhen using open-source dependencies in internal packages:\nCheck the licenses of your dependencies and ensure compatibility\nDocument the licenses of all third-party components in your project\nResources for learning more about licenses:\nchoosealicense.com\nOpen Source Initiative\nSoftware Licenses on wikipedia"
   },
   {
     "objectID": "07_packaging_slides.html#dependencies",
@@ -1432,7 +1425,7 @@
     "href": "07_packaging_slides.html#pyproject.toml-1",
     "title": "Distributing your Python package",
     "section": "pyproject.toml",
-    "text": "pyproject.toml\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.12\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[dependency-groups]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nDevelopment dependencies are specified in the relevant dependency-groups sections."
+    "text": "pyproject.toml\n[build-system]\nrequires = [\"uv_build&gt;=0.8.9,&lt;0.9.0\"]\nbuild-backend = \"uv_build\"\n\n[project]\nname = \"my_library\"\nversion = \"0.0.1\"\ndependencies = [\n    \"numpy\"\n]\n\nauthors = [\n  { name=\"First Last\", email=\"initials@dhigroup.com\" },\n]\ndescription = \"Useful library\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.12\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\n[dependency-groups]\ndev = [\"pytest\", \"ruff\", \"mypy\", \"mkdocs\", \"mkdocstrings[python]\", \"mkdocs-material\"]\ntest= [\"pytest\"]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/DHI/my_library\"\n\"Bug Tracker\" = \"https://github.com/DHI/my_library/issues\"\n\n\nMandatory dependencies are specified in the dependencies section.\nDevelopment dependencies are specified in the relevant dependency-groups sections."
   },
   {
     "objectID": "07_packaging_slides.html#classifiers",
@@ -1442,18 +1435,11 @@
     "text": "Classifiers\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Development Status :: 2 - Pre-Alpha\",\n    \"Operating System :: OS Independent\",\n    \"Intended Audience :: Science/Research\",\n    \"Topic :: Scientific/Engineering\",\n]\n\nClassifiers are used to categorize your package\nLess relevant for internal packages\nOperating system (Windows, Linux, MacOS)\nDevelopment status (Alpha, Beta, Production/Stable)"
   },
   {
-    "objectID": "07_packaging_slides.html#packaging-non-python-files",
-    "href": "07_packaging_slides.html#packaging-non-python-files",
-    "title": "Distributing your Python package",
-    "section": "Packaging non-Python files",
-    "text": "Packaging non-Python files\n\nIncluding non-Python files can be useful for e.g. machine learning models.\nIf you use hatchling, you can include non-Python files in your package.\nhatchling uses .gitignore to determine which files to include."
-  },
-  {
     "objectID": "07_packaging_slides.html#github-secrets",
     "href": "07_packaging_slides.html#github-secrets",
     "title": "Distributing your Python package",
     "section": "GitHub secrets",
-    "text": "GitHub secrets\n\nStore sensitive information, e.g. passwords, in your repository.\nSecrets are encrypted, and only visible to you and GitHub Actions.\nAdd secrets in the repository settings.\n\nTo use secrets as environment variables in GitHub Actions, add them to the env section of the workflow:\nenv:\n  USERNAME: ${{ secrets.USERNAME }}\n  PASSWORD: ${{ secrets.PASSWORD }}"
+    "text": "GitHub secrets\n\nStore sensitive information, e.g. passwords, in GitHub (not in your repository).\nSecrets are encrypted, and only visible to you and GitHub Actions.\nAdd secrets in the repository settings.\n\nTo use secrets as environment variables in GitHub Actions, add them to the env section of the workflow:\nenv:\n  USERNAME: ${{ secrets.USERNAME }}\n  PASSWORD: ${{ secrets.PASSWORD }}"
   },
   {
     "objectID": "07_packaging_slides.html#github-actions",
@@ -1474,7 +1460,7 @@
     "href": "07_packaging_slides.html#private-pypi-server",
     "title": "Distributing your Python package",
     "section": "Private PyPI server",
-    "text": "Private PyPI server\n\nPrivate packages can be be hosted on e.g. Azure Arfifacts or Posit Package Manager.\nThese servers behaves like PyPI, and can be used with pip\nAccess policies can be used to control who can install packages.\n\n\nExample:\n$ pip install --extra-index-url https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling\nLooking in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/\n...\nSuccessfully installed sampling-0.0.1"
+    "text": "Private PyPI server\n\nPrivate packages can be hosted on e.g. Azure Artifacts or Posit Package Manager.\nThese servers behaves like PyPI, and can be used with pip\nAccess policies can be used to control who can install packages.\n\n\nExample:\n$ pip install --extra-index-url https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling\nLooking in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/\n...\nSuccessfully installed sampling-0.0.1"
   },
   {
     "objectID": "07_packaging_slides.html#installing-a-development-version",
@@ -1768,7 +1754,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7efe04eab770&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fd6306ef770&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1999,7 +1985,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7feab422fa10&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7faff476ba10&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",

@@ -385,7 +385,7 @@ window.Quarto = {
 </section>
 <section id="section" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="section"></h2>
-<div id="519ace4c" class="cell" data-execution_count="1">
+<div id="1b9fbcd8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Shape:</span>
@@ -416,7 +416,7 @@ window.Quarto = {
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.width <span class="op">*</span> <span class="va">self</span>.height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>. . .</p>
-<div id="6f17e119" class="cell" data-execution_count="2">
+<div id="e4f3b089" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>shapes <span class="op">=</span> [</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    Circle(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"red"</span>),</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    Rectangle(<span class="fl">2.0</span>, <span class="fl">3.0</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
@@ -573,7 +573,7 @@ A blue shape with area = 6.00</code></pre>
 <li>…</li>
 </ul>
 <hr>
-<div id="9ae37a00" class="cell" data-execution_count="3">
+<div id="2163e591" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Collection</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tool:</span>
@@ -585,7 +585,7 @@ A blue shape with area = 6.00</code></pre>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Screwdriver(Tool):</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"screwdriver"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="392feff0" class="cell" data-execution_count="4">
+<div id="a34bdb9f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
@@ -602,17 +602,17 @@ A blue shape with area = 6.00</code></pre>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>tb.getToolByName(<span class="st">"hammer"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;__main__.Hammer at 0x7fb72077d940&gt;</code></pre>
+<pre><code>&lt;__main__.Hammer at 0x7fb61c5bd940&gt;</code></pre>
 </div>
 </div>
-<div id="8fb5e408" class="cell" data-execution_count="5">
+<div id="744116e1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tb.numberOfTools()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>2</code></pre>
 </div>
 </div>
 <hr>
-<div id="d7cda7df" class="cell" data-execution_count="6">
+<div id="cf6606d3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Toolbox:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]):</span>
@@ -627,10 +627,10 @@ A blue shape with area = 6.00</code></pre>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>tb[<span class="st">"hammer"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;__main__.Hammer at 0x7fb720804910&gt;</code></pre>
+<pre><code>&lt;__main__.Hammer at 0x7fb61c640910&gt;</code></pre>
 </div>
 </div>
-<div id="65c2be02" class="cell" data-execution_count="7">
+<div id="0668f955" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>2</code></pre>
@@ -640,7 +640,7 @@ A blue shape with area = 6.00</code></pre>
 <p>You want your code to feel like the built-in types.</p>
 </div>
 <hr>
-<div id="ad4ef05e" class="cell" data-execution_count="8">
+<div id="c8b98112" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SparseMatrix:</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, shape, fill_value<span class="op">=</span><span class="fl">0.0</span>, data<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.shape <span class="op">=</span> shape</span>
@@ -671,7 +671,7 @@ A blue shape with area = 6.00</code></pre>
 <span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> matrix_str</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
-<div id="3712b28e" class="cell" data-execution_count="9">
+<div id="dd54915e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> SparseMatrix(shape<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>), fill_value<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -680,14 +680,14 @@ A blue shape with area = 6.00</code></pre>
 </div>
 </div>
 <p>. . .</p>
-<div id="f7e502ca" class="cell" data-execution_count="10">
+<div id="b557d6b4" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">0</span>,<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>0.0</code></pre>
 </div>
 </div>
 <p>. . .</p>
-<div id="8e75a699" class="cell" data-execution_count="11">
+<div id="6dafbd74" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">=</span> <span class="fl">2.0</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -697,7 +697,7 @@ A blue shape with area = 6.00</code></pre>
 </div>
 </div>
 <p>. . .</p>
-<div id="17e15b7c" class="cell" data-execution_count="12">
+<div id="1188428e" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m.transpose()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>0.0 1.0 
@@ -718,7 +718,7 @@ A blue shape with area = 6.00</code></pre>
 </section>
 <section id="section-1" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="section-1"></h2>
-<div id="8658b565" class="cell" data-execution_count="13">
+<div id="45eb4879" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circle: <span class="co"># no base class</span></span>
@@ -745,7 +745,7 @@ A blue shape with area = 6.00</code></pre>
 <span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> rectangle with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>. . .</p>
-<div id="b20ad82b" class="cell" data-execution_count="14">
+<div id="d5441b1f" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>shapes <span class="op">=</span> [</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    Circle(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"red"</span>),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    Rectangle(<span class="fl">2.0</span>, <span class="fl">3.0</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
@@ -867,7 +867,7 @@ A blue rectangle with area = 6.00</code></pre>
 </section>
 <section id="example---pydantic" class="level2">
 <h2 class="anchored" data-anchor-id="example---pydantic">Example - Pydantic</h2>
-<div id="bda404ea" class="cell" data-execution_count="15">
+<div id="962e412e" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -886,7 +886,7 @@ A blue rectangle with area = 6.00</code></pre>
 <pre><code>Sensor(name='Sensor 1', voltage=3.3, install_date=datetime.date(2020, 1, 1), location=(4.42, 51.22))</code></pre>
 </div>
 </div>
-<div id="18b52847" class="cell" data-execution_count="16">
+<div id="a665b3ab" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Sensor 1"</span>,</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"voltage"</span>: <span class="st">"3.3"</span>,</span>
