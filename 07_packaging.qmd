@@ -14,7 +14,7 @@ Packaging means creating a package that can be installed by `pip`.
 
 There are many ways to create an installable package, and many ways to distribute it.
 
-We will show how to create a package using `hatchling`, and how to distribute it on GitHub, PyPI and a private PyPI server.
+We will show how to create a package using `uv`, and how to distribute it on GitHub, PyPI and a private PyPI server.
 
 ## Benefits of packaging
 
@@ -40,8 +40,8 @@ We will show how to create a package using `hatchling`, and how to distribute it
 
 ```toml
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.8.9,<0.9.0"]
+build-backend = "uv_build"
 
 [project]
 name = "my_library"
@@ -189,8 +189,6 @@ Many popular Python packages, such as scikit-learn, use licenses like BSD-3 or A
 # Copyright (c) [COMPANY NAME]
 # All rights reserved.
 ```
-- The copyright notice can be placed in the header of each Python file
-- Avoids the need to maintain a separate license file
 
 
 ## Choosing and Implementing a License
@@ -202,10 +200,6 @@ Many popular Python packages, such as scikit-learn, use licenses like BSD-3 or A
  - [choosealicense.com](https://choosealicense.com/)
  - [Open Source Initiative](https://opensource.org/licenses)
  - [Software Licenses on wikipedia](https://en.wikipedia.org/wiki/Software_license)
-
-By following these practices, you can effectively manage the licensing for both your internal and publicly distributed Python packages.
-
-
 
 
 ## Dependencies
@@ -248,8 +242,8 @@ Make the requirements loose, to avoid conflicts with other packages.
 
 ```{.toml code-line-numbers="8-10|27-29"}
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.8.9,<0.9.0"]
+build-backend = "uv_build"
 
 [project]
 name = "my_library"
@@ -310,16 +304,9 @@ classifiers = [
 * Development status (Alpha, Beta, Production/Stable)
 
 
-## Packaging non-Python files
-
-* Including non-Python files can be useful for e.g. machine learning models.
-* If you use `hatchling`, you can include non-Python files in your package.
-* `hatchling` uses .gitignore to determine which files to include.
-
-
 ## GitHub secrets
 
-* Store sensitive information, e.g. passwords, in your repository.
+* Store sensitive information, e.g. passwords, in GitHub (not in your repository).
 * Secrets are encrypted, and only visible to you and GitHub Actions.
 * Add secrets in the repository settings.
 
@@ -383,7 +370,7 @@ Example:
 
 ## Private PyPI server {.smaller}
 
-* Private packages can be be hosted on e.g. Azure Arfifacts or Posit Package Manager.
+* Private packages can be hosted on e.g. Azure Artifacts or Posit Package Manager.
 * These servers behaves like PyPI, and can be used with `pip`
 * Access policies can be used to control who can install packages.
 
