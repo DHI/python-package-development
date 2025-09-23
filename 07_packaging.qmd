@@ -177,9 +177,6 @@ Try to avoid breaking changes, if possible, but if you do, increase the major ve
 - **Apache License 2.0**: Includes a patent grant and is compatible with the GPL family of licenses.
 - **GNU GPL Family (GPL, LGPL, AGPL)**: Copyleft licenses that require derivative works to be open-source and distributed under the same terms.
 
-Many popular Python packages, such as scikit-learn, use licenses like BSD-3 or Apache 2.0.
-
-
 ## Licenses for internal packages
 
 - For internal packages that will not be distributed outside your organization:
@@ -225,18 +222,13 @@ Pin versions to ensure reproducibility, e.g. `numpy==1.11.0`
 
 *A program that is used by another program*
 
-* Python package
-* Low level library (C, Fortran, Rust, ...)
+* *numpy*
+* *scikit-learn*
 
 Make the requirements as loose as possible, e.g. `numpy>=1.11.0`
 :::
 
 ::::
-
-::: {.notes}
-Make the requirements loose, to avoid conflicts with other packages.
-
-:::
 
 ## pyproject.toml {.smaller}
 
@@ -328,7 +320,7 @@ env:
 name: Publish Python Package
 on:
   release:
-    types: [created]
+    types: [published]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -393,13 +385,13 @@ Successfully installed sampling-0.0.1
 
 ## Recap
 
-1. [Git, Pull Requests, and code reviews](01_version_control.qmd) [🛝](01_version_control_slides.html)
-2. [Python functions, classes, and modules](02_function_classes.qmd) [🛝](02_function_classes_slides.html)
-3. [Testing and auto-formatting](03_testing.qmd) [🛝](03_testing_slides.html)
-4. [Dependencies and GitHub actions](04_dependencies_ci.qmd) [🛝](04_dependencies_ci_slides.html)
-6. [Object oriented design in Python](05_oop.qmd) [🛝](05_oop_slides.html)
-6. [Documentation](06_documentation.qmd) [🛝](06_documentation_slides.html)
-7. [Distributing your package](07_packaging.qmd) [🛝](07_packaging_slides.html)
+1. Git, Pull Requests, and code reviews
+2. Python functions, classes, and modules
+3. Testing and auto-formatting
+4. Dependencies and Continous Integration
+5. Object oriented design in Python
+6. Documentation
+7. Distributing your package
 
 ## Git, Pull Requests, and code reviews {.smaller}
 
@@ -514,8 +506,6 @@ True
 
 
 
-## Types, abstraction, and refactoring {.smaller}
-
 ## Pythonic
 
 If you want your code to be Pythonic, you have to be familiar with these types and their methods.
@@ -566,38 +556,6 @@ Hammer()
 2
 ```
 
-
-## Duck typing
-
-* "*If it walks like a duck and quacks like a duck, it's a duck*"
-* From the perspective of the caller, it doesn't matter if it is a rubber duck or a real duck.
-* The type of the object is **not important**, as long as it has the right methods.
-
----
-
-An example is a Scikit learn transformers
-
-* `fit`
-* `transform`
-* `fit_transform`
-
-If you want to make a transformer compatible with sklearn, you have to implement these methods.
-
----
-
-```python
-class MyTransformer:
-    def fit(self, X, y=None):
-        # do something
-        return self
-
-    def transform(self, X):
-        # do something
-        return X
-
-    def fit_transform(self, X, y=None):
-        return self.fit(X, y).transform(X)
-```
 
 
 ## Testing and auto-formatting {.smaller}
