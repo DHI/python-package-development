@@ -341,7 +341,6 @@
 <li><strong>Apache License 2.0</strong>: Includes a patent grant and is compatible with the GPL family of licenses.</li>
 <li><strong>GNU GPL Family (GPL, LGPL, AGPL)</strong>: Copyleft licenses that require derivative works to be open-source and distributed under the same terms.</li>
 </ul>
-<p>Many popular Python packages, such as scikit-learn, use licenses like BSD-3 or Apache 2.0.</p>
 </section>
 <section id="licenses-for-internal-packages" class="slide level2">
 <h2>Licenses for internal packages</h2>
@@ -381,24 +380,11 @@
 <p><strong>Library</strong></p>
 <p><em>A program that is used by another program</em></p>
 <ul>
-<li>Python package</li>
-<li>Low level library (C, Fortran, Rust, …)</li>
+<li><em>numpy</em></li>
+<li><em>scikit-learn</em></li>
 </ul>
 <p>Make the requirements as loose as possible, e.g.&nbsp;<code>numpy&gt;=1.11.0</code></p>
 </div></div>
-<aside class="notes">
-<p>Make the requirements loose, to avoid conflicts with other packages.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section id="pyproject.toml-1" class="slide level2 smaller">
 <h2>pyproject.toml</h2>
@@ -494,7 +480,7 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename=".github/workflows/python_publish.yml" data-code-line-numbers="|2-4|18-19|20-21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
 <span id="cb6-2"><a></a><span class="fu">on</span><span class="kw">:</span></span>
 <span id="cb6-3"><a></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
-<span id="cb6-4"><a></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">created</span><span class="kw">]</span></span>
+<span id="cb6-4"><a></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">published</span><span class="kw">]</span></span>
 <span id="cb6-5"><a></a><span class="fu">jobs</span><span class="kw">:</span></span>
 <span id="cb6-6"><a></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
 <span id="cb6-7"><a></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
@@ -560,13 +546,13 @@
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <ol type="1">
-<li><a href="./01_version_control.html">Git, Pull Requests, and code reviews</a> <a href="01_version_control_slides.html">🛝</a></li>
-<li><a href="./02_function_classes.html">Python functions, classes, and modules</a> <a href="02_function_classes_slides.html">🛝</a></li>
-<li><a href="./03_testing.html">Testing and auto-formatting</a> <a href="03_testing_slides.html">🛝</a></li>
-<li><a href="./04_dependencies_ci.html">Dependencies and GitHub actions</a> <a href="04_dependencies_ci_slides.html">🛝</a></li>
-<li><a href="./05_oop.html">Object oriented design in Python</a> <a href="05_oop_slides.html">🛝</a></li>
-<li><a href="./06_documentation.html">Documentation</a> <a href="06_documentation_slides.html">🛝</a></li>
-<li><a href="./07_packaging.html">Distributing your package</a> <a href="07_packaging_slides.html">🛝</a></li>
+<li>Git, Pull Requests, and code reviews</li>
+<li>Python functions, classes, and modules</li>
+<li>Testing and auto-formatting</li>
+<li>Dependencies and Continous Integration</li>
+<li>Object oriented design in Python</li>
+<li>Documentation</li>
+<li>Distributing your package</li>
 </ol>
 </section>
 <section id="git-pull-requests-and-code-reviews" class="slide level2 smaller">
@@ -687,9 +673,6 @@
 <span id="cb12-14"><a></a><span class="op">&gt;&gt;&gt;</span> dr1 <span class="op">==</span> dr2</span>
 <span id="cb12-15"><a></a><span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="types-abstraction-and-refactoring" class="slide level2 smaller">
-<h2>Types, abstraction, and refactoring</h2>
-</section>
 <section id="pythonic" class="slide level2">
 <h2>Pythonic</h2>
 <p>If you want your code to be Pythonic, you have to be familiar with these types and their methods.</p>
@@ -735,38 +718,6 @@
 <span id="cb14-11"><a></a>Hammer()</span>
 <span id="cb14-12"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(tb)</span>
 <span id="cb14-13"><a></a><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="duck-typing" class="slide level2">
-<h2>Duck typing</h2>
-<ul>
-<li>“<em>If it walks like a duck and quacks like a duck, it’s a duck</em>”</li>
-<li>From the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.</li>
-<li>The type of the object is <strong>not important</strong>, as long as it has the right methods.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<p>An example is a Scikit learn transformers</p>
-<ul>
-<li><code>fit</code></li>
-<li><code>transform</code></li>
-<li><code>fit_transform</code></li>
-</ul>
-<p>If you want to make a transformer compatible with sklearn, you have to implement these methods.</p>
-</section>
-<section class="slide level2">
-
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="kw">class</span> MyTransformer:</span>
-<span id="cb15-2"><a></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb15-3"><a></a>        <span class="co"># do something</span></span>
-<span id="cb15-4"><a></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="cb15-5"><a></a></span>
-<span id="cb15-6"><a></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
-<span id="cb15-7"><a></a>        <span class="co"># do something</span></span>
-<span id="cb15-8"><a></a>        <span class="cf">return</span> X</span>
-<span id="cb15-9"><a></a></span>
-<span id="cb15-10"><a></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb15-11"><a></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="testing-and-auto-formatting" class="slide level2 smaller">
 <h2>Testing and auto-formatting</h2>

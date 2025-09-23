@@ -109,7 +109,7 @@
     "href": "05_oop.html#pythonic",
     "title": "Object oriented design in Python",
     "section": "Pythonic",
-    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f6cd48d5940&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f6cd4958910&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
+    "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\n\nfrom collections.abc import Collection\n\nclass Tool:\n    ...\n\nclass Hammer(Tool):\n    name=\"hammer\"\n\nclass Screwdriver(Tool):\n    name=\"screwdriver\"\n\n\nclass JavaLikeToolbox:\n\n    def __init__(self, tools: Collection[Tool]) -&gt; None:\n        self.tools = tools\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\ntb = JavaLikeToolbox([Hammer(), Screwdriver()])\ntb.getToolByName(\"hammer\")\n\n&lt;__main__.Hammer at 0x7f4c2cd89940&gt;\n\n\n\ntb.numberOfTools()\n\n2\n\n\n\n\nclass Toolbox:\n\n    def __init__(self, tools: Collection[Tool]):\n        self._tools = {tool.name: tool for tool in tools}\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self._tools)\n\ntb = Toolbox([Hammer(), Screwdriver()])\ntb[\"hammer\"]\n\n&lt;__main__.Hammer at 0x7f4c2ce0c910&gt;\n\n\n\nlen(tb)\n\n2\n\n\n\nYou want your code to feel like the built-in types.\n\n\n\nclass SparseMatrix:\n    def __init__(self, shape, fill_value=0.0, data=None):\n        self.shape = shape\n        self._data = data if data is not None else {}\n        self.fill_value = fill_value\n        \n    def __setitem__(self, key, value):\n        i,j = key\n        self._data[i,j] = float(value) \n\n    def __getitem__(self, key) -&gt; float:\n        i,j = key\n        return self._data.get((i,j), self.fill_value)\n    \n    def transpose(self) -&gt; \"SparseMatrix\":\n        data = {(j,i) : v for (i,j),v in self._data.items()}\n        return SparseMatrix(data=data,\n                            shape=self.shape,\n                            fill_value=self.fill_value)\n    \n    def __repr__(self):\n        matrix_str = \"\"\n        for j in range(self.shape[1]):\n            for i in range(self.shape[0]):\n                value = self[i, j]\n                matrix_str += f\"{value:&lt;4}\"\n            matrix_str += \"\\n\"\n        return matrix_str\n\n\n\nm = SparseMatrix(shape=(2,2), fill_value=0.0)\nm\n\n0.0 0.0 \n0.0 0.0 \n\n\n. . .\n\nm[0,1]\n\n0.0\n\n\n. . .\n\nm[0,1] = 1.0\nm[1,0] = 2.0\nm\n\n0.0 2.0 \n1.0 0.0 \n\n\n. . .\n\nm.transpose()\n\n0.0 1.0 \n2.0 0.0"
   },
   {
     "objectID": "05_oop.html#duck-typing",
@@ -1131,7 +1131,7 @@
     "href": "07_packaging.html#common-open-source-license-types",
     "title": "Distributing your Python package",
     "section": "Common Open-Source License Types",
-    "text": "Common Open-Source License Types\n\nMIT License: Highly permissive, allows commercial use, modification, and distribution with minimal restrictions.\nBSD-3 Clause License: Similar to MIT, but includes a clause prohibiting use of the name for endorsement.\nApache License 2.0: Includes a patent grant and is compatible with the GPL family of licenses.\nGNU GPL Family (GPL, LGPL, AGPL): Copyleft licenses that require derivative works to be open-source and distributed under the same terms.\n\nMany popular Python packages, such as scikit-learn, use licenses like BSD-3 or Apache 2.0."
+    "text": "Common Open-Source License Types\n\nMIT License: Highly permissive, allows commercial use, modification, and distribution with minimal restrictions.\nBSD-3 Clause License: Similar to MIT, but includes a clause prohibiting use of the name for endorsement.\nApache License 2.0: Includes a patent grant and is compatible with the GPL family of licenses.\nGNU GPL Family (GPL, LGPL, AGPL): Copyleft licenses that require derivative works to be open-source and distributed under the same terms."
   },
   {
     "objectID": "07_packaging.html#licenses-for-internal-packages",
@@ -1152,7 +1152,7 @@
     "href": "07_packaging.html#dependencies",
     "title": "Distributing your Python package",
     "section": "Dependencies",
-    "text": "Dependencies\n\n\nApplication\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0\n\n\n\nMake the requirements loose, to avoid conflicts with other packages."
+    "text": "Dependencies\n\n\nApplication\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nnumpy\nscikit-learn\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0"
   },
   {
     "objectID": "07_packaging.html#pyproject.toml-1",
@@ -1180,7 +1180,7 @@
     "href": "07_packaging.html#github-actions",
     "title": "Distributing your Python package",
     "section": "GitHub Actions",
-    "text": "GitHub Actions\n\nModern publishing uses Trusted Publishers.\nAvoids managing secrets in the repository.\n\n\n\n.github/workflows/python_publish.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [created]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v3\n    - name: Set up Python\n      uses: actions/setup-python@v4\n      with:\n        python-version: '3.13'\n    - name: Install dependencies\n      run: |\n        uv sync\n    - name: Build package\n      run: uv build\n    - name: Publish package distributions to PyPI\n      uses: pypa/gh-action-pypi-publish@release/v1"
+    "text": "GitHub Actions\n\nModern publishing uses Trusted Publishers.\nAvoids managing secrets in the repository.\n\n\n\n.github/workflows/python_publish.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [published]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v3\n    - name: Set up Python\n      uses: actions/setup-python@v4\n      with:\n        python-version: '3.13'\n    - name: Install dependencies\n      run: |\n        uv sync\n    - name: Build package\n      run: uv build\n    - name: Publish package distributions to PyPI\n      uses: pypa/gh-action-pypi-publish@release/v1"
   },
   {
     "objectID": "07_packaging.html#publishing-to-pypi-and-testpypi",
@@ -1208,7 +1208,7 @@
     "href": "07_packaging.html#recap",
     "title": "Distributing your Python package",
     "section": "Recap",
-    "text": "Recap\n\nGit, Pull Requests, and code reviews 🛝\nPython functions, classes, and modules 🛝\nTesting and auto-formatting 🛝\nDependencies and GitHub actions 🛝\nObject oriented design in Python 🛝\nDocumentation 🛝\nDistributing your package 🛝"
+    "text": "Recap\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and Continous Integration\nObject oriented design in Python\nDocumentation\nDistributing your package"
   },
   {
     "objectID": "07_packaging.html#git-pull-requests-and-code-reviews",
@@ -1274,25 +1274,11 @@
     "text": "Dataclasses\nimport datetime\nfrom dataclasses import dataclass\n\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n&gt;&gt;&gt; dr1 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt; dr1\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nTrue"
   },
   {
-    "objectID": "07_packaging.html#types-abstraction-and-refactoring",
-    "href": "07_packaging.html#types-abstraction-and-refactoring",
-    "title": "Distributing your Python package",
-    "section": "Types, abstraction, and refactoring",
-    "text": "Types, abstraction, and refactoring"
-  },
-  {
     "objectID": "07_packaging.html#pythonic",
     "href": "07_packaging.html#pythonic",
     "title": "Distributing your Python package",
     "section": "Pythonic",
     "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…\n\n\nclass JavaLikeToolbox:\n    \n    def getToolByName(self, name: str) -&gt; Tool:\n        for tool in self.tools:\n            if tool.name == name:\n                return tool\n\n    def numberOfTools(self) -&gt; int:\n        return len(self.tools)\n\n&gt;&gt;&gt; tb = JavaLikeToolbox([Hammer(), Screwdriver()])\n&gt;&gt;&gt; tb.getToolByName(\"hammer\")\nHammer()\n&gt;&gt;&gt; tb.numberOfTools()\n2\n\nclass Toolbox:\n\n    def __getitem__(self, name: str) -&gt; Tool:\n        return self._tools[name]\n    \n    def __len__(self) -&gt; int:\n        return len(self.tools)\n\n&gt;&gt;&gt; tb = Toolbox([Hammer(), Screwdriver()])\n&gt;&gt;&gt; tb[\"hammer\"]\nHammer()\n&gt;&gt;&gt; len(tb)\n2"
-  },
-  {
-    "objectID": "07_packaging.html#duck-typing",
-    "href": "07_packaging.html#duck-typing",
-    "title": "Distributing your Python package",
-    "section": "Duck typing",
-    "text": "Duck typing\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods.\n\n\nAn example is a Scikit learn transformers\n\nfit\ntransform\nfit_transform\n\nIf you want to make a transformer compatible with sklearn, you have to implement these methods.\n\nclass MyTransformer:\n    def fit(self, X, y=None):\n        # do something\n        return self\n\n    def transform(self, X):\n        # do something\n        return X\n\n    def fit_transform(self, X, y=None):\n        return self.fit(X, y).transform(X)"
   },
   {
     "objectID": "07_packaging.html#testing-and-auto-formatting",
@@ -1397,7 +1383,7 @@
     "href": "07_packaging_slides.html#common-open-source-license-types",
     "title": "Distributing your Python package",
     "section": "Common Open-Source License Types",
-    "text": "Common Open-Source License Types\n\nMIT License: Highly permissive, allows commercial use, modification, and distribution with minimal restrictions.\nBSD-3 Clause License: Similar to MIT, but includes a clause prohibiting use of the name for endorsement.\nApache License 2.0: Includes a patent grant and is compatible with the GPL family of licenses.\nGNU GPL Family (GPL, LGPL, AGPL): Copyleft licenses that require derivative works to be open-source and distributed under the same terms.\n\nMany popular Python packages, such as scikit-learn, use licenses like BSD-3 or Apache 2.0."
+    "text": "Common Open-Source License Types\n\nMIT License: Highly permissive, allows commercial use, modification, and distribution with minimal restrictions.\nBSD-3 Clause License: Similar to MIT, but includes a clause prohibiting use of the name for endorsement.\nApache License 2.0: Includes a patent grant and is compatible with the GPL family of licenses.\nGNU GPL Family (GPL, LGPL, AGPL): Copyleft licenses that require derivative works to be open-source and distributed under the same terms."
   },
   {
     "objectID": "07_packaging_slides.html#licenses-for-internal-packages",
@@ -1418,7 +1404,7 @@
     "href": "07_packaging_slides.html#dependencies",
     "title": "Distributing your Python package",
     "section": "Dependencies",
-    "text": "Dependencies\n\n\nApplication\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nPython package\nLow level library (C, Fortran, Rust, …)\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0\n\n\nMake the requirements loose, to avoid conflicts with other packages."
+    "text": "Dependencies\n\n\nApplication\nA program that is run by a user\n\ncommand line tool\nscript\nweb application\n\nPin versions to ensure reproducibility, e.g. numpy==1.11.0\n\nLibrary\nA program that is used by another program\n\nnumpy\nscikit-learn\n\nMake the requirements as loose as possible, e.g. numpy&gt;=1.11.0"
   },
   {
     "objectID": "07_packaging_slides.html#pyproject.toml-1",
@@ -1446,7 +1432,7 @@
     "href": "07_packaging_slides.html#github-actions",
     "title": "Distributing your Python package",
     "section": "GitHub Actions",
-    "text": "GitHub Actions\n\nModern publishing uses Trusted Publishers.\nAvoids managing secrets in the repository.\n\n\n\n.github/workflows/python_publish.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [created]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v3\n    - name: Set up Python\n      uses: actions/setup-python@v4\n      with:\n        python-version: '3.13'\n    - name: Install dependencies\n      run: |\n        uv sync\n    - name: Build package\n      run: uv build\n    - name: Publish package distributions to PyPI\n      uses: pypa/gh-action-pypi-publish@release/v1"
+    "text": "GitHub Actions\n\nModern publishing uses Trusted Publishers.\nAvoids managing secrets in the repository.\n\n\n\n.github/workflows/python_publish.yml\n\nname: Publish Python Package\non:\n  release:\n    types: [published]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v3\n    - name: Set up Python\n      uses: actions/setup-python@v4\n      with:\n        python-version: '3.13'\n    - name: Install dependencies\n      run: |\n        uv sync\n    - name: Build package\n      run: uv build\n    - name: Publish package distributions to PyPI\n      uses: pypa/gh-action-pypi-publish@release/v1"
   },
   {
     "objectID": "07_packaging_slides.html#publishing-to-pypi-and-testpypi",
@@ -1474,7 +1460,7 @@
     "href": "07_packaging_slides.html#recap",
     "title": "Distributing your Python package",
     "section": "Recap",
-    "text": "Recap\n\nGit, Pull Requests, and code reviews 🛝\nPython functions, classes, and modules 🛝\nTesting and auto-formatting 🛝\nDependencies and GitHub actions 🛝\nObject oriented design in Python 🛝\nDocumentation 🛝\nDistributing your package 🛝"
+    "text": "Recap\n\nGit, Pull Requests, and code reviews\nPython functions, classes, and modules\nTesting and auto-formatting\nDependencies and Continous Integration\nObject oriented design in Python\nDocumentation\nDistributing your package"
   },
   {
     "objectID": "07_packaging_slides.html#git-pull-requests-and-code-reviews",
@@ -1540,25 +1526,11 @@
     "text": "Dataclasses\nimport datetime\nfrom dataclasses import dataclass\n\n\n@dataclass\nclass Interval:\n    start: date\n    end: date\n\n&gt;&gt;&gt; dr1 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt; dr1\nInterval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt; dr2 = Interval(start=datetime.date(2020, 1, 1), end=datetime.date(2020, 1, 31))\n&gt;&gt;&gt; dr1 == dr2\nTrue"
   },
   {
-    "objectID": "07_packaging_slides.html#types-abstraction-and-refactoring",
-    "href": "07_packaging_slides.html#types-abstraction-and-refactoring",
-    "title": "Distributing your Python package",
-    "section": "Types, abstraction, and refactoring",
-    "text": "Types, abstraction, and refactoring"
-  },
-  {
     "objectID": "07_packaging_slides.html#pythonic",
     "href": "07_packaging_slides.html#pythonic",
     "title": "Distributing your Python package",
     "section": "Pythonic",
     "text": "Pythonic\nIf you want your code to be Pythonic, you have to be familiar with these types and their methods.\nDundermethods:\n\n__getitem__\n__setitem__\n__len__\n__contains__\n…"
-  },
-  {
-    "objectID": "07_packaging_slides.html#duck-typing",
-    "href": "07_packaging_slides.html#duck-typing",
-    "title": "Distributing your Python package",
-    "section": "Duck typing",
-    "text": "Duck typing\n\n“If it walks like a duck and quacks like a duck, it’s a duck”\nFrom the perspective of the caller, it doesn’t matter if it is a rubber duck or a real duck.\nThe type of the object is not important, as long as it has the right methods."
   },
   {
     "objectID": "07_packaging_slides.html#testing-and-auto-formatting",
@@ -1754,7 +1726,7 @@
     "href": "02_function_classes_slides.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f1cdc4a3770&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f8f40fa3770&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes_slides.html#dataclasses",
@@ -1985,7 +1957,7 @@
     "href": "02_function_classes.html#static-methods-1",
     "title": "Functions, classes and modules",
     "section": "Static methods",
-    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7f2d68f93a10&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
+    "text": "Static methods\n\nfrom datetime import date\n\nclass Interval:\n    def __init__(self, start:date, end:date) -&gt; None:\n        self.start = start\n        self.end = end\n\n    @staticmethod\n    def from_string(date_string: str) -&gt; Interval:\n        start_str, end_str = date_string.split(\"|\")\n        start = date.fromisoformat(start_str)\n        end = date.fromisoformat(end_str)\n        return Interval(start, end)\n\ndr = Interval.from_string(\"2020-01-01|2020-01-31\")\ndr\n\n&lt;__main__.Interval at 0x7fe4ac6afa10&gt;\n\n\n\nSince we commonly use ISO formatted dates separated by a pipe, we can add a static method to create an instance from a string. This makes it easier to create an instance."
   },
   {
     "objectID": "02_function_classes.html#dataclasses",
