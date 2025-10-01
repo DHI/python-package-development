@@ -13,6 +13,7 @@ In this module, we will use some files from the python library template. When yo
     - Change all occurrences of "my_library" in the yml file to your package name "tscleaner"
     - Comment out the line with `ruff-action` with "#"
     - Comment out the line with `- name: Test docstrings with pytest`, this will be covered in a future lesson. 
+    - Comment out the line with `- name: Static type check`, this will be covered in a future lesson.
     - Commit, push and create a pull request; the tests should now run, verify that they all run before you move on
 - 4.2 Linting with ruff
     - Enable the `- uses: chartboost/ruff-action@v1` by removing the "#" you added above
