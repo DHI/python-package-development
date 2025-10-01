@@ -8,12 +8,14 @@ In this module, we will use some files from the python library template. When yo
 
 - Create new branch `action-formatting` (Make sure changes from last module have been merged, and that you start from the main branch)
 - 4.1 Github Action
-    - Copy the GitHub action file `full_test.yml` (in the `.github/workflows` folder) from the python template <https://github.com/DHI/template-python-library> to your own library (make sure it sits in the same folder).
+    - Copy the `Makefile` from the python template <https://github.com/DHI/template-python-library> to your own library. It can sit in the root of your repo (make sure it is part of your github repo dir however)
+    - Copy the GitHub action file `full_test.yml` (in the `.github/workflows` folder) from the python template <https://github.com/DHI/template-python-library> to your own library. Make sure it sits in the same folder (`.github/workflows`).
     - Change all occurrences of "my_library" in the yml file to your package name "tscleaner"
     - Comment out the line with `ruff-action` with "#"
+    - Comment out the line with `- name: Test docstrings with pytest`, this will be covered in a future lesson. 
     - Commit, push and create a pull request; the tests should now run, verify that they all run before you move on
 - 4.2 Linting with ruff
-    - Enable the `ruff-action` by removing the "#" you added above
+    - Enable the `- uses: chartboost/ruff-action@v1` by removing the "#" you added above
     - Commit and push; your actions will probably fail now - inspect the problems by clicking the red cross (did you also get an email?)
     - Install `ruff` on your local machine with uv
     - Navigate to your project root folder and run ruff with `ruff check`
