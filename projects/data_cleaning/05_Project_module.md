@@ -6,6 +6,7 @@ In this module you will benefit from the automatic testing that you have added i
 
 - Create new branch "oop-dataclasses" (Make sure changes from last module have been merged, and that you start from the main branch)
 - 5.1 Type Hints
+    - Uncomment out the line with `- name: Static type check` in your github actions workflow. 
     - Add type hints to all functions and methods. Commit
 - 5.2 Data class
     - Make all the cleaner classes dataclasses.
