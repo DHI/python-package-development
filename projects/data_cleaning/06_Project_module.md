@@ -19,6 +19,7 @@ Before, we share our code with others we should document it. This can be done in
     - Create API documentation locally using the command `> uv run mkdocs serve` (which starts a local http server).
     - Check the generated HTML documentation.
     - The local documentation instance will "listen" to changes, try to modify the `index.md` file and watch.
+    - Uncomment out the line with `- name: Test docstrings with pytest`
 - Create pull request in GitHub and "request review" from your reviewers
 - Get feedback, Adjust code until approval, then merge (and delete branch)
 
