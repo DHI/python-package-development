@@ -30,3 +30,25 @@ The course comprises these seven modules:
 <https://dhi.github.io/python-package-development>
 
 *Made with [Quarto](https://quarto.org/) and hosted by [GitHub Pages](https://pages.github.com/)*
+
+## Development
+
+**Prerequisites:** Python 3.13, [Quarto](https://quarto.org/)
+
+```bash
+pip install -r requirements.txt
+```
+
+**Preview locally:** `quarto preview`
+
+**Render site:** `quarto render`
+
+CI/CD via GitHub Actions (`.github/workflows/publish.yml`) renders and publishes to gh-pages on push to main.
+
+## Repository Structure
+
+- `*.qmd` — Course modules (00-07), each a Quarto reveal.js slide deck
+- `_quarto.yml` — Quarto site configuration
+- `projects/data_cleaning/` — Capstone homework project (progressive weekly assignments)
+- `group_work/` — Group discussion prompts per module
+- `examples/` — Code examples organized by module (03_oop, 04_testing, 06_documentation)
