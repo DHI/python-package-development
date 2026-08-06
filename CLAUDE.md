@@ -16,6 +16,8 @@ Educational course repository for "Python package development 2025" by DHI. Cour
 
 ## Repository Structure
 
+- `standards.md` — The course distilled into linkable rules; published at `standards.html` and used as the rubric by the `review-python-package` skill. Keep the two in sync.
+- `.claude/skills/review-python-package/` — Skill that audits a Python package against `standards.md`
 - `*.qmd` files — Course modules (00-07), each a Quarto slide deck
 - `_quarto.yml` — Quarto site configuration
 - `projects/data_cleaning/` — Capstone homework project (progressive weekly assignments)
