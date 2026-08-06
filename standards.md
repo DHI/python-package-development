@@ -112,9 +112,15 @@ def old_function(x): ...
 catches uses of `@deprecated` at type-check time.
 
 ### Changelog
-*Recommended.* A `CHANGELOG.md` in [keepachangelog](https://keepachangelog.com/) format.
-Release notes written from a git log are not release notes — the reader wants to know what
-broke, what's new, and what's deprecated.
+*Nice.* A `CHANGELOG.md` in [keepachangelog](https://keepachangelog.com/) format. Release
+notes written from a git log are not release notes — the reader wants to know what broke,
+what's new, and what's deprecated.
+
+Curating one by hand is real work, and a stale changelog is worse than none. Think twice
+before starting: if nobody reads it, skip it. If you do want one, let a tool assemble it from
+a fragment per pull request — [towncrier](https://towncrier.readthedocs.io/) or
+[git-cliff](https://git-cliff.org/) — so the cost lands on the author of each change rather
+than on you at release time.
 
 ### License
 *Blocker.* Without a license the package is "all rights reserved" and legally unusable by
@@ -209,18 +215,26 @@ Return a new object instead.
 ```python
 def clip(values):
     for i in range(len(values)):  # caller's list silently changed
-        values[i] = min(0, values[i])
+        values[i] = max(0, values[i])
 
 def clip(values):
-    return [min(0, v) for v in values]     # ✓
+    return [max(0, v) for v in values]     # ✓
 ```
 
 ### One return type
 *Blocker.* A function that returns a `bool` on success and a `str` on failure will read as
 success — a non-empty string is truthy.
 
+A function with a `return` on one path and nothing on another is the same bug: the missing
+path returns `None`.
+
 ```python
-if is_operable(height=12.0, period=5.0):   # returns "No way!" — and this runs
+def is_operable(height, period):
+    if height > 10.0:
+        return "No way!"       # str here, None on every other path
+    return True                # ...and bool here
+
+if is_operable(height=12.0, period=5.0):   # "No way!" is truthy — this runs
     print("Go ahead!")
 ```
 
@@ -251,15 +265,24 @@ class Toolbox:
 
 ### Type hints
 *Recommended.* On public functions at minimum. They are hints, not enforcement — they exist
-for the reader and the editor.
+for the reader and the editor, until you add a [type checker](#type-checking-in-ci).
 
 ```python
 def clip(values: list[int], *, threshold: int = 0) -> list[int]: ...
 ```
 
 ### Keyword-only arguments
-*Nice.* `def f(*, x, y)` forces callers to be explicit and lets you reorder parameters later
-without breaking anyone.
+*Recommended.* One or two positional parameters is fine — that is the data the function
+operates on. Everything after them is configuration, and belongs after a `*` so callers have
+to name it. You can then reorder or add options without breaking anyone.
+
+Three or more positional parameters is a strong smell: `resample(df, 3, 0, True)` can't be
+read at the call site, and nobody can safely change the order again.
+
+```python
+def resample(data, freq, *, offset=0, dropna=True): ...
+resample(df, "1h", dropna=False)      # ✓ the data and its frequency; the rest is named
+```
 
 ### Dataclasses for data
 *Recommended.* Fields with type hints, a constructor, a useful `repr`, and equality by value
@@ -297,7 +320,8 @@ happening, rename something instead.
 
 ### When a long signature is a smell
 *Nice.* Many optional keyword arguments with sane defaults are perfectly Pythonic — see
-`read_csv`, `plot`, or any sklearn estimator. The smell is not the count; it's when the
+`read_csv`, `plot`, or any sklearn estimator. The smell is not the total count (that's
+[positional arguments](#keyword-only-arguments), which are a separate rule); it's when the
 arguments are switches for **separate jobs** the function has absorbed. If half the signature
 only applies when another argument is set, that's several functions wearing one signature.
 
@@ -398,8 +422,9 @@ def remove_outlier(data: pd.DataFrame, column: str, threshold: float = 3) -> pd.
 ```
 
 ### Examples that are tested
-*Nice.* `doctest` runs the examples in your docstrings. Documentation that is wrong is worse
-than documentation that is missing.
+*Nice.* Documentation that is wrong is worse than documentation that is missing. `doctest`
+runs the examples in your docstrings. For prose pages, [Quarto](https://quarto.org/) executes
+every snippet as part of the build, so the docs cannot ship broken — the build fails first.
 
 ```bash
 python -m doctest -v add.py
@@ -407,8 +432,12 @@ python -m doctest -v add.py
 
 ### Published API documentation
 *Recommended.* `mkdocs` + `mkdocstrings` + GitHub Pages, at
-`https://dhi.github.io/<repository>/`. Note that a private repository can still have a public
-website — `robots.txt` hides it from search engines but is not security.
+`https://dhi.github.io/<repository>/`. [Quarto](https://quarto.org/),
+[Great Docs](https://github.com/machow/great-docs) (which wraps Quarto) and
+[zensical](https://zensical.org/) are viable alternatives.
+
+A private repository can have access-controlled Pages on GitHub Enterprise — use that when the
+site should stay internal, rather than relying on the URL not being found.
 
 ## Automation
 
@@ -425,7 +454,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: astral-sh/setup-uv@v6
       with: { python-version: "3.13" }
     - run: uv sync
@@ -433,27 +462,54 @@ jobs:
 ```
 
 ### Lint and format with ruff
-*Recommended.* `ruff check` finds unused imports, undefined names and dead variables — usually
-typos, sometimes bugs. `ruff format` ends style arguments. Run both in CI.
+*Recommended.* There is no reason not to. One binary, no configuration required, and it
+replaces flake8, black and isort at once. `ruff check` finds unused imports, undefined names
+and dead variables — usually typos, sometimes bugs. `ruff format` ends style arguments. Run
+both in CI.
 
 ```bash
 ruff check .        ruff format --check .
 ```
 
-### Makefile
+### Type checking in CI
+*Nice.* [Type hints](#type-hints) are not enforcement — a type checker is. Run `mypy` (or
+`ty`) in CI on the package, not the tests, and turn it on for new code before old. It also
+catches uses of anything you have marked
+[`@deprecated`](#deprecate-before-removing).
+
+```bash
+uv run mypy src --enable-error-code=deprecated
+```
+
+### A task runner
 *Nice.* One source of truth for how to run the project's tools, and the fastest onboarding
-document there is.
+document there is. A `Makefile` if everyone is on Linux or macOS; `just` if anyone is on
+Windows, where `make` is not installed by default and `just` is a single binary
+(`uv tool install rust-just`).
 
 ```makefile
-check: lint test
+check: lint test          # Makefile
 lint:
-	ruff check src
+	uv run ruff check src
 test:
-	pytest
+	uv run pytest
+```
+
+```just
+check: lint test          # justfile
+lint:
+    uv run ruff check src
+test:
+    uv run pytest
 ```
 
 ### Test the matrix
 *Nice.* If you claim to support Windows and Python 3.10, test on Windows and Python 3.10.
+
+Test what you claim and no more. CI is not free — every cell costs minutes on every push. An
+[application](#libraries-loose-applications-pinned) has one deployment target, so one cell is
+the honest matrix; a library that others install needs the range it advertises in
+`requires-python`.
 
 ```yaml
 strategy:
@@ -464,14 +520,28 @@ strategy:
 
 ## Release
 
-### Publish from a GitHub release
-*Recommended.* Tag a release, let a workflow build and publish. Use Trusted Publishers so
-there are no secrets to manage.
+### Tag every release
+*Recommended.* An annotated `vX.Y.Z` tag, pushed. It is what makes "which commit is 1.2.0?"
+answerable a year later, and what lets you diff two releases. Just do it — it costs one
+command.
+
+```bash
+git tag -a v1.2.0 -m "v1.2.0"
+git push --tags
+```
+
+### Publish from a tag or a release
+*Recommended.* Let a workflow build and publish; never upload from your laptop. Use
+[Trusted Publishers](https://docs.pypi.org/trusted-publishers/) so there are no secrets to
+manage.
+
+Trigger on the tag, or on a published GitHub release — either works with Trusted Publishers.
+The release gives you somewhere to put release notes; the tag is one step fewer.
 
 ```yaml
 on:
-  release:
-    types: [published]
+  push:
+    tags: ["v*"]      # or:  release: { types: [published] }
 ```
 
 ### Somewhere to install from

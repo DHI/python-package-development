@@ -27,37 +27,61 @@ Read the local file if this skill is running inside that repository
 
 Work from what the repository actually contains. Do not guess at numbers you can measure.
 
-Run these — fast, read-only, no side effects:
+The reviewer may be on Windows without a POSIX shell, so use the Glob, Read and Grep tools
+for anything that inspects files — never `ls`, `cat`, or a pipe into `grep`.
+
+| What | How |
+| --- | --- |
+| Layout, `.gitignore`, `LICENSE`, `README` | Glob `*` and `.*` at the root |
+| Build system, metadata, dependencies, versioning | Read `pyproject.toml` |
+| CI | Glob `.github/workflows/*`, then Read each |
+| Data committed to git | `git ls-files "*.csv" "*.nc" "*.dfs*" "*.xlsx" "*.zip" "*.parquet"` |
+| Commit hygiene | `git log --oneline -20` |
+
+Then run the linter — ground truth, not a guess. `uvx` so it works without the repository's
+environment installed:
 
 ```bash
-ls -a                              # layout, .gitignore, LICENSE, README
-cat pyproject.toml                 # build system, metadata, dependencies, versioning
-ls .github/workflows/ && cat .github/workflows/*.yml
-ruff check .                       # ground truth, not a guess
-ruff format --check .
-git log --oneline -20              # commit hygiene
-git ls-files | grep -Ei '\.(csv|nc|dfs.|xlsx|zip|parquet)$'   # data in git
+uvx ruff check .
+uvx ruff format --check .
 ```
+
+`ruff` reads the repository's `[tool.ruff]` config if there is one. If there is none you are
+seeing the default ruleset, which is not the same as the project's intent — say so in the
+report rather than presenting the output as the project's own standard.
 
 Then read the source: `src/` (or the package directory), `tests/`, `docs/`.
 
 **Do not run** `pytest`, `mypy` or `uv sync` on your own initiative — they are slow, may need
 network or credentials, and an unfamiliar test suite may have side effects. Report what the
-test suite looks like and offer to run it.
+test suite looks like and offer to run it. Whether a type checker runs at all is visible in
+the workflow file — judge that from reading it, not by running one.
 
 ## Check for the code smells the course names
 
-Grep as a starting point, then read the hits — a grep match is a candidate, not a finding.
+Search as a starting point, then read the hits — a match is a candidate, not a finding.
 
-| Rule | Starting point |
+Use the Grep tool over `**/*.py`, showing line numbers. These are regular expressions for
+that tool, not shell commands — do not wrap them in `grep`, and do not escape the `|`.
+
+```
+def .*=\s*(\[\]|\{\}|set\(\)|dict\(\)|list\(\))   # mutable default arguments
+except\s*:                                        # bare except
+except.*:\s*pass                                  # swallowed error, one-line form
+def [a-z]+[A-Z]                                   # java-like API
+\w+\.\w*\._[a-z]                                  # reaching into another object's internals
+```
+
+`except.*:\s*pass` only catches the one-line form, so read every `except` block you find. For
+the last pattern, discard the `self._` hits — those are the class's own internals.
+
+The rest have no pattern worth writing; read for them:
+
+| Rule | What to look for |
 | --- | --- |
-| Mutable default arguments | `grep -rEn 'def .*=\s*(\[\]\|\{\}\|set\(\))' src/` |
 | Class variables that should be instance variables | mutable assignment in a class body, outside `__init__` |
 | Modified input arguments | assignment to a parameter's elements inside a function |
 | Mixed return types | multiple `return` statements of different types in one function |
-| Silently swallowed errors | `grep -rn 'except.*:\s*pass\|except:' src/` |
-| Java-like API | `grep -rEn 'def [a-z]+[A-Z]' src/` |
-| Reaching into another object's internals | `grep -rEn '\w+\.\w*\._[a-z]' src/` — exclude `self._` |
 | Missing docstrings | public functions and classes with no `"""` |
 | Removals with no deprecation path | `git log -p` on the public API vs `CHANGELOG.md` |
 
@@ -68,7 +92,7 @@ Print the report in the conversation. Do not write a file unless asked.
 - One-line verdict first — is this a package someone can install and depend on, or not.
 - Then **Blockers**, **Recommended**, **Nice** in that order. Omit empty sections.
 - Every finding: `file:line` where there is one, what is wrong in one line, the fix, and the
-  anchor URL of the rule.
+  anchor URL of the rule. `✗` for Blockers, `⚠` for everything else.
 - Say what you checked and found clean — a short "✓ Packaging, docs, CI" line. Silence reads
   as "not checked".
 - Report what you did not check and why (tests not run, package not installed).
@@ -81,7 +105,7 @@ Blockers
     https://dhi.github.io/python-package-development/standards.html#pyproject.toml
   ✗ No LICENSE — effectively all rights reserved, colleagues cannot legally use it
     https://dhi.github.io/python-package-development/standards.html#license
-  ⚠ src/clean.py:22 — mutable default `cart=[]` is shared across every call; use None
+  ✗ src/clean.py:22 — mutable default `cart=[]` is shared across every call; use None
     https://dhi.github.io/python-package-development/standards.html#mutable-default-arguments
 
 Recommended
