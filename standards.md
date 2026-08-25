@@ -510,20 +510,14 @@ uv run mypy src --enable-error-code=deprecated
 
 ### A task runner
 *Nice.* One source of truth for how to run the project's tools, and the fastest onboarding
-document there is. A `Makefile` if everyone is on Linux or macOS; `just` if anyone is on
-Windows, where `make` is not installed by default and `just` is a single binary
-(`uv tool install rust-just`).
-
-```makefile
-check: lint test          # Makefile
-lint:
-	uv run ruff check src
-test:
-	uv run pytest
-```
+document there is — for people and for coding agents. Prefer
+[`just`](https://just.systems) (`uv tool install rust-just`): a single cross-platform binary,
+`Makefile`-like syntax, and `just --list` documents itself. `make` works too, but it is not
+installed on Windows and is a build tool pressed into service as a task runner. The
+[DHI template](https://github.com/DHI/template-python-library) ships a `justfile`.
 
 ```just
-check: lint test          # justfile
+check: lint typecheck test    # justfile
 lint:
     uv run ruff check src
 test:
