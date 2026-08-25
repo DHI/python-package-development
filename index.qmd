@@ -10,4 +10,4 @@ title: "Python package development"
 
 [Home work - Overview](projects/data_cleaning/index.md)
 
-©️ DHI 2025
+©️ DHI

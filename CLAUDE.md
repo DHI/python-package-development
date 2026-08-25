@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Educational course repository for "Python package development 2025" by DHI. Course content is delivered as Quarto-based reveal.js slide decks and hosted on GitHub Pages at https://dhi.github.io/python-package-development.
+Educational course repository for "Python package development" by DHI. Course content is delivered as Quarto-based reveal.js slide decks and hosted on GitHub Pages at https://dhi.github.io/python-package-development.
 
 ## Build & Deploy
 

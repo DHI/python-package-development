@@ -1,6 +1,7 @@
-# Python package development 2025
+# Python package development
 
 This repo contains slides used in the course "Python package development".
+The course is run periodically and the material is kept up to date with current Python tooling.
 
 ## Course description
 
@@ -10,7 +11,7 @@ Are you ready to take your Python skills to the next level and develop your own 
 
 ### Who should attend?
 
-This course is ideal for those who have an idea for a Python package they want to develop, and who already have much of the code but need assistance in structuring, refactoring, and packaging it. Participants can apply individually or in small teams of 2-3 people. See below for how to apply.
+This course is ideal for those who have an idea for a Python package they want to develop, and who already have much of the code but need assistance in structuring, refactoring, and packaging it. Participants can apply individually or in small teams of 2-3 people.
 
 ### Content
 
@@ -19,7 +20,7 @@ The course comprises these seven modules:
 * Git, Pull Requests, and code reviews
 * Python functions, classes, and modules
 * Testing and auto-formatting
-* Dependencies and GitHub actions
+* Dependencies and Continuous Integration
 * Object oriented design in Python
 * Documentation
 * Distributing your package
