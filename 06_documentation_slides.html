@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>Python package development – Documentation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,16 @@
   <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -94,7 +100,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -241,38 +247,38 @@
 </section>
 <section id="docstrings" class="slide level2">
 <h2>Docstrings</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|4-18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co">"""K-means clustering."""</span></span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a><span class="kw">class</span> KMeans(_BaseKMeans):</span>
-<span id="cb1-4"><a></a>  <span class="co">"""K-Means clustering.</span></span>
-<span id="cb1-5"><a></a><span class="co">  </span></span>
-<span id="cb1-6"><a></a><span class="co">  Parameters</span></span>
-<span id="cb1-7"><a></a><span class="co">  ----------</span></span>
-<span id="cb1-8"><a></a><span class="co">  n_clusters : int, default=8</span></span>
-<span id="cb1-9"><a></a><span class="co">      The number of clusters to form as well as the number of</span></span>
-<span id="cb1-10"><a></a><span class="co">      centroids to generate.</span></span>
-<span id="cb1-11"><a></a></span>
-<span id="cb1-12"><a></a><span class="co">  Examples</span></span>
-<span id="cb1-13"><a></a><span class="co">  --------</span></span>
-<span id="cb1-14"><a></a><span class="co">  &gt;&gt;&gt; X = np.array([[1, 2], [1, 4], [1, 0],</span></span>
-<span id="cb1-15"><a></a><span class="co">  ...               [10, 2], [10, 4], [10, 0]])</span></span>
-<span id="cb1-16"><a></a><span class="co">  &gt;&gt;&gt; kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(X)</span></span>
-<span id="cb1-17"><a></a><span class="co">  &gt;&gt;&gt; kmeans.labels_</span></span>
-<span id="cb1-18"><a></a><span class="co">  array([1, 1, 1, 0, 0, 0], dtype=int32)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|4-18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="co">"""K-means clustering."""</span></span>
+<span id="cb1-2"><a aria-label="2"></a></span>
+<span id="cb1-3"><a aria-label="3"></a><span class="kw">class</span> KMeans(_BaseKMeans):</span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="co">"""K-Means clustering.</span></span>
+<span id="cb1-5"><a aria-label="5"></a><span class="co">  </span></span>
+<span id="cb1-6"><a aria-label="6"></a><span class="co">  Parameters</span></span>
+<span id="cb1-7"><a aria-label="7"></a><span class="co">  ----------</span></span>
+<span id="cb1-8"><a aria-label="8"></a><span class="co">  n_clusters : int, default=8</span></span>
+<span id="cb1-9"><a aria-label="9"></a><span class="co">      The number of clusters to form as well as the number of</span></span>
+<span id="cb1-10"><a aria-label="10"></a><span class="co">      centroids to generate.</span></span>
+<span id="cb1-11"><a aria-label="11"></a></span>
+<span id="cb1-12"><a aria-label="12"></a><span class="co">  Examples</span></span>
+<span id="cb1-13"><a aria-label="13"></a><span class="co">  --------</span></span>
+<span id="cb1-14"><a aria-label="14"></a><span class="co">  &gt;&gt;&gt; X = np.array([[1, 2], [1, 4], [1, 0],</span></span>
+<span id="cb1-15"><a aria-label="15"></a><span class="co">  ...               [10, 2], [10, 4], [10, 0]])</span></span>
+<span id="cb1-16"><a aria-label="16"></a><span class="co">  &gt;&gt;&gt; kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(X)</span></span>
+<span id="cb1-17"><a aria-label="17"></a><span class="co">  &gt;&gt;&gt; kmeans.labels_</span></span>
+<span id="cb1-18"><a aria-label="18"></a><span class="co">  array([1, 1, 1, 0, 0, 0], dtype=int32)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/cluster/_kmeans.py">sklearn.KMeans</a></p>
 </section>
 <section class="slide level2">
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
-<span id="cb2-2"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(KMeans)</span>
-<span id="cb2-3"><a></a><span class="kw">class</span> KMeans(_BaseKMeans)</span>
-<span id="cb2-4"><a></a> <span class="op">|</span>  KMeans(n_clusters<span class="op">=</span><span class="dv">8</span>, <span class="op">*</span>, init<span class="op">=</span><span class="st">'k-means++'</span>, n_init<span class="op">=</span><span class="st">'warn'</span>)</span>
-<span id="cb2-5"><a></a> <span class="op">|</span></span>
-<span id="cb2-6"><a></a> <span class="op">|</span>  K<span class="op">-</span>Means clustering.</span>
-<span id="cb2-7"><a></a> <span class="op">|</span></span>
-<span id="cb2-8"><a></a> <span class="op">|</span>  Parameters</span>
-<span id="cb2-9"><a></a> <span class="op">|</span>  <span class="op">----------</span></span>
-<span id="cb2-10"><a></a> <span class="op">|</span>  n_clusters : <span class="bu">int</span>, default<span class="op">=</span><span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(KMeans)</span>
+<span id="cb2-3"><a aria-label="3"></a><span class="kw">class</span> KMeans(_BaseKMeans)</span>
+<span id="cb2-4"><a aria-label="4"></a> <span class="op">|</span>  KMeans(n_clusters<span class="op">=</span><span class="dv">8</span>, <span class="op">*</span>, init<span class="op">=</span><span class="st">'k-means++'</span>, n_init<span class="op">=</span><span class="st">'warn'</span>)</span>
+<span id="cb2-5"><a aria-label="5"></a> <span class="op">|</span></span>
+<span id="cb2-6"><a aria-label="6"></a> <span class="op">|</span>  K<span class="op">-</span>Means clustering.</span>
+<span id="cb2-7"><a aria-label="7"></a> <span class="op">|</span></span>
+<span id="cb2-8"><a aria-label="8"></a> <span class="op">|</span>  Parameters</span>
+<span id="cb2-9"><a aria-label="9"></a> <span class="op">|</span>  <span class="op">----------</span></span>
+<span id="cb2-10"><a aria-label="10"></a> <span class="op">|</span>  n_clusters : <span class="bu">int</span>, default<span class="op">=</span><span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>. . . <img data-src="images/vs_code_docstring.png"></p>
 </section>
 <section class="slide level2">
@@ -294,26 +300,26 @@
 </section>
 <section id="docstring---numpy-format" class="slide level2 smaller">
 <h2>Docstring - Numpy format</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> function_name(param1, param2, param3):</span>
-<span id="cb3-2"><a></a>    <span class="co">"""Short summary.</span></span>
-<span id="cb3-3"><a></a><span class="co">    </span></span>
-<span id="cb3-4"><a></a><span class="co">    Long description.</span></span>
-<span id="cb3-5"><a></a><span class="co">    </span></span>
-<span id="cb3-6"><a></a><span class="co">    Parameters</span></span>
-<span id="cb3-7"><a></a><span class="co">    ----------</span></span>
-<span id="cb3-8"><a></a><span class="co">    param1 : int</span></span>
-<span id="cb3-9"><a></a><span class="co">        Description of `param1`.</span></span>
-<span id="cb3-10"><a></a><span class="co">    param2 : str</span></span>
-<span id="cb3-11"><a></a><span class="co">        Description of `param2`.</span></span>
-<span id="cb3-12"><a></a><span class="co">    param3 : list of str</span></span>
-<span id="cb3-13"><a></a><span class="co">        Description of `param3`.</span></span>
-<span id="cb3-14"><a></a><span class="co">    </span></span>
-<span id="cb3-15"><a></a><span class="co">    Returns</span></span>
-<span id="cb3-16"><a></a><span class="co">    -------</span></span>
-<span id="cb3-17"><a></a><span class="co">    bool</span></span>
-<span id="cb3-18"><a></a><span class="co">        Description of return value.</span></span>
-<span id="cb3-19"><a></a><span class="co">    """</span></span>
-<span id="cb3-20"><a></a>    <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="kw">def</span> function_name(param1, param2, param3):</span>
+<span id="cb3-2"><a aria-label="2"></a>    <span class="co">"""Short summary.</span></span>
+<span id="cb3-3"><a aria-label="3"></a><span class="co">    </span></span>
+<span id="cb3-4"><a aria-label="4"></a><span class="co">    Long description.</span></span>
+<span id="cb3-5"><a aria-label="5"></a><span class="co">    </span></span>
+<span id="cb3-6"><a aria-label="6"></a><span class="co">    Parameters</span></span>
+<span id="cb3-7"><a aria-label="7"></a><span class="co">    ----------</span></span>
+<span id="cb3-8"><a aria-label="8"></a><span class="co">    param1 : int</span></span>
+<span id="cb3-9"><a aria-label="9"></a><span class="co">        Description of `param1`.</span></span>
+<span id="cb3-10"><a aria-label="10"></a><span class="co">    param2 : str</span></span>
+<span id="cb3-11"><a aria-label="11"></a><span class="co">        Description of `param2`.</span></span>
+<span id="cb3-12"><a aria-label="12"></a><span class="co">    param3 : list of str</span></span>
+<span id="cb3-13"><a aria-label="13"></a><span class="co">        Description of `param3`.</span></span>
+<span id="cb3-14"><a aria-label="14"></a><span class="co">    </span></span>
+<span id="cb3-15"><a aria-label="15"></a><span class="co">    Returns</span></span>
+<span id="cb3-16"><a aria-label="16"></a><span class="co">    -------</span></span>
+<span id="cb3-17"><a aria-label="17"></a><span class="co">    bool</span></span>
+<span id="cb3-18"><a aria-label="18"></a><span class="co">        Description of return value.</span></span>
+<span id="cb3-19"><a aria-label="19"></a><span class="co">    """</span></span>
+<span id="cb3-20"><a aria-label="20"></a>    <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>There are several docstring formats. The most common is the numpy format, used by scikit-learn, pandas, numpy, scipy, etc.</p>
 <style type="text/css">
@@ -331,18 +337,18 @@
 <section id="type-hints" class="slide level2 smaller">
 <h2>Type hints</h2>
 <p>Type hints can be used in addition to the type in the docstring.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-code-line-numbers="|1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="kw">def</span> remove_outlier(data:pd.DataFrame, column:<span class="bu">str</span>, threshold:<span class="bu">float</span><span class="op">=</span><span class="dv">3</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
-<span id="cb4-2"><a></a>    <span class="co">"""Remove outliers from a dataframe.</span></span>
-<span id="cb4-3"><a></a><span class="co">    </span></span>
-<span id="cb4-4"><a></a><span class="co">    Parameters</span></span>
-<span id="cb4-5"><a></a><span class="co">    ----------</span></span>
-<span id="cb4-6"><a></a><span class="co">    data : pd.DataFrame</span></span>
-<span id="cb4-7"><a></a><span class="co">        Dataframe to remove outliers from.</span></span>
-<span id="cb4-8"><a></a><span class="co">    column : str</span></span>
-<span id="cb4-9"><a></a><span class="co">        Column to remove outliers from.</span></span>
-<span id="cb4-10"><a></a><span class="co">    threshold : float, optional</span></span>
-<span id="cb4-11"><a></a><span class="co">        Number of standard deviations to use as threshold, by default 3</span></span>
-<span id="cb4-12"><a></a><span class="co">    </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-code-line-numbers="|1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a><span class="kw">def</span> remove_outlier(data:pd.DataFrame, column:<span class="bu">str</span>, threshold:<span class="bu">float</span><span class="op">=</span><span class="dv">3</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb4-2"><a aria-label="2"></a>    <span class="co">"""Remove outliers from a dataframe.</span></span>
+<span id="cb4-3"><a aria-label="3"></a><span class="co">    </span></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="co">    Parameters</span></span>
+<span id="cb4-5"><a aria-label="5"></a><span class="co">    ----------</span></span>
+<span id="cb4-6"><a aria-label="6"></a><span class="co">    data : pd.DataFrame</span></span>
+<span id="cb4-7"><a aria-label="7"></a><span class="co">        Dataframe to remove outliers from.</span></span>
+<span id="cb4-8"><a aria-label="8"></a><span class="co">    column : str</span></span>
+<span id="cb4-9"><a aria-label="9"></a><span class="co">        Column to remove outliers from.</span></span>
+<span id="cb4-10"><a aria-label="10"></a><span class="co">    threshold : float, optional</span></span>
+<span id="cb4-11"><a aria-label="11"></a><span class="co">        Number of standard deviations to use as threshold, by default 3</span></span>
+<span id="cb4-12"><a aria-label="12"></a><span class="co">    </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="doctest" class="slide level2">
 <h2>doctest</h2>
@@ -370,26 +376,26 @@
 <section class="slide level2">
 
 <p>Input, output examples in docstrings are run as tests.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="kw">def</span> add(a, b):</span>
-<span id="cb5-2"><a></a>    <span class="co">"""Add two numbers.</span></span>
-<span id="cb5-3"><a></a><span class="co">    &gt;&gt;&gt; add(1, 2)</span></span>
-<span id="cb5-4"><a></a><span class="co">    3</span></span>
-<span id="cb5-5"><a></a><span class="co">    &gt;&gt;&gt; add(1, 3)</span></span>
-<span id="cb5-6"><a></a><span class="co">    5</span></span>
-<span id="cb5-7"><a></a><span class="co">    """</span></span>
-<span id="cb5-8"><a></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="kw">def</span> add(a, b):</span>
+<span id="cb5-2"><a aria-label="2"></a>    <span class="co">"""Add two numbers.</span></span>
+<span id="cb5-3"><a aria-label="3"></a><span class="co">    &gt;&gt;&gt; add(1, 2)</span></span>
+<span id="cb5-4"><a aria-label="4"></a><span class="co">    3</span></span>
+<span id="cb5-5"><a aria-label="5"></a><span class="co">    &gt;&gt;&gt; add(1, 3)</span></span>
+<span id="cb5-6"><a aria-label="6"></a><span class="co">    5</span></span>
+<span id="cb5-7"><a aria-label="7"></a><span class="co">    """</span></span>
+<span id="cb5-8"><a aria-label="8"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">$</span> python <span class="at">-m</span> doctest <span class="at">-v</span> add.py</span>
-<span id="cb6-2"><a></a><span class="ex">Failed</span> example:</span>
-<span id="cb6-3"><a></a>    <span class="ex">add</span><span class="er">(</span><span class="ex">1,</span> 3<span class="kw">)</span></span>
-<span id="cb6-4"><a></a><span class="ex">Expected:</span></span>
-<span id="cb6-5"><a></a>    <span class="ex">5</span></span>
-<span id="cb6-6"><a></a><span class="ex">Got:</span></span>
-<span id="cb6-7"><a></a>    <span class="ex">4</span></span>
-<span id="cb6-8"><a></a><span class="ex">**********************************************************************</span></span>
-<span id="cb6-9"><a></a><span class="ex">1</span> items had failures:</span>
-<span id="cb6-10"><a></a>   <span class="ex">1</span> of   2 in mod.add</span>
-<span id="cb6-11"><a></a><span class="ex">***Test</span> Failed<span class="pp">***</span> 1 failures.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a aria-label="1"></a><span class="ex">$</span> python <span class="at">-m</span> doctest <span class="at">-v</span> add.py</span>
+<span id="cb6-2"><a aria-label="2"></a><span class="ex">Failed</span> example:</span>
+<span id="cb6-3"><a aria-label="3"></a>    <span class="ex">add</span><span class="er">(</span><span class="ex">1,</span> 3<span class="kw">)</span></span>
+<span id="cb6-4"><a aria-label="4"></a><span class="ex">Expected:</span></span>
+<span id="cb6-5"><a aria-label="5"></a>    <span class="ex">5</span></span>
+<span id="cb6-6"><a aria-label="6"></a><span class="ex">Got:</span></span>
+<span id="cb6-7"><a aria-label="7"></a>    <span class="ex">4</span></span>
+<span id="cb6-8"><a aria-label="8"></a><span class="ex">**********************************************************************</span></span>
+<span id="cb6-9"><a aria-label="9"></a><span class="ex">1</span> items had failures:</span>
+<span id="cb6-10"><a aria-label="10"></a>   <span class="ex">1</span> of   2 in mod.add</span>
+<span id="cb6-11"><a aria-label="11"></a><span class="ex">***Test</span> Failed<span class="pp">***</span> 1 failures.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>Doctest can pick up anything that looks like a Python session and run it as a test.</p>
 <style type="text/css">
@@ -483,9 +489,9 @@ class Location:
 </tr>
 </tbody>
 </table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="kw">class</span> Location:</span>
-<span id="cb8-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb8-3"><a></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-label="1"></a><span class="kw">class</span> Location:</span>
+<span id="cb8-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb8-3"><a aria-label="3"></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="configuration" class="slide level2">
 <h2>Configuration</h2>
@@ -493,18 +499,18 @@ class Location:
 <div class="code-with-filename-file">
 <pre><strong>mkdocs.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="mkdocs.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
-<span id="cb9-4"><a></a></span>
-<span id="cb9-5"><a></a><span class="fu">plugins</span><span class="kw">:</span></span>
-<span id="cb9-6"><a></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
-<span id="cb9-7"><a></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
-<span id="cb9-8"><a></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
-<span id="cb9-9"><a></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
-<span id="cb9-10"><a></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
-<span id="cb9-11"><a></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb9-12"><a></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="mkdocs.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a aria-label="1"></a><span class="fu">site_name</span><span class="kw">:</span><span class="at"> my_library</span></span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"material"</span><span class="co"> # or readthedocs, mkdocs, etc.</span></span>
+<span id="cb9-4"><a aria-label="4"></a></span>
+<span id="cb9-5"><a aria-label="5"></a><span class="fu">plugins</span><span class="kw">:</span></span>
+<span id="cb9-6"><a aria-label="6"></a><span class="kw">-</span><span class="at"> </span><span class="fu">mkdocstrings</span><span class="kw">:</span></span>
+<span id="cb9-7"><a aria-label="7"></a><span class="at">    </span><span class="fu">handlers</span><span class="kw">:</span></span>
+<span id="cb9-8"><a aria-label="8"></a><span class="at">      </span><span class="fu">python</span><span class="kw">:</span></span>
+<span id="cb9-9"><a aria-label="9"></a><span class="at">        </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb9-10"><a aria-label="10"></a><span class="at">          </span><span class="fu">show_source</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co"> # change if you want able to show source code</span></span>
+<span id="cb9-11"><a aria-label="11"></a><span class="at">          </span><span class="fu">heading_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb9-12"><a aria-label="12"></a><span class="at">          </span><span class="fu">docstring_style</span><span class="kw">:</span><span class="at"> </span><span class="st">"numpy"</span><span class="co"> # important!, since default is google</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="api-docs" class="slide level2 smaller">
@@ -520,9 +526,9 @@ class Location:
 </ol>
 <div class="fragment">
 <p><code>docs/index.md</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="fu"># Reference</span></span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a>::: my_library.simulation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a aria-label="1"></a><span class="fu"># Reference</span></span>
+<span id="cb10-2"><a aria-label="2"></a></span>
+<span id="cb10-3"><a aria-label="3"></a>::: my_library.simulation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-2" class="slide level2">
@@ -555,8 +561,8 @@ class Location:
 <div class="code-with-filename-file">
 <pre><strong>robots.txt</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="robots.txt"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a></a>User-agent: *</span>
-<span id="cb11-2"><a></a>Disallow: /</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="robots.txt"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-label="1"></a>User-agent: *</span>
+<span id="cb11-2"><a aria-label="2"></a>Disallow: /</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="additional-resources" class="slide level2">

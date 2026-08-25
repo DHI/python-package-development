@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Documentation – Python package development</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -66,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -183,24 +188,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="docstrings" class="level2">
 <h2 class="anchored" data-anchor-id="docstrings">Docstrings</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">"""K-means clustering."""</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">class</span> KMeans(_BaseKMeans):</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="co">"""K-Means clustering.</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">  </span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">  Parameters</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">  ----------</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">  n_clusters : int, default=8</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">      The number of clusters to form as well as the number of</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">      centroids to generate.</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">  Examples</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">  --------</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co">  &gt;&gt;&gt; X = np.array([[1, 2], [1, 4], [1, 0],</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co">  ...               [10, 2], [10, 4], [10, 0]])</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co">  &gt;&gt;&gt; kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(X)</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co">  &gt;&gt;&gt; kmeans.labels_</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co">  array([1, 1, 1, 0, 0, 0], dtype=int32)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="co">"""K-means clustering."""</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="kw">class</span> KMeans(_BaseKMeans):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>  <span class="co">"""K-Means clustering.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="co">  </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="co">  Parameters</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a><span class="co">  ----------</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a><span class="co">  n_clusters : int, default=8</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a><span class="co">      The number of clusters to form as well as the number of</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="co">      centroids to generate.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a><span class="co">  Examples</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a><span class="co">  --------</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a><span class="co">  &gt;&gt;&gt; X = np.array([[1, 2], [1, 4], [1, 0],</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a><span class="co">  ...               [10, 2], [10, 4], [10, 0]])</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a><span class="co">  &gt;&gt;&gt; kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(X)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a><span class="co">  &gt;&gt;&gt; kmeans.labels_</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a><span class="co">  array([1, 1, 1, 0, 0, 0], dtype=int32)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><a href="https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/cluster/_kmeans.py">sklearn.KMeans</a></p>
 <hr>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
@@ -249,18 +254,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="type-hints" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="type-hints">Type hints</h2>
 <p>Type hints can be used in addition to the type in the docstring.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> remove_outlier(data:pd.DataFrame, column:<span class="bu">str</span>, threshold:<span class="bu">float</span><span class="op">=</span><span class="dv">3</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"""Remove outliers from a dataframe.</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">    </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    Parameters</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">    ----------</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">    data : pd.DataFrame</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">        Dataframe to remove outliers from.</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">    column : str</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">        Column to remove outliers from.</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">    threshold : float, optional</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">        Number of standard deviations to use as threshold, by default 3</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">    </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="kw">def</span> remove_outlier(data:pd.DataFrame, column:<span class="bu">str</span>, threshold:<span class="bu">float</span><span class="op">=</span><span class="dv">3</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    <span class="co">"""Remove outliers from a dataframe.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a><span class="co">    </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="co">    Parameters</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a><span class="co">    ----------</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a><span class="co">    data : pd.DataFrame</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a><span class="co">        Dataframe to remove outliers from.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a><span class="co">    column : str</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a><span class="co">        Column to remove outliers from.</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a><span class="co">    threshold : float, optional</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a><span class="co">        Number of standard deviations to use as threshold, by default 3</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a><span class="co">    </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="doctest" class="level2">
 <h2 class="anchored" data-anchor-id="doctest">doctest</h2>

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Distributing your Python package – Python package development</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -66,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -337,39 +342,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pyproject.toml-1" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="pyproject.toml-1">pyproject.toml</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"uv_build&gt;=0.8.9,&lt;0.9.0"</span><span class="op">]</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"uv_build"</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">[project]</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>    <span class="st">"numpy"</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="op">]</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> },</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="op">]</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="op">]</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="kw">[dependency-groups]</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="kw">[project.urls]</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource toml number-lines code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="kw">[build-system]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"uv_build&gt;=0.8.9,&lt;0.9.0"</span><span class="op">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"uv_build"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a><span class="kw">[project]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>    <span class="st">"numpy"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a><span class="op">]</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a>  <span class="op">{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> },</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-label="14"></a><span class="op">]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-label="15"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-label="16"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-label="17"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-label="18"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-label="19"></a>    <span class="st">"Programming Language :: Python :: 3"</span><span class="op">,</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-label="20"></a>    <span class="st">"License :: OSI Approved :: MIT License"</span><span class="op">,</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-label="21"></a>    <span class="st">"Development Status :: 2 - Pre-Alpha"</span><span class="op">,</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-label="22"></a>    <span class="st">"Operating System :: OS Independent"</span><span class="op">,</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-label="23"></a>    <span class="st">"Intended Audience :: Science/Research"</span><span class="op">,</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-label="24"></a>    <span class="st">"Topic :: Scientific/Engineering"</span><span class="op">,</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-label="25"></a><span class="op">]</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-label="26"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-label="27"></a><span class="kw">[dependency-groups]</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-label="28"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-label="29"></a><span class="dt">test</span><span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">]</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-label="30"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-label="31"></a><span class="kw">[project.urls]</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-label="32"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-label="33"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="notes">
 <ul>
 <li>Mandatory dependencies are specified in the <code>dependencies</code> section.</li>
@@ -416,26 +421,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>.github/workflows/python_publish.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename=".github/workflows/python_publish.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">published</span><span class="kw">]</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.13'</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>        uv sync</span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> uv build</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename=".github/workflows/python_publish.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish Python Package</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">published</span><span class="kw">]</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v4</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.13'</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a>        uv sync</span>
+<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> uv build</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="publishing-to-pypi-and-testpypi" class="level2 smaller">
@@ -451,12 +456,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>.github/workflows/python_publish.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename=".github/workflows/python_publish.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="at">          </span><span class="fu">repository-url</span><span class="kw">:</span><span class="at"> https://test.pypi.org/legacy/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename=".github/workflows/python_publish.yml"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build package</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python -m build</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish package distributions to PyPI</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> pypa/gh-action-pypi-publish@release/v1</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a><span class="at">          </span><span class="fu">repository-url</span><span class="kw">:</span><span class="at"> https://test.pypi.org/legacy/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="private-pypi-server" class="level2 smaller">
@@ -468,10 +473,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>. . .</p>
 <p>Example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">$</span> pip install <span class="at">--extra-index-url</span> https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">Looking</span> in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="ex">...</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="ex">Successfully</span> installed sampling-0.0.1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="ex">$</span> pip install <span class="at">--extra-index-url</span> https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/ sampling</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a><span class="ex">Looking</span> in indexes: https://pypi.org/simple, https://pkgs.dev.azure.com/dhigroup/_packaging/pond/pypi/simple/</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a><span class="ex">...</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a><span class="ex">Successfully</span> installed sampling-0.0.1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="installing-a-development-version" class="level2">
 <h2 class="anchored" data-anchor-id="installing-a-development-version">Installing a development version</h2>

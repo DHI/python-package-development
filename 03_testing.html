@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Testing, linting and formatting – Python package development</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -66,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -452,15 +457,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>examples/04_testing/process.py</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="examples/04_testing/process.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> requests</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="im">import</span> scipy</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="kw">def</span> preprocess(x, y, xout):</span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a>    x <span class="op">=</span> x[<span class="op">~</span>np.isnan(x)] </span>
-<span id="cb11-7"><a href="#cb11-7"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a>    <span class="co"># interpolate missing values with cubic spline</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>    <span class="cf">return</span> scipy.interpolate.interp1d(x, y)(xout)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="examples/04_testing/process.py"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="im">import</span> requests</span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a><span class="im">import</span> scipy</span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a><span class="kw">def</span> preprocess(x, y, xout):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>    x <span class="op">=</span> x[<span class="op">~</span>np.isnan(x)] </span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a>    method <span class="op">=</span> <span class="st">"cubic"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a>    <span class="co"># interpolate missing values with cubic spline</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-label="9"></a>    <span class="cf">return</span> scipy.interpolate.interp1d(x, y)(xout)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Run <code>ruff check</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ruff check process.py</span>
@@ -594,18 +599,18 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <div class="code-with-filename-file">
 <pre><strong>Makefile</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="Makefile"><pre class="sourceCode numberSource makefile number-lines code-with-copy"><code class="sourceCode makefile"><span id="cb18-1"><a href="#cb18-1"></a><span class="dt">LIB</span> <span class="ch">=</span><span class="st"> my_library</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="dv">check:</span><span class="dt"> lint typecheck test</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="dv">lint:</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="er">    </span>ruff check <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a></span>
-<span id="cb18-8"><a href="#cb18-8"></a><span class="dv">format:</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a><span class="er">    </span>ruff format <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
-<span id="cb18-10"><a href="#cb18-10"></a></span>
-<span id="cb18-11"><a href="#cb18-11"></a><span class="dv">test:</span></span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="er">    </span>pytest --disable-warnings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="Makefile"><pre class="sourceCode numberSource makefile number-lines code-with-copy"><code class="sourceCode makefile"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a><span class="dt">LIB</span> <span class="ch">=</span><span class="st"> my_library</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a><span class="dv">check:</span><span class="dt"> lint typecheck test</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-label="4"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-label="5"></a><span class="dv">lint:</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-label="6"></a><span class="er">    </span>ruff check <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-label="7"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-label="8"></a><span class="dv">format:</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-label="9"></a><span class="er">    </span>ruff format <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-label="10"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-label="11"></a><span class="dv">test:</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-label="12"></a><span class="er">    </span>pytest --disable-warnings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="summary" class="level2 smaller">

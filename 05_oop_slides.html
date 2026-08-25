@@ -6,8 +6,8 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>Python package development – Object oriented design in Python</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,16 @@
   <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -94,7 +100,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -266,38 +272,38 @@
 </section>
 <section id="encapsulation" class="slide level2">
 <h2>Encapsulation</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="1-5|7-9|10-12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="kw">class</span> Location:</span>
-<span id="cb1-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, longitude, latitude):</span>
-<span id="cb1-3"><a></a>        <span class="va">self</span>.name <span class="op">=</span> name.upper() <span class="co"># Names are always uppercase</span></span>
-<span id="cb1-4"><a></a>        <span class="va">self</span>.longitude <span class="op">=</span> longitude</span>
-<span id="cb1-5"><a></a>        <span class="va">self</span>.latitude <span class="op">=</span> latitude</span>
-<span id="cb1-6"><a></a></span>
-<span id="cb1-7"><a></a><span class="op">&gt;&gt;&gt;</span> loc <span class="op">=</span> Location(<span class="st">"Antwerp"</span>, <span class="fl">4.42</span>, <span class="fl">51.22</span>)</span>
-<span id="cb1-8"><a></a><span class="op">&gt;&gt;&gt;</span> loc.name</span>
-<span id="cb1-9"><a></a><span class="co">'ANTWERP'</span></span>
-<span id="cb1-10"><a></a><span class="op">&gt;&gt;&gt;</span> loc.name <span class="op">=</span> <span class="st">"Antwerpen"</span></span>
-<span id="cb1-11"><a></a><span class="op">&gt;&gt;&gt;</span> loc.name</span>
-<span id="cb1-12"><a></a><span class="co">"Antwerpen"</span> 😟</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="1-5|7-9|10-12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="kw">class</span> Location:</span>
+<span id="cb1-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, longitude, latitude):</span>
+<span id="cb1-3"><a aria-label="3"></a>        <span class="va">self</span>.name <span class="op">=</span> name.upper() <span class="co"># Names are always uppercase</span></span>
+<span id="cb1-4"><a aria-label="4"></a>        <span class="va">self</span>.longitude <span class="op">=</span> longitude</span>
+<span id="cb1-5"><a aria-label="5"></a>        <span class="va">self</span>.latitude <span class="op">=</span> latitude</span>
+<span id="cb1-6"><a aria-label="6"></a></span>
+<span id="cb1-7"><a aria-label="7"></a><span class="op">&gt;&gt;&gt;</span> loc <span class="op">=</span> Location(<span class="st">"Antwerp"</span>, <span class="fl">4.42</span>, <span class="fl">51.22</span>)</span>
+<span id="cb1-8"><a aria-label="8"></a><span class="op">&gt;&gt;&gt;</span> loc.name</span>
+<span id="cb1-9"><a aria-label="9"></a><span class="co">'ANTWERP'</span></span>
+<span id="cb1-10"><a aria-label="10"></a><span class="op">&gt;&gt;&gt;</span> loc.name <span class="op">=</span> <span class="st">"Antwerpen"</span></span>
+<span id="cb1-11"><a aria-label="11"></a><span class="op">&gt;&gt;&gt;</span> loc.name</span>
+<span id="cb1-12"><a aria-label="12"></a><span class="co">"Antwerpen"</span> 😟</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="encapsulation---managed-attributes" class="slide level2">
 <h2>Encapsulation - Managed attributes</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-code-line-numbers="|3,7-9|10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">class</span> Location:</span>
-<span id="cb2-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, longitude, latitude):</span>
-<span id="cb2-3"><a></a>        <span class="va">self</span>._name <span class="op">=</span> name.upper() <span class="co"># Names are always uppercase</span></span>
-<span id="cb2-4"><a></a>        ...</span>
-<span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a>    <span class="at">@property</span></span>
-<span id="cb2-7"><a></a>    <span class="kw">def</span> name(<span class="va">self</span>):</span>
-<span id="cb2-8"><a></a>        <span class="cf">return</span> <span class="va">self</span>._name</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>    <span class="at">@name.setter</span></span>
-<span id="cb2-11"><a></a>    <span class="kw">def</span> name(<span class="va">self</span>, value):</span>
-<span id="cb2-12"><a></a>        <span class="va">self</span>._name <span class="op">=</span> value.upper()</span>
-<span id="cb2-13"><a></a></span>
-<span id="cb2-14"><a></a><span class="op">&gt;&gt;&gt;</span> loc <span class="op">=</span> Location(<span class="st">"Antwerp"</span>, <span class="fl">4.42</span>, <span class="fl">51.22</span>)</span>
-<span id="cb2-15"><a></a><span class="op">&gt;&gt;&gt;</span> loc.name <span class="op">=</span> <span class="st">"Antwerpen"</span></span>
-<span id="cb2-16"><a></a><span class="op">&gt;&gt;&gt;</span> loc.name</span>
-<span id="cb2-17"><a></a><span class="co">"ANTWERPEN"</span> 😊</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-code-line-numbers="|3,7-9|10-11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="kw">class</span> Location:</span>
+<span id="cb2-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, longitude, latitude):</span>
+<span id="cb2-3"><a aria-label="3"></a>        <span class="va">self</span>._name <span class="op">=</span> name.upper() <span class="co"># Names are always uppercase</span></span>
+<span id="cb2-4"><a aria-label="4"></a>        ...</span>
+<span id="cb2-5"><a aria-label="5"></a></span>
+<span id="cb2-6"><a aria-label="6"></a>    <span class="at">@property</span></span>
+<span id="cb2-7"><a aria-label="7"></a>    <span class="kw">def</span> name(<span class="va">self</span>):</span>
+<span id="cb2-8"><a aria-label="8"></a>        <span class="cf">return</span> <span class="va">self</span>._name</span>
+<span id="cb2-9"><a aria-label="9"></a></span>
+<span id="cb2-10"><a aria-label="10"></a>    <span class="at">@name.setter</span></span>
+<span id="cb2-11"><a aria-label="11"></a>    <span class="kw">def</span> name(<span class="va">self</span>, value):</span>
+<span id="cb2-12"><a aria-label="12"></a>        <span class="va">self</span>._name <span class="op">=</span> value.upper()</span>
+<span id="cb2-13"><a aria-label="13"></a></span>
+<span id="cb2-14"><a aria-label="14"></a><span class="op">&gt;&gt;&gt;</span> loc <span class="op">=</span> Location(<span class="st">"Antwerp"</span>, <span class="fl">4.42</span>, <span class="fl">51.22</span>)</span>
+<span id="cb2-15"><a aria-label="15"></a><span class="op">&gt;&gt;&gt;</span> loc.name <span class="op">=</span> <span class="st">"Antwerpen"</span></span>
+<span id="cb2-16"><a aria-label="16"></a><span class="op">&gt;&gt;&gt;</span> loc.name</span>
+<span id="cb2-17"><a aria-label="17"></a><span class="co">"ANTWERPEN"</span> 😊</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="composition" class="slide level2 smaller">
 <h2>Composition</h2>
@@ -346,25 +352,25 @@
 </section>
 <section id="composition---example" class="slide level2 smaller">
 <h2>Composition - Example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">class</span> Grid:</span>
-<span id="cb3-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nx, dx, ny, dy):</span>
-<span id="cb3-3"><a></a>        <span class="va">self</span>.nx <span class="op">=</span> nx</span>
-<span id="cb3-4"><a></a>        <span class="va">self</span>.dx <span class="op">=</span> dx</span>
-<span id="cb3-5"><a></a>        <span class="va">self</span>.ny <span class="op">=</span> ny</span>
-<span id="cb3-6"><a></a>        <span class="va">self</span>.dy <span class="op">=</span> dy</span>
-<span id="cb3-7"><a></a>    </span>
-<span id="cb3-8"><a></a>    <span class="kw">def</span> find_index(<span class="va">self</span>, x,y):</span>
-<span id="cb3-9"><a></a>        ...</span>
-<span id="cb3-10"><a></a></span>
-<span id="cb3-11"><a></a><span class="kw">class</span> DataArray:</span>
-<span id="cb3-12"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data, time, item, geometry):</span>
-<span id="cb3-13"><a></a>        <span class="va">self</span>.data <span class="op">=</span> data</span>
-<span id="cb3-14"><a></a>        <span class="va">self</span>.time <span class="op">=</span> time</span>
-<span id="cb3-15"><a></a>        <span class="va">self</span>.item <span class="op">=</span> item</span>
-<span id="cb3-16"><a></a>        <span class="va">self</span>.geometry <span class="op">=</span> geometry</span>
-<span id="cb3-17"><a></a></span>
-<span id="cb3-18"><a></a>    <span class="kw">def</span> plot(<span class="va">self</span>):</span>
-<span id="cb3-19"><a></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="kw">class</span> Grid:</span>
+<span id="cb3-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nx, dx, ny, dy):</span>
+<span id="cb3-3"><a aria-label="3"></a>        <span class="va">self</span>.nx <span class="op">=</span> nx</span>
+<span id="cb3-4"><a aria-label="4"></a>        <span class="va">self</span>.dx <span class="op">=</span> dx</span>
+<span id="cb3-5"><a aria-label="5"></a>        <span class="va">self</span>.ny <span class="op">=</span> ny</span>
+<span id="cb3-6"><a aria-label="6"></a>        <span class="va">self</span>.dy <span class="op">=</span> dy</span>
+<span id="cb3-7"><a aria-label="7"></a>    </span>
+<span id="cb3-8"><a aria-label="8"></a>    <span class="kw">def</span> find_index(<span class="va">self</span>, x,y):</span>
+<span id="cb3-9"><a aria-label="9"></a>        ...</span>
+<span id="cb3-10"><a aria-label="10"></a></span>
+<span id="cb3-11"><a aria-label="11"></a><span class="kw">class</span> DataArray:</span>
+<span id="cb3-12"><a aria-label="12"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data, time, item, geometry):</span>
+<span id="cb3-13"><a aria-label="13"></a>        <span class="va">self</span>.data <span class="op">=</span> data</span>
+<span id="cb3-14"><a aria-label="14"></a>        <span class="va">self</span>.time <span class="op">=</span> time</span>
+<span id="cb3-15"><a aria-label="15"></a>        <span class="va">self</span>.item <span class="op">=</span> item</span>
+<span id="cb3-16"><a aria-label="16"></a>        <span class="va">self</span>.geometry <span class="op">=</span> geometry</span>
+<span id="cb3-17"><a aria-label="17"></a></span>
+<span id="cb3-18"><a aria-label="18"></a>    <span class="kw">def</span> plot(<span class="va">self</span>):</span>
+<span id="cb3-19"><a aria-label="19"></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p><code>DataArray</code> <em>has a</em> <code>geometry</code> (e.g.&nbsp;<code>Grid</code>) and an <code>item</code> (<code>ItemInfo</code>).</p>
 </div>
@@ -414,44 +420,44 @@
 </section>
 <section id="section" class="slide level2 smaller">
 <h2></h2>
-<div id="0aea6158" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> math</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="kw">class</span> Shape:</span>
-<span id="cb4-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color<span class="op">=</span><span class="st">"black"</span>):</span>
-<span id="cb4-5"><a></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
-<span id="cb4-6"><a></a></span>
-<span id="cb4-7"><a></a>    <span class="kw">def</span> describe(<span class="va">self</span>):</span>
-<span id="cb4-8"><a></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> shape with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb4-11"><a></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
-<span id="cb4-12"><a></a></span>
-<span id="cb4-13"><a></a><span class="kw">class</span> Circle(Shape):</span>
-<span id="cb4-14"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius, color<span class="op">=</span><span class="st">"black"</span>):</span>
-<span id="cb4-15"><a></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(color)</span>
-<span id="cb4-16"><a></a>        <span class="va">self</span>.radius <span class="op">=</span> radius</span>
-<span id="cb4-17"><a></a></span>
-<span id="cb4-18"><a></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb4-19"><a></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.radius <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb4-20"><a></a></span>
-<span id="cb4-21"><a></a><span class="kw">class</span> Rectangle(Shape):</span>
-<span id="cb4-22"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width, height, color<span class="op">=</span><span class="st">"black"</span>):</span>
-<span id="cb4-23"><a></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(color)</span>
-<span id="cb4-24"><a></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
-<span id="cb4-25"><a></a>        <span class="va">self</span>.height <span class="op">=</span> height</span>
-<span id="cb4-26"><a></a></span>
-<span id="cb4-27"><a></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb4-28"><a></a>        <span class="cf">return</span> <span class="va">self</span>.width <span class="op">*</span> <span class="va">self</span>.height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="014535d2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a><span class="im">import</span> math</span>
+<span id="cb4-2"><a aria-label="2"></a></span>
+<span id="cb4-3"><a aria-label="3"></a><span class="kw">class</span> Shape:</span>
+<span id="cb4-4"><a aria-label="4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color<span class="op">=</span><span class="st">"black"</span>):</span>
+<span id="cb4-5"><a aria-label="5"></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
+<span id="cb4-6"><a aria-label="6"></a></span>
+<span id="cb4-7"><a aria-label="7"></a>    <span class="kw">def</span> describe(<span class="va">self</span>):</span>
+<span id="cb4-8"><a aria-label="8"></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> shape with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span>
+<span id="cb4-9"><a aria-label="9"></a></span>
+<span id="cb4-10"><a aria-label="10"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb4-11"><a aria-label="11"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
+<span id="cb4-12"><a aria-label="12"></a></span>
+<span id="cb4-13"><a aria-label="13"></a><span class="kw">class</span> Circle(Shape):</span>
+<span id="cb4-14"><a aria-label="14"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius, color<span class="op">=</span><span class="st">"black"</span>):</span>
+<span id="cb4-15"><a aria-label="15"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(color)</span>
+<span id="cb4-16"><a aria-label="16"></a>        <span class="va">self</span>.radius <span class="op">=</span> radius</span>
+<span id="cb4-17"><a aria-label="17"></a></span>
+<span id="cb4-18"><a aria-label="18"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb4-19"><a aria-label="19"></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.radius <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb4-20"><a aria-label="20"></a></span>
+<span id="cb4-21"><a aria-label="21"></a><span class="kw">class</span> Rectangle(Shape):</span>
+<span id="cb4-22"><a aria-label="22"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width, height, color<span class="op">=</span><span class="st">"black"</span>):</span>
+<span id="cb4-23"><a aria-label="23"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(color)</span>
+<span id="cb4-24"><a aria-label="24"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
+<span id="cb4-25"><a aria-label="25"></a>        <span class="va">self</span>.height <span class="op">=</span> height</span>
+<span id="cb4-26"><a aria-label="26"></a></span>
+<span id="cb4-27"><a aria-label="27"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb4-28"><a aria-label="28"></a>        <span class="cf">return</span> <span class="va">self</span>.width <span class="op">*</span> <span class="va">self</span>.height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
-<div id="0d031a42" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>shapes <span class="op">=</span> [</span>
-<span id="cb5-2"><a></a>    Circle(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"red"</span>),</span>
-<span id="cb5-3"><a></a>    Rectangle(<span class="fl">2.0</span>, <span class="fl">3.0</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb5-4"><a></a>]</span>
-<span id="cb5-5"><a></a><span class="cf">for</span> shape <span class="kw">in</span> shapes:</span>
-<span id="cb5-6"><a></a>    <span class="bu">print</span>(shape.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4e5c0c05" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a>shapes <span class="op">=</span> [</span>
+<span id="cb5-2"><a aria-label="2"></a>    Circle(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"red"</span>),</span>
+<span id="cb5-3"><a aria-label="3"></a>    Rectangle(<span class="fl">2.0</span>, <span class="fl">3.0</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb5-4"><a aria-label="4"></a>]</span>
+<span id="cb5-5"><a aria-label="5"></a><span class="cf">for</span> shape <span class="kw">in</span> shapes:</span>
+<span id="cb5-6"><a aria-label="6"></a>    <span class="bu">print</span>(shape.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A red shape with area = 3.14
 A blue shape with area = 6.00</code></pre>
@@ -479,12 +485,12 @@ A blue shape with area = 6.00</code></pre>
 <div class="columns">
 <div class="column">
 <p><strong>Version A</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>total <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb7-2"><a></a><span class="cf">for</span> x <span class="kw">in</span> values:</span>
-<span id="cb7-3"><a></a>    total <span class="op">=</span> total <span class="op">+</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a>total <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-2"><a aria-label="2"></a><span class="cf">for</span> x <span class="kw">in</span> values:</span>
+<span id="cb7-3"><a aria-label="3"></a>    total <span class="op">=</span> total <span class="op">+</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <p><strong>Version B</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>total <span class="op">=</span> <span class="bu">sum</span>(values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-label="1"></a>total <span class="op">=</span> <span class="bu">sum</span>(values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <ul>
 <li class="fragment">Using functions, e.g.&nbsp;<code>sum()</code> allows us to operate on a higher level of abstraction.</li>
@@ -546,28 +552,28 @@ A blue shape with area = 6.00</code></pre>
 </section>
 <section id="collections-abstract-base-classes-1" class="slide level2 smaller">
 <h2>Collections Abstract Base Classes</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-code-line-numbers="1|2-5|6-9|10-11|12-25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="op">&gt;&gt;&gt;</span> a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
-<span id="cb9-2"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">1</span> <span class="kw">in</span> a</span>
-<span id="cb9-3"><a></a><span class="va">True</span></span>
-<span id="cb9-4"><a></a><span class="op">&gt;&gt;&gt;</span> a.<span class="fu">__contains__</span>(<span class="dv">1</span>)</span>
-<span id="cb9-5"><a></a><span class="va">True</span></span>
-<span id="cb9-6"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(a)</span>
-<span id="cb9-7"><a></a><span class="dv">3</span></span>
-<span id="cb9-8"><a></a><span class="op">&gt;&gt;&gt;</span> a.<span class="fu">__len__</span>()</span>
-<span id="cb9-9"><a></a><span class="dv">3</span></span>
-<span id="cb9-10"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> x <span class="kw">in</span> a:</span>
-<span id="cb9-11"><a></a>...     v.append(x)</span>
-<span id="cb9-12"><a></a><span class="op">&gt;&gt;&gt;</span> it <span class="op">=</span> a.<span class="fu">__iter__</span>()</span>
-<span id="cb9-13"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
-<span id="cb9-14"><a></a><span class="dv">1</span></span>
-<span id="cb9-15"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
-<span id="cb9-16"><a></a><span class="dv">2</span></span>
-<span id="cb9-17"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
-<span id="cb9-18"><a></a><span class="dv">3</span></span>
-<span id="cb9-19"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
-<span id="cb9-20"><a></a>Traceback (most recent call last):</span>
-<span id="cb9-21"><a></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
-<span id="cb9-22"><a></a><span class="pp">StopIteration</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-code-line-numbers="1|2-5|6-9|10-11|12-25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="op">&gt;&gt;&gt;</span> a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb9-2"><a aria-label="2"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">1</span> <span class="kw">in</span> a</span>
+<span id="cb9-3"><a aria-label="3"></a><span class="va">True</span></span>
+<span id="cb9-4"><a aria-label="4"></a><span class="op">&gt;&gt;&gt;</span> a.<span class="fu">__contains__</span>(<span class="dv">1</span>)</span>
+<span id="cb9-5"><a aria-label="5"></a><span class="va">True</span></span>
+<span id="cb9-6"><a aria-label="6"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(a)</span>
+<span id="cb9-7"><a aria-label="7"></a><span class="dv">3</span></span>
+<span id="cb9-8"><a aria-label="8"></a><span class="op">&gt;&gt;&gt;</span> a.<span class="fu">__len__</span>()</span>
+<span id="cb9-9"><a aria-label="9"></a><span class="dv">3</span></span>
+<span id="cb9-10"><a aria-label="10"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> x <span class="kw">in</span> a:</span>
+<span id="cb9-11"><a aria-label="11"></a>...     v.append(x)</span>
+<span id="cb9-12"><a aria-label="12"></a><span class="op">&gt;&gt;&gt;</span> it <span class="op">=</span> a.<span class="fu">__iter__</span>()</span>
+<span id="cb9-13"><a aria-label="13"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb9-14"><a aria-label="14"></a><span class="dv">1</span></span>
+<span id="cb9-15"><a aria-label="15"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb9-16"><a aria-label="16"></a><span class="dv">2</span></span>
+<span id="cb9-17"><a aria-label="17"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb9-18"><a aria-label="18"></a><span class="dv">3</span></span>
+<span id="cb9-19"><a aria-label="19"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(it)</span>
+<span id="cb9-20"><a aria-label="20"></a>Traceback (most recent call last):</span>
+<span id="cb9-21"><a aria-label="21"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb9-22"><a aria-label="22"></a><span class="pp">StopIteration</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="collections-abstract-base-classes-2" class="slide level2">
 <h2>Collections Abstract Base Classes</h2>
@@ -610,28 +616,28 @@ A blue shape with area = 6.00</code></pre>
 </section>
 <section class="slide level2">
 
-<div id="0cbaab2c" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="kw">class</span> JavaLikeToolbox:</span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb10-4"><a></a>        <span class="va">self</span>.tools <span class="op">=</span> tools</span>
-<span id="cb10-5"><a></a>    </span>
-<span id="cb10-6"><a></a>    <span class="kw">def</span> getToolByName(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
-<span id="cb10-7"><a></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
-<span id="cb10-8"><a></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
-<span id="cb10-9"><a></a>                <span class="cf">return</span> tool</span>
-<span id="cb10-10"><a></a></span>
-<span id="cb10-11"><a></a>    <span class="kw">def</span> numberOfTools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb10-12"><a></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
-<span id="cb10-13"><a></a></span>
-<span id="cb10-14"><a></a>tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
-<span id="cb10-15"><a></a>tb.getToolByName(<span class="st">"hammer"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ee4e06ee" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-label="1"></a><span class="kw">class</span> JavaLikeToolbox:</span>
+<span id="cb10-2"><a aria-label="2"></a></span>
+<span id="cb10-3"><a aria-label="3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb10-4"><a aria-label="4"></a>        <span class="va">self</span>.tools <span class="op">=</span> tools</span>
+<span id="cb10-5"><a aria-label="5"></a>    </span>
+<span id="cb10-6"><a aria-label="6"></a>    <span class="kw">def</span> getToolByName(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb10-7"><a aria-label="7"></a>        <span class="cf">for</span> tool <span class="kw">in</span> <span class="va">self</span>.tools:</span>
+<span id="cb10-8"><a aria-label="8"></a>            <span class="cf">if</span> tool.name <span class="op">==</span> name:</span>
+<span id="cb10-9"><a aria-label="9"></a>                <span class="cf">return</span> tool</span>
+<span id="cb10-10"><a aria-label="10"></a></span>
+<span id="cb10-11"><a aria-label="11"></a>    <span class="kw">def</span> numberOfTools(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb10-12"><a aria-label="12"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.tools)</span>
+<span id="cb10-13"><a aria-label="13"></a></span>
+<span id="cb10-14"><a aria-label="14"></a>tb <span class="op">=</span> JavaLikeToolbox([Hammer(), Screwdriver()])</span>
+<span id="cb10-15"><a aria-label="15"></a>tb.getToolByName(<span class="st">"hammer"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;__main__.Hammer at 0x7f0440a8e660&gt;</code></pre>
+<pre><code>&lt;__main__.Hammer at 0x7f8fe0dc1a90&gt;</code></pre>
 </div>
 </div>
-<div id="2be060c7" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>tb.numberOfTools()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5bf8ac93" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a aria-label="1"></a>tb.numberOfTools()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>2</code></pre>
 </div>
@@ -639,26 +645,26 @@ A blue shape with area = 6.00</code></pre>
 </section>
 <section class="slide level2">
 
-<div id="c9eadad0" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="kw">class</span> Toolbox:</span>
-<span id="cb14-2"><a></a></span>
-<span id="cb14-3"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]):</span>
-<span id="cb14-4"><a></a>        <span class="va">self</span>._tools <span class="op">=</span> {tool.name: tool <span class="cf">for</span> tool <span class="kw">in</span> tools}</span>
-<span id="cb14-5"><a></a></span>
-<span id="cb14-6"><a></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
-<span id="cb14-7"><a></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
-<span id="cb14-8"><a></a>    </span>
-<span id="cb14-9"><a></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb14-10"><a></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>._tools)</span>
-<span id="cb14-11"><a></a></span>
-<span id="cb14-12"><a></a>tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
-<span id="cb14-13"><a></a>tb[<span class="st">"hammer"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0624bbd6" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-label="1"></a><span class="kw">class</span> Toolbox:</span>
+<span id="cb14-2"><a aria-label="2"></a></span>
+<span id="cb14-3"><a aria-label="3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tools: Collection[Tool]):</span>
+<span id="cb14-4"><a aria-label="4"></a>        <span class="va">self</span>._tools <span class="op">=</span> {tool.name: tool <span class="cf">for</span> tool <span class="kw">in</span> tools}</span>
+<span id="cb14-5"><a aria-label="5"></a></span>
+<span id="cb14-6"><a aria-label="6"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, name: <span class="bu">str</span>) <span class="op">-&gt;</span> Tool:</span>
+<span id="cb14-7"><a aria-label="7"></a>        <span class="cf">return</span> <span class="va">self</span>._tools[name]</span>
+<span id="cb14-8"><a aria-label="8"></a>    </span>
+<span id="cb14-9"><a aria-label="9"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb14-10"><a aria-label="10"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>._tools)</span>
+<span id="cb14-11"><a aria-label="11"></a></span>
+<span id="cb14-12"><a aria-label="12"></a>tb <span class="op">=</span> Toolbox([Hammer(), Screwdriver()])</span>
+<span id="cb14-13"><a aria-label="13"></a>tb[<span class="st">"hammer"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;__main__.Hammer at 0x7f0440cd2350&gt;</code></pre>
+<pre><code>&lt;__main__.Hammer at 0x7f8fe0e28f50&gt;</code></pre>
 </div>
 </div>
-<div id="80493880" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="bu">len</span>(tb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="93b32c4c" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-label="1"></a><span class="bu">len</span>(tb)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>2</code></pre>
 </div>
@@ -679,60 +685,60 @@ A blue shape with area = 6.00</code></pre>
 </section>
 <section class="slide level2">
 
-<div id="48f49789" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="kw">class</span> SparseMatrix:</span>
-<span id="cb18-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, shape, fill_value<span class="op">=</span><span class="fl">0.0</span>, data<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb18-3"><a></a>        <span class="va">self</span>.shape <span class="op">=</span> shape</span>
-<span id="cb18-4"><a></a>        <span class="va">self</span>._data <span class="op">=</span> data <span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> {}</span>
-<span id="cb18-5"><a></a>        <span class="va">self</span>.fill_value <span class="op">=</span> fill_value</span>
-<span id="cb18-6"><a></a>        </span>
-<span id="cb18-7"><a></a>    <span class="kw">def</span> <span class="fu">__setitem__</span>(<span class="va">self</span>, key, value):</span>
-<span id="cb18-8"><a></a>        i,j <span class="op">=</span> key</span>
-<span id="cb18-9"><a></a>        <span class="va">self</span>._data[i,j] <span class="op">=</span> <span class="bu">float</span>(value) </span>
-<span id="cb18-10"><a></a></span>
-<span id="cb18-11"><a></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb18-12"><a></a>        i,j <span class="op">=</span> key</span>
-<span id="cb18-13"><a></a>        <span class="cf">return</span> <span class="va">self</span>._data.get((i,j), <span class="va">self</span>.fill_value)</span>
-<span id="cb18-14"><a></a>    </span>
-<span id="cb18-15"><a></a>    <span class="kw">def</span> transpose(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="st">"SparseMatrix"</span>:</span>
-<span id="cb18-16"><a></a>        data <span class="op">=</span> {(j,i) : v <span class="cf">for</span> (i,j),v <span class="kw">in</span> <span class="va">self</span>._data.items()}</span>
-<span id="cb18-17"><a></a>        <span class="cf">return</span> SparseMatrix(data<span class="op">=</span>data,</span>
-<span id="cb18-18"><a></a>                            shape<span class="op">=</span><span class="va">self</span>.shape,</span>
-<span id="cb18-19"><a></a>                            fill_value<span class="op">=</span><span class="va">self</span>.fill_value)</span>
-<span id="cb18-20"><a></a>    </span>
-<span id="cb18-21"><a></a>    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
-<span id="cb18-22"><a></a>        matrix_str <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb18-23"><a></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.shape[<span class="dv">1</span>]):</span>
-<span id="cb18-24"><a></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.shape[<span class="dv">0</span>]):</span>
-<span id="cb18-25"><a></a>                value <span class="op">=</span> <span class="va">self</span>[i, j]</span>
-<span id="cb18-26"><a></a>                matrix_str <span class="op">+=</span> <span class="ss">f"</span><span class="sc">{</span>value<span class="sc">:&lt;4}</span><span class="ss">"</span></span>
-<span id="cb18-27"><a></a>            matrix_str <span class="op">+=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb18-28"><a></a>        <span class="cf">return</span> matrix_str</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="96b87705" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-label="1"></a><span class="kw">class</span> SparseMatrix:</span>
+<span id="cb18-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, shape, fill_value<span class="op">=</span><span class="fl">0.0</span>, data<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb18-3"><a aria-label="3"></a>        <span class="va">self</span>.shape <span class="op">=</span> shape</span>
+<span id="cb18-4"><a aria-label="4"></a>        <span class="va">self</span>._data <span class="op">=</span> data <span class="cf">if</span> data <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> {}</span>
+<span id="cb18-5"><a aria-label="5"></a>        <span class="va">self</span>.fill_value <span class="op">=</span> fill_value</span>
+<span id="cb18-6"><a aria-label="6"></a>        </span>
+<span id="cb18-7"><a aria-label="7"></a>    <span class="kw">def</span> <span class="fu">__setitem__</span>(<span class="va">self</span>, key, value):</span>
+<span id="cb18-8"><a aria-label="8"></a>        i,j <span class="op">=</span> key</span>
+<span id="cb18-9"><a aria-label="9"></a>        <span class="va">self</span>._data[i,j] <span class="op">=</span> <span class="bu">float</span>(value) </span>
+<span id="cb18-10"><a aria-label="10"></a></span>
+<span id="cb18-11"><a aria-label="11"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb18-12"><a aria-label="12"></a>        i,j <span class="op">=</span> key</span>
+<span id="cb18-13"><a aria-label="13"></a>        <span class="cf">return</span> <span class="va">self</span>._data.get((i,j), <span class="va">self</span>.fill_value)</span>
+<span id="cb18-14"><a aria-label="14"></a>    </span>
+<span id="cb18-15"><a aria-label="15"></a>    <span class="kw">def</span> transpose(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="st">"SparseMatrix"</span>:</span>
+<span id="cb18-16"><a aria-label="16"></a>        data <span class="op">=</span> {(j,i) : v <span class="cf">for</span> (i,j),v <span class="kw">in</span> <span class="va">self</span>._data.items()}</span>
+<span id="cb18-17"><a aria-label="17"></a>        <span class="cf">return</span> SparseMatrix(data<span class="op">=</span>data,</span>
+<span id="cb18-18"><a aria-label="18"></a>                            shape<span class="op">=</span><span class="va">self</span>.shape,</span>
+<span id="cb18-19"><a aria-label="19"></a>                            fill_value<span class="op">=</span><span class="va">self</span>.fill_value)</span>
+<span id="cb18-20"><a aria-label="20"></a>    </span>
+<span id="cb18-21"><a aria-label="21"></a>    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
+<span id="cb18-22"><a aria-label="22"></a>        matrix_str <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb18-23"><a aria-label="23"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.shape[<span class="dv">1</span>]):</span>
+<span id="cb18-24"><a aria-label="24"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.shape[<span class="dv">0</span>]):</span>
+<span id="cb18-25"><a aria-label="25"></a>                value <span class="op">=</span> <span class="va">self</span>[i, j]</span>
+<span id="cb18-26"><a aria-label="26"></a>                matrix_str <span class="op">+=</span> <span class="ss">f"</span><span class="sc">{</span>value<span class="sc">:&lt;4}</span><span class="ss">"</span></span>
+<span id="cb18-27"><a aria-label="27"></a>            matrix_str <span class="op">+=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb18-28"><a aria-label="28"></a>        <span class="cf">return</span> matrix_str</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section class="slide level2">
 
-<div id="5a123a9d" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>m <span class="op">=</span> SparseMatrix(shape<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>), fill_value<span class="op">=</span><span class="fl">0.0</span>)</span>
-<span id="cb19-2"><a></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0f595357" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a aria-label="1"></a>m <span class="op">=</span> SparseMatrix(shape<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>), fill_value<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb19-2"><a aria-label="2"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>0.0 0.0 
 0.0 0.0 </code></pre>
 </div>
 </div>
 <div class="fragment">
-<div id="3e54fe95" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>m[<span class="dv">0</span>,<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="dd825319" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a aria-label="1"></a>m[<span class="dv">0</span>,<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>0.0</code></pre>
 </div>
 </div>
 </div>
 <div class="fragment">
-<div id="834e985c" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a>m[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb23-2"><a></a>m[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">=</span> <span class="fl">2.0</span></span>
-<span id="cb23-3"><a></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="17aeaf19" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a aria-label="1"></a>m[<span class="dv">0</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb23-2"><a aria-label="2"></a>m[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb23-3"><a aria-label="3"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>0.0 2.0 
 1.0 0.0 </code></pre>
@@ -740,8 +746,8 @@ A blue shape with area = 6.00</code></pre>
 </div>
 </div>
 <div class="fragment">
-<div id="5da2c240" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a>m.transpose()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="559d12b9" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a aria-label="1"></a>m.transpose()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>0.0 1.0 
 2.0 0.0 </code></pre>
@@ -760,40 +766,40 @@ A blue shape with area = 6.00</code></pre>
 </section>
 <section id="section-1" class="slide level2 smaller">
 <h2></h2>
-<div id="a8dc1f0c" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a></a><span class="im">import</span> math</span>
-<span id="cb27-2"><a></a></span>
-<span id="cb27-3"><a></a><span class="kw">class</span> Circle: <span class="co"># no base class</span></span>
-<span id="cb27-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius, color<span class="op">=</span><span class="st">"black"</span>):</span>
-<span id="cb27-5"><a></a>        <span class="va">self</span>.radius <span class="op">=</span> radius</span>
-<span id="cb27-6"><a></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
-<span id="cb27-7"><a></a>    </span>
-<span id="cb27-8"><a></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb27-9"><a></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.radius<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb27-10"><a></a>    </span>
-<span id="cb27-11"><a></a>    <span class="kw">def</span> describe(<span class="va">self</span>):</span>
-<span id="cb27-12"><a></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> circle with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span>
-<span id="cb27-13"><a></a></span>
-<span id="cb27-14"><a></a><span class="kw">class</span> Rectangle: <span class="co"># no base class</span></span>
-<span id="cb27-15"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width, height, color<span class="op">=</span><span class="st">"black"</span>):</span>
-<span id="cb27-16"><a></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
-<span id="cb27-17"><a></a>        <span class="va">self</span>.height <span class="op">=</span> height</span>
-<span id="cb27-18"><a></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
-<span id="cb27-19"><a></a>    </span>
-<span id="cb27-20"><a></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb27-21"><a></a>        <span class="cf">return</span> <span class="va">self</span>.width <span class="op">*</span> <span class="va">self</span>.height</span>
-<span id="cb27-22"><a></a>    </span>
-<span id="cb27-23"><a></a>    <span class="kw">def</span> describe(<span class="va">self</span>):</span>
-<span id="cb27-24"><a></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> rectangle with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="05f9b227" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a aria-label="1"></a><span class="im">import</span> math</span>
+<span id="cb27-2"><a aria-label="2"></a></span>
+<span id="cb27-3"><a aria-label="3"></a><span class="kw">class</span> Circle: <span class="co"># no base class</span></span>
+<span id="cb27-4"><a aria-label="4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius, color<span class="op">=</span><span class="st">"black"</span>):</span>
+<span id="cb27-5"><a aria-label="5"></a>        <span class="va">self</span>.radius <span class="op">=</span> radius</span>
+<span id="cb27-6"><a aria-label="6"></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
+<span id="cb27-7"><a aria-label="7"></a>    </span>
+<span id="cb27-8"><a aria-label="8"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb27-9"><a aria-label="9"></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.radius<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb27-10"><a aria-label="10"></a>    </span>
+<span id="cb27-11"><a aria-label="11"></a>    <span class="kw">def</span> describe(<span class="va">self</span>):</span>
+<span id="cb27-12"><a aria-label="12"></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> circle with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span>
+<span id="cb27-13"><a aria-label="13"></a></span>
+<span id="cb27-14"><a aria-label="14"></a><span class="kw">class</span> Rectangle: <span class="co"># no base class</span></span>
+<span id="cb27-15"><a aria-label="15"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width, height, color<span class="op">=</span><span class="st">"black"</span>):</span>
+<span id="cb27-16"><a aria-label="16"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
+<span id="cb27-17"><a aria-label="17"></a>        <span class="va">self</span>.height <span class="op">=</span> height</span>
+<span id="cb27-18"><a aria-label="18"></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
+<span id="cb27-19"><a aria-label="19"></a>    </span>
+<span id="cb27-20"><a aria-label="20"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb27-21"><a aria-label="21"></a>        <span class="cf">return</span> <span class="va">self</span>.width <span class="op">*</span> <span class="va">self</span>.height</span>
+<span id="cb27-22"><a aria-label="22"></a>    </span>
+<span id="cb27-23"><a aria-label="23"></a>    <span class="kw">def</span> describe(<span class="va">self</span>):</span>
+<span id="cb27-24"><a aria-label="24"></a>        <span class="cf">return</span> <span class="ss">f"A </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>color<span class="sc">}</span><span class="ss"> rectangle with area = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>area()<span class="sc">:.2f}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
-<div id="714812b1" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a>shapes <span class="op">=</span> [</span>
-<span id="cb28-2"><a></a>    Circle(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"red"</span>),</span>
-<span id="cb28-3"><a></a>    Rectangle(<span class="fl">2.0</span>, <span class="fl">3.0</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb28-4"><a></a>]</span>
-<span id="cb28-5"><a></a><span class="cf">for</span> shape <span class="kw">in</span> shapes:</span>
-<span id="cb28-6"><a></a>    <span class="bu">print</span>(shape.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f55d1b0b" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a aria-label="1"></a>shapes <span class="op">=</span> [</span>
+<span id="cb28-2"><a aria-label="2"></a>    Circle(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"red"</span>),</span>
+<span id="cb28-3"><a aria-label="3"></a>    Rectangle(<span class="fl">2.0</span>, <span class="fl">3.0</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb28-4"><a aria-label="4"></a>]</span>
+<span id="cb28-5"><a aria-label="5"></a><span class="cf">for</span> shape <span class="kw">in</span> shapes:</span>
+<span id="cb28-6"><a aria-label="6"></a>    <span class="bu">print</span>(shape.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A red circle with area = 3.14
 A blue rectangle with area = 6.00</code></pre>
@@ -813,78 +819,78 @@ A blue rectangle with area = 6.00</code></pre>
 </section>
 <section id="duck-typing---example-1" class="slide level2">
 <h2>Duck typing - Example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a></a><span class="kw">class</span> PositiveNumberTransformer:</span>
-<span id="cb30-2"><a></a></span>
-<span id="cb30-3"><a></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb30-4"><a></a>        <span class="co"># no need to fit (still need to have the method!)</span></span>
-<span id="cb30-5"><a></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="cb30-6"><a></a></span>
-<span id="cb30-7"><a></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
-<span id="cb30-8"><a></a>        <span class="cf">return</span> np.<span class="bu">abs</span>(X)</span>
-<span id="cb30-9"><a></a></span>
-<span id="cb30-10"><a></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb30-11"><a></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a aria-label="1"></a><span class="kw">class</span> PositiveNumberTransformer:</span>
+<span id="cb30-2"><a aria-label="2"></a></span>
+<span id="cb30-3"><a aria-label="3"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb30-4"><a aria-label="4"></a>        <span class="co"># no need to fit (still need to have the method!)</span></span>
+<span id="cb30-5"><a aria-label="5"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb30-6"><a aria-label="6"></a></span>
+<span id="cb30-7"><a aria-label="7"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
+<span id="cb30-8"><a aria-label="8"></a>        <span class="cf">return</span> np.<span class="bu">abs</span>(X)</span>
+<span id="cb30-9"><a aria-label="9"></a></span>
+<span id="cb30-10"><a aria-label="10"></a>    <span class="kw">def</span> fit_transform(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb30-11"><a aria-label="11"></a>        <span class="cf">return</span> <span class="va">self</span>.fit(X, y).transform(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="duck-typing---mixins" class="slide level2 smaller">
 <h2>Duck typing - Mixins</h2>
 <p>We can inherit some behavior from <code>sklearn.base.TransformerMixin</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-code-line-numbers="|1,3,18,19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="im">from</span> sklearn.base <span class="im">import</span> TransformerMixin</span>
-<span id="cb31-2"><a></a></span>
-<span id="cb31-3"><a></a><span class="kw">class</span> RemoveOutliersTransformer(TransformerMixin):</span>
-<span id="cb31-4"><a></a></span>
-<span id="cb31-5"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, lower_bound, upper_bound):</span>
-<span id="cb31-6"><a></a>        <span class="va">self</span>.lower_bound <span class="op">=</span> lower_bound</span>
-<span id="cb31-7"><a></a>        <span class="va">self</span>.upper_bound <span class="op">=</span> upper_bound</span>
-<span id="cb31-8"><a></a>        <span class="va">self</span>.lower_ <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb31-9"><a></a>        <span class="va">self</span>.upper_ <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb31-10"><a></a></span>
-<span id="cb31-11"><a></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb31-12"><a></a>        <span class="va">self</span>.lower_ <span class="op">=</span> np.quantile(X, <span class="va">self</span>.lower_bound)</span>
-<span id="cb31-13"><a></a>        <span class="va">self</span>.upper_ <span class="op">=</span> np.quantile(X, <span class="va">self</span>.upper_bound)</span>
-<span id="cb31-14"><a></a></span>
-<span id="cb31-15"><a></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
-<span id="cb31-16"><a></a>        <span class="cf">return</span> np.clip(X, <span class="va">self</span>.lower_, <span class="va">self</span>.upper_)</span>
-<span id="cb31-17"><a></a></span>
-<span id="cb31-18"><a></a>    <span class="co"># def fit_transform(self, X, y=None):</span></span>
-<span id="cb31-19"><a></a>    <span class="co"># we get this for free, from TransformerMixin</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-code-line-numbers="|1,3,18,19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a aria-label="1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> TransformerMixin</span>
+<span id="cb31-2"><a aria-label="2"></a></span>
+<span id="cb31-3"><a aria-label="3"></a><span class="kw">class</span> RemoveOutliersTransformer(TransformerMixin):</span>
+<span id="cb31-4"><a aria-label="4"></a></span>
+<span id="cb31-5"><a aria-label="5"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, lower_bound, upper_bound):</span>
+<span id="cb31-6"><a aria-label="6"></a>        <span class="va">self</span>.lower_bound <span class="op">=</span> lower_bound</span>
+<span id="cb31-7"><a aria-label="7"></a>        <span class="va">self</span>.upper_bound <span class="op">=</span> upper_bound</span>
+<span id="cb31-8"><a aria-label="8"></a>        <span class="va">self</span>.lower_ <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb31-9"><a aria-label="9"></a>        <span class="va">self</span>.upper_ <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb31-10"><a aria-label="10"></a></span>
+<span id="cb31-11"><a aria-label="11"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb31-12"><a aria-label="12"></a>        <span class="va">self</span>.lower_ <span class="op">=</span> np.quantile(X, <span class="va">self</span>.lower_bound)</span>
+<span id="cb31-13"><a aria-label="13"></a>        <span class="va">self</span>.upper_ <span class="op">=</span> np.quantile(X, <span class="va">self</span>.upper_bound)</span>
+<span id="cb31-14"><a aria-label="14"></a></span>
+<span id="cb31-15"><a aria-label="15"></a>    <span class="kw">def</span> transform(<span class="va">self</span>, X):</span>
+<span id="cb31-16"><a aria-label="16"></a>        <span class="cf">return</span> np.clip(X, <span class="va">self</span>.lower_, <span class="va">self</span>.upper_)</span>
+<span id="cb31-17"><a aria-label="17"></a></span>
+<span id="cb31-18"><a aria-label="18"></a>    <span class="co"># def fit_transform(self, X, y=None):</span></span>
+<span id="cb31-19"><a aria-label="19"></a>    <span class="co"># we get this for free, from TransformerMixin</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="lets-revisit-the-date-interval" class="slide level2">
 <h2>Let’s revisit the (date) Interval</h2>
 <p>The <code>Interval</code> class represent an interval in time.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-code-line-numbers="|6-7|11-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="kw">class</span> Interval:</span>
-<span id="cb32-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
-<span id="cb32-3"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb32-4"><a></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb32-5"><a></a></span>
-<span id="cb32-6"><a></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
-<span id="cb32-7"><a></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
-<span id="cb32-8"><a></a></span>
-<span id="cb32-9"><a></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
-<span id="cb32-10"><a></a></span>
-<span id="cb32-11"><a></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">2020</span>,<span class="dv">1</span>,<span class="dv">15</span>) <span class="kw">in</span> dr</span>
-<span id="cb32-12"><a></a><span class="va">True</span></span>
-<span id="cb32-13"><a></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">1970</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="kw">in</span> dr</span>
-<span id="cb32-14"><a></a><span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-code-line-numbers="|6-7|11-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a aria-label="1"></a><span class="kw">class</span> Interval:</span>
+<span id="cb32-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
+<span id="cb32-3"><a aria-label="3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb32-4"><a aria-label="4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb32-5"><a aria-label="5"></a></span>
+<span id="cb32-6"><a aria-label="6"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
+<span id="cb32-7"><a aria-label="7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
+<span id="cb32-8"><a aria-label="8"></a></span>
+<span id="cb32-9"><a aria-label="9"></a><span class="op">&gt;&gt;&gt;</span> dr <span class="op">=</span> Interval(date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb32-10"><a aria-label="10"></a></span>
+<span id="cb32-11"><a aria-label="11"></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">2020</span>,<span class="dv">1</span>,<span class="dv">15</span>) <span class="kw">in</span> dr</span>
+<span id="cb32-12"><a aria-label="12"></a><span class="va">True</span></span>
+<span id="cb32-13"><a aria-label="13"></a><span class="op">&gt;&gt;&gt;</span> date(<span class="dv">1970</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="kw">in</span> dr</span>
+<span id="cb32-14"><a aria-label="14"></a><span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>What if we want to make another type of interval, e.g.&nbsp;a interval of numbers <span class="math inline">\([1.0, 2.0]\)</span>?</p>
 </div>
 </section>
 <section id="a-number-interval" class="slide level2">
 <h2>A number interval</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-code-line-numbers="9-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="kw">class</span> Interval:</span>
-<span id="cb33-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
-<span id="cb33-3"><a></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
-<span id="cb33-4"><a></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
-<span id="cb33-5"><a></a></span>
-<span id="cb33-6"><a></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
-<span id="cb33-7"><a></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
-<span id="cb33-8"><a></a>    </span>
-<span id="cb33-9"><a></a><span class="op">&gt;&gt;&gt;</span> interval <span class="op">=</span> Interval(<span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb33-10"><a></a></span>
-<span id="cb33-11"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">8</span> <span class="kw">in</span> interval</span>
-<span id="cb33-12"><a></a><span class="va">True</span></span>
-<span id="cb33-13"><a></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">12</span> <span class="kw">in</span> interval</span>
-<span id="cb33-14"><a></a><span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-code-line-numbers="9-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a aria-label="1"></a><span class="kw">class</span> Interval:</span>
+<span id="cb33-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, start, end):</span>
+<span id="cb33-3"><a aria-label="3"></a>        <span class="va">self</span>.start <span class="op">=</span> start</span>
+<span id="cb33-4"><a aria-label="4"></a>        <span class="va">self</span>.end <span class="op">=</span> end</span>
+<span id="cb33-5"><a aria-label="5"></a></span>
+<span id="cb33-6"><a aria-label="6"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, x):</span>
+<span id="cb33-7"><a aria-label="7"></a>        <span class="cf">return</span> <span class="va">self</span>.start <span class="op">&lt;</span> x <span class="op">&lt;</span> <span class="va">self</span>.end</span>
+<span id="cb33-8"><a aria-label="8"></a>    </span>
+<span id="cb33-9"><a aria-label="9"></a><span class="op">&gt;&gt;&gt;</span> interval <span class="op">=</span> Interval(<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb33-10"><a aria-label="10"></a></span>
+<span id="cb33-11"><a aria-label="11"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">8</span> <span class="kw">in</span> interval</span>
+<span id="cb33-12"><a aria-label="12"></a><span class="va">True</span></span>
+<span id="cb33-13"><a aria-label="13"></a><span class="op">&gt;&gt;&gt;</span> <span class="dv">12</span> <span class="kw">in</span> interval</span>
+<span id="cb33-14"><a aria-label="14"></a><span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>As long as the <code>start</code>, <code>end</code> and <code>x</code> are comparable, the <code>Interval</code> class is a generic class able to handle integers, floats, dates, datetimes, strings …</p>
 </div>
@@ -897,12 +903,12 @@ A blue rectangle with area = 6.00</code></pre>
 <li>Be conservative in what you send</li>
 </ol>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a></a><span class="kw">def</span> process(number: Union[<span class="bu">int</span>,<span class="bu">str</span>,<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb34-2"><a></a>    <span class="co"># make sure number is an int from now on</span></span>
-<span id="cb34-3"><a></a>    number <span class="op">=</span> <span class="bu">int</span>(number)</span>
-<span id="cb34-4"><a></a></span>
-<span id="cb34-5"><a></a>    result <span class="op">=</span> number <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb34-6"><a></a>    <span class="cf">return</span> result   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a aria-label="1"></a><span class="kw">def</span> process(number: Union[<span class="bu">int</span>,<span class="bu">str</span>,<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb34-2"><a aria-label="2"></a>    <span class="co"># make sure number is an int from now on</span></span>
+<span id="cb34-3"><a aria-label="3"></a>    number <span class="op">=</span> <span class="bu">int</span>(number)</span>
+<span id="cb34-4"><a aria-label="4"></a></span>
+<span id="cb34-5"><a aria-label="5"></a>    result <span class="op">=</span> number <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb34-6"><a aria-label="6"></a>    <span class="cf">return</span> result   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-2" class="slide level2">
@@ -914,35 +920,35 @@ A blue rectangle with area = 6.00</code></pre>
 </section>
 <section id="example---pydantic" class="slide level2">
 <h2>Example - Pydantic</h2>
-<div id="1540b8d5" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
-<span id="cb35-2"><a></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
-<span id="cb35-3"><a></a></span>
-<span id="cb35-4"><a></a><span class="kw">class</span> Sensor(BaseModel):</span>
-<span id="cb35-5"><a></a>    name: <span class="bu">str</span></span>
-<span id="cb35-6"><a></a>    voltage: <span class="bu">float</span></span>
-<span id="cb35-7"><a></a>    install_date: date</span>
-<span id="cb35-8"><a></a>    location: <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>]</span>
-<span id="cb35-9"><a></a></span>
-<span id="cb35-10"><a></a>s1 <span class="op">=</span> Sensor(name<span class="op">=</span><span class="st">"Sensor 1"</span>,</span>
-<span id="cb35-11"><a></a>            voltage<span class="op">=</span><span class="fl">3.3</span>,</span>
-<span id="cb35-12"><a></a>            install_date<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb35-13"><a></a>            location<span class="op">=</span>(<span class="fl">4.42</span>, <span class="fl">51.22</span>))</span>
-<span id="cb35-14"><a></a>s1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="3a0ea079" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a aria-label="1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb35-2"><a aria-label="2"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb35-3"><a aria-label="3"></a></span>
+<span id="cb35-4"><a aria-label="4"></a><span class="kw">class</span> Sensor(BaseModel):</span>
+<span id="cb35-5"><a aria-label="5"></a>    name: <span class="bu">str</span></span>
+<span id="cb35-6"><a aria-label="6"></a>    voltage: <span class="bu">float</span></span>
+<span id="cb35-7"><a aria-label="7"></a>    install_date: date</span>
+<span id="cb35-8"><a aria-label="8"></a>    location: <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>]</span>
+<span id="cb35-9"><a aria-label="9"></a></span>
+<span id="cb35-10"><a aria-label="10"></a>s1 <span class="op">=</span> Sensor(name<span class="op">=</span><span class="st">"Sensor 1"</span>,</span>
+<span id="cb35-11"><a aria-label="11"></a>            voltage<span class="op">=</span><span class="fl">3.3</span>,</span>
+<span id="cb35-12"><a aria-label="12"></a>            install_date<span class="op">=</span>date(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb35-13"><a aria-label="13"></a>            location<span class="op">=</span>(<span class="fl">4.42</span>, <span class="fl">51.22</span>))</span>
+<span id="cb35-14"><a aria-label="14"></a>s1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>Sensor(name='Sensor 1', voltage=3.3, install_date=datetime.date(2020, 1, 1), location=(4.42, 51.22))</code></pre>
 </div>
 </div>
-<div id="e911032f" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a></a>data <span class="op">=</span> {</span>
-<span id="cb37-2"><a></a>    <span class="st">"name"</span>: <span class="st">"Sensor 1"</span>,</span>
-<span id="cb37-3"><a></a>    <span class="st">"voltage"</span>: <span class="st">"3.3"</span>,</span>
-<span id="cb37-4"><a></a>    <span class="st">"install_date"</span>: <span class="st">"2020-01-01"</span>,</span>
-<span id="cb37-5"><a></a>    <span class="st">"location"</span>: (<span class="st">"4.42"</span>, <span class="st">"51.22"</span>)</span>
-<span id="cb37-6"><a></a>}</span>
-<span id="cb37-7"><a></a></span>
-<span id="cb37-8"><a></a>s2 <span class="op">=</span> Sensor(<span class="op">**</span>data)</span>
-<span id="cb37-9"><a></a>s2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="9d9988b0" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a aria-label="1"></a>data <span class="op">=</span> {</span>
+<span id="cb37-2"><a aria-label="2"></a>    <span class="st">"name"</span>: <span class="st">"Sensor 1"</span>,</span>
+<span id="cb37-3"><a aria-label="3"></a>    <span class="st">"voltage"</span>: <span class="st">"3.3"</span>,</span>
+<span id="cb37-4"><a aria-label="4"></a>    <span class="st">"install_date"</span>: <span class="st">"2020-01-01"</span>,</span>
+<span id="cb37-5"><a aria-label="5"></a>    <span class="st">"location"</span>: (<span class="st">"4.42"</span>, <span class="st">"51.22"</span>)</span>
+<span id="cb37-6"><a aria-label="6"></a>}</span>
+<span id="cb37-7"><a aria-label="7"></a></span>
+<span id="cb37-8"><a aria-label="8"></a>s2 <span class="op">=</span> Sensor(<span class="op">**</span>data)</span>
+<span id="cb37-9"><a aria-label="9"></a>s2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>Sensor(name='Sensor 1', voltage=3.3, install_date=datetime.date(2020, 1, 1), location=(4.42, 51.22))</code></pre>
 </div>
@@ -973,56 +979,56 @@ A blue rectangle with area = 6.00</code></pre>
 <section id="rename-variable" class="slide level2">
 <h2>Rename variable</h2>
 <p><strong>Before</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a></a>n <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb39-2"><a></a><span class="cf">for</span> v <span class="kw">in</span> y:</span>
-<span id="cb39-3"><a></a>    <span class="cf">if</span> v <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb39-4"><a></a>        n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a aria-label="1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb39-2"><a aria-label="2"></a><span class="cf">for</span> v <span class="kw">in</span> y:</span>
+<span id="cb39-3"><a aria-label="3"></a>    <span class="cf">if</span> v <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb39-4"><a aria-label="4"></a>        n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p><strong>After</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a></a>FREEZING_POINT <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb40-2"><a></a>n_freezing_days <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb40-3"><a></a><span class="cf">for</span> temp <span class="kw">in</span> daily_max_temperatures:</span>
-<span id="cb40-4"><a></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> FREEZING_POINT:</span>
-<span id="cb40-5"><a></a>        n_freezing_days <span class="op">=</span> n_freezing_days <span class="op">+</span> <span class="dv">1</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a aria-label="1"></a>FREEZING_POINT <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb40-2"><a aria-label="2"></a>n_freezing_days <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb40-3"><a aria-label="3"></a><span class="cf">for</span> temp <span class="kw">in</span> daily_max_temperatures:</span>
+<span id="cb40-4"><a aria-label="4"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> FREEZING_POINT:</span>
+<span id="cb40-5"><a aria-label="5"></a>        n_freezing_days <span class="op">=</span> n_freezing_days <span class="op">+</span> <span class="dv">1</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="extract-variable" class="slide level2">
 <h2>Extract variable</h2>
 <p><strong>Before</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a></a><span class="kw">def</span> predict(x):</span>
-<span id="cb41-2"><a></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="bu">min</span>(<span class="dv">0</span>,x) <span class="op">+</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">10.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a aria-label="1"></a><span class="kw">def</span> predict(x):</span>
+<span id="cb41-2"><a aria-label="2"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> <span class="bu">min</span>(<span class="dv">0</span>,x) <span class="op">+</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="fl">10.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p><strong>After</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a></a><span class="kw">def</span> predict(x):</span>
-<span id="cb42-2"><a></a>    scale <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb42-3"><a></a>    error <span class="op">=</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale</span>
-<span id="cb42-4"><a></a>    a <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb42-5"><a></a>    b <span class="op">=</span> <span class="fl">2.0</span> </span>
-<span id="cb42-6"><a></a>    draft <span class="op">=</span> a <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> error</span>
-<span id="cb42-7"><a></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, draft)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a aria-label="1"></a><span class="kw">def</span> predict(x):</span>
+<span id="cb42-2"><a aria-label="2"></a>    scale <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb42-3"><a aria-label="3"></a>    error <span class="op">=</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale</span>
+<span id="cb42-4"><a aria-label="4"></a>    a <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb42-5"><a aria-label="5"></a>    b <span class="op">=</span> <span class="fl">2.0</span> </span>
+<span id="cb42-6"><a aria-label="6"></a>    draft <span class="op">=</span> a <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> error</span>
+<span id="cb42-7"><a aria-label="7"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, draft)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="extract-method" class="slide level2">
 <h2>Extract method</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a></a><span class="kw">def</span> error(scale):</span>
-<span id="cb43-2"><a></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale</span>
-<span id="cb43-3"><a></a></span>
-<span id="cb43-4"><a></a><span class="kw">def</span> linear_model(x, <span class="op">*</span>, a<span class="op">=</span><span class="fl">0.0</span>, b<span class="op">=</span><span class="fl">1.0</span>):</span>
-<span id="cb43-5"><a></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">*</span> x</span>
-<span id="cb43-6"><a></a></span>
-<span id="cb43-7"><a></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
-<span id="cb43-8"><a></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value, x)</span>
-<span id="cb43-9"><a></a></span>
-<span id="cb43-10"><a></a><span class="kw">def</span> predict(x): </span>
-<span id="cb43-11"><a></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb43-12"><a></a>    <span class="cf">return</span> clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a aria-label="1"></a><span class="kw">def</span> error(scale):</span>
+<span id="cb43-2"><a aria-label="2"></a>    <span class="cf">return</span> (random.random() <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">/</span> scale</span>
+<span id="cb43-3"><a aria-label="3"></a></span>
+<span id="cb43-4"><a aria-label="4"></a><span class="kw">def</span> linear_model(x, <span class="op">*</span>, a<span class="op">=</span><span class="fl">0.0</span>, b<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb43-5"><a aria-label="5"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">*</span> x</span>
+<span id="cb43-6"><a aria-label="6"></a></span>
+<span id="cb43-7"><a aria-label="7"></a><span class="kw">def</span> clip(x, <span class="op">*</span>, min_value<span class="op">=</span><span class="fl">0.0</span>):</span>
+<span id="cb43-8"><a aria-label="8"></a>    <span class="cf">return</span> <span class="bu">min</span>(min_value, x)</span>
+<span id="cb43-9"><a aria-label="9"></a></span>
+<span id="cb43-10"><a aria-label="10"></a><span class="kw">def</span> predict(x): </span>
+<span id="cb43-11"><a aria-label="11"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb43-12"><a aria-label="12"></a>    <span class="cf">return</span> clip(draft, min_value<span class="op">=</span><span class="fl">0.</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="inline-method" class="slide level2">
 <h2>Inline method</h2>
 <p>Opposite of extract mehtod.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a></a><span class="kw">def</span> predict(x): </span>
-<span id="cb44-2"><a></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb44-3"><a></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-code-line-numbers="3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a aria-label="1"></a><span class="kw">def</span> predict(x): </span>
+<span id="cb44-2"><a aria-label="2"></a>    draft <span class="op">=</span> linear_model(x, a<span class="op">=</span><span class="fl">0.5</span>, b<span class="op">=</span><span class="fl">2.0</span>) <span class="op">+</span> error(scale<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb44-3"><a aria-label="3"></a>    <span class="cf">return</span> <span class="bu">min</span>(<span class="fl">0.0</span>, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="composed-method" class="slide level2">
 <h2>Composed method</h2>
@@ -1030,41 +1036,41 @@ A blue rectangle with area = 6.00</code></pre>
 </section>
 <section class="slide level2">
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a></a><span class="co"># get data</span></span>
-<span id="cb45-2"><a></a>os.shutil.copyfile(thisfile, localfile)</span>
-<span id="cb45-3"><a></a>df <span class="op">=</span> read_csv(localfile)</span>
-<span id="cb45-4"><a></a></span>
-<span id="cb45-5"><a></a><span class="co"># clean data</span></span>
-<span id="cb45-6"><a></a>df.dropna()</span>
-<span id="cb45-7"><a></a>df.drop_duplicates()</span>
-<span id="cb45-8"><a></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb45-9"><a></a></span>
-<span id="cb45-10"><a></a><span class="co"># transform data</span></span>
-<span id="cb45-11"><a></a>df.date <span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
-<span id="cb45-12"><a></a></span>
-<span id="cb45-13"><a></a><span class="co"># predict</span></span>
-<span id="cb45-14"><a></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a aria-label="1"></a><span class="co"># get data</span></span>
+<span id="cb45-2"><a aria-label="2"></a>os.shutil.copyfile(thisfile, localfile)</span>
+<span id="cb45-3"><a aria-label="3"></a>df <span class="op">=</span> read_csv(localfile)</span>
+<span id="cb45-4"><a aria-label="4"></a></span>
+<span id="cb45-5"><a aria-label="5"></a><span class="co"># clean data</span></span>
+<span id="cb45-6"><a aria-label="6"></a>df.dropna()</span>
+<span id="cb45-7"><a aria-label="7"></a>df.drop_duplicates()</span>
+<span id="cb45-8"><a aria-label="8"></a>df[somevar<span class="op">&lt;</span><span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb45-9"><a aria-label="9"></a></span>
+<span id="cb45-10"><a aria-label="10"></a><span class="co"># transform data</span></span>
+<span id="cb45-11"><a aria-label="11"></a>df.date <span class="op">=</span> pd.to_datetime(df.date) <span class="op">-</span> <span class="dv">86400</span></span>
+<span id="cb45-12"><a aria-label="12"></a></span>
+<span id="cb45-13"><a aria-label="13"></a><span class="co"># predict</span></span>
+<span id="cb45-14"><a aria-label="14"></a>predictions <span class="op">=</span> df.height <span class="op">+</span> df.weight <span class="op">*</span> df.age</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2">
 
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a></a></span>
-<span id="cb46-2"><a></a><span class="kw">def</span> get_data(filename,...):</span>
-<span id="cb46-3"><a></a>    ...</span>
-<span id="cb46-4"><a></a></span>
-<span id="cb46-5"><a></a><span class="kw">def</span> clean_data(df):</span>
-<span id="cb46-6"><a></a>    ...</span>
-<span id="cb46-7"><a></a></span>
-<span id="cb46-8"><a></a><span class="kw">def</span> transform_data(df):</span>
-<span id="cb46-9"><a></a>    ...</span>
-<span id="cb46-10"><a></a></span>
-<span id="cb46-11"><a></a><span class="kw">def</span> predict(df):</span>
-<span id="cb46-12"><a></a>    ...</span>
-<span id="cb46-13"><a></a></span>
-<span id="cb46-14"><a></a><span class="kw">def</span> main():</span>
-<span id="cb46-15"><a></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
-<span id="cb46-16"><a></a>    cleaned_data <span class="op">=</span> clean_data(df)</span>
-<span id="cb46-17"><a></a>    final_data <span class="op">=</span> transform_data(cleaned_data)</span>
-<span id="cb46-18"><a></a>    predictions <span class="op">=</span> predict(final_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a aria-label="1"></a></span>
+<span id="cb46-2"><a aria-label="2"></a><span class="kw">def</span> get_data(filename,...):</span>
+<span id="cb46-3"><a aria-label="3"></a>    ...</span>
+<span id="cb46-4"><a aria-label="4"></a></span>
+<span id="cb46-5"><a aria-label="5"></a><span class="kw">def</span> clean_data(df):</span>
+<span id="cb46-6"><a aria-label="6"></a>    ...</span>
+<span id="cb46-7"><a aria-label="7"></a></span>
+<span id="cb46-8"><a aria-label="8"></a><span class="kw">def</span> transform_data(df):</span>
+<span id="cb46-9"><a aria-label="9"></a>    ...</span>
+<span id="cb46-10"><a aria-label="10"></a></span>
+<span id="cb46-11"><a aria-label="11"></a><span class="kw">def</span> predict(df):</span>
+<span id="cb46-12"><a aria-label="12"></a>    ...</span>
+<span id="cb46-13"><a aria-label="13"></a></span>
+<span id="cb46-14"><a aria-label="14"></a><span class="kw">def</span> main():</span>
+<span id="cb46-15"><a aria-label="15"></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
+<span id="cb46-16"><a aria-label="16"></a>    cleaned_data <span class="op">=</span> clean_data(df)</span>
+<span id="cb46-17"><a aria-label="17"></a>    final_data <span class="op">=</span> transform_data(cleaned_data)</span>
+<span id="cb46-18"><a aria-label="18"></a>    predictions <span class="op">=</span> predict(final_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="composed-method-1" class="slide level2">
 <h2>Composed method</h2>
