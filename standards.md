@@ -10,22 +10,21 @@ Every section is a rule you can link to directly.
 ## Repository
 
 ### Small, focused pull requests
-*Recommended.* One concern per pull request. Commit often, with messages that say what
-changed and why. Track work with issues.
+*Recommended.* One concern per pull request. Commit messages say what changed and why. Track
+work with issues.
 
 ### No data in git
-*Blocker.* Only very small test fixtures belong in the repository. Use `.gitignore` for
-everything generated.
+*Blocker.* Only small test fixtures. Everything generated goes in `.gitignore`.
 
 ### No credentials in git
-*Blocker.* Passwords, tokens and connection strings go in GitHub secrets or a secret store —
-never in the repository, not even in history.
+*Blocker.* Passwords, tokens and connection strings belong in GitHub secrets or a secret
+store — never in the repository, not even in history.
 
 ## Layout
 
 ### src layout
 *Recommended.* Package code under `src/my_library/`, tests in `tests/`, docs in `docs/`.
-Importing then tests the *installed* package, not the working directory.
+Imports then resolve to the *installed* package, not the working directory.
 
 ```
 my_library/
@@ -44,19 +43,18 @@ my_library/
 `__init__.py`. Split by what the code is about, not by file size.
 
 ### Explicit public API
-*Recommended.* `__init__.py` re-exports the names users should touch; internal modules are
-named with a leading underscore. What you export is what you have to keep working.
+*Recommended.* `__init__.py` re-exports the names users should touch. What you export is what
+you have to keep working.
 
 ```python
 from ._pfsdocument import PfsDocument   # mikeio.PfsDocument is the supported name
 ```
 
 ### Underscore means internal
-*Recommended.* A leading underscore says "not part of the public API". You may change or
-remove `_foo` without it counting as a [breaking change](#breaking-changes-bump-major) —
-anyone importing it did so at their own risk. Declare the public surface with `__all__` so
-the boundary is explicit rather than implied. (Double underscore, `__foo`, is name mangling —
-a different thing.)
+*Recommended.* A leading underscore says "not part of the public API": `_foo` may change or
+disappear without it counting as a [breaking change](#breaking-changes-bump-major). Declare
+the public surface with `__all__` so the boundary is explicit. (`__foo` is name mangling — a
+different thing.)
 
 ### Naming conventions
 *Recommended.* `lowercase_with_underscores` for variables, functions and methods;
@@ -65,7 +63,7 @@ a different thing.)
 ## Packaging
 
 ### pyproject.toml
-*Blocker.* A package without `[build-system]` and `[project]` is not installable. `uv init
+*Blocker.* Without `[build-system]` and `[project]` the package is not installable. `uv init
 --lib` gives you a working one.
 
 ```toml
@@ -78,7 +76,7 @@ name = "my_library"
 version = "0.0.1"
 description = "Useful library"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 authors = [{ name="First Last", email="initials@dhigroup.com" }]
 dependencies = ["numpy"]
 
@@ -88,17 +86,17 @@ dependencies = ["numpy"]
 ```
 
 ### Semantic versioning
-*Recommended.* `{major}.{minor}.{patch}` — major means breaking, minor means new features,
-patch means fixes. Start at `0.1.0`. `1.0` is a promise that the API is stable.
+*Recommended.* `{major}.{minor}.{patch}` — major breaks, minor adds, patch fixes. Start at
+`0.1.0`. `1.0` is a promise that the API is stable.
 
 ### Breaking changes bump major
 *Blocker.* Removing a function, renaming one, or changing a signature — including reordering
-positional arguments — breaks callers. Avoid it; when you can't, bump the major version. This
-applies to the [public API](#underscore-means-internal) only.
+positional arguments — breaks callers. Avoid it; when you can't, bump the major version.
+Applies to the [public API](#underscore-means-internal) only.
 
 ### Deprecate before removing
-*Recommended.* Warn in one version, remove in the next major — never both at once. Give
-people at least a release to migrate, and say in the message what to use instead.
+*Recommended.* Warn in one version, remove in the next major — never both at once. Say what
+to use instead.
 
 ```python
 from warnings import deprecated      # Python 3.13+
@@ -107,25 +105,19 @@ from warnings import deprecated      # Python 3.13+
 def old_function(x): ...
 ```
 
-`DeprecationWarning` is for developers (hidden by default, shows in test runs);
-`FutureWarning` is for end users (always visible). `mypy --enable-error-code=deprecated`
-catches uses of `@deprecated` at type-check time.
+`DeprecationWarning` targets developers (hidden by default, shown in test runs);
+`FutureWarning` targets end users (always visible). `mypy --enable-error-code=deprecated`
+catches uses of `@deprecated`.
 
 ### Changelog
-*Nice.* A `CHANGELOG.md` in [keepachangelog](https://keepachangelog.com/) format. Release
-notes written from a git log are not release notes — the reader wants to know what broke,
-what's new, and what's deprecated.
-
-Curating one by hand is real work, and a stale changelog is worse than none. Think twice
-before starting: if nobody reads it, skip it. If you do want one, let a tool assemble it from
-a fragment per pull request — [towncrier](https://towncrier.readthedocs.io/) or
-[git-cliff](https://git-cliff.org/) — so the cost lands on the author of each change rather
-than on you at release time.
+*Nice.* A `CHANGELOG.md` in [keepachangelog](https://keepachangelog.com/) format: what broke,
+what's new, what's deprecated. A git log is not release notes. A stale one is worse than none,
+so assemble it from a fragment per pull request ([towncrier](https://towncrier.readthedocs.io/),
+[git-cliff](https://git-cliff.org/)) rather than curating it at release time.
 
 ### License
-*Blocker.* Without a license the package is "all rights reserved" and legally unusable by
-others. MIT for open, a copyright notice for internal-only. Check your dependencies' licenses
-too.
+*Blocker.* No license means all rights reserved and legally unusable by others. MIT for open,
+a copyright notice for internal-only. Check your dependencies' licenses too.
 
 ```
 # Copyright (c) DHI
@@ -135,22 +127,19 @@ too.
 ## Dependencies
 
 ### Every dependency is a decision
-*Recommended.* You are shipping someone else's code to your users, and pulling in everything
-*it* depends on. Before adding one, check: is it maintained, what's the license (GPL can force
-your package to be GPL), and does it need compiled extensions that will break installation on
-a colleague's laptop? `uv pip tree` shows what you actually ship.
-
-Neither extreme is right — don't reinvent NumPy, but don't take a dependency for twenty lines
-you could write and understand yourself.
+*Recommended.* You ship someone else's code, and everything *it* depends on. Check three
+things: maintained, license (GPL can force your package to be GPL), and compiled extensions
+that will break installation on a colleague's laptop. `uv pip tree` shows what you ship. Don't
+reinvent NumPy; don't take a dependency for twenty lines you could own.
 
 ### Libraries loose, applications pinned
-*Recommended.* A library is imported by other code, so keep bounds wide (`numpy>=1.11.0`) to
-avoid conflicting with whatever else the user has installed. An application is run by a user,
-so pin (`numpy==1.11.0`) for reproducibility.
+*Recommended.* A library is imported by other code — keep bounds wide (`numpy>=1.11.0`) so it
+doesn't conflict with what the user already has. An application is run by a user — pin
+(`numpy==1.11.0`) for reproducibility.
 
 ### Development dependencies are separate
-*Recommended.* pytest, ruff, mypy and mkdocs are needed to *develop* the package, not to
-*run* it. They belong in `[dependency-groups]`, not `[project].dependencies`.
+*Recommended.* pytest, ruff, mypy and mkdocs are needed to *develop* the package, not to *run*
+it. Put them in `[dependency-groups]`, not `[project].dependencies`.
 
 ```toml
 [dependency-groups]
@@ -159,7 +148,7 @@ dev = ["pytest", "ruff", "mypy", "mkdocs", "mkdocstrings[python]", "mkdocs-mater
 
 ### uv for environments and locking
 *Recommended.* One virtual environment per project, managed by `uv`. Commit `uv.lock` so
-everyone resolves to the same set of packages.
+everyone resolves to the same packages.
 
 ```bash
 uv add matplotlib      uv add --dev pytest
@@ -174,42 +163,32 @@ the next change.
 
 ### Tests run from a clean clone
 *Blocker.* Resolve test data relative to the test file. Never an absolute or home-relative
-path, and **never as a fallback default** — a default like
-`os.environ.get("REF_DATA", Path.home() / "data")` looks configurable but only ever resolves
-on its author's machine.
+path, and never as a fallback default.
 
 ```python
 TESTDATA = Path(__file__).parent / "testdata"          # good
 TESTDATA = Path.home() / "src" / "ref" / "TestData"    # never
 ```
 
-The wrong path is only the symptom. The damage is that the test passes for its author and
-skips for everyone else, including CI, so the suite reports green while verifying nothing.
+The wrong path is the symptom; the damage is a test that passes for its author and skips for
+everyone else, so the suite reports green while verifying nothing.
 
-A skip is not a fix. This was a common accident before CI was the norm; now the more likely
-version is a `skip` added deliberately — often by a coding agent — to get a red suite green.
-That is worse than the failure it hides, because it turns a visible problem into an invisible
-one. A skip whose condition is false only on your machine is a hole with no bottom.
-
-Make CI fail on unexpected skips rather than trusting the summary line. pytest has no
-built-in flag for this, but a small `conftest.py` hook that turns a skip into a failure does
-the job. Then read the skip list in review: every remaining skip should have a reason you
-would defend out loud.
-
-If the data cannot be committed (see *No data in git*), the check belongs in a script, not in
-the test suite.
+A skip is not a fix — `skip`, `xfail` or `importorskip` added to turn a suite green trades a
+visible failure for an invisible one. Fail CI on unexpected skips (pytest has no flag; use a
+`conftest.py` hook). If the data cannot be committed (see
+[No data in git](#no-data-in-git)), the check belongs in a script, not the test suite.
 
 ### Good unit tests
-*Recommended.* Fast, in-memory, deterministic, order-independent, and each one about a single
-logical concept. No database, no network, no random numbers.
+*Recommended.* Fast, in-memory, deterministic, order-independent, one logical concept each. No
+database, no network, no random numbers.
 
 ### Test the edges
 *Recommended.* Empty list, single element, empty string, empty dict, `None`, `np.nan`. That is
 where the bugs are.
 
 ### Tests document behaviour
-*Recommended.* A test name should state a rule. Someone reading the test file should learn how
-the code is meant to behave.
+*Recommended.* A test name states a rule. Someone reading the test file should learn how the
+code is meant to behave.
 
 ```python
 def test_operable_period_can_be_missing():
@@ -221,14 +200,14 @@ def test_height_can_not_be_missing():
 ```
 
 ### Meaningful coverage
-*Nice.* `pytest --cov=my_library` to find untested code. Use the report to aim tests, not to
-chase a number.
+*Nice.* `pytest --cov=my_library` to find untested code. Aim tests with the report; don't chase
+the number.
 
 ## Code
 
 ### Mutable default arguments
-*Blocker.* Defaults are evaluated once, when the function is defined — not per call. A mutable
-default is shared by every call, forever.
+*Blocker.* Defaults are evaluated once, at definition — not per call. A mutable default is
+shared by every call, forever.
 
 ```python
 def add_to_cart(x, cart=[]):      # one shared list
@@ -236,8 +215,8 @@ def add_to_cart(x, cart=None):    # ✓ then: if cart is None: cart = []
 ```
 
 ### Don't modify input arguments
-*Recommended.* Arguments are passed by reference, so mutating them surprises the caller.
-Return a new object instead.
+*Recommended.* Arguments are passed by reference, so mutating them surprises the caller. Return
+a new object.
 
 ```python
 def clip(values):
@@ -249,26 +228,24 @@ def clip(values):
 ```
 
 ### One return type
-*Blocker.* A function that returns a `bool` on success and a `str` on failure will read as
-success — a non-empty string is truthy.
-
-A function with a `return` on one path and nothing on another is the same bug: the missing
-path returns `None`.
+*Blocker.* One type out, on every path. A function returning `bool` on success and `str` on
+failure reads as success — a non-empty string is truthy. A `return` on one path and none on
+another is the same bug: the silent path returns `None`.
 
 ```python
 def is_operable(height, period):
     if height > 10.0:
-        return "No way!"       # str here, None on every other path
-    return True                # ...and bool here
+        return "No way!"       # str here...
+    return True                # ...bool here
 
 if is_operable(height=12.0, period=5.0):   # "No way!" is truthy — this runs
     print("Go ahead!")
 ```
 
 ### Errors should never pass silently
-*Blocker.* Raise rather than let a bad value propagate. Exceptions are how your code talks to
-its user. Use built-ins (`ValueError`, `KeyError`, `FileNotFoundError`) or define your own
-where the domain warrants it. Never swallow with a bare `except`.
+*Blocker.* Raise rather than let a bad value propagate. Use built-ins (`ValueError`, `KeyError`,
+`FileNotFoundError`), or your own where the domain warrants it. Never swallow with a bare
+`except`.
 
 ```python
 if height < 0.0:
@@ -276,12 +253,11 @@ if height < 0.0:
 ```
 
 ### Pure functions where you can
-*Recommended.* Same input, same output, no side effects — easier to reason about and trivial
-to test. Where side effects are necessary (files, databases, plots), keep them deliberate and
-in few places.
+*Recommended.* Same input, same output, no side effects — trivial to test. Where side effects
+are necessary (files, databases, plots), keep them in few, deliberate places.
 
 ### Instance variables, not class variables
-*Blocker.* A list defined in the class body is shared by every instance. Assign in `__init__`.
+*Blocker.* A mutable value in the class body is shared by every instance. Assign in `__init__`.
 
 ```python
 class Toolbox:
@@ -291,20 +267,19 @@ class Toolbox:
 ```
 
 ### Type hints
-*Recommended.* On public functions at minimum. They are hints, not enforcement — they exist
-for the reader and the editor, until you add a [type checker](#type-checking-in-ci).
+*Recommended.* On public functions at minimum. They are hints, not enforcement, until you add a
+[type checker](#type-checking-in-ci).
 
 ```python
 def clip(values: list[int], *, threshold: int = 0) -> list[int]: ...
 ```
 
 ### Keyword-only arguments
-*Recommended.* One or two positional parameters is fine — that is the data the function
-operates on. Everything after them is configuration, and belongs after a `*` so callers have
-to name it. You can then reorder or add options without breaking anyone.
-
-Three or more positional parameters is a strong smell: `resample(df, 3, 0, True)` can't be
-read at the call site, and nobody can safely change the order again.
+*Recommended.* One or two positional parameters — the data the function operates on;
+everything after is configuration and goes behind a `*`, so callers name it and you can add or
+reorder options without breaking anyone. Three or more positional parameters is a smell:
+`resample(df, 3, 0, True)` can't be read at the call site, and the order can never safely
+change again.
 
 ```python
 def resample(data, freq, *, offset=0, dropna=True): ...
@@ -312,8 +287,8 @@ resample(df, "1h", dropna=False)      # ✓ the data and its frequency; the rest
 ```
 
 ### Dataclasses for data
-*Recommended.* Fields with type hints, a constructor, a useful `repr`, and equality by value
-rather than by identity — for free.
+*Recommended.* Fields with type hints, a constructor, a useful `repr`, and equality by value —
+for free.
 
 ```python
 @dataclass
@@ -323,9 +298,9 @@ class Interval:
 ```
 
 ### Composed methods
-*Recommended.* Each function does one identifiable task, and all operations inside it sit at
-the same level of abstraction. Expect many small functions. A script split by comments is
-asking to be split into functions.
+*Recommended.* One identifiable task per function, all operations inside it at the same level
+of abstraction. Expect many small functions. A script split by comments is asking to be split
+into functions.
 
 ```python
 def main():
@@ -337,8 +312,7 @@ def main():
 
 ### Comments say why, not what
 *Recommended.* A comment that restates the code is noise that goes stale. Write the ones that
-capture what the code cannot say — the reason. If you need a comment to explain *what* is
-happening, rename something instead.
+capture the reason. If a comment is needed to explain *what* happens, rename something instead.
 
 ```python
 # Calculate the average temperature          ← says nothing the code doesn't
@@ -346,14 +320,12 @@ happening, rename something instead.
 ```
 
 ### When a long signature is a smell
-*Nice.* Many optional keyword arguments with sane defaults are perfectly Pythonic — see
-`read_csv`, `plot`, or any sklearn estimator. The smell is not the total count (that's
-[positional arguments](#keyword-only-arguments), which are a separate rule); it's when the
-arguments are switches for **separate jobs** the function has absorbed. If half the signature
-only applies when another argument is set, that's several functions wearing one signature.
-
-Then: group related parameters into a config dataclass, offer named presets, or split into
-composable pieces that each do one thing.
+*Nice.* Many optional keyword arguments with sane defaults are Pythonic — see `read_csv`,
+`plot`, any sklearn estimator. The smell is not the count (that's
+[positional arguments](#keyword-only-arguments), a separate rule) but arguments that switch
+between **separate jobs** the function absorbed: if half the signature only applies when
+another argument is set, that's several functions wearing one. Group them into a config
+dataclass, offer named presets, or split into composable pieces.
 
 ```python
 plot_scatter(ax, x, y, show_density=True)   # ✓ each does one job
@@ -362,18 +334,18 @@ add_skill_table(ax, x, y, metrics=["bias"])
 ```
 
 ### Names carry meaning
-*Recommended.* `n_freezing_days` over `n`, `FREEZING_POINT` over `0.0`. Renaming is the
-cheapest refactoring there is.
+*Recommended.* `n_freezing_days` over `n`, `FREEZING_POINT` over `0.0`. Renaming is the cheapest
+refactoring there is.
 
 ## Design
 
 ### Composition over inheritance
-*Recommended.* Composition is "has a", inheritance is "is a". Use inheritance only to
-specialize behaviour — most of the time composition is the better fit.
+*Recommended.* Composition is "has a", inheritance is "is a". Inherit only to specialize
+behaviour; most of the time composition fits better.
 
 ### Encapsulate invariants
-*Recommended.* A rule enforced only in `__init__` does not survive assignment. Use `_name`
-plus a property when the invariant must hold.
+*Recommended.* A rule enforced only in `__init__` does not survive assignment. Use `_name` plus
+a property when the invariant must hold.
 
 ```python
 @property
@@ -385,8 +357,8 @@ def name(self, value): self._name = value.upper()
 
 ### Don't reach into other classes
 *Blocker.* Classes talk through public APIs. Touching another object's `_private` attributes
-couples you to its internals, and it will break. If you need something that isn't public, the
-other class is missing a method — add it there.
+couples you to its internals and will break. If what you need isn't public, the other class is
+missing a method — add it there.
 
 ```python
 values = values[self.da.geometry.top_elements]   # reaching in
@@ -395,16 +367,16 @@ da = da.sel(layers="top")                        # ✓ ask it properly
 
 ### Pythonic over Java-like
 *Recommended.* Implement the dunder and get the language feature: `__len__` for `len(obj)`,
-`__contains__` for `in`, `__iter__` for `for`, `__getitem__` for `obj[key]`. Your objects
-should feel like the built-in types — `tb["hammer"]`, not `tb.getToolByName("hammer")`.
+`__contains__` for `in`, `__iter__` for `for`, `__getitem__` for `obj[key]`. Aim for
+`tb["hammer"]`, not `tb.getToolByName("hammer")`.
 
 ### Duck typing
-*Recommended.* The caller cares that the methods exist, not what the type is. No base class or
-interface required — that is what makes a scikit-learn transformer work.
+*Recommended.* The caller cares that the methods exist, not what the type is. No base class
+required — that is what makes a scikit-learn transformer work.
 
 ### Postel's law
-*Recommended.* Be liberal in what you accept, conservative in what you send. Normalize input
-types once, at the boundary. Pydantic does this for you.
+*Recommended.* Liberal in what you accept, conservative in what you send. Normalize input types
+once, at the boundary. Pydantic does this for you.
 
 ```python
 def process(number: int | str | float) -> int:
@@ -428,7 +400,7 @@ pip install https://github.com/DHI/my_library/archive/main.zip
 ```
 
 ### Docstrings, numpy format
-*Recommended.* On every public function and class. Written once, read in `help()`, in the
+*Recommended.* On every public function and class. Written once; read in `help()`, in the
 editor tooltip, and on the generated API site. Numpy format is the DHI default — set
 `docstring_style: "numpy"` in mkdocs, since the default is google.
 
@@ -449,28 +421,25 @@ def remove_outlier(data: pd.DataFrame, column: str, threshold: float = 3) -> pd.
 ```
 
 ### Examples that are tested
-*Nice.* Documentation that is wrong is worse than documentation that is missing. `doctest`
-runs the examples in your docstrings. For prose pages, [Quarto](https://quarto.org/) executes
-every snippet as part of the build, so the docs cannot ship broken — the build fails first.
+*Nice.* Wrong documentation is worse than missing documentation. `doctest` runs the examples in
+your docstrings; [Quarto](https://quarto.org/) executes every snippet in prose pages at build
+time. Either way broken docs fail the build instead of shipping.
 
 ```bash
-python -m doctest -v add.py
+uv run pytest --doctest-modules src
 ```
 
 ### Published API documentation
-*Recommended.* `mkdocs` + `mkdocstrings` + GitHub Pages, at
-`https://dhi.github.io/<repository>/`. [Quarto](https://quarto.org/),
-[Great Docs](https://github.com/machow/great-docs) (which wraps Quarto) and
-[zensical](https://zensical.org/) are viable alternatives.
-
-A private repository can have access-controlled Pages on GitHub Enterprise — use that when the
-site should stay internal, rather than relying on the URL not being found.
+*Recommended.* `mkdocs` + `mkdocstrings` + GitHub Pages, at `https://dhi.github.io/<repository>/`.
+[Quarto](https://quarto.org/), [Great Docs](https://github.com/machow/great-docs) (which wraps
+Quarto) and [zensical](https://zensical.org/) are alternatives. Internal-only sites go on
+access-controlled Pages on GitHub Enterprise — not on an unlisted URL.
 
 ## Automation
 
 ### CI on every push and pull request
-*Blocker.* A workflow in `.github/workflows/` that installs and runs the tests. This is what
-solves "it works on my machine".
+*Blocker.* A workflow in `.github/workflows/` that installs the package and runs the tests.
+This is what solves "it works on my machine".
 
 ```yaml
 on:
@@ -489,35 +458,34 @@ jobs:
 ```
 
 ### Lint and format with ruff
-*Recommended.* There is no reason not to. One binary, no configuration required, and it
-replaces flake8, black and isort at once. `ruff check` finds unused imports, undefined names
-and dead variables — usually typos, sometimes bugs. `ruff format` ends style arguments. Run
-both in CI.
+*Recommended.* One binary, no configuration required, replaces flake8, black and isort.
+`ruff check` finds unused imports, undefined names and dead variables — usually typos, sometimes
+bugs; `ruff format` ends style arguments. Run both in CI.
 
 ```bash
 ruff check .        ruff format --check .
 ```
 
 ### Type checking in CI
-*Nice.* [Type hints](#type-hints) are not enforcement — a type checker is. Run `mypy` (or
-`ty`) in CI on the package, not the tests, and turn it on for new code before old. It also
-catches uses of anything you have marked
-[`@deprecated`](#deprecate-before-removing).
+*Nice.* [Type hints](#type-hints) are not enforcement — a type checker is. Run `mypy` (or `ty`)
+on the package, not the tests, and turn it on for new code before old. It also catches uses of
+anything marked [`@deprecated`](#deprecate-before-removing).
 
 ```bash
 uv run mypy src --enable-error-code=deprecated
 ```
 
 ### A task runner
-*Nice.* One source of truth for how to run the project's tools, and the fastest onboarding
-document there is — for people and for coding agents. Prefer
-[`just`](https://just.systems) (`uv tool install rust-just`): a single cross-platform binary,
-`Makefile`-like syntax, and `just --list` documents itself. `make` works too, but it is not
-installed on Windows and is a build tool pressed into service as a task runner. The
+*Nice.* One source of truth for how to run the project's tools — the fastest onboarding
+document there is, for people and for coding agents. Prefer [`just`](https://just.systems)
+(`uv tool install rust-just`): a single binary, `Makefile`-like syntax, `just --list` documents
+itself. `make` works, but is absent on Windows. The
 [DHI template](https://github.com/DHI/template-python-library) ships a `justfile`.
 
 ```just
-check: lint typecheck test    # justfile
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+check: lint typecheck test
 lint:
     uv run ruff check src
 test:
@@ -525,26 +493,22 @@ test:
 ```
 
 ### Test the matrix
-*Nice.* If you claim to support Windows and Python 3.10, test on Windows and Python 3.10.
-
-Test what you claim and no more. CI is not free — every cell costs minutes on every push. An
-[application](#libraries-loose-applications-pinned) has one deployment target, so one cell is
-the honest matrix; a library that others install needs the range it advertises in
-`requires-python`.
+*Nice.* Test what you claim to support, and no more — every cell costs minutes on every push.
+An [application](#libraries-loose-applications-pinned) has one deployment target, so one cell is
+the honest matrix; a library needs the range it advertises in `requires-python`.
 
 ```yaml
 strategy:
   matrix:
     os: [ubuntu-latest, windows-latest]
-    python-version: ["3.10", "3.13"]
+    python-version: ["3.11", "3.13"]
 ```
 
 ## Release
 
 ### Tag every release
 *Recommended.* An annotated `vX.Y.Z` tag, pushed. It is what makes "which commit is 1.2.0?"
-answerable a year later, and what lets you diff two releases. Just do it — it costs one
-command.
+answerable a year later, and what lets you diff two releases.
 
 ```bash
 git tag -a v1.2.0 -m "v1.2.0"
@@ -554,10 +518,7 @@ git push --tags
 ### Publish from a tag or a release
 *Recommended.* Let a workflow build and publish; never upload from your laptop. Use
 [Trusted Publishers](https://docs.pypi.org/trusted-publishers/) so there are no secrets to
-manage.
-
-Trigger on the tag, or on a published GitHub release — either works with Trusted Publishers.
-The release gives you somewhere to put release notes; the tag is one step fewer.
+manage. Trigger on the tag, or on a published release if you want somewhere to put notes.
 
 ```yaml
 on:

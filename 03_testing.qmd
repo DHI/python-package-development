@@ -510,6 +510,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 * Self documenting, making it easier to onboard new team members — and for coding agents to find the right command.
 * We use [`just`](https://just.systems): one cross-platform binary, install with `uv tool install rust-just`.
 * Run `just <recipe>`, and `just --list` to see what is available.
+* On Windows, `set windows-shell` makes the recipes run in PowerShell.
 * `make` does the same job, but is not installed on Windows and is fussy about tabs.
 :::
 
@@ -517,7 +518,9 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 From the [DHI python template](https://github.com/DHI/template-python-library)
 
-```{.just filename="justfile" code-line-numbers="|1|3|5-6|8-9|11-12|14-15|"}
+```{.just filename="justfile" code-line-numbers="|1|3|5|7-14|16-20|"}
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
 LIB := "my_library"
 
 check: lint typecheck test doctest
@@ -533,6 +536,9 @@ test:
 
 typecheck:
 	uv run mypy {{LIB}}/ --config-file pyproject.toml
+
+doctest:
+	uv run pytest --doctest-modules {{LIB}}
 ```
 
 ## Summary {.smaller}
