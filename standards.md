@@ -172,6 +172,33 @@ uv sync                uv run pytest
 *Blocker.* `pytest`, in `tests/`, runnable with one command. Manual checking does not survive
 the next change.
 
+### Tests run from a clean clone
+*Blocker.* Resolve test data relative to the test file. Never an absolute or home-relative
+path, and **never as a fallback default** — a default like
+`os.environ.get("REF_DATA", Path.home() / "data")` looks configurable but only ever resolves
+on its author's machine.
+
+```python
+TESTDATA = Path(__file__).parent / "testdata"          # good
+TESTDATA = Path.home() / "src" / "ref" / "TestData"    # never
+```
+
+The wrong path is only the symptom. The damage is that the test passes for its author and
+skips for everyone else, including CI, so the suite reports green while verifying nothing.
+
+A skip is not a fix. This was a common accident before CI was the norm; now the more likely
+version is a `skip` added deliberately — often by a coding agent — to get a red suite green.
+That is worse than the failure it hides, because it turns a visible problem into an invisible
+one. A skip whose condition is false only on your machine is a hole with no bottom.
+
+Make CI fail on unexpected skips rather than trusting the summary line. pytest has no
+built-in flag for this, but a small `conftest.py` hook that turns a skip into a failure does
+the job. Then read the skip list in review: every remaining skip should have a reason you
+would defend out loud.
+
+If the data cannot be committed (see *No data in git*), the check belongs in a script, not in
+the test suite.
+
 ### Good unit tests
 *Recommended.* Fast, in-memory, deterministic, order-independent, and each one about a single
 logical concept. No database, no network, no random numbers.
