@@ -2,6 +2,8 @@
 title: "Python package development"
 ---
 
+[**Python package standards**](standards.md) — the rules from the course, on one page.
+
 [Introduction](00_introduction.qmd)
 
 ## Learning modules

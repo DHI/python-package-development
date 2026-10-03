@@ -8,7 +8,7 @@ In this module, we will use some files from the python library template. When yo
 
 - Create new branch `action-formatting` (Make sure changes from last module have been merged, and that you start from the main branch)
 - 4.1 Github Action
-    - Copy the `Makefile` from the python template <https://github.com/DHI/template-python-library> to your own library. It can sit in the root of your repo (make sure it is part of your github repo dir however)
+    - Copy the `justfile` from the python template <https://github.com/DHI/template-python-library> to your own library (install `just` with `uv tool install rust-just`). It can sit in the root of your repo (make sure it is part of your github repo dir however)
     - Copy the GitHub action file `full_test.yml` (in the `.github/workflows` folder) from the python template <https://github.com/DHI/template-python-library> to your own library. Make sure it sits in the same folder (`.github/workflows`).
     - Change all occurrences of "my_library" in the yml file to your package name "tscleaner"
     - Comment out the line with `ruff-action` with "#"

@@ -3,6 +3,34 @@
 This repo contains slides used in the course "Python package development".
 The course is run periodically and the material is kept up to date with current Python tooling.
 
+## Python package standards
+
+The whole course distilled into one page of rules — every rule has its own link, so you can
+point someone at exactly the thing you mean.
+
+**<https://dhi.github.io/python-package-development/standards.html>**
+
+```
+…/standards.html#mutable-default-arguments
+…/standards.html#composition-over-inheritance
+…/standards.html#libraries-loose-applications-pinned
+```
+
+Source: [`standards.md`](standards.md).
+
+### Reviewing a package against the standards
+
+[`.claude/skills/review-python-package/`](.claude/skills/review-python-package/) is a
+[Claude Code](https://claude.com/claude-code) skill that audits a package repository against
+these standards — layout, `pyproject.toml`, dependencies, tests, code smells, docs, CI and
+release setup — and reports findings linked to the rule each one breaks.
+
+Copy the folder into `~/.claude/skills/` (or your project's `.claude/skills/`), then:
+
+```
+> review this package against the DHI standards
+```
+
 ## Course description
 
 Python is the language of choice for data science, scientific computing and AI.
@@ -48,6 +76,8 @@ CI/CD via GitHub Actions (`.github/workflows/publish.yml`) renders and publishes
 
 ## Repository Structure
 
+- `standards.md` — The course distilled into linkable rules (published as `standards.html`)
+- `.claude/skills/review-python-package/` — Claude Code skill that audits a package against `standards.md`
 - `*.qmd` — Course modules (00-07), each a Quarto reveal.js slide deck
 - `_quarto.yml` — Quarto site configuration
 - `projects/data_cleaning/` — Capstone homework project (progressive weekly assignments)
