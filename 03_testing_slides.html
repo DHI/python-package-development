@@ -645,33 +645,43 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     19         1        500.0    500.0      0.0      return points</code></pre>
 </div>
 </section>
-<section id="makefiles" class="slide level2 smaller">
-<h2>Makefiles</h2>
+<section id="task-runners" class="slide level2 smaller">
+<h2>Task runners</h2>
 <ul>
-<li class="fragment">Makefiles simplify running complex commands.</li>
-<li class="fragment">They act as a single source of truth for how to run your tools.</li>
-<li class="fragment">Self documenting, making it easier to onboard new team members.</li>
-<li class="fragment">Run ‘make &lt;command&gt;’ to run a command from the Makefile.</li>
-<li class="fragment">On Linux by default, for Windows install with <a href="https://www.msys2.org/">MSYS2</a> or <a href="https://chocolatey.org/">Chocolatey</a> (or use WSL).</li>
+<li class="fragment">A task runner simplifies running complex commands.</li>
+<li class="fragment">It acts as a single source of truth for how to run your tools.</li>
+<li class="fragment">Self documenting, making it easier to onboard new team members — and for coding agents to find the right command.</li>
+<li class="fragment">We use <a href="https://just.systems"><code>just</code></a>: one cross-platform binary, install with <code>uv tool install rust-just</code>.</li>
+<li class="fragment">Run <code>just &lt;recipe&gt;</code>, and <code>just --list</code> to see what is available.</li>
+<li class="fragment">On Windows, <code>set windows-shell</code> makes the recipes run in PowerShell.</li>
+<li class="fragment"><code>make</code> does the same job, but is not installed on Windows and is fussy about tabs.</li>
 </ul>
 <div class="fragment">
-<p>Example</p>
+<p>From the <a href="https://github.com/DHI/template-python-library">DHI python template</a></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>Makefile</strong></pre>
+<pre><strong>justfile</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="Makefile" data-code-line-numbers="|1|5-6|8-9|11-12|3|"><pre class="sourceCode numberSource makefile number-lines code-with-copy"><code class="sourceCode makefile"><span id="cb18-1"><a aria-label="1"></a><span class="dt">LIB</span> <span class="ch">=</span><span class="st"> my_library</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="justfile" data-code-line-numbers="|1|3|5|7-14|16-20|"><pre class="sourceCode numberSource just number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a aria-label="1"></a>set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]</span>
 <span id="cb18-2"><a aria-label="2"></a></span>
-<span id="cb18-3"><a aria-label="3"></a><span class="dv">check:</span><span class="dt"> lint typecheck test</span></span>
+<span id="cb18-3"><a aria-label="3"></a>LIB := "my_library"</span>
 <span id="cb18-4"><a aria-label="4"></a></span>
-<span id="cb18-5"><a aria-label="5"></a><span class="dv">lint:</span></span>
-<span id="cb18-6"><a aria-label="6"></a><span class="er">    </span>ruff check <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
-<span id="cb18-7"><a aria-label="7"></a></span>
-<span id="cb18-8"><a aria-label="8"></a><span class="dv">format:</span></span>
-<span id="cb18-9"><a aria-label="9"></a><span class="er">    </span>ruff format <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
-<span id="cb18-10"><a aria-label="10"></a></span>
-<span id="cb18-11"><a aria-label="11"></a><span class="dv">test:</span></span>
-<span id="cb18-12"><a aria-label="12"></a><span class="er">    </span>pytest --disable-warnings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-5"><a aria-label="5"></a>check: lint typecheck test doctest</span>
+<span id="cb18-6"><a aria-label="6"></a></span>
+<span id="cb18-7"><a aria-label="7"></a>lint:</span>
+<span id="cb18-8"><a aria-label="8"></a>    uv run ruff check {{LIB}}</span>
+<span id="cb18-9"><a aria-label="9"></a></span>
+<span id="cb18-10"><a aria-label="10"></a>format:</span>
+<span id="cb18-11"><a aria-label="11"></a>    uv run ruff format {{LIB}}</span>
+<span id="cb18-12"><a aria-label="12"></a></span>
+<span id="cb18-13"><a aria-label="13"></a>test:</span>
+<span id="cb18-14"><a aria-label="14"></a>    uv run pytest --disable-warnings</span>
+<span id="cb18-15"><a aria-label="15"></a></span>
+<span id="cb18-16"><a aria-label="16"></a>typecheck:</span>
+<span id="cb18-17"><a aria-label="17"></a>    uv run mypy {{LIB}}/ --config-file pyproject.toml</span>
+<span id="cb18-18"><a aria-label="18"></a></span>
+<span id="cb18-19"><a aria-label="19"></a>doctest:</span>
+<span id="cb18-20"><a aria-label="20"></a>    uv run pytest --doctest-modules {{LIB}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -687,7 +697,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <li class="fragment"><strong>Ruff</strong> is a fast linter that checks for common errors and style issues.</li>
 <li class="fragment"><strong>Ruff</strong> is also an automatic code formatter that enforces a consistent style.</li>
 <li class="fragment">Profiling is a way to measure the performance of your code.</li>
-<li class="fragment"><strong>Makefiles</strong> simplify project related commands for everyone.</li>
+<li class="fragment"><strong>Task runners</strong> like <strong>just</strong> simplify project related commands for everyone.</li>
 </ul>
 
 

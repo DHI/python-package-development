@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-55617497126496852ff9f5a59253c640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -582,35 +582,45 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     18    240227  437538803.0   1821.4      2.5                  points[j], points[j + 1] = points[j + 1], points[j]
     19         1        500.0    500.0      0.0      return points</code></pre>
 </section>
-<section id="makefiles" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="makefiles">Makefiles</h2>
+<section id="task-runners" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="task-runners">Task runners</h2>
 <div class="incremental">
 <ul class="incremental">
-<li>Makefiles simplify running complex commands.</li>
-<li>They act as a single source of truth for how to run your tools.</li>
-<li>Self documenting, making it easier to onboard new team members.</li>
-<li>Run ‘make &lt;command&gt;’ to run a command from the Makefile.</li>
-<li>On Linux by default, for Windows install with <a href="https://www.msys2.org/">MSYS2</a> or <a href="https://chocolatey.org/">Chocolatey</a> (or use WSL).</li>
+<li>A task runner simplifies running complex commands.</li>
+<li>It acts as a single source of truth for how to run your tools.</li>
+<li>Self documenting, making it easier to onboard new team members — and for coding agents to find the right command.</li>
+<li>We use <a href="https://just.systems"><code>just</code></a>: one cross-platform binary, install with <code>uv tool install rust-just</code>.</li>
+<li>Run <code>just &lt;recipe&gt;</code>, and <code>just --list</code> to see what is available.</li>
+<li>On Windows, <code>set windows-shell</code> makes the recipes run in PowerShell.</li>
+<li><code>make</code> does the same job, but is not installed on Windows and is fussy about tabs.</li>
 </ul>
 </div>
 <p>. . .</p>
-<p>Example</p>
+<p>From the <a href="https://github.com/DHI/template-python-library">DHI python template</a></p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>Makefile</strong></pre>
+<pre><strong>justfile</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="Makefile"><pre class="sourceCode numberSource makefile number-lines code-with-copy"><code class="sourceCode makefile"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a><span class="dt">LIB</span> <span class="ch">=</span><span class="st"> my_library</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="justfile"><pre class="sourceCode numberSource just number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-label="2"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a><span class="dv">check:</span><span class="dt"> lint typecheck test</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a>LIB := "my_library"</span>
 <span id="cb18-4"><a href="#cb18-4" aria-label="4"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-label="5"></a><span class="dv">lint:</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-label="6"></a><span class="er">    </span>ruff check <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-label="7"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-label="8"></a><span class="dv">format:</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-label="9"></a><span class="er">    </span>ruff format <span class="ch">$(</span><span class="dt">LIB</span><span class="ch">)</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-label="10"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-label="11"></a><span class="dv">test:</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-label="12"></a><span class="er">    </span>pytest --disable-warnings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-5"><a href="#cb18-5" aria-label="5"></a>check: lint typecheck test doctest</span>
+<span id="cb18-6"><a href="#cb18-6" aria-label="6"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-label="7"></a>lint:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-label="8"></a>    uv run ruff check {{LIB}}</span>
+<span id="cb18-9"><a href="#cb18-9" aria-label="9"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-label="10"></a>format:</span>
+<span id="cb18-11"><a href="#cb18-11" aria-label="11"></a>    uv run ruff format {{LIB}}</span>
+<span id="cb18-12"><a href="#cb18-12" aria-label="12"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-label="13"></a>test:</span>
+<span id="cb18-14"><a href="#cb18-14" aria-label="14"></a>    uv run pytest --disable-warnings</span>
+<span id="cb18-15"><a href="#cb18-15" aria-label="15"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-label="16"></a>typecheck:</span>
+<span id="cb18-17"><a href="#cb18-17" aria-label="17"></a>    uv run mypy {{LIB}}/ --config-file pyproject.toml</span>
+<span id="cb18-18"><a href="#cb18-18" aria-label="18"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-label="19"></a>doctest:</span>
+<span id="cb18-20"><a href="#cb18-20" aria-label="20"></a>    uv run pytest --doctest-modules {{LIB}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="summary" class="level2 smaller">
@@ -626,7 +636,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <li><strong>Ruff</strong> is a fast linter that checks for common errors and style issues.</li>
 <li><strong>Ruff</strong> is also an automatic code formatter that enforces a consistent style.</li>
 <li>Profiling is a way to measure the performance of your code.</li>
-<li><strong>Makefiles</strong> simplify project related commands for everyone.</li>
+<li><strong>Task runners</strong> like <strong>just</strong> simplify project related commands for everyone.</li>
 </ul>
 </div>
 

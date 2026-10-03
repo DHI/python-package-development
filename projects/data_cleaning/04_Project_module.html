@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e3adbaa939bcd423dddc8c8a834270b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-55617497126496852ff9f5a59253c640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Create new branch <code>action-formatting</code> (Make sure changes from last module have been merged, and that you start from the main branch)</li>
 <li>4.1 Github Action
 <ul>
-<li>Copy the <code>Makefile</code> from the python template <a href="https://github.com/DHI/template-python-library" class="uri">https://github.com/DHI/template-python-library</a> to your own library. It can sit in the root of your repo (make sure it is part of your github repo dir however)</li>
+<li>Copy the <code>justfile</code> from the python template <a href="https://github.com/DHI/template-python-library" class="uri">https://github.com/DHI/template-python-library</a> to your own library (install <code>just</code> with <code>uv tool install rust-just</code>). It can sit in the root of your repo (make sure it is part of your github repo dir however)</li>
 <li>Copy the GitHub action file <code>full_test.yml</code> (in the <code>.github/workflows</code> folder) from the python template <a href="https://github.com/DHI/template-python-library" class="uri">https://github.com/DHI/template-python-library</a> to your own library. Make sure it sits in the same folder (<code>.github/workflows</code>).</li>
 <li>Change all occurrences of “my_library” in the yml file to your package name “tscleaner”</li>
 <li>Comment out the line with <code>ruff-action</code> with “#”</li>

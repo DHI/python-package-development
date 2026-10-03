@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>standards – Python package development</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-55617497126496852ff9f5a59253c640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="python-package-standards" class="level1">
+<h1>Python package standards</h1>
+<p>The rules from the <a href="./index.html">Python package development</a> course, distilled into one page. Every section is a rule you can link to directly.</p>
+<p><strong>Blocker</strong> — the package is not fit to share until this is fixed. <strong>Recommended</strong> — expected of a DHI package. <strong>Nice</strong> — worth doing when you get to it.</p>
+<section id="repository" class="level2">
+<h2 class="anchored" data-anchor-id="repository">Repository</h2>
+<section id="small-focused-pull-requests" class="level3">
+<h3 class="anchored" data-anchor-id="small-focused-pull-requests">Small, focused pull requests</h3>
+<p><em>Recommended.</em> One concern per pull request. Commit messages say what changed and why. Track work with issues.</p>
+</section>
+<section id="no-data-in-git" class="level3">
+<h3 class="anchored" data-anchor-id="no-data-in-git">No data in git</h3>
+<p><em>Blocker.</em> Only small test fixtures. Everything generated goes in <code>.gitignore</code>.</p>
+</section>
+<section id="no-credentials-in-git" class="level3">
+<h3 class="anchored" data-anchor-id="no-credentials-in-git">No credentials in git</h3>
+<p><em>Blocker.</em> Passwords, tokens and connection strings belong in GitHub secrets or a secret store — never in the repository, not even in history.</p>
+</section>
+</section>
+<section id="layout" class="level2">
+<h2 class="anchored" data-anchor-id="layout">Layout</h2>
+<section id="src-layout" class="level3">
+<h3 class="anchored" data-anchor-id="src-layout">src layout</h3>
+<p><em>Recommended.</em> Package code under <code>src/my_library/</code>, tests in <code>tests/</code>, docs in <code>docs/</code>. Imports then resolve to the <em>installed</em> package, not the working directory.</p>
+<pre><code>my_library/
+├── .github/workflows/
+├── src/my_library/__init__.py
+├── tests/test_*.py
+├── docs/index.md
+├── pyproject.toml
+├── uv.lock
+├── README.md
+└── LICENSE</code></pre>
+</section>
+<section id="modules-group-related-code" class="level3">
+<h3 class="anchored" data-anchor-id="modules-group-related-code">Modules group related code</h3>
+<p><em>Recommended.</em> A module is one <code>.py</code> file; a package is a directory of modules with <code>__init__.py</code>. Split by what the code is about, not by file size.</p>
+</section>
+<section id="explicit-public-api" class="level3">
+<h3 class="anchored" data-anchor-id="explicit-public-api">Explicit public API</h3>
+<p><em>Recommended.</em> <code>__init__.py</code> re-exports the names users should touch. What you export is what you have to keep working.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ._pfsdocument <span class="im">import</span> PfsDocument   <span class="co"># mikeio.PfsDocument is the supported name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="underscore-means-internal" class="level3">
+<h3 class="anchored" data-anchor-id="underscore-means-internal">Underscore means internal</h3>
+<p><em>Recommended.</em> A leading underscore says “not part of the public API”: <code>_foo</code> may change or disappear without it counting as a <a href="#breaking-changes-bump-major">breaking change</a>. Declare the public surface with <code>__all__</code> so the boundary is explicit. (<code>__foo</code> is name mangling — a different thing.)</p>
+</section>
+<section id="naming-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="naming-conventions">Naming conventions</h3>
+<p><em>Recommended.</em> <code>lowercase_with_underscores</code> for variables, functions and methods; <code>CamelCase</code> for classes; <code>UPPERCASE_WITH_UNDERSCORES</code> for constants.</p>
+</section>
+</section>
+<section id="packaging" class="level2">
+<h2 class="anchored" data-anchor-id="packaging">Packaging</h2>
+<section id="pyproject.toml" class="level3">
+<h3 class="anchored" data-anchor-id="pyproject.toml">pyproject.toml</h3>
+<p><em>Blocker.</em> Without <code>[build-system]</code> and <code>[project]</code> the package is not installable. <code>uv init --lib</code> gives you a working one.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"uv_build&gt;=0.8.9,&lt;0.9.0"</span><span class="op">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"uv_build"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my_library"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.0.1"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Useful library"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.11"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[{ </span><span class="dt">name</span><span class="op">=</span><span class="st">"First Last"</span><span class="op">, </span><span class="dt">email</span><span class="op">=</span><span class="st">"initials@dhigroup.com"</span><span class="op"> }]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"numpy"</span><span class="op">]</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.urls]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="dt">"Homepage"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="dt">"Bug Tracker"</span> <span class="op">=</span> <span class="st">"https://github.com/DHI/my_library/issues"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="semantic-versioning" class="level3">
+<h3 class="anchored" data-anchor-id="semantic-versioning">Semantic versioning</h3>
+<p><em>Recommended.</em> <code>{major}.{minor}.{patch}</code> — major breaks, minor adds, patch fixes. Start at <code>0.1.0</code>. <code>1.0</code> is a promise that the API is stable.</p>
+</section>
+<section id="breaking-changes-bump-major" class="level3">
+<h3 class="anchored" data-anchor-id="breaking-changes-bump-major">Breaking changes bump major</h3>
+<p><em>Blocker.</em> Removing a function, renaming one, or changing a signature — including reordering positional arguments — breaks callers. Avoid it; when you can’t, bump the major version. Applies to the <a href="#underscore-means-internal">public API</a> only.</p>
+</section>
+<section id="deprecate-before-removing" class="level3">
+<h3 class="anchored" data-anchor-id="deprecate-before-removing">Deprecate before removing</h3>
+<p><em>Recommended.</em> Warn in one version, remove in the next major — never both at once. Say what to use instead.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> warnings <span class="im">import</span> deprecated      <span class="co"># Python 3.13+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">@deprecated</span>(<span class="st">"Use new_function instead; removed in 2.0"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> old_function(x): ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>DeprecationWarning</code> targets developers (hidden by default, shown in test runs); <code>FutureWarning</code> targets end users (always visible). <code>mypy --enable-error-code=deprecated</code> catches uses of <code>@deprecated</code>.</p>
+</section>
+<section id="changelog" class="level3">
+<h3 class="anchored" data-anchor-id="changelog">Changelog</h3>
+<p><em>Nice.</em> A <code>CHANGELOG.md</code> in <a href="https://keepachangelog.com/">keepachangelog</a> format: what broke, what’s new, what’s deprecated. A git log is not release notes. A stale one is worse than none, so assemble it from a fragment per pull request (<a href="https://towncrier.readthedocs.io/">towncrier</a>, <a href="https://git-cliff.org/">git-cliff</a>) rather than curating it at release time.</p>
+</section>
+<section id="license" class="level3">
+<h3 class="anchored" data-anchor-id="license">License</h3>
+<p><em>Blocker.</em> No license means all rights reserved and legally unusable by others. MIT for open, a copyright notice for internal-only. Check your dependencies’ licenses too.</p>
+<pre><code># Copyright (c) DHI
+# All rights reserved.</code></pre>
+</section>
+</section>
+<section id="dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
+<section id="every-dependency-is-a-decision" class="level3">
+<h3 class="anchored" data-anchor-id="every-dependency-is-a-decision">Every dependency is a decision</h3>
+<p><em>Recommended.</em> You ship someone else’s code, and everything <em>it</em> depends on. Check three things: maintained, license (GPL can force your package to be GPL), and compiled extensions that will break installation on a colleague’s laptop. <code>uv pip tree</code> shows what you ship. Don’t reinvent NumPy; don’t take a dependency for twenty lines you could own.</p>
+</section>
+<section id="libraries-loose-applications-pinned" class="level3">
+<h3 class="anchored" data-anchor-id="libraries-loose-applications-pinned">Libraries loose, applications pinned</h3>
+<p><em>Recommended.</em> A library is imported by other code — keep bounds wide (<code>numpy&gt;=1.11.0</code>) so it doesn’t conflict with what the user already has. An application is run by a user — pin (<code>numpy==1.11.0</code>) for reproducibility.</p>
+</section>
+<section id="development-dependencies-are-separate" class="level3">
+<h3 class="anchored" data-anchor-id="development-dependencies-are-separate">Development dependencies are separate</h3>
+<p><em>Recommended.</em> pytest, ruff, mypy and mkdocs are needed to <em>develop</em> the package, not to <em>run</em> it. Put them in <code>[dependency-groups]</code>, not <code>[project].dependencies</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[dependency-groups]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">dev</span> <span class="op">=</span> <span class="op">[</span><span class="st">"pytest"</span><span class="op">,</span> <span class="st">"ruff"</span><span class="op">,</span> <span class="st">"mypy"</span><span class="op">,</span> <span class="st">"mkdocs"</span><span class="op">,</span> <span class="st">"mkdocstrings[python]"</span><span class="op">,</span> <span class="st">"mkdocs-material"</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="uv-for-environments-and-locking" class="level3">
+<h3 class="anchored" data-anchor-id="uv-for-environments-and-locking">uv for environments and locking</h3>
+<p><em>Recommended.</em> One virtual environment per project, managed by <code>uv</code>. Commit <code>uv.lock</code> so everyone resolves to the same packages.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add matplotlib      uv add <span class="at">--dev</span> pytest</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync                uv run pytest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="testing" class="level2">
+<h2 class="anchored" data-anchor-id="testing">Testing</h2>
+<section id="tests-exist-and-are-automated" class="level3">
+<h3 class="anchored" data-anchor-id="tests-exist-and-are-automated">Tests exist and are automated</h3>
+<p><em>Blocker.</em> <code>pytest</code>, in <code>tests/</code>, runnable with one command. Manual checking does not survive the next change.</p>
+</section>
+<section id="tests-run-from-a-clean-clone" class="level3">
+<h3 class="anchored" data-anchor-id="tests-run-from-a-clean-clone">Tests run from a clean clone</h3>
+<p><em>Blocker.</em> Resolve test data relative to the test file. Never an absolute or home-relative path, and never as a fallback default.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>TESTDATA <span class="op">=</span> Path(<span class="va">__file__</span>).parent <span class="op">/</span> <span class="st">"testdata"</span>          <span class="co"># good</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>TESTDATA <span class="op">=</span> Path.home() <span class="op">/</span> <span class="st">"src"</span> <span class="op">/</span> <span class="st">"ref"</span> <span class="op">/</span> <span class="st">"TestData"</span>    <span class="co"># never</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The wrong path is the symptom; the damage is a test that passes for its author and skips for everyone else, so the suite reports green while verifying nothing.</p>
+<p>A skip is not a fix — <code>skip</code>, <code>xfail</code> or <code>importorskip</code> added to turn a suite green trades a visible failure for an invisible one. Fail CI on unexpected skips (pytest has no flag; use a <code>conftest.py</code> hook). If the data cannot be committed (see <a href="#no-data-in-git">No data in git</a>), the check belongs in a script, not the test suite.</p>
+</section>
+<section id="good-unit-tests" class="level3">
+<h3 class="anchored" data-anchor-id="good-unit-tests">Good unit tests</h3>
+<p><em>Recommended.</em> Fast, in-memory, deterministic, order-independent, one logical concept each. No database, no network, no random numbers.</p>
+</section>
+<section id="test-the-edges" class="level3">
+<h3 class="anchored" data-anchor-id="test-the-edges">Test the edges</h3>
+<p><em>Recommended.</em> Empty list, single element, empty string, empty dict, <code>None</code>, <code>np.nan</code>. That is where the bugs are.</p>
+</section>
+<section id="tests-document-behaviour" class="level3">
+<h3 class="anchored" data-anchor-id="tests-document-behaviour">Tests document behaviour</h3>
+<p><em>Recommended.</em> A test name states a rule. Someone reading the test file should learn how the code is meant to behave.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_operable_period_can_be_missing():</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> is_operable(height<span class="op">=</span><span class="fl">1.0</span>, period<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_height_can_not_be_missing():</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        is_operable(height<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="meaningful-coverage" class="level3">
+<h3 class="anchored" data-anchor-id="meaningful-coverage">Meaningful coverage</h3>
+<p><em>Nice.</em> <code>pytest --cov=my_library</code> to find untested code. Aim tests with the report; don’t chase the number.</p>
+</section>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<section id="mutable-default-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="mutable-default-arguments">Mutable default arguments</h3>
+<p><em>Blocker.</em> Defaults are evaluated once, at definition — not per call. A mutable default is shared by every call, forever.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_to_cart(x, cart<span class="op">=</span>[]):      <span class="co"># one shared list</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_to_cart(x, cart<span class="op">=</span><span class="va">None</span>):    <span class="co"># ✓ then: if cart is None: cart = []</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="dont-modify-input-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="dont-modify-input-arguments">Don’t modify input arguments</h3>
+<p><em>Recommended.</em> Arguments are passed by reference, so mutating them surprises the caller. Return a new object.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clip(values):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(values)):  <span class="co"># caller's list silently changed</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        values[i] <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, values[i])</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clip(values):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="bu">max</span>(<span class="dv">0</span>, v) <span class="cf">for</span> v <span class="kw">in</span> values]     <span class="co"># ✓</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="one-return-type" class="level3">
+<h3 class="anchored" data-anchor-id="one-return-type">One return type</h3>
+<p><em>Blocker.</em> One type out, on every path. A function returning <code>bool</code> on success and <code>str</code> on failure reads as success — a non-empty string is truthy. A <code>return</code> on one path and none on another is the same bug: the silent path returns <code>None</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_operable(height, period):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> height <span class="op">&gt;</span> <span class="fl">10.0</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"No way!"</span>       <span class="co"># str here...</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span>                <span class="co"># ...bool here</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> is_operable(height<span class="op">=</span><span class="fl">12.0</span>, period<span class="op">=</span><span class="fl">5.0</span>):   <span class="co"># "No way!" is truthy — this runs</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Go ahead!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="errors-should-never-pass-silently" class="level3">
+<h3 class="anchored" data-anchor-id="errors-should-never-pass-silently">Errors should never pass silently</h3>
+<p><em>Blocker.</em> Raise rather than let a bad value propagate. Use built-ins (<code>ValueError</code>, <code>KeyError</code>, <code>FileNotFoundError</code>), or your own where the domain warrants it. Never swallow with a bare <code>except</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> height <span class="op">&lt;</span> <span class="fl">0.0</span>:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Supplied value of </span><span class="sc">{</span>height<span class="op">=</span><span class="sc">}</span><span class="ss"> is unphysical."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pure-functions-where-you-can" class="level3">
+<h3 class="anchored" data-anchor-id="pure-functions-where-you-can">Pure functions where you can</h3>
+<p><em>Recommended.</em> Same input, same output, no side effects — trivial to test. Where side effects are necessary (files, databases, plots), keep them in few, deliberate places.</p>
+</section>
+<section id="instance-variables-not-class-variables" class="level3">
+<h3 class="anchored" data-anchor-id="instance-variables-not-class-variables">Instance variables, not class variables</h3>
+<p><em>Blocker.</em> A mutable value in the class body is shared by every instance. Assign in <code>__init__</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Toolbox:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    tools <span class="op">=</span> []                <span class="co"># shared by all instances</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tools <span class="op">=</span> []       <span class="co"># ✓ one per object</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="type-hints" class="level3">
+<h3 class="anchored" data-anchor-id="type-hints">Type hints</h3>
+<p><em>Recommended.</em> On public functions at minimum. They are hints, not enforcement, until you add a <a href="#type-checking-in-ci">type checker</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clip(values: <span class="bu">list</span>[<span class="bu">int</span>], <span class="op">*</span>, threshold: <span class="bu">int</span> <span class="op">=</span> <span class="dv">0</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">int</span>]: ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="keyword-only-arguments" class="level3">
+<h3 class="anchored" data-anchor-id="keyword-only-arguments">Keyword-only arguments</h3>
+<p><em>Recommended.</em> One or two positional parameters — the data the function operates on; everything after is configuration and goes behind a <code>*</code>, so callers name it and you can add or reorder options without breaking anyone. Three or more positional parameters is a smell: <code>resample(df, 3, 0, True)</code> can’t be read at the call site, and the order can never safely change again.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> resample(data, freq, <span class="op">*</span>, offset<span class="op">=</span><span class="dv">0</span>, dropna<span class="op">=</span><span class="va">True</span>): ...</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>resample(df, <span class="st">"1h"</span>, dropna<span class="op">=</span><span class="va">False</span>)      <span class="co"># ✓ the data and its frequency; the rest is named</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="dataclasses-for-data" class="level3">
+<h3 class="anchored" data-anchor-id="dataclasses-for-data">Dataclasses for data</h3>
+<p><em>Recommended.</em> Fields with type hints, a constructor, a useful <code>repr</code>, and equality by value — for free.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Interval:</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    start: date</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    end: date</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="composed-methods" class="level3">
+<h3 class="anchored" data-anchor-id="composed-methods">Composed methods</h3>
+<p><em>Recommended.</em> One identifiable task per function, all operations inside it at the same level of abstraction. Expect many small functions. A script split by comments is asking to be split into functions.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> get_data(<span class="st">"raw_data.csv"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    cleaned <span class="op">=</span> clean_data(df)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    final <span class="op">=</span> transform_data(cleaned)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> predict(final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="comments-say-why-not-what" class="level3">
+<h3 class="anchored" data-anchor-id="comments-say-why-not-what">Comments say why, not what</h3>
+<p><em>Recommended.</em> A comment that restates the code is noise that goes stale. Write the ones that capture the reason. If a comment is needed to explain <em>what</em> happens, rename something instead.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the average temperature          ← says nothing the code doesn't</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensors report -999 when disconnected      ← you could not have known this</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="when-a-long-signature-is-a-smell" class="level3">
+<h3 class="anchored" data-anchor-id="when-a-long-signature-is-a-smell">When a long signature is a smell</h3>
+<p><em>Nice.</em> Many optional keyword arguments with sane defaults are Pythonic — see <code>read_csv</code>, <code>plot</code>, any sklearn estimator. The smell is not the count (that’s <a href="#keyword-only-arguments">positional arguments</a>, a separate rule) but arguments that switch between <strong>separate jobs</strong> the function absorbed: if half the signature only applies when another argument is set, that’s several functions wearing one. Group them into a config dataclass, offer named presets, or split into composable pieces.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot_scatter(ax, x, y, show_density<span class="op">=</span><span class="va">True</span>)   <span class="co"># ✓ each does one job</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plot_reg_line(ax, x, y)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>add_skill_table(ax, x, y, metrics<span class="op">=</span>[<span class="st">"bias"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="names-carry-meaning" class="level3">
+<h3 class="anchored" data-anchor-id="names-carry-meaning">Names carry meaning</h3>
+<p><em>Recommended.</em> <code>n_freezing_days</code> over <code>n</code>, <code>FREEZING_POINT</code> over <code>0.0</code>. Renaming is the cheapest refactoring there is.</p>
+</section>
+</section>
+<section id="design" class="level2">
+<h2 class="anchored" data-anchor-id="design">Design</h2>
+<section id="composition-over-inheritance" class="level3">
+<h3 class="anchored" data-anchor-id="composition-over-inheritance">Composition over inheritance</h3>
+<p><em>Recommended.</em> Composition is “has a”, inheritance is “is a”. Inherit only to specialize behaviour; most of the time composition fits better.</p>
+</section>
+<section id="encapsulate-invariants" class="level3">
+<h3 class="anchored" data-anchor-id="encapsulate-invariants">Encapsulate invariants</h3>
+<p><em>Recommended.</em> A rule enforced only in <code>__init__</code> does not survive assignment. Use <code>_name</code> plus a property when the invariant must hold.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="at">@property</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> name(<span class="va">self</span>): <span class="cf">return</span> <span class="va">self</span>._name</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="at">@name.setter</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> name(<span class="va">self</span>, value): <span class="va">self</span>._name <span class="op">=</span> value.upper()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="dont-reach-into-other-classes" class="level3">
+<h3 class="anchored" data-anchor-id="dont-reach-into-other-classes">Don’t reach into other classes</h3>
+<p><em>Blocker.</em> Classes talk through public APIs. Touching another object’s <code>_private</code> attributes couples you to its internals and will break. If what you need isn’t public, the other class is missing a method — add it there.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> values[<span class="va">self</span>.da.geometry.top_elements]   <span class="co"># reaching in</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> da.sel(layers<span class="op">=</span><span class="st">"top"</span>)                        <span class="co"># ✓ ask it properly</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pythonic-over-java-like" class="level3">
+<h3 class="anchored" data-anchor-id="pythonic-over-java-like">Pythonic over Java-like</h3>
+<p><em>Recommended.</em> Implement the dunder and get the language feature: <code>__len__</code> for <code>len(obj)</code>, <code>__contains__</code> for <code>in</code>, <code>__iter__</code> for <code>for</code>, <code>__getitem__</code> for <code>obj[key]</code>. Aim for <code>tb["hammer"]</code>, not <code>tb.getToolByName("hammer")</code>.</p>
+</section>
+<section id="duck-typing" class="level3">
+<h3 class="anchored" data-anchor-id="duck-typing">Duck typing</h3>
+<p><em>Recommended.</em> The caller cares that the methods exist, not what the type is. No base class required — that is what makes a scikit-learn transformer work.</p>
+</section>
+<section id="postels-law" class="level3">
+<h3 class="anchored" data-anchor-id="postels-law">Postel’s law</h3>
+<p><em>Recommended.</em> Liberal in what you accept, conservative in what you send. Normalize input types once, at the boundary. Pydantic does this for you.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(number: <span class="bu">int</span> <span class="op">|</span> <span class="bu">str</span> <span class="op">|</span> <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    number <span class="op">=</span> <span class="bu">int</span>(number)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> number <span class="op">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="right-level-of-abstraction" class="level3">
+<h3 class="anchored" data-anchor-id="right-level-of-abstraction">Right level of abstraction</h3>
+<p><em>Nice.</em> Too little means boilerplate everywhere; too much means nothing can be adapted. <code>sum(values)</code> over a loop, but not a framework where a function would do.</p>
+</section>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<section id="readme" class="level3">
+<h3 class="anchored" data-anchor-id="readme">README</h3>
+<p><em>Blocker.</em> What the package does, what it requires (OS, Python version, non-Python dependencies), and how to install it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install my_library</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install https://github.com/DHI/my_library/archive/main.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="docstrings-numpy-format" class="level3">
+<h3 class="anchored" data-anchor-id="docstrings-numpy-format">Docstrings, numpy format</h3>
+<p><em>Recommended.</em> On every public function and class. Written once; read in <code>help()</code>, in the editor tooltip, and on the generated API site. Numpy format is the DHI default — set <code>docstring_style: "numpy"</code> in mkdocs, since the default is google.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_outlier(data: pd.DataFrame, column: <span class="bu">str</span>, threshold: <span class="bu">float</span> <span class="op">=</span> <span class="dv">3</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Remove outliers from a dataframe.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">    threshold : float, optional</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Number of standard deviations to use as threshold, by default 3</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">    pd.DataFrame</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Dataframe with outliers removed.</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="examples-that-are-tested" class="level3">
+<h3 class="anchored" data-anchor-id="examples-that-are-tested">Examples that are tested</h3>
+<p><em>Nice.</em> Wrong documentation is worse than missing documentation. <code>doctest</code> runs the examples in your docstrings; <a href="https://quarto.org/">Quarto</a> executes every snippet in prose pages at build time. Either way broken docs fail the build instead of shipping.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">--doctest-modules</span> src</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="published-api-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="published-api-documentation">Published API documentation</h3>
+<p><em>Recommended.</em> <code>mkdocs</code> + <code>mkdocstrings</code> + GitHub Pages, at <code>https://dhi.github.io/&lt;repository&gt;/</code>. <a href="https://quarto.org/">Quarto</a>, <a href="https://github.com/machow/great-docs">Great Docs</a> (which wraps Quarto) and <a href="https://zensical.org/">zensical</a> are alternatives. Internal-only sites go on access-controlled Pages on GitHub Enterprise — not on an unlisted URL.</p>
+</section>
+</section>
+<section id="automation" class="level2">
+<h2 class="anchored" data-anchor-id="automation">Automation</h2>
+<section id="ci-on-every-push-and-pull-request" class="level3">
+<h3 class="anchored" data-anchor-id="ci-on-every-push-and-pull-request">CI on every push and pull request</h3>
+<p><em>Blocker.</em> A workflow in <code>.github/workflows/</code> that installs the package and runs the tests. This is what solves “it works on my machine”.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="at"> </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span><span class="at"> </span><span class="kw">}</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="at"> </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span><span class="at"> </span><span class="kw">}</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">test</span><span class="kw">:</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> astral-sh/setup-uv@v6</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="at"> </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.13"</span><span class="at"> </span><span class="kw">}</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> uv sync</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> uv run pytest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="lint-and-format-with-ruff" class="level3">
+<h3 class="anchored" data-anchor-id="lint-and-format-with-ruff">Lint and format with ruff</h3>
+<p><em>Recommended.</em> One binary, no configuration required, replaces flake8, black and isort. <code>ruff check</code> finds unused imports, undefined names and dead variables — usually typos, sometimes bugs; <code>ruff format</code> ends style arguments. Run both in CI.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ruff</span> check .        ruff format <span class="at">--check</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="type-checking-in-ci" class="level3">
+<h3 class="anchored" data-anchor-id="type-checking-in-ci">Type checking in CI</h3>
+<p><em>Nice.</em> <a href="#type-hints">Type hints</a> are not enforcement — a type checker is. Run <code>mypy</code> (or <code>ty</code>) on the package, not the tests, and turn it on for new code before old. It also catches uses of anything marked <a href="#deprecate-before-removing"><code>@deprecated</code></a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run mypy src <span class="at">--enable-error-code</span><span class="op">=</span>deprecated</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="a-task-runner" class="level3">
+<h3 class="anchored" data-anchor-id="a-task-runner">A task runner</h3>
+<p><em>Nice.</em> One source of truth for how to run the project’s tools — the fastest onboarding document there is, for people and for coding agents. Prefer <a href="https://just.systems"><code>just</code></a> (<code>uv tool install rust-just</code>): a single binary, <code>Makefile</code>-like syntax, <code>just --list</code> documents itself. <code>make</code> works, but is absent on Windows. The <a href="https://github.com/DHI/template-python-library">DHI template</a> ships a <code>justfile</code>.</p>
+<pre class="just"><code>set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+check: lint typecheck test
+lint:
+    uv run ruff check src
+test:
+    uv run pytest</code></pre>
+</section>
+<section id="test-the-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="test-the-matrix">Test the matrix</h3>
+<p><em>Nice.</em> Test what you claim to support, and no more — every cell costs minutes on every push. An <a href="#libraries-loose-applications-pinned">application</a> has one deployment target, so one cell is the honest matrix; a library needs the range it advertises in <code>requires-python</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">os</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">ubuntu-latest</span><span class="kw">,</span><span class="at"> windows-latest</span><span class="kw">]</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"3.11"</span><span class="kw">,</span><span class="at"> </span><span class="st">"3.13"</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="release" class="level2">
+<h2 class="anchored" data-anchor-id="release">Release</h2>
+<section id="tag-every-release" class="level3">
+<h3 class="anchored" data-anchor-id="tag-every-release">Tag every release</h3>
+<p><em>Recommended.</em> An annotated <code>vX.Y.Z</code> tag, pushed. It is what makes “which commit is 1.2.0?” answerable a year later, and what lets you diff two releases.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.2.0 <span class="at">-m</span> <span class="st">"v1.2.0"</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--tags</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="publish-from-a-tag-or-a-release" class="level3">
+<h3 class="anchored" data-anchor-id="publish-from-a-tag-or-a-release">Publish from a tag or a release</h3>
+<p><em>Recommended.</em> Let a workflow build and publish; never upload from your laptop. Use <a href="https://docs.pypi.org/trusted-publishers/">Trusted Publishers</a> so there are no secrets to manage. Trigger on the tag, or on a published release if you want somewhere to put notes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"v*"</span><span class="kw">]</span><span class="co">      # or:  release: { types: [published] }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="somewhere-to-install-from" class="level3">
+<h3 class="anchored" data-anchor-id="somewhere-to-install-from">Somewhere to install from</h3>
+<p><em>Recommended.</em> PyPI for public packages; Azure Artifacts or Posit Package Manager for internal ones. Straight from GitHub works too, and needs no index at all.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install https://github.com/DHI/mikeio/archive/main.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pre-releases-for-anything-unfinished" class="level3">
+<h3 class="anchored" data-anchor-id="pre-releases-for-anything-unfinished">Pre-releases for anything unfinished</h3>
+<p><em>Nice.</em> <code>1.0.0rc1</code> is not installed by default and does not appear in search — the safe way to put something in front of users before committing to it.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/DHI\.github\.io\/python-package-development\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
